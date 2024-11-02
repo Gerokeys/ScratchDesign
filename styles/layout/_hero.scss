@@ -1,0 +1,26 @@
+.hero {
+
+    &__content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        max-width: 100ch;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    &__title {
+        color: var(--color-text--light);
+
+        span {
+            color: var(--color-text--dark);
+        }
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .hero__title {
+        font-size: 5.5rem;
+    }
+}
