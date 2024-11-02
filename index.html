@@ -17,16 +17,17 @@
               <li><a href="#services">Services</a></li>
               <li><a href="#contact">Contact</a></li>
               <li>
-                <a href="/" class="button button--light" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/xtiangerald147/30min'});return false;">
+                <a href="#" class="button button--light" data-cal-link="gerald-shikwe-yarxme/30min" data-cal-config='{"layout":"month_view","theme":"light"}' data-cal-namespace="30min">
                   <span>
                     <span>Schedule a call</span>
                   </span>
-                  <!-- prettier-ignore -->
                   <svg width="8" height="8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7.157 1.172a.5.5 0 0 0-.5-.5h-4.5a.5.5 0 0 0 0 1h4v4a.5.5 0 0 0 1 0v-4.5Zm-5.803 6.01L7.01 1.525 6.303.818.646 6.475l.708.707Z" fill="#fff"/>
-                </svg>
+                    <path d="M7.157 1.172a.5.5 0 0 0-.5-.5h-4.5a.5.5 0 0 0 0 1h4v4a.5.5 0 0 0 1 0v-4.5Zm-5.803 6.01L7.01 1.525 6.303.818.646 6.475l.708.707Z" fill="#fff"/>
+                  </svg>
                 </a>
               </li>
+              
+              
             </ul>
           </nav>
           <button class="header__hamburger">
@@ -276,6 +277,46 @@
    </div>
    
    
+   <!-- Cal element-click embed code begins -->
+<script type="text/javascript">
+  (function (C, A, L) { 
+    let p = function (a, ar) { a.q.push(ar); }; 
+    let d = C.document; 
+    C.Cal = C.Cal || function () { 
+      let cal = C.Cal; 
+      let ar = arguments; 
+      if (!cal.loaded) { 
+        cal.ns = {}; 
+        cal.q = cal.q || []; 
+        d.head.appendChild(d.createElement("script")).src = A; 
+        cal.loaded = true; 
+      } 
+      if (ar[0] === L) { 
+        const api = function () { p(api, arguments); }; 
+        const namespace = ar[1]; 
+        api.q = api.q || []; 
+        if (typeof namespace === "string") { 
+          cal.ns[namespace] = cal.ns[namespace] || api; 
+          p(cal.ns[namespace], ar); 
+          p(cal, ["initNamespace", namespace]);
+        } else p(cal, ar); 
+        return;
+      } 
+      p(cal, ar); 
+    }; 
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+
+  Cal("init", "30min", {origin:"https://cal.com"});
+
+  Cal.ns["30min"]("ui", {
+    "theme": "light",
+    "styles": {
+      "branding": { "brandColor": "#d77f29" }
+    },
+    "hideEventTypeDetails": false,
+    "layout": "month_view"
+  });
+</script>
    
    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
