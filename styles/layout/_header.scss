@@ -52,6 +52,67 @@
     }
 }
 
+/* Dropdown menu styling */
+.header__nav-links .dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+/* Down arrow indicator */
+.header__nav-links .dropdown::after {
+    content: "▼"; /* Unicode for down arrow */
+    font-size: 0.8em;
+    margin-left: 4px;
+}
+
+/* Style the dropdown menu to display on hover */
+.header__nav-links .dropdown .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 14px;
+    background-color: white;
+    border-radius: 8px;
+    margin-top: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    min-width: 200px; /* Ensure width is enough to prevent text wrap */
+    z-index: 1;
+}
+
+/* Show dropdown when hovering over "Services" or the dropdown itself */
+.header__nav-links .dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Dropdown menu item styling */
+.header__nav-links .dropdown .dropdown-menu li {
+    margin: 5px 0;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.header__nav-links .dropdown .dropdown-menu li a {
+    color: black;
+    padding: 5px 10px;
+    display: block;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect for dropdown items with orange background */
+.header__nav-links .dropdown .dropdown-menu li a:hover {
+    color: white;
+    background-color: #ff8c00; /* Beautiful orange color */
+}
+
+/* Ensure "Services" link does not wrap */
+.header__nav-links .dropdown > a {
+    white-space: nowrap;
+}
+
+
 nav {
     padding: 1rem;
 }

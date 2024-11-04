@@ -14,20 +14,23 @@
           <nav>
             <ul class="header__nav-links">
               <li><a href="#about">About</a></li>
-              <li><a href="#services">Services</a></li>
+              <li class="dropdown">
+                <a href="#services">Services</a>
+                <ul class="dropdown-menu">
+                  <li><a href="#service1">Service 1</a></li>
+                  <li><a href="#service2">Service 2</a></li>
+                  <li><a href="#service3">Service 3</a></li>
+                </ul>
+              </li>
               <li><a href="#contact">Contact</a></li>
               <li>
                 <a href="#" class="button button--light" data-cal-link="gerald-shikwe-yarxme/30min" data-cal-config='{"layout":"month_view","theme":"light"}' data-cal-namespace="30min">
-                  <span>
-                    <span>Schedule a call</span>
-                  </span>
+                  <span>Schedule a call</span>
                   <svg width="8" height="8" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7.157 1.172a.5.5 0 0 0-.5-.5h-4.5a.5.5 0 0 0 0 1h4v4a.5.5 0 0 0 1 0v-4.5Zm-5.803 6.01L7.01 1.525 6.303.818.646 6.475l.708.707Z" fill="#fff"/>
                   </svg>
                 </a>
               </li>
-              
-              
             </ul>
           </nav>
           <button class="header__hamburger">
@@ -38,6 +41,7 @@
         </div>
       </div>
     </header>
+    
 
     <section>
       <div class="container">
