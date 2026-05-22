@@ -19,7 +19,8 @@
     &--light {
       background-color: var(--color-button--light);
       color: var(--color-button-text--dark);
-  
+      border: 1px solid rgba(31, 31, 31, 0.18);
+
       svg path {
         fill: var(--color-button-text--dark);
       }

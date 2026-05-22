@@ -1,0 +1,220 @@
+.pricing {
+  padding: var(--section-medium) 0;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-bottom: 3.2rem;
+    max-width: 56ch;
+
+    @include below(768px) {
+      margin-bottom: 2.4rem;
+    }
+  }
+
+  &__label {
+    font-size: clamp(9px, 1rem, 1rem);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-text--white);
+    opacity: 0.45;
+  }
+
+  &__title {
+    font-size: clamp(18px, 2vw, 28px);
+    line-height: 1.1;
+    color: var(--color-text--white);
+    margin-bottom: 0;
+  }
+
+  &__sub {
+    font-size: clamp(12px, 1.3rem, 1.3rem);
+    color: var(--color-text--light);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+
+    @include below(1024px) {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.6rem 1.4rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    transition: border-color 0.3s ease;
+
+    &:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    &--featured {
+      border-color: rgba(215, 127, 41, 0.45);
+      background: rgba(215, 127, 41, 0.04);
+      position: relative;
+
+      &:hover {
+        border-color: rgba(215, 127, 41, 0.7);
+      }
+    }
+
+    @include below(768px) {
+      padding: 1.4rem 1.2rem;
+    }
+  }
+
+  &__card-badge {
+    font-size: clamp(9px, 1rem, 1rem);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #d77f29;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+
+    &::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #d77f29;
+    }
+  }
+
+  &__card-tier {
+    font-size: clamp(10px, 1.1rem, 1.1rem);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 1rem;
+  }
+
+  &__card-price {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  &__card-amount {
+    font-size: clamp(22px, 2.4vw, 34px);
+    line-height: 1;
+    color: var(--color-text--white);
+    letter-spacing: -0.02em;
+  }
+
+  &__card-currency {
+    font-size: clamp(14px, 1.6rem, 1.6rem);
+    color: rgba(255, 255, 255, 0.45);
+    padding-bottom: 0.4rem;
+  }
+
+  &__card-period {
+    font-size: clamp(11px, 1.2rem, 1.2rem);
+    color: rgba(255, 255, 255, 0.3);
+    padding-bottom: 0.6rem;
+    letter-spacing: 0.06em;
+  }
+
+  &__card-desc {
+    font-size: clamp(12px, 1.3rem, 1.3rem);
+    color: var(--color-text--light);
+    line-height: 1.6;
+    margin-bottom: 1.6rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: 1rem;
+  }
+
+  &__card-features {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2.4rem;
+  }
+
+  &__card-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    font-size: clamp(13px, 1.4rem, 1.4rem);
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+
+    &::before {
+      content: '';
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='%23d77f29' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    &--muted {
+      color: rgba(255, 255, 255, 0.3);
+
+      &::before {
+        background-image: url("data:image/svg+xml,%3Csvg width='10' height='2' viewBox='0 0 10 2' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1H9' stroke='rgba(255,255,255,0.2)' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+      }
+    }
+  }
+
+  &__card-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    font-size: clamp(10px, 1.1rem, 1.1rem);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 1.2rem 1.8rem;
+    border-radius: 10000px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    margin-top: auto;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    &--light {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--color-text--white);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.14);
+      }
+    }
+
+    &--accent {
+      background: #d77f29;
+      color: var(--color-text--white);
+      border: 1px solid #d77f29;
+
+      &:hover {
+        background: #e8913a;
+      }
+    }
+  }
+}

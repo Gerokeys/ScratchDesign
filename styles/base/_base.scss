@@ -1,3 +1,14 @@
+.mouse-trail-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  background: #1f1f1f;
+  pointer-events: none;
+  z-index: 9998;
+  will-change: transform;
+}
+
 html.lenis {
     height: auto;
   }

@@ -7,75 +7,158 @@
     <title>ScratchDesign</title>
   </head>
   <body>
-    <header>
-      <div class="container">
-        <div class="header">
-          <div class="header__logo"><a href="/">ScratchDesign</a></div>
-          <nav>
-            <ul class="header__nav-links">
-              <li><a href="#about">About</a></li>
-              <li class="dropdown">
-                <a href="#services">Services</a>
-                <ul class="dropdown-menu">
-                  <li><a href="#service1">Service 1</a></li>
-                  <li><a href="#service2">Service 2</a></li>
-                  <li><a href="#service3">Service 3</a></li>
-                </ul>
-              </li>
-              <li><a href="#contact">Contact</a></li>
-              <li>
-                <a href="#" class="button button--light" data-cal-link="gerald-shikwe-yarxme/30min" data-cal-config='{"layout":"month_view","theme":"light"}' data-cal-namespace="30min">
-                  <span>Schedule a call</span>
-                  <svg width="8" height="8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7.157 1.172a.5.5 0 0 0-.5-.5h-4.5a.5.5 0 0 0 0 1h4v4a.5.5 0 0 0 1 0v-4.5Zm-5.803 6.01L7.01 1.525 6.303.818.646 6.475l.708.707Z" fill="#fff"/>
-                  </svg>
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <button class="header__hamburger">
-            <div class="line line1"></div>
-            <div class="line line2"></div>
-            <div class="line line3"></div>
-          </button>
+
+    <!-- Fullscreen nav overlay -->
+    <div class="nav-overlay" id="nav-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+      <div class="nav-overlay__header">
+        <a href="/" class="nav-overlay__logo">ScratchDesign</a>
+        <button class="nav-overlay__close" aria-label="Close menu">&#x2715;</button>
+      </div>
+      <ul class="nav-overlay__nav">
+        <li class="nav-overlay__link-item">
+          <a href="#work" class="nav-overlay__link">
+            <span class="nav-overlay__link-num">01</span>
+            Work
+            <span class="nav-overlay__link-arrow">&#x2197;</span>
+          </a>
+        </li>
+        <li class="nav-overlay__link-item">
+          <a href="#services-detail" class="nav-overlay__link">
+            <span class="nav-overlay__link-num">02</span>
+            Services
+            <span class="nav-overlay__link-arrow">&#x2197;</span>
+          </a>
+        </li>
+        <li class="nav-overlay__link-item">
+          <a href="#process" class="nav-overlay__link">
+            <span class="nav-overlay__link-num">03</span>
+            Process
+            <span class="nav-overlay__link-arrow">&#x2197;</span>
+          </a>
+        </li>
+        <li class="nav-overlay__link-item">
+          <a href="#pricing" class="nav-overlay__link">
+            <span class="nav-overlay__link-num">04</span>
+            Pricing
+            <span class="nav-overlay__link-arrow">&#x2197;</span>
+          </a>
+        </li>
+        <li class="nav-overlay__link-item">
+          <a href="#contact" class="nav-overlay__link">
+            <span class="nav-overlay__link-num">05</span>
+            Contact
+            <span class="nav-overlay__link-arrow">&#x2197;</span>
+          </a>
+        </li>
+      </ul>
+      <div class="nav-overlay__footer">
+        <div class="nav-overlay__footer-info">
+          <p>Nairobi, Kenya</p>
+          <p>hello@scratchdesign.co</p>
+        </div>
+        <div class="nav-overlay__footer-social">
+          <a href="#">Twitter</a>
+          <a href="#">Instagram</a>
+          <a href="#">LinkedIn</a>
         </div>
       </div>
-    </header>
-    
+    </div>
 
-    <section>
-      <div class="container">
-        <div class="hero">
-          <div class="section section--medium--margin">
-            <div class="hero__content">
-              <h1 class="hero__title" data-animation="text-reveal">
-                A digital
-                <span>design</span> and <span>technology studio</span> located
-                in <span>Nairobi</span> Kenya. We build <span>brands</span>,
-                create <span>digital experiences</span>, and shape the
-                <span>stories of tomorrow</span>.
-              </h1>
-              <a href="/" class="button button--dark">
-                <span>
-                  <span>See our work</span>
+    <div class="hero-viewport">
+      <header>
+        <div class="container">
+          <div class="header">
+            <div class="header__logo"><a href="/">ScratchDesign</a></div>
+            <nav>
+              <ul class="header__nav-links">
+                <li><a href="#about">About</a></li>
+                <li class="dropdown">
+                  <a href="#services">Services</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#service1">Service 1</a></li>
+                    <li><a href="#service2">Service 2</a></li>
+                    <li><a href="#service3">Service 3</a></li>
+                  </ul>
+                </li>
+                <li><a href="#contact">Contact</a></li>
+                <li>
+                  <a href="#" class="button button--light" data-cal-link="gerald-shikwe-yarxme/30min" data-cal-config='{"layout":"month_view","theme":"light"}' data-cal-namespace="30min">
+                    <span>Schedule a call</span>
+                    <svg width="8" height="8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M7.157 1.172a.5.5 0 0 0-.5-.5h-4.5a.5.5 0 0 0 0 1h4v4a.5.5 0 0 0 1 0v-4.5Zm-5.803 6.01L7.01 1.525 6.303.818.646 6.475l.708.707Z" fill="#fff"/>
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+            <button class="header__hamburger">
+              <div class="line line1"></div>
+              <div class="line line2"></div>
+              <div class="line line3"></div>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Background gradient blobs -->
+      <div class="hero-blobs" aria-hidden="true">
+        <div class="hero-blob hero-blob--1"></div>
+        <div class="hero-blob hero-blob--2"></div>
+        <div class="hero-blob hero-blob--3"></div>
+        <div class="hero-blob hero-blob--4"></div>
+      </div>
+
+      <section class="hero-section">
+        <div class="container">
+          <div class="hero-editorial">
+
+            <div class="hero-editorial__label">Web design &amp; development — Nairobi, Kenya</div>
+
+            <h1 class="hero-editorial__title">
+              <span class="hero-editorial__line">
+                Building
+              </span>
+              <span class="hero-editorial__line">
+                <span class="hero-inline-img">
+                  <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=200&h=200&fit=crop&auto=format" alt="" loading="eager" />
                 </span>
+                digital
+              </span>
+              <span class="hero-editorial__line">
+                brands &amp;
+              </span>
+              <span class="hero-editorial__line">
+                experiences
+                <span class="hero-inline-img">
+                  <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=200&h=200&fit=crop&auto=format" alt="" loading="eager" />
+                </span>
+              </span>
+              <span class="hero-editorial__line">
+                from
+                <span class="hero-inline-img">
+                  <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=200&h=200&fit=crop&auto=format" alt="" loading="eager" />
+                </span>
+                scratch.
+              </span>
+            </h1>
+
+            <div class="hero-editorial__cta">
+              <a href="#work" class="button button--dark">
+                <span><span>See our work</span></span>
                 <!-- prettier-ignore -->
-                <svg width="8" height="8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7.157 1.172a.5.5 0 0 0-.5-.5h-4.5a.5.5 0 0 0 0 1h4v4a.5.5 0 0 0 1 0v-4.5Zm-5.803 6.01L7.01 1.525 6.303.818.646 6.475l.708.707Z" fill="#fff"/>
-                </svg>
+                <svg width="8" height="8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.157 1.172a.5.5 0 0 0-.5-.5h-4.5a.5.5 0 0 0 0 1h4v4a.5.5 0 0 0 1 0v-4.5Zm-5.803 6.01L7.01 1.525 6.303.818.646 6.475l.708.707Z" fill="#fff"/></svg>
+              </a>
+              <a href="#" class="button button--light" data-cal-link="gerald-shikwe-yarxme/30min" data-cal-config='{"layout":"month_view","theme":"light"}' data-cal-namespace="30min">
+                <span><span>Schedule a call</span></span>
+                <!-- prettier-ignore -->
+                <svg width="8" height="8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.157 1.172a.5.5 0 0 0-.5-.5h-4.5a.5.5 0 0 0 0 1h4v4a.5.5 0 0 0 1 0v-4.5Zm-5.803 6.01L7.01 1.525 6.303.818.646 6.475l.708.707Z" fill="#1f1f1f"/></svg>
               </a>
             </div>
-          </div>
-          <div class="section section--medium--margin">
-            <div class="hero-image">
-              <div style="--aspect-ratio: 32/9">
-                <img src="./images/creative_landing.svg" alt="" />
-              </div>
-            </div>
+
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <section class="section">
       <div class="container">
@@ -115,7 +198,7 @@
           </div>
           <div class="service-image">
             <div class="img-mobile" style="--aspect-ratio: 3/4">
-              <img src="./images/img1.jpg" alt="Custom Web Design" />
+              <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=800&q=80" alt="Custom Web Design" />
             </div>
           </div>
           <div class="service-description">
@@ -134,7 +217,7 @@
           </div>
           <div class="service-image">
             <div class="img-mobile" style="--aspect-ratio: 3/4">
-              <img src="./images/img1.jpg" alt="Custom Web Design" />
+              <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Responsive Development" />
             </div>
           </div>
           <div class="service-description">
@@ -154,7 +237,7 @@
           </div>
           <div class="service-image">
             <div class="img-mobile" style="--aspect-ratio: 3/4">
-              <img src="./images/img1.jpg" alt="Custom Web Design" />
+              <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80" alt="eCommerce Solutions" />
             </div>
           </div>
           <div class="service-description">
@@ -175,7 +258,7 @@
           </div>
           <div class="service-image">
             <div class="img-mobile" style="--aspect-ratio: 3/4">
-              <img src="./images/img1.jpg" alt="Custom Web Design" />
+              <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80" alt="Content Management Systems" />
             </div>
           </div>
           <div class="service-description">
@@ -196,7 +279,7 @@
           </div>
           <div class="service-image">
             <div class="img-mobile" style="--aspect-ratio: 3/4">
-              <img src="./images/img1.jpg" alt="Custom Web Design" />
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="SEO & Analytics" />
             </div>
           </div>
           <div class="service-description">
@@ -225,7 +308,7 @@
           </p>
         </div>
         <div class="service-img">
-          <div class="img"><img src="./images/img1.jpg" alt="Custom Web Design" /></div>
+          <div class="img"><img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=800&q=80" alt="Custom Web Design" /></div>
         </div>
       </div>
       
@@ -237,7 +320,7 @@
           </p>
         </div>
         <div class="service-img">
-          <div class="img"><img src="./images/img1.jpg" alt="Responsive Development" /></div>
+          <div class="img"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Responsive Development" /></div>
         </div>
       </div>
       
@@ -249,7 +332,7 @@
           </p>
         </div>
         <div class="service-img">
-          <div class="img"><img src="./images/img1.jpg" alt="eCommerce Solutions" /></div>
+          <div class="img"><img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80" alt="eCommerce Solutions" /></div>
         </div>
       </div>
       
@@ -261,7 +344,7 @@
           </p>
         </div>
         <div class="service-img">
-          <div class="img"><img src="./images/img1.jpg" alt="Content Management Systems" /></div>
+          <div class="img"><img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80" alt="Content Management Systems" /></div>
         </div>
       </div>
       
@@ -273,7 +356,7 @@
           </p>
         </div>
         <div class="service-img">
-          <div class="img"><img src="./images/img1.jpg" alt="SEO & Analytics" /></div>
+          <div class="img"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="SEO & Analytics" /></div>
         </div>
       </div>
       
@@ -281,6 +364,694 @@
    </div>
    
    
+
+
+   <!-- ============================
+        FEATURED WORK
+   ============================= -->
+   <section class="featured-work section--dark" id="work">
+     <div class="container">
+       <div class="featured-work__header">
+         <span class="featured-work__label">Selected Work — 2023–2024</span>
+         <h2 class="featured-work__title" data-animation="text-reveal">Projects that define the future of digital design.</h2>
+         <a href="#contact" class="button button--light">
+           <span><span>Start a project</span></span>
+           <svg width="8" height="8" fill="none" xmlns="http://www.w3.org/2000/svg">
+             <path d="M7.157 1.172a.5.5 0 0 0-.5-.5h-4.5a.5.5 0 0 0 0 1h4v4a.5.5 0 0 0 1 0v-4.5Zm-5.803 6.01L7.01 1.525 6.303.818.646 6.475l.708.707Z" fill="#1f1f1f"/>
+           </svg>
+         </a>
+       </div>
+     </div>
+
+     <div class="featured-work__items">
+
+       <article class="featured-work__item">
+         <div class="featured-work__item-image">
+           <div class="featured-work__item-image-inner">
+             <img src="https://s0.wp.com/mshots/v1/https://glam-jet.vercel.app?w=1400" alt="Glam Jet project" loading="lazy" />
+           </div>
+         </div>
+         <div class="featured-work__item-meta">
+           <div class="featured-work__item-top">
+             <span class="featured-work__item-num">01</span>
+             <span class="featured-work__item-category">Web Design</span>
+             <span class="featured-work__item-year">2024</span>
+           </div>
+           <h3 class="featured-work__item-title">Glam Jet</h3>
+           <p class="featured-work__item-desc">A sleek, high-converting landing page for a premium beauty brand. Bold typography, immersive imagery, and a polished checkout experience.</p>
+           <a href="https://glam-jet.vercel.app" target="_blank" rel="noopener" class="featured-work__item-cta">
+             <span>View Project</span>
+             <svg width="14" height="14" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+               <path d="M14.314 2.344a1 1 0 0 0-1-1h-9a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-9Zm-11.606 12.02L14.02 3.05 12.607 1.637 1.293 12.95l1.415 1.414Z" fill="currentColor"/>
+             </svg>
+           </a>
+         </div>
+       </article>
+
+       <article class="featured-work__item featured-work__item--reverse">
+         <div class="featured-work__item-image">
+           <div class="featured-work__item-image-inner">
+             <img src="https://s0.wp.com/mshots/v1/https://marachi-delivery-note.vercel.app/?w=1400" alt="Marachi Delivery project" loading="lazy" />
+           </div>
+         </div>
+         <div class="featured-work__item-meta">
+           <div class="featured-work__item-top">
+             <span class="featured-work__item-num">02</span>
+             <span class="featured-work__item-category">Web App</span>
+             <span class="featured-work__item-year">2024</span>
+           </div>
+           <h3 class="featured-work__item-title">Marachi Delivery</h3>
+           <p class="featured-work__item-desc">A clean, functional delivery note web application. Streamlined workflows, intuitive UI, and a fast, mobile-first experience built for operations teams.</p>
+           <a href="https://marachi-delivery-note.vercel.app/" target="_blank" rel="noopener" class="featured-work__item-cta">
+             <span>View Project</span>
+             <svg width="14" height="14" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+               <path d="M14.314 2.344a1 1 0 0 0-1-1h-9a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-9Zm-11.606 12.02L14.02 3.05 12.607 1.637 1.293 12.95l1.415 1.414Z" fill="currentColor"/>
+             </svg>
+           </a>
+         </div>
+       </article>
+
+       <article class="featured-work__item">
+         <div class="featured-work__item-image">
+           <div class="featured-work__item-image-inner">
+             <img src="https://s0.wp.com/mshots/v1/https://solar-kenya-e3ha.vercel.app/?w=1400" alt="Solar Kenya project" loading="lazy" />
+           </div>
+         </div>
+         <div class="featured-work__item-meta">
+           <div class="featured-work__item-top">
+             <span class="featured-work__item-num">03</span>
+             <span class="featured-work__item-category">Web Design</span>
+             <span class="featured-work__item-year">2024</span>
+           </div>
+           <h3 class="featured-work__item-title">Solar Kenya</h3>
+           <p class="featured-work__item-desc">A purpose-driven website for a clean energy company operating across East Africa. Clear value proposition, trust signals, and a conversion-optimised layout.</p>
+           <a href="https://solar-kenya-e3ha.vercel.app/" target="_blank" rel="noopener" class="featured-work__item-cta">
+             <span>View Project</span>
+             <svg width="14" height="14" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+               <path d="M14.314 2.344a1 1 0 0 0-1-1h-9a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-9Zm-11.606 12.02L14.02 3.05 12.607 1.637 1.293 12.95l1.415 1.414Z" fill="currentColor"/>
+             </svg>
+           </a>
+         </div>
+       </article>
+
+       <article class="featured-work__item featured-work__item--reverse">
+         <div class="featured-work__item-image">
+           <div class="featured-work__item-image-inner">
+             <img src="https://images.unsplash.com/photo-1636761999088-44c30780ec6e?auto=format&fit=crop&w=1400&q=80" alt="Pulse Motion Suite project" loading="lazy" />
+           </div>
+         </div>
+         <div class="featured-work__item-meta">
+           <div class="featured-work__item-top">
+             <span class="featured-work__item-num">04</span>
+             <span class="featured-work__item-category">Motion Design</span>
+             <span class="featured-work__item-year">2023</span>
+           </div>
+           <h3 class="featured-work__item-title">Pulse Motion Suite</h3>
+           <p class="featured-work__item-desc">Award-winning motion design campaign for a global tech company. Looping visuals, kinetic typography, and a complete micro-interaction system.</p>
+           <div class="featured-work__item-cta">
+             <span>View Project</span>
+             <svg width="14" height="14" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+               <path d="M14.314 2.344a1 1 0 0 0-1-1h-9a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-9Zm-11.606 12.02L14.02 3.05 12.607 1.637 1.293 12.95l1.415 1.414Z" fill="currentColor"/>
+             </svg>
+           </div>
+         </div>
+       </article>
+
+       <article class="featured-work__item">
+         <div class="featured-work__item-image">
+           <div class="featured-work__item-image-inner">
+             <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1400&q=80" alt="Strata Interactive project" loading="lazy" />
+           </div>
+         </div>
+         <div class="featured-work__item-meta">
+           <div class="featured-work__item-top">
+             <span class="featured-work__item-num">05</span>
+             <span class="featured-work__item-category">Creative Development</span>
+             <span class="featured-work__item-year">2024</span>
+           </div>
+           <h3 class="featured-work__item-title">Strata Interactive</h3>
+           <p class="featured-work__item-desc">Experimental WebGL experience with custom shader effects, physics-based interactions, and an immersive 3D product showcase environment.</p>
+           <div class="featured-work__item-cta">
+             <span>View Project</span>
+             <svg width="14" height="14" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+               <path d="M14.314 2.344a1 1 0 0 0-1-1h-9a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-9Zm-11.606 12.02L14.02 3.05 12.607 1.637 1.293 12.95l1.415 1.414Z" fill="currentColor"/>
+             </svg>
+           </div>
+         </div>
+       </article>
+
+     </div>
+   </section>
+
+
+   <!-- ============================
+        SERVICES PREMIUM
+   ============================= -->
+   <section class="services-premium section--beige" id="services-detail">
+     <div class="container">
+       <div class="services-premium__header">
+         <span class="services-premium__label">Our Expertise</span>
+         <h2 class="services-premium__title" data-animation="text-reveal">We craft digital experiences that convert and captivate.</h2>
+       </div>
+       <div class="services-premium__list">
+
+         <div class="services-premium__item">
+           <span class="services-premium__item-num">01</span>
+           <h3 class="services-premium__item-title">Web Design</h3>
+           <p class="services-premium__item-desc">Pixels with purpose. We design immersive experiences that communicate your brand's essence and drive results.</p>
+           <span class="services-premium__item-tag">Core</span>
+           <span class="services-premium__item-arrow">&#8594;</span>
+           <div class="services-premium__item-image">
+             <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80" alt="" aria-hidden="true" />
+           </div>
+         </div>
+
+         <div class="services-premium__item">
+           <span class="services-premium__item-num">02</span>
+           <h3 class="services-premium__item-title">Branding</h3>
+           <p class="services-premium__item-desc">Complete visual identity systems from initial concept through to final brand guidelines and asset delivery.</p>
+           <span class="services-premium__item-tag">Identity</span>
+           <span class="services-premium__item-arrow">&#8594;</span>
+           <div class="services-premium__item-image">
+             <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" alt="" aria-hidden="true" />
+           </div>
+         </div>
+
+         <div class="services-premium__item">
+           <span class="services-premium__item-num">03</span>
+           <h3 class="services-premium__item-title">UI / UX Design</h3>
+           <p class="services-premium__item-desc">Intuitive, research-driven interfaces that delight users and translate seamlessly from Figma to production.</p>
+           <span class="services-premium__item-tag">Product</span>
+           <span class="services-premium__item-arrow">&#8594;</span>
+           <div class="services-premium__item-image">
+             <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=600&q=80" alt="" aria-hidden="true" />
+           </div>
+         </div>
+
+         <div class="services-premium__item">
+           <span class="services-premium__item-num">04</span>
+           <h3 class="services-premium__item-title">Creative Development</h3>
+           <p class="services-premium__item-desc">Custom-coded interactive experiences that push the limits of the browser and leave a lasting impression.</p>
+           <span class="services-premium__item-tag">Advanced</span>
+           <span class="services-premium__item-arrow">&#8594;</span>
+           <div class="services-premium__item-image">
+             <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80" alt="" aria-hidden="true" />
+           </div>
+         </div>
+
+         <div class="services-premium__item">
+           <span class="services-premium__item-num">05</span>
+           <h3 class="services-premium__item-title">Motion Design</h3>
+           <p class="services-premium__item-desc">Cinematic animations and scroll-driven narratives that bring your brand story to life in the browser.</p>
+           <span class="services-premium__item-tag">Premium</span>
+           <span class="services-premium__item-arrow">&#8594;</span>
+           <div class="services-premium__item-image">
+             <img src="https://images.unsplash.com/photo-1636761999088-44c30780ec6e?auto=format&fit=crop&w=600&q=80" alt="" aria-hidden="true" />
+           </div>
+         </div>
+
+       </div>
+     </div>
+   </section>
+
+
+   <!-- ============================
+        PROCESS
+   ============================= -->
+   <section class="process" id="process">
+     <div class="container">
+       <div class="process__header">
+         <span class="process__label">How We Work</span>
+         <h2 class="process__title" data-animation="text-reveal">Five steps from blank canvas to live site.</h2>
+       </div>
+       <div class="process__grid">
+
+         <div class="process__step">
+           <div class="process__step-dot">01</div>
+           <div class="process__step-body">
+             <h3 class="process__step-title">Discovery</h3>
+             <p class="process__step-desc">We audit your brand, research competitors, and map out exactly what success looks like for your project.</p>
+             <span class="process__step-meta">1–2 days</span>
+           </div>
+         </div>
+
+         <div class="process__step">
+           <div class="process__step-dot">02</div>
+           <div class="process__step-body">
+             <h3 class="process__step-title">Strategy</h3>
+             <p class="process__step-desc">Sitemap, wireframes, and creative brief aligned with stakeholders before a single pixel is designed.</p>
+             <span class="process__step-meta">2–3 days</span>
+           </div>
+         </div>
+
+         <div class="process__step">
+           <div class="process__step-dot">03</div>
+           <div class="process__step-body">
+             <h3 class="process__step-title">Design</h3>
+             <p class="process__step-desc">High-fidelity Figma designs with obsessive attention to typography, motion, and visual hierarchy.</p>
+             <span class="process__step-meta">5–7 days</span>
+           </div>
+         </div>
+
+         <div class="process__step">
+           <div class="process__step-dot">04</div>
+           <div class="process__step-body">
+             <h3 class="process__step-title">Build</h3>
+             <p class="process__step-desc">Handcrafted code, GSAP animations, CMS integration, and a full performance audit before handoff.</p>
+             <span class="process__step-meta">7–14 days</span>
+           </div>
+         </div>
+
+         <div class="process__step">
+           <div class="process__step-dot">05</div>
+           <div class="process__step-body">
+             <h3 class="process__step-title">Launch</h3>
+             <p class="process__step-desc">Cross-browser QA, SEO setup, analytics, and a smooth handover with 30-day post-launch support.</p>
+             <span class="process__step-meta">2–3 days</span>
+           </div>
+         </div>
+
+       </div>
+     </div>
+   </section>
+
+
+   <!-- ============================
+        PRICING
+   ============================= -->
+   <section class="pricing section--dark" id="pricing">
+     <div class="container">
+       <div class="pricing__header">
+         <span class="pricing__label">Transparent Pricing</span>
+         <h2 class="pricing__title" data-animation="text-reveal">Investment packages for every stage of growth.</h2>
+         <p class="pricing__sub">Clear, honest pricing with no hidden fees. Each package is customised to your specific project requirements.</p>
+       </div>
+       <div class="pricing__cards">
+
+         <!-- Launch -->
+         <div class="pricing__card">
+           <div class="pricing__card-tier">Launch</div>
+           <div class="pricing__card-price">
+             <span class="pricing__card-currency">$</span>
+             <span class="pricing__card-amount">2,500</span>
+           </div>
+           <p class="pricing__card-desc">A polished, conversion-ready landing page. Perfect for startups, new services, or product launches.</p>
+           <ul class="pricing__card-features">
+             <li class="pricing__card-feature">Custom Visual Design</li>
+             <li class="pricing__card-feature">Responsive Layout (All Devices)</li>
+             <li class="pricing__card-feature">GSAP Scroll Animations</li>
+             <li class="pricing__card-feature">SEO Foundations</li>
+             <li class="pricing__card-feature">Contact Form Integration</li>
+             <li class="pricing__card-feature">2 Rounds of Revisions</li>
+             <li class="pricing__card-feature">30-Day Post-Launch Support</li>
+             <li class="pricing__card-feature--muted">Multi-page Structure</li>
+             <li class="pricing__card-feature--muted">CMS Integration</li>
+           </ul>
+           <a href="#contact" class="pricing__card-cta pricing__card-cta--light">
+             Get Started
+             <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+               <path d="M14.314 2.344a1 1 0 0 0-1-1h-9a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-9Zm-11.606 12.02L14.02 3.05 12.607 1.637 1.293 12.95l1.415 1.414Z" fill="currentColor"/>
+             </svg>
+           </a>
+         </div>
+
+         <!-- Growth (featured) -->
+         <div class="pricing__card pricing__card--featured">
+           <div class="pricing__card-badge">Most Popular</div>
+           <div class="pricing__card-tier">Growth</div>
+           <div class="pricing__card-price">
+             <span class="pricing__card-currency">$</span>
+             <span class="pricing__card-amount">6,500</span>
+           </div>
+           <p class="pricing__card-desc">A complete multi-page website for established businesses ready to scale their online presence seriously.</p>
+           <ul class="pricing__card-features">
+             <li class="pricing__card-feature">Everything in Launch</li>
+             <li class="pricing__card-feature">Up to 8 Pages</li>
+             <li class="pricing__card-feature">CMS Integration (Sanity / WordPress)</li>
+             <li class="pricing__card-feature">Blog &amp; News Setup</li>
+             <li class="pricing__card-feature">Analytics &amp; Pixel Integration</li>
+             <li class="pricing__card-feature">Advanced GSAP Animations</li>
+             <li class="pricing__card-feature">3 Months Support</li>
+             <li class="pricing__card-feature">Performance Optimisation</li>
+           </ul>
+           <a href="#contact" class="pricing__card-cta pricing__card-cta--accent">
+             Get Started
+             <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+               <path d="M14.314 2.344a1 1 0 0 0-1-1h-9a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-9Zm-11.606 12.02L14.02 3.05 12.607 1.637 1.293 12.95l1.415 1.414Z" fill="currentColor"/>
+             </svg>
+           </a>
+         </div>
+
+         <!-- Enterprise -->
+         <div class="pricing__card">
+           <div class="pricing__card-tier">Enterprise</div>
+           <div class="pricing__card-price">
+             <span class="pricing__card-amount">Custom</span>
+           </div>
+           <p class="pricing__card-desc">A bespoke interactive experience with cutting-edge technology. For brands that demand something truly exceptional.</p>
+           <ul class="pricing__card-features">
+             <li class="pricing__card-feature">Everything in Growth</li>
+             <li class="pricing__card-feature">WebGL / 3D Experiences</li>
+             <li class="pricing__card-feature">Custom Motion Design System</li>
+             <li class="pricing__card-feature">Figma Design System</li>
+             <li class="pricing__card-feature">Dedicated Developer</li>
+             <li class="pricing__card-feature">Priority Support SLA</li>
+             <li class="pricing__card-feature">6 Months Retainer Option</li>
+             <li class="pricing__card-feature">Ongoing Creative Partnership</li>
+           </ul>
+           <a href="#contact" class="pricing__card-cta pricing__card-cta--light">
+             Let's Talk
+             <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+               <path d="M14.314 2.344a1 1 0 0 0-1-1h-9a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-9Zm-11.606 12.02L14.02 3.05 12.607 1.637 1.293 12.95l1.415 1.414Z" fill="currentColor"/>
+             </svg>
+           </a>
+         </div>
+
+       </div>
+     </div>
+   </section>
+
+
+   <!-- ============================
+        TESTIMONIALS
+   ============================= -->
+   <section class="testimonials section--dark" id="testimonials">
+     <div class="container">
+       <div class="testimonials__header">
+         <div class="testimonials__label-wrap">
+           <span class="testimonials__label">Client Stories</span>
+         </div>
+         <h2 class="testimonials__title" data-animation="text-reveal">Words from the people we've built for.</h2>
+         <p class="testimonials__sub">Real results from real clients across East Africa and beyond.</p>
+       </div>
+
+       <div class="testimonials__columns">
+
+         <!-- Column 1 -->
+         <div class="testimonials__column">
+           <div class="testimonials__item">
+             <p class="testimonials__item-text">Working with ScratchDesign completely transformed our digital presence. The attention to detail and motion quality was beyond anything we had seen from any other studio.</p>
+             <div class="testimonials__item-author">
+               <img class="testimonials__item-avatar" src="https://randomuser.me/api/portraits/women/1.jpg" alt="Sarah Chen" />
+               <div class="testimonials__item-info">
+                 <p class="testimonials__item-name">Sarah Chen</p>
+                 <p class="testimonials__item-role">Founder &amp; CEO, Luminary Co.</p>
+               </div>
+             </div>
+           </div>
+           <div class="testimonials__item">
+             <p class="testimonials__item-text">They brought our brand vision to life with extraordinary precision. The website they built has genuinely increased our client acquisition by over 40% in six months.</p>
+             <div class="testimonials__item-author">
+               <img class="testimonials__item-avatar" src="https://randomuser.me/api/portraits/men/2.jpg" alt="Marcus Reid" />
+               <div class="testimonials__item-info">
+                 <p class="testimonials__item-name">Marcus Reid</p>
+                 <p class="testimonials__item-role">Creative Director, Arcana Studio</p>
+               </div>
+             </div>
+           </div>
+           <div class="testimonials__item">
+             <p class="testimonials__item-text">ScratchDesign understood our vision from day one. The final product was cinematic, minimal, and perfectly on-brand. Our investors were genuinely impressed at the launch.</p>
+             <div class="testimonials__item-author">
+               <img class="testimonials__item-avatar" src="https://randomuser.me/api/portraits/women/3.jpg" alt="Amara Osei" />
+               <div class="testimonials__item-info">
+                 <p class="testimonials__item-name">Amara Osei</p>
+                 <p class="testimonials__item-role">CEO, Pulse Technologies</p>
+               </div>
+             </div>
+           </div>
+         </div>
+
+         <!-- Column 2 (tablet+) -->
+         <div class="testimonials__column testimonials__column--mid">
+           <div class="testimonials__item">
+             <p class="testimonials__item-text">The process was smooth, communication was impeccable, and delivery was ahead of schedule. Not just good designers — true strategic partners who understand business goals.</p>
+             <div class="testimonials__item-author">
+               <img class="testimonials__item-avatar" src="https://randomuser.me/api/portraits/men/4.jpg" alt="David Kamau" />
+               <div class="testimonials__item-info">
+                 <p class="testimonials__item-name">David Kamau</p>
+                 <p class="testimonials__item-role">Head of Brand, Solaris Group</p>
+               </div>
+             </div>
+           </div>
+           <div class="testimonials__item">
+             <p class="testimonials__item-text">Implementing the new site was smooth and quick. The user-friendly result made our team and clients alike immediately comfortable navigating the platform.</p>
+             <div class="testimonials__item-author">
+               <img class="testimonials__item-avatar" src="https://randomuser.me/api/portraits/men/5.jpg" alt="Bilal Ahmed" />
+               <div class="testimonials__item-info">
+                 <p class="testimonials__item-name">Bilal Ahmed</p>
+                 <p class="testimonials__item-role">IT Manager, Horizon Labs</p>
+               </div>
+             </div>
+           </div>
+           <div class="testimonials__item">
+             <p class="testimonials__item-text">The support throughout was exceptional — they guided us from brief to launch and continued to iterate post-delivery until every detail was exactly right.</p>
+             <div class="testimonials__item-author">
+               <img class="testimonials__item-avatar" src="https://randomuser.me/api/portraits/women/6.jpg" alt="Saman Malik" />
+               <div class="testimonials__item-info">
+                 <p class="testimonials__item-name">Saman Malik</p>
+                 <p class="testimonials__item-role">Customer Success Lead, Axiom</p>
+               </div>
+             </div>
+           </div>
+         </div>
+
+         <!-- Column 3 (desktop only) -->
+         <div class="testimonials__column testimonials__column--last">
+           <div class="testimonials__item">
+             <p class="testimonials__item-text">The seamless integration of design and development enhanced our business operations overnight. Highly recommend for any company serious about its digital presence.</p>
+             <div class="testimonials__item-author">
+               <img class="testimonials__item-avatar" src="https://randomuser.me/api/portraits/men/7.jpg" alt="Omar Raza" />
+               <div class="testimonials__item-info">
+                 <p class="testimonials__item-name">Omar Raza</p>
+                 <p class="testimonials__item-role">CEO, Meridian Group</p>
+               </div>
+             </div>
+           </div>
+           <div class="testimonials__item">
+             <p class="testimonials__item-text">The robust features and thoughtful design transformed our workflow. We saw a meaningful uptick in conversions within the first two weeks of going live.</p>
+             <div class="testimonials__item-author">
+               <img class="testimonials__item-avatar" src="https://randomuser.me/api/portraits/women/8.jpg" alt="Zainab Hussain" />
+               <div class="testimonials__item-info">
+                 <p class="testimonials__item-name">Zainab Hussain</p>
+                 <p class="testimonials__item-role">Project Manager, Strata Digital</p>
+               </div>
+             </div>
+           </div>
+           <div class="testimonials__item">
+             <p class="testimonials__item-text">They delivered a solution that exceeded every expectation — they truly understood our needs and built something that has had lasting impact on how we operate.</p>
+             <div class="testimonials__item-author">
+               <img class="testimonials__item-avatar" src="https://randomuser.me/api/portraits/women/9.jpg" alt="Aliza Khan" />
+               <div class="testimonials__item-info">
+                 <p class="testimonials__item-name">Aliza Khan</p>
+                 <p class="testimonials__item-role">Business Analyst, Vantage Co.</p>
+               </div>
+             </div>
+           </div>
+         </div>
+
+       </div>
+     </div>
+   </section>
+
+
+   <!-- ============================
+        FAQ
+   ============================= -->
+   <section class="faq section--beige" id="faq">
+     <div class="container">
+       <div class="faq__header">
+         <span class="faq__label">Common Questions</span>
+         <h2 class="faq__title" data-animation="text-reveal">Everything you need to know before we start.</h2>
+       </div>
+       <div class="faq__layout">
+         <div class="faq__sidebar">
+           <p class="faq__sidebar-text">Can't find the answer you're looking for? We're happy to discuss your project in detail.</p>
+           <a href="#contact" class="faq__sidebar-cta">
+             Talk to us
+             <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+               <path d="M14.314 2.344a1 1 0 0 0-1-1h-9a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-9Zm-11.606 12.02L14.02 3.05 12.607 1.637 1.293 12.95l1.415 1.414Z" fill="currentColor"/>
+             </svg>
+           </a>
+         </div>
+         <div class="faq__list">
+
+           <div class="faq__item">
+             <div class="faq__question">
+               <span class="faq__question-text">How long does a typical project take?</span>
+               <span class="faq__icon">+</span>
+             </div>
+             <div class="faq__answer">
+               <div class="faq__answer-inner">
+                 <p class="faq__answer-text">A landing page typically takes 2–3 weeks. A multi-page website takes 4–8 weeks. Custom interactive experiences can take 8–16 weeks depending on complexity. We always provide a detailed timeline at the start of every project.</p>
+               </div>
+             </div>
+           </div>
+
+           <div class="faq__item">
+             <div class="faq__question">
+               <span class="faq__question-text">Do you offer branding alongside web design?</span>
+               <span class="faq__icon">+</span>
+             </div>
+             <div class="faq__answer">
+               <div class="faq__answer-inner">
+                 <p class="faq__answer-text">Yes. Many of our clients come to us for complete brand identity work before the website phase begins. We offer logo design, typography systems, colour palettes, and full brand guidelines as a standalone service or bundled with your website project.</p>
+               </div>
+             </div>
+           </div>
+
+           <div class="faq__item">
+             <div class="faq__question">
+               <span class="faq__question-text">Do you work with international clients?</span>
+               <span class="faq__icon">+</span>
+             </div>
+             <div class="faq__answer">
+               <div class="faq__answer-inner">
+                 <p class="faq__answer-text">Absolutely. We work with clients across Africa, Europe, the US, and beyond. Our project management is fully remote — we use Notion, Figma, and video calls to keep collaboration seamless regardless of timezone differences.</p>
+               </div>
+             </div>
+           </div>
+
+           <div class="faq__item">
+             <div class="faq__question">
+               <span class="faq__question-text">What technologies do you build with?</span>
+               <span class="faq__icon">+</span>
+             </div>
+             <div class="faq__answer">
+               <div class="faq__answer-inner">
+                 <p class="faq__answer-text">We primarily work with vanilla JavaScript, GSAP, Lenis, React, and Next.js for development. For CMS, we use Sanity, Contentful, or WordPress depending on client preference. All our work is handcrafted — we never use page builders or pre-built themes.</p>
+               </div>
+             </div>
+           </div>
+
+           <div class="faq__item">
+             <div class="faq__question">
+               <span class="faq__question-text">Can you redesign our existing website?</span>
+               <span class="faq__icon">+</span>
+             </div>
+             <div class="faq__answer">
+               <div class="faq__answer-inner">
+                 <p class="faq__answer-text">Yes — redesigns are one of our specialities. We conduct a thorough audit of your existing site's performance, UX, and brand alignment before proposing a strategic redesign. We focus on improving conversion, not just aesthetics.</p>
+               </div>
+             </div>
+           </div>
+
+           <div class="faq__item">
+             <div class="faq__question">
+               <span class="faq__question-text">What does the payment structure look like?</span>
+               <span class="faq__icon">+</span>
+             </div>
+             <div class="faq__answer">
+               <div class="faq__answer-inner">
+                 <p class="faq__answer-text">We work on a 50% deposit to begin, 25% at design sign-off, and 25% on final delivery. For larger projects we can accommodate milestone-based payment structures. We accept bank transfers and major credit cards.</p>
+               </div>
+             </div>
+           </div>
+
+         </div>
+       </div>
+     </div>
+   </section>
+
+
+   <!-- ============================
+        CONTACT CTA
+   ============================= -->
+   <section class="contact-cta section--dark" id="contact">
+     <div class="container">
+       <div class="contact-cta__content">
+         <div class="contact-cta__bg-text" aria-hidden="true">Let's Talk</div>
+         <span class="contact-cta__eyebrow">Available for new projects</span>
+         <h2 class="contact-cta__title">Let's Build Something Exceptional.</h2>
+         <p class="contact-cta__sub">We partner with ambitious brands and founders to create digital experiences that stand out. Tell us about your project.</p>
+         <div class="contact-cta__actions">
+           <a href="mailto:hello@scratchdesign.co" class="contact-cta__btn contact-cta__btn--primary">
+             hello@scratchdesign.co
+             <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+               <path d="M14.314 2.344a1 1 0 0 0-1-1h-9a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-9Zm-11.606 12.02L14.02 3.05 12.607 1.637 1.293 12.95l1.415 1.414Z" fill="currentColor"/>
+             </svg>
+           </a>
+           <a href="#" class="contact-cta__btn contact-cta__btn--ghost" data-cal-link="gerald-shikwe-yarxme/30min" data-cal-config='{"layout":"month_view","theme":"dark"}' data-cal-namespace="30min">
+             Schedule a Call
+           </a>
+         </div>
+         <div class="contact-cta__availability">
+           <div class="contact-cta__availability-dot"></div>
+           <span>Currently accepting new projects for Q3 2025</span>
+         </div>
+         <div class="contact-cta__socials">
+           <a href="#">Twitter / X</a>
+           <a href="#">Instagram</a>
+           <a href="#">LinkedIn</a>
+           <a href="#">Dribbble</a>
+         </div>
+       </div>
+     </div>
+   </section>
+
+
+   <!-- ============================
+        FOOTER
+   ============================= -->
+   <footer class="footer" id="footer">
+     <div class="footer__marquee" aria-hidden="true">
+       <div class="footer__marquee-track">
+         <span class="footer__marquee-word">SCRATCHDESIGN</span>
+         <span class="footer__marquee-word">&#10022;</span>
+         <span class="footer__marquee-word">SCRATCHDESIGN</span>
+         <span class="footer__marquee-word">&#10022;</span>
+       </div>
+     </div>
+     <hr class="footer__divider" />
+     <div class="container">
+       <div class="footer__main">
+         <div class="footer__brand">
+           <a href="/" class="footer__brand-name">ScratchDesign</a>
+           <p class="footer__brand-desc">A digital design and technology studio building brands, crafting digital experiences, and shaping stories — from scratch.</p>
+           <a href="mailto:hello@scratchdesign.co" class="footer__brand-email">hello@scratchdesign.co</a>
+         </div>
+         <div class="footer__col">
+           <p class="footer__col-title">Work</p>
+           <ul class="footer__col-links">
+             <li class="footer__col-link"><a href="#work">Selected Work</a></li>
+             <li class="footer__col-link"><a href="#services-detail">Services</a></li>
+             <li class="footer__col-link"><a href="#process">Process</a></li>
+             <li class="footer__col-link"><a href="#pricing">Pricing</a></li>
+           </ul>
+         </div>
+         <div class="footer__col">
+           <p class="footer__col-title">Studio</p>
+           <ul class="footer__col-links">
+             <li class="footer__col-link"><a href="#about">About</a></li>
+             <li class="footer__col-link"><a href="#testimonials">Client Stories</a></li>
+             <li class="footer__col-link"><a href="#faq">FAQ</a></li>
+             <li class="footer__col-link"><a href="#contact">Contact</a></li>
+           </ul>
+         </div>
+         <div class="footer__col">
+           <p class="footer__col-title">Connect</p>
+           <ul class="footer__col-links">
+             <li class="footer__col-link"><a href="#">Twitter / X</a></li>
+             <li class="footer__col-link"><a href="#">Instagram</a></li>
+             <li class="footer__col-link"><a href="#">LinkedIn</a></li>
+             <li class="footer__col-link"><a href="#">Dribbble</a></li>
+           </ul>
+         </div>
+       </div>
+     </div>
+     <div class="footer__bottom">
+       <div class="container">
+         <div class="footer__bottom-inner">
+           <p class="footer__copyright">&copy; 2025 ScratchDesign. All rights reserved.</p>
+           <div class="footer__bottom-links">
+             <a href="#">Privacy Policy</a>
+             <a href="#">Terms of Service</a>
+           </div>
+         </div>
+       </div>
+     </div>
+   </footer>
+
+
    <!-- Cal element-click embed code begins -->
 <script type="text/javascript">
   (function (C, A, L) { 
@@ -324,11 +1095,11 @@
    
    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/intersection-observer@0.12.2/intersection-observer.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-    <script src="script.js"></script>
+    <!-- Global floating image for services-premium hover -->
+    <div class="services-hover-img" id="services-hover-img">
+      <img src="" alt="" />
+    </div>
+
     <script type="module" src="./app/index.js"></script>
   </body>
 </html>

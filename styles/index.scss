@@ -15,15 +15,17 @@
 
 ////Components
 @import 'components/button';
-//@import 'components/image-wrapper';
-//@import 'components/parallax-image';
 
 //Layout
 @import 'layout/hero';
 @import 'layout/header';
 @import 'layout/text-columns';
-// @import 'layout/projects';
-// @import 'layout/list';
-// @import 'layout/company';
-// @import 'layout/image-grid';
-// @import 'layout/footer';
+@import 'layout/nav-overlay';
+@import 'layout/featured-work';
+@import 'layout/services-premium';
+@import 'layout/process';
+@import 'layout/pricing';
+@import 'layout/testimonials';
+@import 'layout/faq';
+@import 'layout/contact-cta';
+@import 'layout/footer';
