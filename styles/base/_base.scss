@@ -1,12 +1,125 @@
-.mouse-trail-dot {
+// ─── Lenis smooth scroll ──────────────────────────────────────────────────────
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+// ─── Preloader ────────────────────────────────────────────────────────────────
+.preloader {
+  position: fixed;
+  inset: 0;
+  background: #111111;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3.2rem clamp(20px, 4vw, 56px);
+
+  &__logo {
+    font-size: clamp(28px, 4.5vw, 64px);
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.04em;
+    opacity: 0;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.0;
+    text-transform: lowercase;
+  }
+
+  &__foot {
+    position: absolute;
+    bottom: 3.2rem;
+    left: clamp(20px, 4vw, 56px);
+    right: clamp(20px, 4vw, 56px);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  &__track {
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+  }
+
+  &__bar {
+    height: 100%;
+    background: #ffffff;
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+
+  &__counter {
+    font-size: clamp(11px, 1.1rem, 1.1rem);
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.32);
+    letter-spacing: 0.1em;
+    font-variant-numeric: tabular-nums;
+    min-width: 4.5ch;
+    text-align: right;
+    user-select: none;
+  }
+}
+
+// ─── Custom cursor (hover devices only) ───────────────────────────────────────
+@media (hover: hover) {
+  body, a, button, [role='button'] { cursor: none; }
+  input, textarea, select { cursor: text; }
+}
+
+.cursor-dot {
   position: fixed;
   top: 0;
   left: 0;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: #1f1f1f;
   pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(31, 31, 31, 0.45);
+  pointer-events: none;
   z-index: 9998;
   will-change: transform;
+}
+
+.cursor-spark {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9997;
+  will-change: transform, opacity;
+  opacity: 0;
+  width: 0;
+  height: 0;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 html.lenis {

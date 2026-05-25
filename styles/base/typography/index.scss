@@ -1,18 +1,11 @@
 @import './type-scale';
 
-@font-face {
-  font-family: 'PP Neue Regular';
-  src: url('/fonts/AkkuratStd-Regular.ttf') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-}
-
 html {
   font-size: calc(100vw / var(--desktop-width) * 10);
 }
 
 body {
-  font-family: 'PP Neue Regular', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: clamp(16px, 1.6rem, 1.6rem);
   font-weight: 400;
   font-style: normal;

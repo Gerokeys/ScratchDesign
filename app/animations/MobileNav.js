@@ -49,6 +49,7 @@ export default class MobileNav {
     this.isOpen = true;
     this.overlay.classList.add('is-open');
     document.body.classList.add('scroll-lock');
+    window.lenis?.stop();
     this.burger.classList.add('toggle');
 
     if (this.tl) this.tl.kill();
@@ -89,6 +90,7 @@ export default class MobileNav {
     if (!this.isOpen) return;
     this.isOpen = false;
     document.body.classList.remove('scroll-lock');
+    window.lenis?.start();
     this.burger.classList.remove('toggle');
 
     if (this.tl) this.tl.kill();

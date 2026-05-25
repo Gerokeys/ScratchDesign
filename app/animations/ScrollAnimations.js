@@ -5,11 +5,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default class ScrollAnimations {
   constructor() {
-    this._initWorkItems();
     this._initFAQ();
     this._initFooterMarquee();
     this._initBatchReveals();
-    this._initServicesHover();
+    this._initServicesStack();
     this._initTestimonialsColumns();
   }
 
@@ -106,37 +105,25 @@ export default class ScrollAnimations {
     });
   }
 
-  // Mouse-following hover image for services-premium section
-  _initServicesHover() {
-    if (window.matchMedia('(max-width: 900px)').matches) return;
+  // Subtle scale-down on each sticky card as the next card slides over it
+  _initServicesStack() {
+    const cards = gsap.utils.toArray('.services-stack__card');
+    if (cards.length < 2) return;
 
-    const section = document.querySelector('.services-premium');
-    const hoverEl = document.getElementById('services-hover-img');
-    const hoverImg = hoverEl?.querySelector('img');
-    if (!section || !hoverEl || !hoverImg) return;
+    cards.forEach((card, i) => {
+      if (i === cards.length - 1) return;
 
-    gsap.set(hoverEl, { xPercent: -50, yPercent: -60, scale: 0.88, opacity: 0 });
-
-    const moveX = gsap.quickTo(hoverEl, 'x', { duration: 0.55, ease: 'power3.out' });
-    const moveY = gsap.quickTo(hoverEl, 'y', { duration: 0.45, ease: 'power3.out' });
-
-    section.querySelectorAll('.services-premium__item').forEach((item) => {
-      const imgEl = item.querySelector('.services-premium__item-image img');
-      if (!imgEl) return;
-
-      item.addEventListener('mouseenter', () => {
-        hoverImg.src = imgEl.src;
-        gsap.to(hoverEl, { opacity: 1, scale: 1, duration: 0.35, ease: 'power3.out' });
+      gsap.set(card, { transformOrigin: 'top center' });
+      gsap.to(card, {
+        scale: 0.96,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: cards[i + 1],
+          start: 'top bottom',
+          end: 'top top',
+          scrub: true,
+        },
       });
-
-      item.addEventListener('mouseleave', () => {
-        gsap.to(hoverEl, { opacity: 0, scale: 0.88, duration: 0.25, ease: 'power2.in' });
-      });
-    });
-
-    section.addEventListener('mousemove', (e) => {
-      moveX(e.clientX);
-      moveY(e.clientY);
     });
   }
 
@@ -163,7 +150,6 @@ export default class ScrollAnimations {
   // Single-pass batch reveal for all simple fade-up elements
   _initBatchReveals() {
     const selectors = [
-      '.services-premium__item',
       '.process__step',
       '.pricing__card',
       '.faq__item',
@@ -192,7 +178,7 @@ export default class ScrollAnimations {
 
     // Single elements
     const singleEls = gsap.utils.toArray(
-      '.featured-work__title, .services-premium__title, .process__title, ' +
+      '.featured-work__title, .process__title, ' +
       '.pricing__title, .testimonials__title, .faq__title, .contact-cta__title'
     );
     gsap.set(singleEls, { opacity: 0, y: 20 });

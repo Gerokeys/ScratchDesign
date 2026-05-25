@@ -1,159 +1,132 @@
 .nav-overlay {
   position: fixed;
   inset: 0;
-  background: var(--color-background--dark);
+  background: #0a0a0a;
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  padding: 2.4rem;
+  padding: clamp(24px, 3vw, 40px) clamp(24px, 4vw, 56px);
   clip-path: inset(0 0 100% 0);
   pointer-events: none;
   will-change: clip-path;
+  overflow: hidden;
 
   &.is-open {
     pointer-events: all;
   }
 
+  // ── Header row ──────────────────────────────────────────────────────────────
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-shrink: 0;
+    z-index: 2;
   }
 
   &__logo {
-    font-size: clamp(14px, 1.6rem, 1.6rem);
-    font-weight: 600;
-    color: var(--color-text--white);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-  }
-
-  &__close {
-    width: 52px;
-    height: 52px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.06);
-    cursor: pointer;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-text--white);
-    font-size: 22px;
-    line-height: 1;
-    transition: background-color 0.3s ease, transform 0.4s ease, border-color 0.3s ease;
-    flex-shrink: 0;
+    flex-direction: column;
+    line-height: 1.0;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: -0.03em;
+    font-size: clamp(17px, 1.5vw, 24px);
+    font-weight: 600;
+    text-transform: lowercase;
 
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.14);
-      border-color: rgba(255, 255, 255, 0.4);
-      transform: rotate(90deg);
+    span:nth-child(2) {
+      padding-left: 0.8em;
     }
   }
 
+  &__close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: clamp(13px, 1.2vw, 16px);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0;
+    transition: color 0.25s ease;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  // ── Nav links — centered vertically ─────────────────────────────────────────
   &__nav {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 2.4rem 0;
+    justify-content: center;
     list-style: none;
     margin: 0;
+    padding: clamp(24px, 4vh, 48px) 0;
+
+    // Spotlight effect: dim all links when hovering the nav, brighten hovered one
+    &:hover .nav-overlay__link {
+      color: rgba(255, 255, 255, 0.1);
+    }
+
+    &:hover .nav-overlay__link-item:hover .nav-overlay__link {
+      color: #ffffff;
+    }
   }
 
   &__link-item {
-    flex: 1;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.07);
-
-    &:last-child {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-    }
   }
 
   &__link {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.8rem 0;
+    display: block;
     text-decoration: none;
-    color: var(--color-text--white);
-    font-size: clamp(32px, 6vw, 72px);
-    line-height: 1;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: clamp(40px, 9vw, 130px);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
     transform: translateY(110%);
     transition: color 0.3s ease;
-
-    &:hover {
-      color: #d77f29;
-
-      .nav-overlay__link-num {
-        color: #d77f29;
-      }
-
-      .nav-overlay__link-arrow {
-        transform: translateX(8px);
-      }
-    }
+    padding: 0.04em 0;
   }
 
-  &__link-num {
-    font-size: clamp(10px, 1.2rem, 1.2rem);
-    letter-spacing: 0.12em;
-    color: rgba(255, 255, 255, 0.25);
-    transition: color 0.3s ease;
-    align-self: flex-start;
-    padding-top: 0.8rem;
-  }
-
-  &__link-arrow {
-    font-size: clamp(20px, 3vw, 40px);
-    color: rgba(255, 255, 255, 0.2);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
-    align-self: flex-end;
-    padding-bottom: 0.8rem;
-  }
-
+  // ── Footer — absolute bottom ─────────────────────────────────────────────────
   &__footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding-top: 2.4rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
     transform: translateY(24px);
     opacity: 0;
-    flex-shrink: 0;
   }
 
-  &__footer-info {
-    p {
-      color: rgba(255, 255, 255, 0.35);
-      font-size: clamp(11px, 1.2rem, 1.2rem);
-      letter-spacing: 0.08em;
-      margin: 0;
-      line-height: 1.8;
-    }
-  }
-
-  &__footer-social {
+  &__footer-col {
     display: flex;
-    gap: 2.4rem;
+    flex-direction: column;
+    gap: 4px;
+  }
 
-    a {
-      color: rgba(255, 255, 255, 0.35);
-      font-size: clamp(11px, 1.2rem, 1.2rem);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: color 0.3s ease;
+  &__footer-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.25);
+    text-transform: uppercase;
+    margin: 0;
+  }
 
-      &:hover {
-        color: var(--color-text--white);
-      }
+  &__footer-link {
+    font-size: clamp(12px, 1.2vw, 15px);
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: color 0.25s ease;
+
+    &:hover {
+      color: #fff;
     }
   }
 }
@@ -165,5 +138,9 @@
 
   .header__hamburger {
     display: flex;
+  }
+
+  .nav-overlay__link {
+    font-size: clamp(36px, 12vw, 72px);
   }
 }

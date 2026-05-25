@@ -5,61 +5,56 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ScratchDesign</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
   </head>
   <body>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+      <span class="preloader__logo" id="preloader-logo"><span>scratch.</span><span>design</span></span>
+      <div class="preloader__foot" id="preloader-foot">
+        <div class="preloader__track">
+          <div class="preloader__bar" id="preloader-bar"></div>
+        </div>
+        <span class="preloader__counter" id="preloader-counter">0%</span>
+      </div>
+    </div>
 
     <!-- Fullscreen nav overlay -->
     <div class="nav-overlay" id="nav-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
       <div class="nav-overlay__header">
-        <a href="/" class="nav-overlay__logo">ScratchDesign</a>
-        <button class="nav-overlay__close" aria-label="Close menu">&#x2715;</button>
+        <a href="/" class="nav-overlay__logo"><span>scratch.</span><span>design</span></a>
+        <button type="button" class="nav-overlay__close" aria-label="Close menu">Close</button>
       </div>
+
       <ul class="nav-overlay__nav">
         <li class="nav-overlay__link-item">
-          <a href="#work" class="nav-overlay__link">
-            <span class="nav-overlay__link-num">01</span>
-            Work
-            <span class="nav-overlay__link-arrow">&#x2197;</span>
-          </a>
+          <a href="#work" class="nav-overlay__link">Work</a>
         </li>
         <li class="nav-overlay__link-item">
-          <a href="#services-detail" class="nav-overlay__link">
-            <span class="nav-overlay__link-num">02</span>
-            Services
-            <span class="nav-overlay__link-arrow">&#x2197;</span>
-          </a>
+          <a href="#services-detail" class="nav-overlay__link">Services</a>
         </li>
         <li class="nav-overlay__link-item">
-          <a href="#process" class="nav-overlay__link">
-            <span class="nav-overlay__link-num">03</span>
-            Process
-            <span class="nav-overlay__link-arrow">&#x2197;</span>
-          </a>
+          <a href="#process" class="nav-overlay__link">Process</a>
         </li>
         <li class="nav-overlay__link-item">
-          <a href="#pricing" class="nav-overlay__link">
-            <span class="nav-overlay__link-num">04</span>
-            Pricing
-            <span class="nav-overlay__link-arrow">&#x2197;</span>
-          </a>
+          <a href="#pricing" class="nav-overlay__link">Pricing</a>
         </li>
         <li class="nav-overlay__link-item">
-          <a href="#contact" class="nav-overlay__link">
-            <span class="nav-overlay__link-num">05</span>
-            Contact
-            <span class="nav-overlay__link-arrow">&#x2197;</span>
-          </a>
+          <a href="#contact" class="nav-overlay__link">Contact</a>
         </li>
       </ul>
+
       <div class="nav-overlay__footer">
-        <div class="nav-overlay__footer-info">
-          <p>Nairobi, Kenya</p>
-          <p>hello@scratchdesign.co</p>
+        <div class="nav-overlay__footer-col">
+          <p class="nav-overlay__footer-label">Follow Me</p>
+          <a href="https://www.instagram.com/scratchdesign" target="_blank" rel="noopener" class="nav-overlay__footer-link">Instagram &#x2197;</a>
         </div>
-        <div class="nav-overlay__footer-social">
-          <a href="#">Twitter</a>
-          <a href="#">Instagram</a>
-          <a href="#">LinkedIn</a>
+        <div class="nav-overlay__footer-col">
+          <p class="nav-overlay__footer-label">Email Me</p>
+          <a href="mailto:hello@scratchdesign.co" class="nav-overlay__footer-link">hello@scratchdesign.co</a>
         </div>
       </div>
     </div>
@@ -68,18 +63,13 @@
       <header>
         <div class="container">
           <div class="header">
-            <div class="header__logo"><a href="/">ScratchDesign</a></div>
+            <div class="header__logo"><a href="/"><span>scratch.</span><span>design</span></a></div>
             <nav>
               <ul class="header__nav-links">
-                <li><a href="#about">About</a></li>
-                <li class="dropdown">
-                  <a href="#services">Services</a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#service1">Service 1</a></li>
-                    <li><a href="#service2">Service 2</a></li>
-                    <li><a href="#service3">Service 3</a></li>
-                  </ul>
-                </li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#services-detail">Services</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li>
                   <a href="#" class="button button--light" data-cal-link="gerald-shikwe-yarxme/30min" data-cal-config='{"layout":"month_view","theme":"light"}' data-cal-namespace="30min">
@@ -108,24 +98,38 @@
         <div class="hero-blob hero-blob--4"></div>
       </div>
 
+      <!-- Decorative floating shapes -->
+      <div class="hero-shapes" aria-hidden="true">
+        <svg class="hero-shape hero-shape--star-1" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 0C10 0 10.9 9.1 20 10C20 10 10.9 10.9 10 20C10 20 9.1 10.9 0 10C0 10 9.1 9.1 10 0Z" fill="currentColor"/>
+        </svg>
+        <svg class="hero-shape hero-shape--star-2" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 0C10 0 10.9 9.1 20 10C20 10 10.9 10.9 10 20C10 20 9.1 10.9 0 10C0 10 9.1 9.1 10 0Z" fill="currentColor"/>
+        </svg>
+        <svg class="hero-shape hero-shape--cross" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 0H11V9H20V11H11V20H9V11H0V9H9V0Z" fill="currentColor"/>
+        </svg>
+        <svg class="hero-shape hero-shape--star-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 0C10 0 10.9 9.1 20 10C20 10 10.9 10.9 10 20C10 20 9.1 10.9 0 10C0 10 9.1 9.1 10 0Z" fill="currentColor"/>
+        </svg>
+        <svg class="hero-shape hero-shape--cross-2" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 0H11V9H20V11H11V20H9V11H0V9H9V0Z" fill="currentColor"/>
+        </svg>
+      </div>
+
       <section class="hero-section">
         <div class="container">
           <div class="hero-editorial">
 
-            <div class="hero-editorial__label">Web design &amp; development — Nairobi, Kenya</div>
-
             <h1 class="hero-editorial__title">
               <span class="hero-editorial__line">
                 Building
-              </span>
-              <span class="hero-editorial__line">
                 <span class="hero-inline-img">
                   <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=200&h=200&fit=crop&auto=format" alt="" loading="eager" />
                 </span>
-                digital
               </span>
               <span class="hero-editorial__line">
-                brands &amp;
+                digital brands &amp;
               </span>
               <span class="hero-editorial__line">
                 experiences
@@ -183,185 +187,6 @@
       </div>
     </section>
 
-    <div class="service-container mobile">
-      <div class="services-mobile">
-        <div class="service-header">
-          <div class="col"><h1>Our Services</h1></div>
-        </div>
-
-        <div class="service-mobile">
-          <div class="service-number">
-            <h2>01</h2>
-          </div>
-          <div class="service-title">
-            <h1>Custom Web Design</h1>
-          </div>
-          <div class="service-image">
-            <div class="img-mobile" style="--aspect-ratio: 3/4">
-              <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=800&q=80" alt="Custom Web Design" />
-            </div>
-          </div>
-          <div class="service-description">
-            <p> We create visually engaging, user-centered designs tailored to
-              reflect your brand's identity and captivate your target audience.
-            </p>
-          </div>
-        </div>
-
-        <div class="service-mobile">
-          <div class="service-number">
-            <h2>02</h2>
-          </div>
-          <div class="service-title">
-            <h1>Responsive Development</h1>
-          </div>
-          <div class="service-image">
-            <div class="img-mobile" style="--aspect-ratio: 3/4">
-              <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Responsive Development" />
-            </div>
-          </div>
-          <div class="service-description">
-            <p>Our responsive development ensures your website looks flawless on
-              all devices, from desktops to smartphones, for an optimal user
-              experience.
-            </p>
-          </div>
-        </div>
-
-        <div class="service-mobile">
-          <div class="service-number">
-            <h2>03</h2>
-          </div>
-          <div class="service-title">
-            <h1>eCommerce Solutions</h1>
-          </div>
-          <div class="service-image">
-            <div class="img-mobile" style="--aspect-ratio: 3/4">
-              <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80" alt="eCommerce Solutions" />
-            </div>
-          </div>
-          <div class="service-description">
-            <p>
-              Drive online sales with our custom eCommerce solutions, including
-              user-friendly interfaces, secure payment integration, and
-              inventory management.
-            </p>
-          </div>
-        </div>
-
-        <div class="service-mobile">
-          <div class="service-number">
-            <h2>04</h2>
-          </div>
-          <div class="service-title">
-            <h1>Content Management Systems</h1>
-          </div>
-          <div class="service-image">
-            <div class="img-mobile" style="--aspect-ratio: 3/4">
-              <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80" alt="Content Management Systems" />
-            </div>
-          </div>
-          <div class="service-description">
-            <p>
-              We develop easy-to-manage websites using CMS platforms like
-              WordPress, enabling you to update content effortlessly without
-              technical skills.
-            </p>
-          </div>
-        </div>
-
-        <div class="service-mobile">
-          <div class="service-number">
-            <h2>05</h2>
-          </div>
-          <div class="service-title">
-            <h1>SEO & Analytics</h1>
-          </div>
-          <div class="service-image">
-            <div class="img-mobile" style="--aspect-ratio: 3/4">
-              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="SEO & Analytics" />
-            </div>
-          </div>
-          <div class="service-description">
-            <p>
-              Enhance visibility and understand user behavior with our SEO and
-              analytics services, helping you optimize content for better search
-              rankings.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-      
-
-   <div class="services-container desktop">
-    <section class="services">
-      <div class="services-header">
-        <div class="col"><h1>Our services</h1></div>
-      </div>
-
-      <div class="service">
-        <div class="service-info">
-          <h1>Custom Web Design</h1>
-          <p>
-            We create visually engaging, user-centered designs tailored to reflect your brand's identity and captivate your target audience.
-          </p>
-        </div>
-        <div class="service-img">
-          <div class="img"><img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=800&q=80" alt="Custom Web Design" /></div>
-        </div>
-      </div>
-      
-      <div class="service">
-        <div class="service-info">
-          <h1>Responsive Development</h1>
-          <p>
-            Our responsive development ensures your website looks flawless on all devices, from desktops to smartphones, for an optimal user experience.
-          </p>
-        </div>
-        <div class="service-img">
-          <div class="img"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Responsive Development" /></div>
-        </div>
-      </div>
-      
-      <div class="service">
-        <div class="service-info">
-          <h1>eCommerce Solutions</h1>
-          <p>
-            Drive online sales with our custom eCommerce solutions, including user-friendly interfaces, secure payment integration, and inventory management.
-          </p>
-        </div>
-        <div class="service-img">
-          <div class="img"><img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80" alt="eCommerce Solutions" /></div>
-        </div>
-      </div>
-      
-      <div class="service">
-        <div class="service-info">
-          <h1>Content Management Systems</h1>
-          <p>
-            We develop easy-to-manage websites using CMS platforms like WordPress, enabling you to update content effortlessly without technical skills.
-          </p>
-        </div>
-        <div class="service-img">
-          <div class="img"><img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80" alt="Content Management Systems" /></div>
-        </div>
-      </div>
-      
-      <div class="service">
-        <div class="service-info">
-          <h1>SEO & Analytics</h1>
-          <p>
-            Enhance visibility and understand user behavior with our SEO and analytics services, helping you optimize content for better search rankings.
-          </p>
-        </div>
-        <div class="service-img">
-          <div class="img"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="SEO & Analytics" /></div>
-        </div>
-      </div>
-      
-    </section>
-   </div>
    
    
 
@@ -369,209 +194,182 @@
    <!-- ============================
         FEATURED WORK
    ============================= -->
-   <section class="featured-work section--dark" id="work">
+   <section class="featured-work" id="work">
      <div class="container">
-       <div class="featured-work__header">
-         <span class="featured-work__label">Selected Work — 2023–2024</span>
-         <h2 class="featured-work__title" data-animation="text-reveal">Projects that define the future of digital design.</h2>
-         <a href="#contact" class="button button--light">
+
+       <div class="fw-header">
+         <span class="fw-header__bg-num" aria-hidden="true">01</span>
+         <span class="fw-header__label">// section.work</span>
+         <h2 class="fw-header__title">Featured Work</h2>
+       </div>
+
+       <div class="fw-grid">
+
+         <article class="fw-card"
+           data-title="Glam Jet"
+           data-year="2024"
+           data-role="Web Design"
+           data-url="https://glam-jet.vercel.app"
+           data-image="https://s0.wp.com/mshots/v1/https://glam-jet.vercel.app?w=1400"
+           data-tags="Branding,UI Design,Conversion,Responsive"
+           data-desc="A sleek, high-converting landing page for a premium beauty brand. The design centres around bold editorial typography, immersive full-bleed imagery, and a checkout experience that reduces friction at every step. Launched with a sub-2s load time and a measurable lift in conversion rate post-launch.">
+           <div class="fw-card__image">
+             <img src="https://s0.wp.com/mshots/v1/https://glam-jet.vercel.app?w=800" alt="Glam Jet" loading="lazy" />
+           </div>
+           <div class="fw-card__body">
+             <div class="fw-card__badges">
+               <span class="fw-card__badge">2024</span>
+               <span class="fw-card__badge">Web Design</span>
+             </div>
+             <h3 class="fw-card__title">Glam Jet</h3>
+             <p class="fw-card__desc">A high-converting landing page for a premium beauty brand — bold type, immersive imagery, polished checkout.</p>
+             <div class="fw-card__tags">
+               <span class="fw-card__tag">Branding</span>
+               <span class="fw-card__tag">UI Design</span>
+               <span class="fw-card__tag">Conversion</span>
+             </div>
+             <button class="fw-card__cta">View case study &#x2192;</button>
+           </div>
+         </article>
+
+         <article class="fw-card"
+           data-title="Marachi Delivery"
+           data-year="2024"
+           data-role="Web App"
+           data-url="https://marachi-delivery-note.vercel.app/"
+           data-image="https://s0.wp.com/mshots/v1/https://marachi-delivery-note.vercel.app/?w=1400"
+           data-tags="Web App,UI/UX,Mobile-first,Operations"
+           data-desc="A clean, functional delivery note web application built for operations teams. Creating and printing a delivery note takes under 30 seconds. Designed mobile-first with clarity as the core principle — handling the real-world messiness of delivery logistics without adding to it.">
+           <div class="fw-card__image">
+             <img src="https://s0.wp.com/mshots/v1/https://marachi-delivery-note.vercel.app/?w=800" alt="Marachi Delivery" loading="lazy" />
+           </div>
+           <div class="fw-card__body">
+             <div class="fw-card__badges">
+               <span class="fw-card__badge">2024</span>
+               <span class="fw-card__badge">Web App</span>
+             </div>
+             <h3 class="fw-card__title">Marachi Delivery</h3>
+             <p class="fw-card__desc">A clean delivery note web app for operations teams — streamlined, fast, and mobile-first.</p>
+             <div class="fw-card__tags">
+               <span class="fw-card__tag">UI/UX</span>
+               <span class="fw-card__tag">Mobile-first</span>
+               <span class="fw-card__tag">Operations</span>
+             </div>
+             <button class="fw-card__cta">View case study &#x2192;</button>
+           </div>
+         </article>
+
+         <article class="fw-card"
+           data-title="Solar Kenya"
+           data-year="2024"
+           data-role="Web Design"
+           data-url="https://solar-kenya-e3ha.vercel.app/"
+           data-image="https://s0.wp.com/mshots/v1/https://solar-kenya-e3ha.vercel.app/?w=1400"
+           data-tags="Web Design,SEO,Lead Generation,East Africa"
+           data-desc="A purpose-driven website for a clean energy company operating across East Africa. The design builds trust through clear value propositions, social proof, and a layout that guides visitors toward booking an installation consultation. SEO-optimised with structured data for local search visibility.">
+           <div class="fw-card__image">
+             <img src="https://s0.wp.com/mshots/v1/https://solar-kenya-e3ha.vercel.app/?w=800" alt="Solar Kenya" loading="lazy" />
+           </div>
+           <div class="fw-card__body">
+             <div class="fw-card__badges">
+               <span class="fw-card__badge">2024</span>
+               <span class="fw-card__badge">Web Design</span>
+             </div>
+             <h3 class="fw-card__title">Solar Kenya</h3>
+             <p class="fw-card__desc">A trust-first website for a clean energy company across East Africa — clear value props, SEO-optimised.</p>
+             <div class="fw-card__tags">
+               <span class="fw-card__tag">Web Design</span>
+               <span class="fw-card__tag">SEO</span>
+               <span class="fw-card__tag">Lead Gen</span>
+             </div>
+             <button class="fw-card__cta">View case study &#x2192;</button>
+           </div>
+         </article>
+
+       </div>
+
+       <div class="fw-footer">
+         <a href="#contact" class="button button--dark">
            <span><span>Start a project</span></span>
-           <svg width="8" height="8" fill="none" xmlns="http://www.w3.org/2000/svg">
-             <path d="M7.157 1.172a.5.5 0 0 0-.5-.5h-4.5a.5.5 0 0 0 0 1h4v4a.5.5 0 0 0 1 0v-4.5Zm-5.803 6.01L7.01 1.525 6.303.818.646 6.475l.708.707Z" fill="#1f1f1f"/>
-           </svg>
+           <!-- prettier-ignore -->
+           <svg width="8" height="8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.157 1.172a.5.5 0 0 0-.5-.5h-4.5a.5.5 0 0 0 0 1h4v4a.5.5 0 0 0 1 0v-4.5Zm-5.803 6.01L7.01 1.525 6.303.818.646 6.475l.708.707Z" fill="#fff"/></svg>
          </a>
        </div>
-     </div>
-
-     <div class="featured-work__items">
-
-       <article class="featured-work__item">
-         <div class="featured-work__item-image">
-           <div class="featured-work__item-image-inner">
-             <img src="https://s0.wp.com/mshots/v1/https://glam-jet.vercel.app?w=1400" alt="Glam Jet project" loading="lazy" />
-           </div>
-         </div>
-         <div class="featured-work__item-meta">
-           <div class="featured-work__item-top">
-             <span class="featured-work__item-num">01</span>
-             <span class="featured-work__item-category">Web Design</span>
-             <span class="featured-work__item-year">2024</span>
-           </div>
-           <h3 class="featured-work__item-title">Glam Jet</h3>
-           <p class="featured-work__item-desc">A sleek, high-converting landing page for a premium beauty brand. Bold typography, immersive imagery, and a polished checkout experience.</p>
-           <a href="https://glam-jet.vercel.app" target="_blank" rel="noopener" class="featured-work__item-cta">
-             <span>View Project</span>
-             <svg width="14" height="14" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-               <path d="M14.314 2.344a1 1 0 0 0-1-1h-9a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-9Zm-11.606 12.02L14.02 3.05 12.607 1.637 1.293 12.95l1.415 1.414Z" fill="currentColor"/>
-             </svg>
-           </a>
-         </div>
-       </article>
-
-       <article class="featured-work__item featured-work__item--reverse">
-         <div class="featured-work__item-image">
-           <div class="featured-work__item-image-inner">
-             <img src="https://s0.wp.com/mshots/v1/https://marachi-delivery-note.vercel.app/?w=1400" alt="Marachi Delivery project" loading="lazy" />
-           </div>
-         </div>
-         <div class="featured-work__item-meta">
-           <div class="featured-work__item-top">
-             <span class="featured-work__item-num">02</span>
-             <span class="featured-work__item-category">Web App</span>
-             <span class="featured-work__item-year">2024</span>
-           </div>
-           <h3 class="featured-work__item-title">Marachi Delivery</h3>
-           <p class="featured-work__item-desc">A clean, functional delivery note web application. Streamlined workflows, intuitive UI, and a fast, mobile-first experience built for operations teams.</p>
-           <a href="https://marachi-delivery-note.vercel.app/" target="_blank" rel="noopener" class="featured-work__item-cta">
-             <span>View Project</span>
-             <svg width="14" height="14" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-               <path d="M14.314 2.344a1 1 0 0 0-1-1h-9a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-9Zm-11.606 12.02L14.02 3.05 12.607 1.637 1.293 12.95l1.415 1.414Z" fill="currentColor"/>
-             </svg>
-           </a>
-         </div>
-       </article>
-
-       <article class="featured-work__item">
-         <div class="featured-work__item-image">
-           <div class="featured-work__item-image-inner">
-             <img src="https://s0.wp.com/mshots/v1/https://solar-kenya-e3ha.vercel.app/?w=1400" alt="Solar Kenya project" loading="lazy" />
-           </div>
-         </div>
-         <div class="featured-work__item-meta">
-           <div class="featured-work__item-top">
-             <span class="featured-work__item-num">03</span>
-             <span class="featured-work__item-category">Web Design</span>
-             <span class="featured-work__item-year">2024</span>
-           </div>
-           <h3 class="featured-work__item-title">Solar Kenya</h3>
-           <p class="featured-work__item-desc">A purpose-driven website for a clean energy company operating across East Africa. Clear value proposition, trust signals, and a conversion-optimised layout.</p>
-           <a href="https://solar-kenya-e3ha.vercel.app/" target="_blank" rel="noopener" class="featured-work__item-cta">
-             <span>View Project</span>
-             <svg width="14" height="14" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-               <path d="M14.314 2.344a1 1 0 0 0-1-1h-9a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-9Zm-11.606 12.02L14.02 3.05 12.607 1.637 1.293 12.95l1.415 1.414Z" fill="currentColor"/>
-             </svg>
-           </a>
-         </div>
-       </article>
-
-       <article class="featured-work__item featured-work__item--reverse">
-         <div class="featured-work__item-image">
-           <div class="featured-work__item-image-inner">
-             <img src="https://images.unsplash.com/photo-1636761999088-44c30780ec6e?auto=format&fit=crop&w=1400&q=80" alt="Pulse Motion Suite project" loading="lazy" />
-           </div>
-         </div>
-         <div class="featured-work__item-meta">
-           <div class="featured-work__item-top">
-             <span class="featured-work__item-num">04</span>
-             <span class="featured-work__item-category">Motion Design</span>
-             <span class="featured-work__item-year">2023</span>
-           </div>
-           <h3 class="featured-work__item-title">Pulse Motion Suite</h3>
-           <p class="featured-work__item-desc">Award-winning motion design campaign for a global tech company. Looping visuals, kinetic typography, and a complete micro-interaction system.</p>
-           <div class="featured-work__item-cta">
-             <span>View Project</span>
-             <svg width="14" height="14" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-               <path d="M14.314 2.344a1 1 0 0 0-1-1h-9a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-9Zm-11.606 12.02L14.02 3.05 12.607 1.637 1.293 12.95l1.415 1.414Z" fill="currentColor"/>
-             </svg>
-           </div>
-         </div>
-       </article>
-
-       <article class="featured-work__item">
-         <div class="featured-work__item-image">
-           <div class="featured-work__item-image-inner">
-             <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1400&q=80" alt="Strata Interactive project" loading="lazy" />
-           </div>
-         </div>
-         <div class="featured-work__item-meta">
-           <div class="featured-work__item-top">
-             <span class="featured-work__item-num">05</span>
-             <span class="featured-work__item-category">Creative Development</span>
-             <span class="featured-work__item-year">2024</span>
-           </div>
-           <h3 class="featured-work__item-title">Strata Interactive</h3>
-           <p class="featured-work__item-desc">Experimental WebGL experience with custom shader effects, physics-based interactions, and an immersive 3D product showcase environment.</p>
-           <div class="featured-work__item-cta">
-             <span>View Project</span>
-             <svg width="14" height="14" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-               <path d="M14.314 2.344a1 1 0 0 0-1-1h-9a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-9Zm-11.606 12.02L14.02 3.05 12.607 1.637 1.293 12.95l1.415 1.414Z" fill="currentColor"/>
-             </svg>
-           </div>
-         </div>
-       </article>
 
      </div>
    </section>
 
 
    <!-- ============================
-        SERVICES PREMIUM
+        SERVICES STACK
    ============================= -->
-   <section class="services-premium section--beige" id="services-detail">
-     <div class="container">
-       <div class="services-premium__header">
-         <span class="services-premium__label">Our Expertise</span>
-         <h2 class="services-premium__title" data-animation="text-reveal">We craft digital experiences that convert and captivate.</h2>
+   <section class="services-stack" id="services-detail">
+
+     <article class="services-stack__card">
+       <div class="services-stack__body">
+         <h3 class="services-stack__title">Web Design</h3>
+         <div class="services-stack__foot">
+           <span class="services-stack__num">(01)</span>
+           <p class="services-stack__desc">Pixels with purpose. We design immersive experiences that communicate your brand's essence and drive results.</p>
+         </div>
        </div>
-       <div class="services-premium__list">
-
-         <div class="services-premium__item">
-           <span class="services-premium__item-num">01</span>
-           <h3 class="services-premium__item-title">Web Design</h3>
-           <p class="services-premium__item-desc">Pixels with purpose. We design immersive experiences that communicate your brand's essence and drive results.</p>
-           <span class="services-premium__item-tag">Core</span>
-           <span class="services-premium__item-arrow">&#8594;</span>
-           <div class="services-premium__item-image">
-             <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80" alt="" aria-hidden="true" />
-           </div>
-         </div>
-
-         <div class="services-premium__item">
-           <span class="services-premium__item-num">02</span>
-           <h3 class="services-premium__item-title">Branding</h3>
-           <p class="services-premium__item-desc">Complete visual identity systems from initial concept through to final brand guidelines and asset delivery.</p>
-           <span class="services-premium__item-tag">Identity</span>
-           <span class="services-premium__item-arrow">&#8594;</span>
-           <div class="services-premium__item-image">
-             <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" alt="" aria-hidden="true" />
-           </div>
-         </div>
-
-         <div class="services-premium__item">
-           <span class="services-premium__item-num">03</span>
-           <h3 class="services-premium__item-title">UI / UX Design</h3>
-           <p class="services-premium__item-desc">Intuitive, research-driven interfaces that delight users and translate seamlessly from Figma to production.</p>
-           <span class="services-premium__item-tag">Product</span>
-           <span class="services-premium__item-arrow">&#8594;</span>
-           <div class="services-premium__item-image">
-             <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=600&q=80" alt="" aria-hidden="true" />
-           </div>
-         </div>
-
-         <div class="services-premium__item">
-           <span class="services-premium__item-num">04</span>
-           <h3 class="services-premium__item-title">Creative Development</h3>
-           <p class="services-premium__item-desc">Custom-coded interactive experiences that push the limits of the browser and leave a lasting impression.</p>
-           <span class="services-premium__item-tag">Advanced</span>
-           <span class="services-premium__item-arrow">&#8594;</span>
-           <div class="services-premium__item-image">
-             <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80" alt="" aria-hidden="true" />
-           </div>
-         </div>
-
-         <div class="services-premium__item">
-           <span class="services-premium__item-num">05</span>
-           <h3 class="services-premium__item-title">Motion Design</h3>
-           <p class="services-premium__item-desc">Cinematic animations and scroll-driven narratives that bring your brand story to life in the browser.</p>
-           <span class="services-premium__item-tag">Premium</span>
-           <span class="services-premium__item-arrow">&#8594;</span>
-           <div class="services-premium__item-image">
-             <img src="https://images.unsplash.com/photo-1636761999088-44c30780ec6e?auto=format&fit=crop&w=600&q=80" alt="" aria-hidden="true" />
-           </div>
-         </div>
-
+       <div class="services-stack__img-wrap">
+         <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1400&q=80" alt="" aria-hidden="true" loading="lazy" />
        </div>
-     </div>
+     </article>
+
+     <article class="services-stack__card">
+       <div class="services-stack__body">
+         <h3 class="services-stack__title">Branding</h3>
+         <div class="services-stack__foot">
+           <span class="services-stack__num">(02)</span>
+           <p class="services-stack__desc">Complete visual identity systems from initial concept through to final brand guidelines and asset delivery.</p>
+         </div>
+       </div>
+       <div class="services-stack__img-wrap">
+         <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1400&q=80" alt="" aria-hidden="true" loading="lazy" />
+       </div>
+     </article>
+
+     <article class="services-stack__card">
+       <div class="services-stack__body">
+         <h3 class="services-stack__title">UI / UX Design</h3>
+         <div class="services-stack__foot">
+           <span class="services-stack__num">(03)</span>
+           <p class="services-stack__desc">Intuitive, research-driven interfaces that delight users and translate seamlessly from Figma to production.</p>
+         </div>
+       </div>
+       <div class="services-stack__img-wrap">
+         <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1400&q=80" alt="" aria-hidden="true" loading="lazy" />
+       </div>
+     </article>
+
+     <article class="services-stack__card">
+       <div class="services-stack__body">
+         <h3 class="services-stack__title">Creative Development</h3>
+         <div class="services-stack__foot">
+           <span class="services-stack__num">(04)</span>
+           <p class="services-stack__desc">Custom-coded interactive experiences that push the limits of the browser and leave a lasting impression.</p>
+         </div>
+       </div>
+       <div class="services-stack__img-wrap">
+         <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1400&q=80" alt="" aria-hidden="true" loading="lazy" />
+       </div>
+     </article>
+
+     <article class="services-stack__card">
+       <div class="services-stack__body">
+         <h3 class="services-stack__title">Motion Design</h3>
+         <div class="services-stack__foot">
+           <span class="services-stack__num">(05)</span>
+           <p class="services-stack__desc">Cinematic animations and scroll-driven narratives that bring your brand story to life in the browser.</p>
+         </div>
+       </div>
+       <div class="services-stack__img-wrap">
+         <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1400&q=80" alt="" aria-hidden="true" loading="lazy" />
+       </div>
+     </article>
+
    </section>
 
 
@@ -639,23 +437,30 @@
    <!-- ============================
         PRICING
    ============================= -->
-   <section class="pricing section--dark" id="pricing">
+   <section class="pricing" id="pricing">
      <div class="container">
+
        <div class="pricing__header">
          <span class="pricing__label">Transparent Pricing</span>
          <h2 class="pricing__title" data-animation="text-reveal">Investment packages for every stage of growth.</h2>
          <p class="pricing__sub">Clear, honest pricing with no hidden fees. Each package is customised to your specific project requirements.</p>
        </div>
+
        <div class="pricing__cards">
 
          <!-- Launch -->
-         <div class="pricing__card">
-           <div class="pricing__card-tier">Launch</div>
+         <div class="pricing__card pricing__card--1">
+           <div class="pricing__card-icon">
+             <!-- pencil -->
+             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+           </div>
+           <h3 class="pricing__card-tier">Launch</h3>
+           <p class="pricing__card-subdesc">Perfect for startups and new ventures</p>
            <div class="pricing__card-price">
              <span class="pricing__card-currency">$</span>
              <span class="pricing__card-amount">2,500</span>
+             <span class="pricing__card-period">/project</span>
            </div>
-           <p class="pricing__card-desc">A polished, conversion-ready landing page. Perfect for startups, new services, or product launches.</p>
            <ul class="pricing__card-features">
              <li class="pricing__card-feature">Custom Visual Design</li>
              <li class="pricing__card-feature">Responsive Layout (All Devices)</li>
@@ -664,26 +469,24 @@
              <li class="pricing__card-feature">Contact Form Integration</li>
              <li class="pricing__card-feature">2 Rounds of Revisions</li>
              <li class="pricing__card-feature">30-Day Post-Launch Support</li>
-             <li class="pricing__card-feature--muted">Multi-page Structure</li>
-             <li class="pricing__card-feature--muted">CMS Integration</li>
            </ul>
-           <a href="#contact" class="pricing__card-cta pricing__card-cta--light">
-             Get Started
-             <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-               <path d="M14.314 2.344a1 1 0 0 0-1-1h-9a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-9Zm-11.606 12.02L14.02 3.05 12.607 1.637 1.293 12.95l1.415 1.414Z" fill="currentColor"/>
-             </svg>
-           </a>
+           <a href="#contact" class="pricing__card-cta">Get Started</a>
          </div>
 
-         <!-- Growth (featured) -->
-         <div class="pricing__card pricing__card--featured">
-           <div class="pricing__card-badge">Most Popular</div>
-           <div class="pricing__card-tier">Growth</div>
+         <!-- Growth (popular) -->
+         <div class="pricing__card pricing__card--2 pricing__card--featured">
+           <div class="pricing__card-popular">Popular!</div>
+           <div class="pricing__card-icon">
+             <!-- star -->
+             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+           </div>
+           <h3 class="pricing__card-tier">Growth</h3>
+           <p class="pricing__card-subdesc">For serious businesses ready to scale</p>
            <div class="pricing__card-price">
              <span class="pricing__card-currency">$</span>
              <span class="pricing__card-amount">6,500</span>
+             <span class="pricing__card-period">/project</span>
            </div>
-           <p class="pricing__card-desc">A complete multi-page website for established businesses ready to scale their online presence seriously.</p>
            <ul class="pricing__card-features">
              <li class="pricing__card-feature">Everything in Launch</li>
              <li class="pricing__card-feature">Up to 8 Pages</li>
@@ -694,21 +497,20 @@
              <li class="pricing__card-feature">3 Months Support</li>
              <li class="pricing__card-feature">Performance Optimisation</li>
            </ul>
-           <a href="#contact" class="pricing__card-cta pricing__card-cta--accent">
-             Get Started
-             <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-               <path d="M14.314 2.344a1 1 0 0 0-1-1h-9a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-9Zm-11.606 12.02L14.02 3.05 12.607 1.637 1.293 12.95l1.415 1.414Z" fill="currentColor"/>
-             </svg>
-           </a>
+           <a href="#contact" class="pricing__card-cta pricing__card-cta--featured">Get Started</a>
          </div>
 
          <!-- Enterprise -->
-         <div class="pricing__card">
-           <div class="pricing__card-tier">Enterprise</div>
+         <div class="pricing__card pricing__card--3">
+           <div class="pricing__card-icon">
+             <!-- sparkles -->
+             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
+           </div>
+           <h3 class="pricing__card-tier">Enterprise</h3>
+           <p class="pricing__card-subdesc">For brands that demand exceptional</p>
            <div class="pricing__card-price">
              <span class="pricing__card-amount">Custom</span>
            </div>
-           <p class="pricing__card-desc">A bespoke interactive experience with cutting-edge technology. For brands that demand something truly exceptional.</p>
            <ul class="pricing__card-features">
              <li class="pricing__card-feature">Everything in Growth</li>
              <li class="pricing__card-feature">WebGL / 3D Experiences</li>
@@ -719,12 +521,7 @@
              <li class="pricing__card-feature">6 Months Retainer Option</li>
              <li class="pricing__card-feature">Ongoing Creative Partnership</li>
            </ul>
-           <a href="#contact" class="pricing__card-cta pricing__card-cta--light">
-             Let's Talk
-             <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-               <path d="M14.314 2.344a1 1 0 0 0-1-1h-9a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-9Zm-11.606 12.02L14.02 3.05 12.607 1.637 1.293 12.95l1.415 1.414Z" fill="currentColor"/>
-             </svg>
-           </a>
+           <a href="#contact" class="pricing__card-cta">Let's Talk</a>
          </div>
 
        </div>
@@ -1021,7 +818,7 @@
          <div class="footer__col">
            <p class="footer__col-title">Studio</p>
            <ul class="footer__col-links">
-             <li class="footer__col-link"><a href="#about">About</a></li>
+             <li class="footer__col-link"><a href="#testimonials">About</a></li>
              <li class="footer__col-link"><a href="#testimonials">Client Stories</a></li>
              <li class="footer__col-link"><a href="#faq">FAQ</a></li>
              <li class="footer__col-link"><a href="#contact">Contact</a></li>
@@ -1031,7 +828,7 @@
            <p class="footer__col-title">Connect</p>
            <ul class="footer__col-links">
              <li class="footer__col-link"><a href="#">Twitter / X</a></li>
-             <li class="footer__col-link"><a href="#">Instagram</a></li>
+             <li class="footer__col-link"><a href="https://www.instagram.com/scratchdesign" target="_blank" rel="noopener">Instagram</a></li>
              <li class="footer__col-link"><a href="#">LinkedIn</a></li>
              <li class="footer__col-link"><a href="#">Dribbble</a></li>
            </ul>
@@ -1095,10 +892,36 @@
    
    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-    <!-- Global floating image for services-premium hover -->
-    <div class="services-hover-img" id="services-hover-img">
-      <img src="" alt="" />
+    <!-- Project detail modal -->
+    <div class="fw-modal" id="fw-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Project details">
+      <div class="fw-modal__backdrop" id="fw-modal-backdrop"></div>
+      <div class="fw-modal__panel" id="fw-modal-panel">
+        <div class="fw-modal__bar">
+          <div class="fw-modal__bar-badges">
+            <span class="fw-modal__badge" id="fw-modal-year"></span>
+            <span class="fw-modal__badge" id="fw-modal-role"></span>
+          </div>
+          <button type="button" class="fw-modal__close" id="fw-modal-close" aria-label="Close">&#x2715;</button>
+        </div>
+        <div class="fw-modal__image">
+          <img id="fw-modal-img" src="" alt="" />
+        </div>
+        <div class="fw-modal__body">
+          <h2 class="fw-modal__title" id="fw-modal-title"></h2>
+          <p class="fw-modal__desc" id="fw-modal-desc"></p>
+          <div class="fw-modal__tags" id="fw-modal-tags"></div>
+          <div class="fw-modal__actions">
+            <a class="fw-modal__link" id="fw-modal-link" href="#" target="_blank" rel="noopener">
+              Visit live site
+              <!-- prettier-ignore -->
+              <svg width="12" height="12" fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M14.314 2.344a1 1 0 0 0-1-1h-9a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-9Zm-11.606 12.02L14.02 3.05 12.607 1.637 1.293 12.95l1.415 1.414Z" fill="currentColor"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
+
+
 
     <script type="module" src="./app/index.js"></script>
   </body>
