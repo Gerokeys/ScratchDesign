@@ -112,10 +112,27 @@
 }
 
 // ─── Mobile ───────────────────────────────────────────────────────────────────
-@include below(640px) {
+@include below(768px) {
+  .services-stack__card {
+    min-height: 85vh;
+    border-radius: 12px 12px 0 0;
+
+    // Tighten the stacking offsets so cards peek less on small screens
+    &:nth-child(2) { top: 0px; }
+    &:nth-child(3) { top: 12px; }
+    &:nth-child(4) { top: 24px; }
+    &:nth-child(5) { top: 36px; }
+    &:nth-child(6) { top: 48px; }
+  }
+
   .services-stack__body {
-    padding: 32px 24px;
-    padding-bottom: 28px;
+    justify-content: flex-start;
+    padding: 32px 24px 24px;
+  }
+
+  .services-stack__title {
+    font-size: clamp(32px, 9vw, 52px);
+    margin-bottom: 16px;
   }
 
   .services-stack__foot {
@@ -125,6 +142,10 @@
 
   .services-stack__desc {
     max-width: 100%;
+  }
+
+  .services-stack__img-wrap {
+    height: clamp(160px, 35vw, 240px);
   }
 }
 
