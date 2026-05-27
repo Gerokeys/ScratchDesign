@@ -84,7 +84,7 @@
     display: block;
     text-decoration: none;
     color: rgba(255, 255, 255, 0.75);
-    font-size: clamp(40px, 9vw, 130px);
+    font-size: clamp(36px, 6vw, 88px);
     font-weight: 800;
     line-height: 0.95;
     letter-spacing: -0.04em;
@@ -131,16 +131,17 @@
   }
 }
 
-@media screen and (max-width: 768px) {
-  .header__nav-links {
-    display: none !important;
+@media screen and (max-width: 900px) {
+  // Tighten side padding so text has maximum room
+  .nav-overlay {
+    padding-left: clamp(16px, 3vw, 28px);
+    padding-right: clamp(16px, 3vw, 28px);
   }
 
-  .header__hamburger {
-    display: flex;
-  }
-
+  // Syne 800 uppercase is very wide — scale down so even "SERVICES"
+  // (8 chars) never overflows the viewport at any mobile width
   .nav-overlay__link {
-    font-size: clamp(36px, 12vw, 72px);
+    font-size: clamp(22px, 5.8vw, 56px);
+    letter-spacing: -0.03em;
   }
 }

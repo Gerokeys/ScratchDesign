@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms of Service — ScratchDesign</title>
+    <meta name="description" content="Terms of Service for ScratchDesign — the conditions under which we provide web design and development services." />
+    <meta name="robots" content="noindex" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        --bg: #f5f4f0;
+        --ink: #1a1a1a;
+        --ink-muted: rgba(26,26,26,0.5);
+        --border: rgba(26,26,26,0.1);
+        --max: 740px;
+        font-size: calc(100vw / 1440 * 10);
+      }
+
+      @media (max-width: 900px)  { :root { font-size: calc(100vw / 900 * 10); } }
+      @media (max-width: 480px)  { :root { font-size: calc(100vw / 480 * 10); } }
+
+      body {
+        font-family: 'Syne', sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .pp-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2.4rem clamp(20px, 5vw, 80px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .pp-logo {
+        font-size: clamp(14px, 1.5rem, 1.5rem);
+        font-weight: 800;
+        color: var(--ink);
+        text-decoration: none;
+        letter-spacing: -0.02em;
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+      }
+
+      .pp-back {
+        font-size: clamp(12px, 1.3rem, 1.3rem);
+        color: var(--ink-muted);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        transition: color 0.2s;
+      }
+      .pp-back:hover { color: var(--ink); }
+
+      .pp-wrap {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: clamp(40px, 8vw, 96px) clamp(20px, 5vw, 40px) clamp(64px, 10vw, 120px);
+      }
+
+      .pp-eyebrow {
+        font-size: clamp(10px, 1.1rem, 1.1rem);
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
+        margin-bottom: 1.6rem;
+        display: block;
+      }
+
+      .pp-title {
+        font-size: clamp(28px, 4vw, 52px);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+        margin-bottom: 1.2rem;
+      }
+
+      .pp-updated {
+        font-size: clamp(12px, 1.3rem, 1.3rem);
+        color: var(--ink-muted);
+        margin-bottom: 4.8rem;
+        padding-bottom: 3.2rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .pp-section {
+        margin-bottom: 4rem;
+      }
+
+      .pp-section h2 {
+        font-size: clamp(16px, 1.8rem, 1.8rem);
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        margin-bottom: 1.2rem;
+        color: var(--ink);
+      }
+
+      .pp-section p {
+        font-size: clamp(14px, 1.5rem, 1.5rem);
+        color: rgba(26,26,26,0.75);
+        margin-bottom: 1.2rem;
+        line-height: 1.75;
+      }
+
+      .pp-section p:last-child { margin-bottom: 0; }
+
+      .pp-section ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        margin-bottom: 1.2rem;
+      }
+
+      .pp-section ul li {
+        font-size: clamp(14px, 1.5rem, 1.5rem);
+        color: rgba(26,26,26,0.75);
+        padding-left: 2rem;
+        position: relative;
+        line-height: 1.65;
+      }
+
+      .pp-section ul li::before {
+        content: '—';
+        position: absolute;
+        left: 0;
+        color: var(--ink-muted);
+      }
+
+      .pp-section a {
+        color: var(--ink);
+        font-weight: 600;
+        text-underline-offset: 3px;
+      }
+
+      .pp-footer {
+        text-align: center;
+        padding: 3.2rem clamp(20px, 5vw, 80px);
+        border-top: 1px solid var(--border);
+        font-size: clamp(12px, 1.3rem, 1.3rem);
+        color: var(--ink-muted);
+      }
+      .pp-footer a { color: var(--ink); text-underline-offset: 3px; }
+    </style>
+  </head>
+  <body>
+
+    <header class="pp-header">
+      <a href="/" class="pp-logo">
+        <span>scratch.</span>
+        <span>design</span>
+      </a>
+      <a href="/" class="pp-back">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 8H1M1 8L8 1M1 8L8 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to site
+      </a>
+    </header>
+
+    <main class="pp-wrap">
+
+      <span class="pp-eyebrow">Legal</span>
+      <h1 class="pp-title">Terms of Service</h1>
+      <p class="pp-updated">Last updated: 27 May 2026</p>
+
+      <div class="pp-section">
+        <h2>1. About these terms</h2>
+        <p>These Terms of Service ("Terms") govern the relationship between ScratchDesign ("we", "us", "our") and any client or visitor ("you") who engages our web design and development services or uses our website at <strong>scratchdesign.co</strong>.</p>
+        <p>By engaging our services or requesting a quote, you agree to be bound by these Terms. If you do not agree, please do not proceed with an engagement.</p>
+      </div>
+
+      <div class="pp-section">
+        <h2>2. Services</h2>
+        <p>ScratchDesign provides web design, web development, motion design, brand identity, and related digital services. The specific scope of work for each project is agreed upon in a separate written proposal or contract, which takes precedence over these general Terms where there is any conflict.</p>
+      </div>
+
+      <div class="pp-section">
+        <h2>3. Project process and timelines</h2>
+        <p>Project timelines are estimated at the time of proposal. Delays caused by client feedback, content delivery, or third-party dependencies (hosting, domain, APIs) are not within our control and may push delivery dates. We will communicate any timeline changes as soon as possible.</p>
+        <p>Projects are considered on hold if we do not receive client feedback or required materials within 14 days of a request. After 30 days of no response, the project may be cancelled and any work completed will be invoiced.</p>
+      </div>
+
+      <div class="pp-section">
+        <h2>4. Payment terms</h2>
+        <p>Our standard payment structure is:</p>
+        <ul>
+          <li><strong>50%</strong> deposit required before any work begins</li>
+          <li><strong>25%</strong> due upon design sign-off (before development begins)</li>
+          <li><strong>25%</strong> due upon final delivery and before site goes live</li>
+        </ul>
+        <p>For larger projects, milestone-based payment structures may be agreed in writing. All invoices are due within 7 days of issue unless otherwise agreed. Late payments may incur interest at 1.5% per month. We reserve the right to suspend or withhold delivery of work until outstanding balances are settled.</p>
+        <p>We accept bank transfers and major credit cards. All prices are in USD unless otherwise stated.</p>
+      </div>
+
+      <div class="pp-section">
+        <h2>5. Revisions</h2>
+        <p>Each project package includes a defined number of revision rounds as stated in the proposal. A "revision" is a reasonable set of changes to an existing design or build — not a complete redesign or change of scope.</p>
+        <p>Revisions beyond the agreed number, or requests that constitute a change of scope, will be quoted and charged separately at our standard hourly rate.</p>
+      </div>
+
+      <div class="pp-section">
+        <h2>6. Intellectual property</h2>
+        <p>Upon receipt of final payment in full, you receive full ownership of the final deliverables (design files, source code, and assets created specifically for your project).</p>
+        <p>Until final payment is received, all work remains the intellectual property of ScratchDesign. We retain the right to display any completed project in our portfolio and marketing materials unless you request otherwise in writing.</p>
+        <p>Third-party assets (stock images, fonts, plugins, libraries) remain subject to their respective licences. We will advise you of any licences you need to maintain independently.</p>
+      </div>
+
+      <div class="pp-section">
+        <h2>7. Client responsibilities</h2>
+        <p>You agree to:</p>
+        <ul>
+          <li>Provide all required content, assets, and feedback in a timely manner</li>
+          <li>Ensure that any content supplied to us does not infringe third-party rights</li>
+          <li>Obtain all necessary licences and permissions for content you provide</li>
+          <li>Designate a single point of contact for feedback to avoid conflicting instructions</li>
+        </ul>
+      </div>
+
+      <div class="pp-section">
+        <h2>8. Confidentiality</h2>
+        <p>Both parties agree to treat as confidential any non-public information shared during the engagement. This includes business plans, pricing information, unreleased products, and client data. This obligation survives the end of any project.</p>
+      </div>
+
+      <div class="pp-section">
+        <h2>9. Warranties and limitation of liability</h2>
+        <p>We warrant that all work is our original creation (or properly licensed), delivered with reasonable skill and care. We do not guarantee specific business outcomes such as rankings, traffic, or conversion rates — these depend on many factors outside our control.</p>
+        <p>Our total liability to you for any claim arising from our services shall not exceed the total amount paid by you for the specific project giving rise to the claim. We are not liable for indirect, consequential, or loss-of-profit damages.</p>
+      </div>
+
+      <div class="pp-section">
+        <h2>10. Termination</h2>
+        <p>Either party may terminate the engagement with 14 days' written notice. Upon termination, you will be invoiced for all work completed up to that date, calculated pro-rata based on the agreed project fee. The deposit is non-refundable.</p>
+        <p>We reserve the right to terminate immediately if you breach these Terms, fail to make payment, or engage in unlawful or abusive conduct.</p>
+      </div>
+
+      <div class="pp-section">
+        <h2>11. Governing law</h2>
+        <p>These Terms are governed by and construed in accordance with the laws of the Republic of Kenya. Any disputes shall be subject to the exclusive jurisdiction of the courts of Kenya.</p>
+      </div>
+
+      <div class="pp-section">
+        <h2>12. Changes to these terms</h2>
+        <p>We may update these Terms from time to time. We will update the "Last updated" date at the top of this page. Continued engagement with our services after changes constitutes acceptance of the revised Terms.</p>
+      </div>
+
+      <div class="pp-section">
+        <h2>13. Contact</h2>
+        <p>For any questions about these Terms, please contact:</p>
+        <p>
+          <strong>ScratchDesign</strong><br>
+          Ruiru, Kiambu, Kenya<br>
+          <a href="mailto:hello@scratchdesign.co">hello@scratchdesign.co</a>
+        </p>
+      </div>
+
+    </main>
+
+    <footer class="pp-footer">
+      <p>&copy; 2026 ScratchDesign. All rights reserved. &nbsp;·&nbsp; <a href="/privacy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="/">Back to site</a></p>
+    </footer>
+
+  </body>
+</html>

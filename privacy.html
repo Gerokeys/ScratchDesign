@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy — ScratchDesign</title>
+    <meta name="description" content="Privacy Policy for ScratchDesign — how we handle your data and third-party services." />
+    <meta name="robots" content="noindex" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        --bg: #f5f4f0;
+        --ink: #1a1a1a;
+        --ink-muted: rgba(26,26,26,0.5);
+        --border: rgba(26,26,26,0.1);
+        --accent: #1a1a1a;
+        --max: 740px;
+        font-size: calc(100vw / 1440 * 10);
+      }
+
+      @media (max-width: 900px)  { :root { font-size: calc(100vw / 900 * 10); } }
+      @media (max-width: 480px)  { :root { font-size: calc(100vw / 480 * 10); } }
+
+      body {
+        font-family: 'Syne', sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ── Header ── */
+      .pp-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2.4rem clamp(20px, 5vw, 80px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .pp-logo {
+        font-size: clamp(14px, 1.5rem, 1.5rem);
+        font-weight: 800;
+        color: var(--ink);
+        text-decoration: none;
+        letter-spacing: -0.02em;
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+      }
+
+      .pp-back {
+        font-size: clamp(12px, 1.3rem, 1.3rem);
+        color: var(--ink-muted);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        transition: color 0.2s;
+      }
+      .pp-back:hover { color: var(--ink); }
+      .pp-back svg { flex-shrink: 0; }
+
+      /* ── Content ── */
+      .pp-wrap {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: clamp(40px, 8vw, 96px) clamp(20px, 5vw, 40px) clamp(64px, 10vw, 120px);
+      }
+
+      .pp-eyebrow {
+        font-size: clamp(10px, 1.1rem, 1.1rem);
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
+        margin-bottom: 1.6rem;
+        display: block;
+      }
+
+      .pp-title {
+        font-size: clamp(28px, 4vw, 52px);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+        margin-bottom: 1.2rem;
+      }
+
+      .pp-updated {
+        font-size: clamp(12px, 1.3rem, 1.3rem);
+        color: var(--ink-muted);
+        margin-bottom: 4.8rem;
+        padding-bottom: 3.2rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      /* ── Sections ── */
+      .pp-section {
+        margin-bottom: 4rem;
+      }
+
+      .pp-section h2 {
+        font-size: clamp(16px, 1.8rem, 1.8rem);
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        margin-bottom: 1.2rem;
+        color: var(--ink);
+      }
+
+      .pp-section p {
+        font-size: clamp(14px, 1.5rem, 1.5rem);
+        color: rgba(26,26,26,0.75);
+        margin-bottom: 1.2rem;
+        line-height: 1.75;
+      }
+
+      .pp-section p:last-child { margin-bottom: 0; }
+
+      .pp-section ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        margin-bottom: 1.2rem;
+      }
+
+      .pp-section ul li {
+        font-size: clamp(14px, 1.5rem, 1.5rem);
+        color: rgba(26,26,26,0.75);
+        padding-left: 2rem;
+        position: relative;
+        line-height: 1.65;
+      }
+
+      .pp-section ul li::before {
+        content: '—';
+        position: absolute;
+        left: 0;
+        color: var(--ink-muted);
+      }
+
+      .pp-section a {
+        color: var(--ink);
+        font-weight: 600;
+        text-underline-offset: 3px;
+      }
+
+      .pp-divider {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 3.2rem 0;
+      }
+
+      /* ── Table ── */
+      .pp-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 1.6rem;
+        font-size: clamp(13px, 1.4rem, 1.4rem);
+      }
+      .pp-table th {
+        text-align: left;
+        font-weight: 700;
+        font-size: clamp(10px, 1.1rem, 1.1rem);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
+        padding: 1rem 1.2rem;
+        border-bottom: 2px solid var(--border);
+      }
+      .pp-table td {
+        padding: 1rem 1.2rem;
+        vertical-align: top;
+        border-bottom: 1px solid var(--border);
+        color: rgba(26,26,26,0.75);
+        line-height: 1.6;
+      }
+      .pp-table td:first-child { font-weight: 600; color: var(--ink); }
+
+      /* ── Footer ── */
+      .pp-footer {
+        text-align: center;
+        padding: 3.2rem clamp(20px, 5vw, 80px);
+        border-top: 1px solid var(--border);
+        font-size: clamp(12px, 1.3rem, 1.3rem);
+        color: var(--ink-muted);
+      }
+      .pp-footer a { color: var(--ink); text-underline-offset: 3px; }
+    </style>
+  </head>
+  <body>
+
+    <header class="pp-header">
+      <a href="/" class="pp-logo">
+        <span>scratch.</span>
+        <span>design</span>
+      </a>
+      <a href="/" class="pp-back">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 8H1M1 8L8 1M1 8L8 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to site
+      </a>
+    </header>
+
+    <main class="pp-wrap">
+
+      <span class="pp-eyebrow">Legal</span>
+      <h1 class="pp-title">Privacy Policy</h1>
+      <p class="pp-updated">Last updated: 27 May 2026</p>
+
+      <div class="pp-section">
+        <h2>1. Who we are</h2>
+        <p>ScratchDesign ("we", "us", "our") is a digital design and technology studio. Our website is <strong>scratchdesign.co</strong>. Our primary contact email is <a href="mailto:hello@scratchdesign.co">hello@scratchdesign.co</a>.</p>
+        <p>This policy explains what information is collected when you visit our website, how it is used, and your rights in relation to it.</p>
+      </div>
+
+      <div class="pp-section">
+        <h2>2. What data we collect</h2>
+        <p>This website does not operate its own contact form or user accounts. We do not directly store any personal data on our servers. However, the following interactions may result in data being processed:</p>
+        <ul>
+          <li><strong>Email enquiries:</strong> If you click the email link (<em>hello@scratchdesign.co</em>), your email client sends a message directly to us. We retain that correspondence for the purpose of replying and managing client relationships.</li>
+          <li><strong>Booking a call:</strong> When you use the "Schedule a Call" widget (powered by Cal.com), Cal.com collects your name, email address, and selected time slot on their platform. This is governed by <a href="https://cal.com/privacy" target="_blank" rel="noopener">Cal.com's Privacy Policy</a>.</li>
+        </ul>
+      </div>
+
+      <div class="pp-section">
+        <h2>3. Third-party services</h2>
+        <p>Our website loads assets and content from the following third parties. Each makes a network request that may log your IP address and browser information:</p>
+        <table class="pp-table">
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>Purpose</th>
+              <th>Data processed</th>
+              <th>Privacy policy</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Google Fonts</td>
+              <td>Loads the Syne typeface</td>
+              <td>IP address, browser UA</td>
+              <td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy</a></td>
+            </tr>
+            <tr>
+              <td>Cal.com</td>
+              <td>Meeting booking widget</td>
+              <td>Name, email, timezone</td>
+              <td><a href="https://cal.com/privacy" target="_blank" rel="noopener">Cal.com Privacy</a></td>
+            </tr>
+            <tr>
+              <td>Unsplash</td>
+              <td>Stock photography (hero &amp; services)</td>
+              <td>IP address on image load</td>
+              <td><a href="https://unsplash.com/privacy" target="_blank" rel="noopener">Unsplash Privacy</a></td>
+            </tr>
+            <tr>
+              <td>WordPress.com (mshots)</td>
+              <td>Live screenshots of portfolio sites</td>
+              <td>IP address on image request</td>
+              <td><a href="https://automattic.com/privacy/" target="_blank" rel="noopener">Automattic Privacy</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <p>We do not use Google Analytics, Facebook Pixel, or any other behavioural tracking or advertising technology.</p>
+      </div>
+
+      <div class="pp-section">
+        <h2>4. Cookies</h2>
+        <p>Our website itself does not set any first-party cookies. The Cal.com booking widget may set session cookies when you interact with it; these are governed by Cal.com's policy. Google Fonts requests do not set persistent cookies.</p>
+      </div>
+
+      <div class="pp-section">
+        <h2>5. How we use your data</h2>
+        <p>Any personal data we receive (e.g. via email) is used solely to:</p>
+        <ul>
+          <li>Respond to your enquiry or proposal request</li>
+          <li>Manage an ongoing client relationship</li>
+          <li>Comply with legal obligations</li>
+        </ul>
+        <p>We do not sell, rent, or share your personal data with any third parties for marketing purposes.</p>
+      </div>
+
+      <div class="pp-section">
+        <h2>6. Legal basis for processing (GDPR)</h2>
+        <p>If you are in the European Economic Area (EEA) or United Kingdom, our legal basis for processing personal data received via email is <strong>legitimate interests</strong> (Art. 6(1)(f) GDPR) — specifically, the legitimate interest of responding to business enquiries. For bookings made via Cal.com, the legal basis is <strong>contract performance</strong> (Art. 6(1)(b)).</p>
+      </div>
+
+      <div class="pp-section">
+        <h2>7. Data retention</h2>
+        <p>Email correspondence is retained for as long as necessary to manage the relevant client relationship, and deleted when no longer needed. We do not retain any booking data ourselves — that is managed by Cal.com.</p>
+      </div>
+
+      <div class="pp-section">
+        <h2>8. Your rights</h2>
+        <p>Depending on your location, you may have the following rights regarding your personal data:</p>
+        <ul>
+          <li>Right to access the data we hold about you</li>
+          <li>Right to have inaccurate data corrected</li>
+          <li>Right to erasure ("right to be forgotten")</li>
+          <li>Right to object to or restrict processing</li>
+          <li>Right to data portability</li>
+        </ul>
+        <p>To exercise any of these rights, email us at <a href="mailto:hello@scratchdesign.co">hello@scratchdesign.co</a>. We will respond within 30 days.</p>
+      </div>
+
+      <div class="pp-section">
+        <h2>9. International transfers</h2>
+        <p>Google Fonts and Cal.com may transfer data outside the EEA. Both organisations maintain Standard Contractual Clauses or equivalent safeguards. See their respective privacy policies for details.</p>
+      </div>
+
+      <div class="pp-section">
+        <h2>10. Children's privacy</h2>
+        <p>Our website is not directed at children under 13 years of age. We do not knowingly collect data from children. If you believe a child has sent us personal data, please contact us and we will delete it promptly.</p>
+      </div>
+
+      <div class="pp-section">
+        <h2>11. Changes to this policy</h2>
+        <p>We may update this policy from time to time. When we do, we will update the "Last updated" date at the top of this page. Continued use of the website after changes constitutes acceptance of the revised policy.</p>
+      </div>
+
+      <div class="pp-section">
+        <h2>12. Contact</h2>
+        <p>For any privacy-related questions or requests, please contact:</p>
+        <p>
+          <strong>ScratchDesign</strong><br>
+          <a href="mailto:hello@scratchdesign.co">hello@scratchdesign.co</a>
+        </p>
+      </div>
+
+    </main>
+
+    <footer class="pp-footer">
+      <p>&copy; 2026 ScratchDesign. All rights reserved. &nbsp;·&nbsp; <a href="/">Back to site</a></p>
+    </footer>
+
+  </body>
+</html>

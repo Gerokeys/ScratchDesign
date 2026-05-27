@@ -1,22 +1,36 @@
 .header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     padding: 24px 0;
 
+    // Hide the inline nav links on all screen sizes — hamburger is universal
+    nav {
+        display: none;
+    }
+
     &__hamburger {
         border: none;
-        display: none;
-        flex-direction: column;
-        gap: 6px;
+        background: none;
+        display: flex;
+        align-items: center;
         cursor: pointer;
+        padding: 0;
+        transition: opacity 0.3s ease;
 
-        & div {
-            transition: all 0.5s ease;
-            width: 24px;
-            height: 2px;
-            background-color: rgb(0, 0, 0);
+        &.toggle {
+            opacity: 0;
+            pointer-events: none;
         }
+    }
+
+    &__menu-label {
+        font-size: clamp(11px, 1.1rem, 1.1rem);
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #1a1a1a;
+        font-family: inherit;
     }
 
     &__logo {
@@ -38,142 +52,15 @@
         }
     }
 
-    &__nav-links {
-        display: flex;
-        width: 100%;
-        justify-content: space-around;
-        align-items: center;
-        gap: 10rem;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-
-        & .button {
-            border: 1px solid;
-            transition: all 0.5s ease;
-
-            &:hover {
-                scale: 1.1;
-            }
-        }
-
-        & li a {
-            position: relative;
-            text-decoration: none;
-            transition: color 0.3s ease;
-
-            &::after {
-                content: '';
-                position: absolute;
-                left: 0;
-                bottom: -2px;
-                width: 100%;
-                height: 1px;
-                background: currentColor;
-                transform: scaleX(0);
-                transform-origin: right center;
-                transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-            }
-
-            &:hover::after {
-                transform: scaleX(1);
-                transform-origin: left center;
-            }
-        }
-    }
 }
-
-/* Dropdown menu styling */
-.header__nav-links .dropdown {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    cursor: pointer;
-}
-
-/* Down arrow removed */
-
-/* Style the dropdown menu to display on hover */
-.header__nav-links .dropdown .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 14px;
-    background-color: white;
-    border-radius: 8px;
-    margin-top: 5px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    list-style: none;
-    min-width: 200px; /* Ensure width is enough to prevent text wrap */
-    z-index: 1;
-}
-
-/* Show dropdown when hovering over "Services" or the dropdown itself */
-.header__nav-links .dropdown:hover .dropdown-menu {
-    display: block;
-}
-
-/* Dropdown menu item styling */
-.header__nav-links .dropdown .dropdown-menu li {
-    margin: 5px 0;
-    white-space: nowrap; /* Prevent text wrapping */
-}
-
-.header__nav-links .dropdown .dropdown-menu li a {
-    color: black;
-    padding: 5px 10px;
-    display: block;
-    text-decoration: none;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Hover effect for dropdown items with orange background */
-.header__nav-links .dropdown .dropdown-menu li a:hover {
-    color: white;
-    background-color: #ff8c00; /* Beautiful orange color */
-}
-
-/* Ensure "Services" link does not wrap */
-.header__nav-links .dropdown > a {
-    white-space: nowrap;
-}
-
 
 nav {
     padding: 1rem;
 }
 
 @media screen and (max-width: 768px) {
-    .header__hamburger {
-        display: flex;
-    }
-
     body {
         overflow-x: hidden;
-    }
-
-    .header__nav-links {
-        position: absolute;
-        right: 0px;
-        height: 92vh;
-        top: 8vh;
-        background: rgba(225, 225, 225, 0.2);
-        border-radius: 16px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(5px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 50%;
-        z-index: 2;
-        transform: translateX(100%);
-        transition: transform 0.5s ease-in;
-
-        li {
-            opacity: 0;
-        }
     }
 }
 
@@ -198,18 +85,8 @@ nav {
     }
 }
 
-.toggle .line1 {
-    transform: rotate(-45deg) translate(-1px, 6px);
-}
-.toggle .line2 {
-    opacity: 0;
-}
-.toggle .line3 {
-    transform: rotate(45deg) translate(-5px, -10px);
-}
-
 @media screen and (min-width: 1920px) {
-    .header__nav-links {
-        font-size: 1.2rem;
+    .header__menu-label {
+        font-size: 1.4rem;
     }
 }
