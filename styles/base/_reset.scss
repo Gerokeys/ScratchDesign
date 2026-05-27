@@ -34,6 +34,7 @@ html:focus-within {
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 /* Set core body defaults */
