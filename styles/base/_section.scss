@@ -49,7 +49,55 @@
     background-color: var(--color-background--dark);
     color: var(--color-text--white);
   }
-  
+
   .section--beige {
     background-color: var(--color-background--beige);
+  }
+
+  // Shared dotted grid — light sections
+  .section--dotted {
+    background-image: radial-gradient(rgba(0, 0, 0, 0.09) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  // Shared dotted grid — dark sections
+  .section--dotted-dark {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  // Section identifier tag — reused across all numbered sections
+  .sec-header {
+    position: relative;
+    margin-bottom: clamp(32px, 5vh, 56px);
+
+    &__num {
+      position: absolute;
+      top: -0.28em;
+      left: -0.04em;
+      font-size: clamp(80px, 16vw, 220px);
+      font-weight: 800;
+      line-height: 1;
+      color: rgba(0, 0, 0, 0.05);
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.05em;
+    }
+
+    &__num--light {
+      color: rgba(255, 255, 255, 0.06);
+    }
+
+    &__label {
+      display: block;
+      font-size: clamp(10px, 0.9vw, 12px);
+      letter-spacing: 0.12em;
+      color: rgba(0, 0, 0, 0.38);
+      margin-bottom: 6px;
+      font-family: monospace;
+    }
+
+    &__label--light {
+      color: rgba(255, 255, 255, 0.35);
+    }
   }

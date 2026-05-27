@@ -29,6 +29,12 @@
   // No overflow:hidden here — it breaks position:sticky on child cards
 }
 
+.services-stack__sec-header {
+  position: relative;
+  padding: clamp(48px, 7vh, 80px) clamp(20px, 4vw, 56px) clamp(24px, 4vh, 40px);
+  pointer-events: none;
+}
+
 .services-stack__card {
   position: sticky;
   top: 0;
