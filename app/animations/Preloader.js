@@ -24,18 +24,18 @@ export default class Preloader {
   }
 
   _run() {
-    const obj = { val: 0 };
+    const obj  = { val: 0 };
     const LOAD = 4.0;
-    const tl = gsap.timeline();
+    const tl   = gsap.timeline();
 
-    // Logo slides in from below
+    // Logo slides up into view
     tl.fromTo(
       this.logoEl,
       { opacity: 0, y: 22 },
       { opacity: 1, y: 0, duration: 1.1, ease: 'power3.out' }
     );
 
-    // Bar fills left-to-right, counter ticks in sync
+    // Progress bar + counter fill in sync
     tl.to(this.bar, {
       scaleX: 1,
       duration: LOAD,
@@ -51,55 +51,41 @@ export default class Preloader {
       },
     }, '<');
 
-    // Hold at 100%, then exit
-    tl.call(() => this._exit(), null, '+=0.45');
+    // Hold at 100% then burst
+    tl.call(() => this._burst(), null, '+=0.35');
   }
 
-  _exit() {
-    const tl = gsap.timeline({ onComplete: () => this._flyToNav() });
-
-    // Foot fades down
-    tl.to(this.foot, {
-      opacity: 0,
-      y: 10,
-      duration: 0.38,
-      ease: 'power2.in',
-    });
-  }
-
-  _flyToNav() {
-    const navLogo = document.querySelector('.header__logo a') || document.querySelector('.header__logo');
-    const navRect  = navLogo?.getBoundingClientRect();
-    const logoRect = this.logoEl.getBoundingClientRect();
-    const tl = gsap.timeline({ onComplete: () => this._wipe() });
-
-    if (navRect && logoRect && logoRect.width > 0) {
-      const dx    = (navRect.left + navRect.width  / 2) - (logoRect.left + logoRect.width  / 2);
-      const dy    = (navRect.top  + navRect.height / 2) - (logoRect.top  + logoRect.height / 2);
-      const scale = Math.max(navRect.height / logoRect.height, 0.12);
-
-      tl.to(this.logoEl, {
-        x: dx, y: dy,
-        scale,
-        transformOrigin: '50% 50%',
-        duration: 0.9,
-        ease: 'power4.inOut',
-      });
-    } else {
-      tl.to(this.logoEl, { opacity: 0, duration: 0.3 });
-    }
-  }
-
-  _wipe() {
-    gsap.to(this.overlay, {
-      yPercent: -100,
-      duration: 1.1,
-      ease: 'power4.inOut',
+  _burst() {
+    const tl = gsap.timeline({
       onComplete: () => {
         this.overlay.remove();
         document.body.style.overflow = '';
         this.onComplete?.();
       },
     });
+
+    // Foot fades down and out
+    tl.to(this.foot, {
+      opacity: 0,
+      y: 12,
+      duration: 0.28,
+      ease: 'power2.in',
+    });
+
+    // Logo zooms toward the viewer — starts slow then rockets
+    tl.to(this.logoEl, {
+      scale: 16,
+      opacity: 0,
+      duration: 1.05,
+      ease: 'power4.in',
+      transformOrigin: '50% 50%',
+    }, '-=0.05');
+
+    // Overlay fades out mid-zoom so the page bleeds through
+    tl.to(this.overlay, {
+      opacity: 0,
+      duration: 0.55,
+      ease: 'power2.inOut',
+    }, '-=0.62');
   }
 }

@@ -46,11 +46,12 @@
   border-radius: 16px 16px 0 0;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 
-  &:nth-child(1) { z-index: 1; background: #111111; top: 0px; }
-  &:nth-child(2) { z-index: 2; background: #0e0f1a; top: 20px; }
-  &:nth-child(3) { z-index: 3; background: #0a1410; top: 40px; }
-  &:nth-child(4) { z-index: 4; background: #16100a; top: 60px; }
-  &:nth-child(5) { z-index: 5; background: #120f1a; top: 80px; }
+  // nth-child(2-6) because child(1) is the .services-stack__sec-header div
+  &:nth-child(2) { z-index: 1; background: #111111; top: 0px; }
+  &:nth-child(3) { z-index: 2; background: #0e0f1a; top: 20px; }
+  &:nth-child(4) { z-index: 3; background: #0a1410; top: 40px; }
+  &:nth-child(5) { z-index: 4; background: #16100a; top: 60px; }
+  &:nth-child(6) { z-index: 5; background: #120f1a; top: 80px; }
 }
 
 .services-stack__body {
