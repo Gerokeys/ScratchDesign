@@ -7,13 +7,13 @@ export default class Cursor {
     this._colors = ['#ff6b35', '#4B9EF5', '#7C5CF5', '#4CAF7D', '#f5c842', '#ff4d8f'];
     this._lastX = -999;
     this._lastY = -999;
-    this._spawnThresh = 26;
+    this._spawnThresh = 56;
 
     this._dot  = this._make('cursor-dot');
     this._ring = this._make('cursor-ring');
 
     // Spark pool
-    this._pool = Array.from({ length: 22 }, () => {
+    this._pool = Array.from({ length: 10 }, () => {
       const el = document.createElement('div');
       el.className = 'cursor-spark';
       el.innerHTML = `<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 0C10 0 10.9 9.1 20 10C20 10 10.9 10.9 10 20C10 20 9.1 10.9 0 10C0 10 9.1 9.1 10 0Z" fill="currentColor"/></svg>`;
@@ -48,8 +48,8 @@ export default class Cursor {
     // Expand ring on interactive elements
     document.addEventListener('mouseover', (e) => {
       if (e.target.closest('a, button, .fw-card, label')) {
-        gsap.to(this._ring, { scale: 2.4, opacity: 0.45, duration: 0.3, ease: 'power2.out' });
-        gsap.to(this._dot,  { scale: 0.35, duration: 0.25 });
+        gsap.to(this._ring, { scale: 1.7, opacity: 0.35, duration: 0.3, ease: 'power2.out' });
+        gsap.to(this._dot,  { scale: 0.4, duration: 0.25 });
       }
     });
     document.addEventListener('mouseout', (e) => {
@@ -72,11 +72,11 @@ export default class Cursor {
   _spark(x, y) {
     const s = this._free();
     s.busy = true;
-    const size   = 9 + Math.random() * 13;
+    const size   = 5 + Math.random() * 6;
     const color  = this._colors[Math.floor(Math.random() * this._colors.length)];
-    const ox     = (Math.random() - 0.5) * 22;
-    const driftY = 18 + Math.random() * 28;
-    const driftX = (Math.random() - 0.5) * 18;
+    const ox     = (Math.random() - 0.5) * 14;
+    const driftY = 10 + Math.random() * 12;
+    const driftX = (Math.random() - 0.5) * 10;
     const rot    = Math.random() * 90;
 
     s.el.style.color = color;

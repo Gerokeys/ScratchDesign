@@ -161,4 +161,42 @@
     line-height: 1.8;
     margin: 0;
   }
+
+  // ─── Mobile ────────────────────────────────────────────────────────────────
+  @include below(768px) {
+    &__list {
+      border-top: 1px solid rgba(31, 31, 31, 0.12);
+    }
+
+    &__item {
+      border-bottom: 1px solid rgba(31, 31, 31, 0.12);
+    }
+
+    &__question {
+      padding: 22px 0;
+      gap: 16px;
+    }
+
+    &__question-text {
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    &__icon {
+      width: 34px;
+      height: 34px;
+      font-size: 18px;
+      border: 1px solid rgba(31, 31, 31, 0.2);
+      flex-shrink: 0;
+    }
+
+    &__answer-inner {
+      padding-bottom: 20px;
+    }
+
+    &__answer-text {
+      font-size: 14px;
+      line-height: 1.8;
+    }
+  }
 }

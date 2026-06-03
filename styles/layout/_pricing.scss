@@ -44,17 +44,17 @@
   // ── Grid ─────────────────────────────────────────────────────────────────────
   &__cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 2.4rem;
     align-items: start;
-    width: 75%;
-    margin-inline: auto;
+    width: clamp(700px, 80%, 1100px);
+    margin: 0 auto;
 
     @include below(1024px) {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      width: 100%;
-      max-width: 480px;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 20px;
+      width: calc(100% - 40px);
+      max-width: 420px;
     }
   }
 
@@ -71,7 +71,7 @@
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 
     @include below(768px) {
-      padding: 2.4rem 2rem;
+      padding: 24px 20px;
     }
 
     // Per-card tilt
@@ -155,6 +155,7 @@
   &__card-price {
     display: flex;
     align-items: flex-end;
+    flex-wrap: wrap;
     gap: 0.4rem;
     margin-bottom: 2rem;
     padding-bottom: 2rem;

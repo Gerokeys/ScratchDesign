@@ -25,6 +25,19 @@
         fill: var(--color-button-text--dark);
       }
     }
+
+    &--amber {
+      background-color: #f59e0b;
+      color: #1a1a1a;
+
+      svg path {
+        fill: #1a1a1a;
+      }
+
+      &:hover {
+        background-color: #d97706;
+      }
+    }
   
     &[data-animation='button'] {
       transform: scale(0);
