@@ -59,15 +59,39 @@ export default class FeaturedWork {
     this.isOpen = true;
 
     // Populate content
-    document.getElementById('fw-modal-title').textContent = data.title || '';
-    document.getElementById('fw-modal-desc').textContent  = data.desc  || '';
-    document.getElementById('fw-modal-year').textContent  = data.year  || '';
-    document.getElementById('fw-modal-role').textContent  = data.role  || '';
-    document.getElementById('fw-modal-link').href         = data.url   || '#';
+    document.getElementById('fw-modal-title').textContent    = data.title    || '';
+    document.getElementById('fw-modal-industry').textContent = data.industry || '';
+    document.getElementById('fw-modal-year').textContent     = data.year     || '';
+    document.getElementById('fw-modal-role').textContent     = data.role     || '';
+
+    const link = document.getElementById('fw-modal-link');
+    if (data.url && data.url !== '#') {
+      link.href = data.url;
+      link.removeAttribute('hidden');
+    } else {
+      link.setAttribute('hidden', '');
+    }
 
     const img = document.getElementById('fw-modal-img');
     img.src = data.image || '';
     img.alt = data.title || '';
+
+    // Stats
+    const statsEl = document.getElementById('fw-modal-stats');
+    statsEl.innerHTML = '';
+    (data.stats || '').split(',').forEach((pair) => {
+      const [val, label] = pair.split('|');
+      if (!val) return;
+      const div = document.createElement('div');
+      div.className = 'fw-modal__stat';
+      div.innerHTML = `<div class="fw-modal__stat-value">${val.trim()}</div><div class="fw-modal__stat-label">${(label || '').trim()}</div>`;
+      statsEl.appendChild(div);
+    });
+
+    // Case study sections
+    document.getElementById('fw-modal-brief').textContent   = data.brief   || '';
+    document.getElementById('fw-modal-built').textContent   = data.built   || '';
+    document.getElementById('fw-modal-outcome').textContent = data.outcome || '';
 
     const tagsEl = document.getElementById('fw-modal-tags');
     tagsEl.innerHTML = '';

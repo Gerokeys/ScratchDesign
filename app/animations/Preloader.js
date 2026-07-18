@@ -11,6 +11,14 @@ export default class Preloader {
 
     if (!this.overlay) { onComplete?.(); return; }
 
+    // Skip on back-navigation within the same session
+    if (sessionStorage.getItem('sd-preloaded')) {
+      this.overlay.remove();
+      onComplete?.();
+      return;
+    }
+    sessionStorage.setItem('sd-preloaded', '1');
+
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       gsap.to(this.overlay, {
         opacity: 0, duration: 0.4, delay: 0.2,
@@ -19,7 +27,7 @@ export default class Preloader {
       return;
     }
 
-    document.body.style.overflow = 'hidden';
+    window.lenis?.stop();
     this._run();
   }
 
@@ -59,7 +67,7 @@ export default class Preloader {
     const tl = gsap.timeline({
       onComplete: () => {
         this.overlay.remove();
-        document.body.style.overflow = '';
+        window.lenis?.start();
         this.onComplete?.();
       },
     });

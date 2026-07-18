@@ -68,34 +68,17 @@
     border: 2px solid #1a1a1a;
     border-radius: 12px;
     box-shadow: 4px 4px 0 0 #1a1a1a;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: box-shadow 0.25s ease;
+    will-change: transform;
 
     @include below(768px) {
       padding: 24px 20px;
     }
 
-    // Per-card tilt
-    &--1 {
-      transform: rotate(-1deg);
-      &:hover {
-        transform: rotate(-1deg) translate(-4px, -4px);
-        box-shadow: 8px 8px 0 0 #1a1a1a;
-      }
-    }
-    &--2 {
-      transform: rotate(1deg);
-      &:hover {
-        transform: rotate(1deg) translate(-4px, -4px);
-        box-shadow: 8px 8px 0 0 #1a1a1a;
-      }
-    }
-    &--3 {
-      transform: rotate(-2deg);
-      &:hover {
-        transform: rotate(-2deg) translate(-4px, -4px);
-        box-shadow: 8px 8px 0 0 #1a1a1a;
-      }
-    }
+    // Hover shadow only — rotation and float are handled by GSAP FloatingTiles
+    &--1:hover,
+    &--2:hover,
+    &--3:hover { box-shadow: 8px 8px 0 0 #1a1a1a; }
 
     // Featured / popular card
     &--featured {

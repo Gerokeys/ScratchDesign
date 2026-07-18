@@ -19,41 +19,31 @@
 .hero-blob {
   position: absolute;
   border-radius: 50%;
+  will-change: transform;
 
+  // Primary focal glow — top-right, dominant
   &--1 {
-    width: 44vw;
-    height: 44vw;
-    background: radial-gradient(circle, rgba(255, 160, 140, 0.38), transparent 70%);
-    top: -12%;
-    right: -6%;
-    filter: blur(70px);
+    width: 55vw;
+    height: 55vw;
+    background: radial-gradient(circle at 40% 40%, rgba(75, 158, 245, 0.45), transparent 60%);
+    top: -18%;
+    right: -10%;
+    filter: blur(40px);
   }
 
+  // Soft echo — bottom-left, recessive
   &--2 {
-    width: 38vw;
-    height: 38vw;
-    background: radial-gradient(circle, rgba(180, 155, 255, 0.28), transparent 70%);
-    bottom: 5%;
+    width: 40vw;
+    height: 40vw;
+    background: radial-gradient(circle at 55% 55%, rgba(75, 158, 245, 0.25), transparent 65%);
+    bottom: -5%;
     left: -8%;
-    filter: blur(80px);
+    filter: blur(50px);
   }
 
-  &--3 {
-    width: 30vw;
-    height: 30vw;
-    background: radial-gradient(circle, rgba(140, 230, 200, 0.22), transparent 70%);
-    top: 35%;
-    right: 18%;
-    filter: blur(65px);
-  }
-
+  &--3,
   &--4 {
-    width: 24vw;
-    height: 24vw;
-    background: radial-gradient(circle, rgba(255, 220, 130, 0.22), transparent 70%);
-    bottom: 18%;
-    right: 36%;
-    filter: blur(60px);
+    display: none;
   }
 }
 
@@ -280,15 +270,15 @@
 
   .hero-blob {
     &--1 {
-      width: 80vw;
-      height: 80vw;
-      filter: blur(50px);
+      width: 100vw;
+      height: 100vw;
+      filter: blur(35px);
     }
 
     &--2 {
-      width: 70vw;
-      height: 70vw;
-      filter: blur(55px);
+      width: 80vw;
+      height: 80vw;
+      filter: blur(40px);
     }
 
     &--3,
