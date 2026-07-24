@@ -2,27 +2,24 @@ import { gsap } from 'gsap';
 
 export default class Preloader {
   constructor(onComplete) {
-    this.overlay    = document.getElementById('preloader');
-    this.logoEl     = document.getElementById('preloader-logo');
-    this.bar        = document.getElementById('preloader-bar');
-    this.counter    = document.getElementById('preloader-counter');
-    this.foot       = document.getElementById('preloader-foot');
-    this.onComplete = onComplete;
+    this._overlay  = document.getElementById('preloader');
+    this._counter  = document.getElementById('preloader-counter');
+    this._bar      = document.getElementById('preloader-bar');
+    this._complete = onComplete;
 
-    if (!this.overlay) { onComplete?.(); return; }
+    if (!this._overlay) { onComplete?.(); return; }
 
-    // Skip on back-navigation within the same session
     if (sessionStorage.getItem('sd-preloaded')) {
-      this.overlay.remove();
+      this._overlay.remove();
       onComplete?.();
       return;
     }
     sessionStorage.setItem('sd-preloaded', '1');
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      gsap.to(this.overlay, {
-        opacity: 0, duration: 0.4, delay: 0.2,
-        onComplete: () => { this.overlay.remove(); onComplete?.(); },
+      gsap.to(this._overlay, {
+        opacity: 0, duration: 0.3, delay: 0.1,
+        onComplete: () => { this._overlay.remove(); onComplete?.(); },
       });
       return;
     }
@@ -32,68 +29,58 @@ export default class Preloader {
   }
 
   _run() {
+    const LOAD = 2.8;
     const obj  = { val: 0 };
-    const LOAD = 4.0;
     const tl   = gsap.timeline();
-
-    // Logo slides up into view
-    tl.fromTo(
-      this.logoEl,
-      { opacity: 0, y: 22 },
-      { opacity: 1, y: 0, duration: 1.1, ease: 'power3.out' }
-    );
-
-    // Progress bar + counter fill in sync
-    tl.to(this.bar, {
-      scaleX: 1,
-      duration: LOAD,
-      ease: 'power2.inOut',
-    }, '-=0.7');
 
     tl.to(obj, {
       val: 100,
       duration: LOAD,
       ease: 'power2.inOut',
       onUpdate: () => {
-        this.counter.textContent = `${Math.round(obj.val)}%`;
+        const v = Math.round(obj.val);
+        if (this._counter) this._counter.textContent = v;
       },
-    }, '<');
+    });
 
-    // Hold at 100% then burst
-    tl.call(() => this._burst(), null, '+=0.35');
+    tl.to(this._bar, {
+      scaleX: 1,
+      duration: LOAD,
+      ease: 'power2.inOut',
+    }, 0);
+
+    tl.call(() => this._burst());
   }
 
   _burst() {
     const tl = gsap.timeline({
       onComplete: () => {
-        this.overlay.remove();
+        this._overlay.remove();
         window.lenis?.start();
-        this.onComplete?.();
+        this._complete?.();
       },
     });
 
-    // Foot fades down and out
-    tl.to(this.foot, {
-      opacity: 0,
-      y: 12,
-      duration: 0.28,
-      ease: 'power2.in',
+    // Count flicks to 100 then blasts up
+    tl.to(this._counter, {
+      yPercent: -120,
+      opacity:  0,
+      duration: 0.55,
+      ease:     'power4.in',
     });
 
-    // Logo zooms toward the viewer — starts slow then rockets
-    tl.to(this.logoEl, {
-      scale: 16,
-      opacity: 0,
-      duration: 1.05,
-      ease: 'power4.in',
-      transformOrigin: '50% 50%',
-    }, '-=0.05');
+    // Bar fades
+    tl.to(this._bar?.parentElement, {
+      opacity:  0,
+      duration: 0.3,
+    }, 0);
 
-    // Overlay fades out mid-zoom so the page bleeds through
-    tl.to(this.overlay, {
-      opacity: 0,
-      duration: 0.55,
-      ease: 'power2.inOut',
-    }, '-=0.62');
+    // Overlay clips upward
+    tl.to(this._overlay, {
+      yPercent: -105,
+      duration: 0.85,
+      ease:     'power4.inOut',
+      delay:    0.05,
+    }, '-=0.2');
   }
 }

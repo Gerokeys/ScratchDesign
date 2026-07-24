@@ -1,4 +1,162 @@
-// ─── Section wrapper ──────────────────────────────────────────────────────────
+// ─── Work section — list layout with cursor preview ───────────────────────────
+.s-work {
+  padding: var(--s-lg) 0;
+  border-top: 1px solid var(--ink-3);
+
+  &__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: clamp(48px, 8vh, 80px);
+  }
+
+  &__title {
+    font-size: clamp(36px, 6vw, 80px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--paper);
+    margin: 0;
+    line-height: 1.0;
+  }
+
+  &__view-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--paper-2);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease;
+    flex-shrink: 0;
+    padding-bottom: 6px; // optical alignment with title baseline
+    &:hover { color: var(--ember); }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--ink-3);
+  }
+}
+
+// ─── Work item row ────────────────────────────────────────────────────────────
+.work-item {
+  display: grid;
+  grid-template-columns: 48px 1fr auto auto 32px;
+  align-items: center;
+  gap: 20px;
+  padding: clamp(22px, 4vh, 36px) 0;
+  border-bottom: 1px solid var(--ink-3);
+  cursor: pointer;
+  transition: background 0.25s ease;
+  position: relative;
+
+  @include below(768px) {
+    grid-template-columns: 36px 1fr 28px;
+  }
+
+  &:hover { background: rgba(240, 237, 232, 0.02); }
+  &:hover &__name { color: var(--ember); }
+  &:hover &__arrow { opacity: 1; transform: translateX(0) translateY(0); }
+  &:hover &__num { color: var(--ember); }
+
+  &__num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--paper-2);
+    transition: color 0.2s ease;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__name {
+    font-size: clamp(22px, 3.5vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--paper);
+    line-height: 1.0;
+    transition: color 0.25s ease;
+    margin: 0;
+  }
+
+  &__tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+
+    span {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--paper-2);
+      padding: 2px 10px;
+      border: 1px solid var(--ink-3);
+      border-radius: 999px;
+    }
+  }
+
+  &__cat {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--paper-2);
+    white-space: nowrap;
+
+    @include below(768px) { display: none; }
+  }
+
+  &__year {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--paper-2);
+    font-variant-numeric: tabular-nums;
+
+    @include below(768px) { display: none; }
+  }
+
+  &__arrow {
+    color: var(--ember);
+    opacity: 0;
+    transform: translateX(-6px) translateY(6px);
+    transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16,1,0.3,1);
+    flex-shrink: 0;
+  }
+}
+
+// ─── Floating cursor preview ──────────────────────────────────────────────────
+.work-preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 340px;
+  height: 240px;
+  pointer-events: none;
+  z-index: 300;
+  opacity: 0;
+  transform: scale(0.9) rotate(-2deg);
+  border-radius: 12px;
+  overflow: hidden;
+  will-change: transform;
+
+  @include below(900px) { display: none; }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+// ─── Old featured-work section (hidden in v2) ─────────────────────────────────
 .featured-work {
   padding: var(--section-big) 0;
   background-color: #f0efed;

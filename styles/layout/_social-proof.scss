@@ -1,300 +1,119 @@
-// ─── Client logos marquee ─────────────────────────────────────────────────────
-.client-logos {
-  padding: 18px 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.07);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
-  overflow: hidden;
-  background: #ffffff;
-}
-
-.client-logos__inner {
+// ─── Client marquee ───────────────────────────────────────────────────────────
+.s-marquee {
   display: flex;
   align-items: center;
-  gap: clamp(24px, 3vw, 48px);
-}
-
-.client-logos__label {
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.3);
-  font-family: monospace;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.client-logos__track-wrap {
+  gap: 24px;
+  padding: 14px var(--pad);
+  border-top: 1px solid var(--ink-3);
+  border-bottom: 1px solid var(--ink-3);
   overflow: hidden;
-  flex: 1;
-  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
-}
 
-.client-logos__track {
-  display: flex;
-  align-items: center;
-  gap: clamp(24px, 3.5vw, 52px);
-  width: max-content;
-  animation: logos-scroll 30s linear infinite;
+  &__label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--paper-2);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
 
-  &:hover {
-    animation-play-state: paused;
+  &__track-wrap {
+    flex: 1;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+
+  &__track {
+    display: flex;
+    align-items: center;
+    gap: clamp(20px, 3vw, 44px);
+    width: max-content;
+    animation: marquee-v2 32s linear infinite;
+    &:hover { animation-play-state: paused; }
+
+    span {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--paper-2);
+      white-space: nowrap;
+      transition: color 0.2s ease;
+      &:hover { color: var(--paper); }
+    }
+
+    .sep {
+      color: var(--ink-3);
+      font-size: 11px;
+      flex-shrink: 0;
+    }
   }
 }
 
-@keyframes logos-scroll {
+@keyframes marquee-v2 {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
 
-.client-logos__name {
-  font-size: clamp(11px, 1vw, 13px);
-  font-weight: 500;
-  color: rgba(0, 0, 0, 0.38);
-  white-space: nowrap;
-  letter-spacing: 0.04em;
-  transition: color 0.2s ease;
-  cursor: default;
+// ─── Stats ────────────────────────────────────────────────────────────────────
+.s-stats {
+  padding: var(--s-lg) 0;
+  border-bottom: 1px solid var(--ink-3);
 
-  &:hover { color: rgba(0, 0, 0, 0.72); }
-}
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--ink-3);
 
-.client-logos__sep {
-  color: rgba(0, 0, 0, 0.15);
-  font-size: 12px;
-  flex-shrink: 0;
-  user-select: none;
-}
-
-// ─── Stats banner — 3D flip cards ─────────────────────────────────────────────
-.stats-banner {
-  padding: clamp(44px, 6vh, 72px) 0;
-}
-
-.stats-banner__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-
-  @include below(900px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include below(480px) {
-    grid-template-columns: 1fr;
+    @include below(640px) { grid-template-columns: 1fr; }
   }
 }
 
-.stats-card {
-  height: 220px;
-  perspective: 800px;
-  cursor: pointer;
-  will-change: transform;
+.stat-item {
+  background: var(--ink);
+  padding: clamp(36px, 6vw, 64px);
+  transition: background 0.3s ease;
+  &:hover { background: var(--ink-1); }
 
-  @include below(640px) {
-    height: 200px;
+  &__num {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    line-height: 1;
+    margin-bottom: 14px;
   }
 
-  &:hover .stats-card__inner,
-  &.is-flipped .stats-card__inner {
-    transform: rotateY(180deg);
+  .count {
+    font-size: clamp(64px, 10vw, 120px);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    color: var(--paper);
+    font-variant-numeric: tabular-nums;
+    line-height: 0.9;
   }
-}
 
-.stats-card__inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-}
+  &__suffix {
+    font-size: clamp(36px, 5.5vw, 64px);
+    font-weight: 800;
+    color: var(--ember);
+    padding-bottom: 4px;
+    letter-spacing: -0.03em;
+  }
 
-.stats-card__front,
-.stats-card__back {
-  position: absolute;
-  inset: 0;
-  border-radius: 16px;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: clamp(22px, 2.4vw, 30px);
-}
+  &__label {
+    font-size: clamp(14px, 1.2vw, 16px);
+    font-weight: 600;
+    color: var(--paper);
+    margin: 0 0 6px;
+  }
 
-.stats-card__front {
-  background: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 8px 32px rgba(0, 0, 0, 0.09);
-}
-
-.stats-card__back {
-  transform: rotateY(180deg);
-  background: #1a1a1a;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15), 0 12px 40px rgba(0, 0, 0, 0.22);
-  justify-content: flex-start;
-  gap: 10px;
-}
-
-.stats-card__value {
-  font-size: clamp(34px, 4.2vw, 52px);
-  font-weight: 800;
-  color: var(--color-text--dark);
-  line-height: 1;
-  letter-spacing: -0.03em;
-}
-
-.stats-card__label {
-  font-size: clamp(9px, 0.8vw, 11px);
-  color: rgba(0, 0, 0, 0.4);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-family: monospace;
-  line-height: 1.4;
-}
-
-.stats-card__back-title {
-  display: block;
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #c86e1a;
-  font-family: monospace;
-}
-
-.stats-card__back-text {
-  font-size: clamp(12px, 1.15vw, 13.5px);
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.62);
-  margin: 0;
-}
-
-// ─── Why Scratch? ─────────────────────────────────────────────────────────────
-.why-scratch {
-  padding: var(--section-big) 0;
-}
-
-.why-scratch__header {
-  margin-bottom: clamp(32px, 5vh, 56px);
-  max-width: 580px;
-}
-
-.why-scratch__label {
-  display: block;
-  font-size: clamp(10px, 0.9vw, 12px);
-  letter-spacing: 0.12em;
-  color: rgba(0, 0, 0, 0.38);
-  margin-bottom: 10px;
-  font-family: monospace;
-}
-
-.why-scratch__title {
-  font-size: clamp(26px, 3.8vw, 48px);
-  font-weight: 700;
-  color: var(--color-text--dark);
-  line-height: 1.1;
-  margin: 0 0 12px;
-}
-
-.why-scratch__sub {
-  font-size: clamp(13px, 1.2vw, 15px);
-  color: rgba(0, 0, 0, 0.48);
-  line-height: 1.7;
-  margin: 0;
-}
-
-.why-scratch__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-
-  @include below(768px) {
-    grid-template-columns: 1fr;
-    gap: 12px;
+  &__sub {
+    font-size: 12px;
+    color: var(--paper-2);
+    margin: 0;
   }
 }
 
-.why-scratch__card {
-  background: #f8f7f5;
-  border-radius: 16px;
-  padding: clamp(28px, 3.5vw, 44px);
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05), 0 8px 28px rgba(0, 0, 0, 0.06);
-  will-change: transform;
-  transition: box-shadow 0.35s ease;
-
-  &:hover {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10), 0 20px 56px rgba(0, 0, 0, 0.08);
-  }
-}
-
-.why-scratch__icon {
-  font-size: 22px;
-  color: #c86e1a;
-  line-height: 1;
-  font-style: normal;
-}
-
-.why-scratch__card-title {
-  font-size: clamp(18px, 1.9vw, 24px);
-  font-weight: 700;
-  color: var(--color-text--dark);
-  margin: 0;
-  line-height: 1.2;
-}
-
-.why-scratch__card-text {
-  font-size: clamp(13px, 1.2vw, 15px);
-  line-height: 1.8;
-  color: rgba(0, 0, 0, 0.55);
-  margin: 0;
-}
-
-// ─── WhatsApp floating button ─────────────────────────────────────────────────
-.wa-float {
-  position: fixed;
-  bottom: 28px;
-  right: 28px;
-  z-index: 400;
-  width: 56px;
-  height: 56px;
-  background: #25D366;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.3s ease;
-  text-decoration: none;
-  color: #fff;
-
-  &:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 32px rgba(37, 211, 102, 0.55);
-  }
-
-  @include below(480px) {
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-  }
-}
-
-// ─── Page transition overlay ──────────────────────────────────────────────────
-.page-transition {
-  position: fixed;
-  inset: 0;
-  background: #f8f7f5;
-  z-index: 5000;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.32s ease;
-
-  &.is-exiting {
-    opacity: 1;
-    pointer-events: all;
-  }
-}
+// ─── Legacy classes hidden in v2 ──────────────────────────────────────────────
+.client-logos, .stats-banner, .why-scratch { display: none; }

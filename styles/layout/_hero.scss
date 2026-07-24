@@ -1,298 +1,163 @@
-// ─── Hero viewport ────────────────────────────────────────────────────────────
-.hero-viewport {
+// ─── Hero ─────────────────────────────────────────────────────────────────────
+.s-hero {
   position: relative;
-  height: 100vh;
-  height: 100svh;
+  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 var(--pad) clamp(60px, 10vh, 100px);
   overflow: hidden;
-}
 
-// ─── Gradient blobs ───────────────────────────────────────────────────────────
-.hero-blobs {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hero-blob {
-  position: absolute;
-  border-radius: 50%;
-  will-change: transform;
-
-  // Primary focal glow — top-right, dominant
-  &--1 {
-    width: 55vw;
-    height: 55vw;
-    background: radial-gradient(circle at 40% 40%, rgba(75, 158, 245, 0.45), transparent 60%);
-    top: -18%;
-    right: -10%;
-    filter: blur(40px);
+  // WebGL canvas — full coverage
+  &__canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    display: block;
   }
 
-  // Soft echo — bottom-left, recessive
-  &--2 {
-    width: 40vw;
-    height: 40vw;
-    background: radial-gradient(circle at 55% 55%, rgba(75, 158, 245, 0.25), transparent 65%);
-    bottom: -5%;
-    left: -8%;
-    filter: blur(50px);
+  // Gradient overlay so text stays legible
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      to bottom,
+      rgba(7,7,7,0.1) 0%,
+      rgba(7,7,7,0.0) 40%,
+      rgba(7,7,7,0.55) 80%,
+      rgba(7,7,7,0.9) 100%
+    );
   }
 
-  &--3,
-  &--4 {
-    display: none;
+  &__content {
+    position: relative;
+    z-index: 2;
+    max-width: 1440px;
+    width: 100%;
   }
-}
-
-// ─── Hero section ─────────────────────────────────────────────────────────────
-.hero-section {
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  z-index: 1;
-
-  > .container {
-    flex: 1;
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-right: 52%;
-  }
-}
-
-// ─── Editorial layout ─────────────────────────────────────────────────────────
-.hero-editorial {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: clamp(14px, 2.2vh, 28px);
-  padding: clamp(16px, 2.5vh, 36px) 0 clamp(120px, 18vh, 200px);
 
   &__label {
-    display: inline-block;
-    font-size: clamp(10px, 0.85vw, 12px);
-    color: rgba(31, 31, 31, 0.45);
-    letter-spacing: 0.18em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    font-family: monospace;
+    color: var(--paper-2);
+    margin-bottom: clamp(20px, 3vh, 36px);
+  }
+
+  &__label-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ember);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
   }
 
   &__title {
-    font-size: clamp(22px, 2.8vw, 40px);
-    line-height: 1.22;
-    font-weight: 700;
-    color: var(--color-text--dark);
-    margin: 0;
-    letter-spacing: -0.02em;
-    max-width: 16ch;
+    display: block;
+    font-size: clamp(56px, 11vw, 168px);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--paper);
+    margin: 0 0 clamp(24px, 4vh, 44px);
   }
 
-  &__cta {
+  &__line {
+    display: block;
+    overflow: hidden;
+
+    &--accent { color: var(--ember); }
+  }
+
+  &__sub {
+    font-size: clamp(15px, 1.4vw, 19px);
+    line-height: 1.65;
+    color: var(--paper-2);
+    max-width: 480px;
+    margin: 0 0 clamp(28px, 5vh, 48px);
+  }
+
+  &__actions {
     display: flex;
     align-items: center;
-    gap: 1.2rem;
-    padding-top: clamp(4px, 1vh, 12px);
+    gap: 14px;
     flex-wrap: wrap;
   }
-}
 
-// ─── Wordmark at bottom ───────────────────────────────────────────────────────
-.hero-wordmark-wrap {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  pointer-events: none;
-  user-select: none;
-  overflow: hidden;
-}
-
-.hero-wordmark {
-  font-size: max(40px, 9vw);
-  font-weight: 800;
-  color: rgba(26, 26, 26, 0.91);
-  text-transform: uppercase;
-  text-align: center;
-  letter-spacing: -0.04em;
-  line-height: 0.88;
-  margin: 0;
-  white-space: nowrap;
-  width: 100%;
-}
-
-// ─── Scroll label — above C and H (right side of wordmark) ───────────────────
-.hero-scroll-label {
-  position: absolute;
-  right: clamp(20px, 7vw, 100px);
-  bottom: clamp(38px, 10vw, 122px);
-  font-size: clamp(9px, 0.8vw, 11px);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(31, 31, 31, 0.55);
-  font-family: monospace;
-  pointer-events: none;
-  user-select: none;
-
-  @include below(768px) {
-    display: none;
-  }
-}
-
-// ─── Inline pill images ───────────────────────────────────────────────────────
-.hero-inline-img {
-  display: inline-flex;
-  width: clamp(88px, 11vw, 160px);
-  height: clamp(30px, 3.8vw, 54px);
-  border-radius: 999px;
-  overflow: hidden;
-  flex-shrink: 0;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-}
-
-// ─── Decorative floating shapes ───────────────────────────────────────────────
-.hero-shapes {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.hero-shape {
-  position: absolute;
-
-  &--star-1 {
-    top: 14%;
-    right: 7%;
-    width: clamp(44px, 5vw, 72px);
-    height: clamp(44px, 5vw, 72px);
-    color: #4B9EF5;
-    opacity: 0.7;
-    animation: float-shape 5s ease-in-out infinite;
-  }
-
-  &--star-2 {
-    bottom: 24%;
-    left: 4%;
-    width: clamp(30px, 3.2vw, 48px);
-    height: clamp(30px, 3.2vw, 48px);
-    color: #7C5CF5;
-    opacity: 0.6;
-    animation: float-shape 6.4s ease-in-out infinite reverse;
-    animation-delay: -2.1s;
-  }
-
-  &--cross {
-    top: 52%;
-    right: 14%;
-    width: clamp(22px, 2.4vw, 36px);
-    height: clamp(22px, 2.4vw, 36px);
-    color: #4CAF7D;
-    opacity: 0.65;
-    animation: float-shape 5.8s ease-in-out infinite;
-    animation-delay: -1.6s;
-  }
-
-  &--star-3 {
-    top: 28%;
-    left: 1.5%;
-    width: clamp(18px, 2vw, 28px);
-    height: clamp(18px, 2vw, 28px);
-    color: #f5c842;
-    opacity: 0.55;
-    animation: float-shape 7.2s ease-in-out infinite;
-    animation-delay: -3.2s;
-  }
-
-  &--cross-2 {
-    bottom: 12%;
-    right: 28%;
-    width: clamp(14px, 1.5vw, 22px);
-    height: clamp(14px, 1.5vw, 22px);
-    color: #ff6b35;
-    opacity: 0.5;
-    animation: float-shape 4.6s ease-in-out infinite reverse;
-    animation-delay: -0.8s;
-  }
-}
-
-@keyframes float-shape {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  33%       { transform: translateY(-14px) rotate(10deg); }
-  66%       { transform: translateY(7px) rotate(-6deg); }
-}
-
-// ─── Mobile ───────────────────────────────────────────────────────────────────
-@include below(768px) {
-  .hero-section > .container {
-    justify-content: center;
-    padding-right: 2.4rem;
-  }
-
-  .hero-editorial {
+  // Scroll indicator — bottom right
+  &__scroll {
+    position: absolute;
+    right: var(--pad);
+    bottom: clamp(60px, 10vh, 100px);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    text-align: center;
-    padding-bottom: clamp(80px, 22vw, 140px);
+    gap: 10px;
+    color: var(--paper-2);
 
-    &__label {
+    @include below(640px) { display: none; }
+
+    span {
       font-size: 10px;
-    }
-
-    &__title {
-      font-size: clamp(22px, 6.5vw, 34px);
-      max-width: 18ch;
-    }
-
-    &__cta {
-      justify-content: center;
-
-      .button {
-        width: max-content;
-        font-size: clamp(11px, 3.5vw, 13px);
-        padding: 12px 24px;
-      }
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
     }
   }
 
-  .hero-blob {
-    &--1 {
-      width: 100vw;
-      height: 100vw;
-      filter: blur(35px);
-    }
+  &__scroll-line {
+    width: 1px;
+    height: 48px;
+    background: rgba(240, 237, 232, 0.2);
+    overflow: hidden;
+    position: relative;
 
-    &--2 {
-      width: 80vw;
-      height: 80vw;
-      filter: blur(40px);
-    }
-
-    &--3,
-    &--4 {
-      display: none;
+    &::after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--ember);
+      animation: scroll-line 1.8s ease-in-out infinite;
     }
   }
-}
 
-// ─── Card-slide transition — next section lifts over the faded hero ───────────
-.hero-viewport + * {
-  position: relative;
-  z-index: 2;
-  background: var(--color-background--light);
-  border-radius: 20px 20px 0 0;
-  box-shadow: 0 -6px 48px rgba(0, 0, 0, 0.08);
+  @keyframes scroll-line {
+    0% { top: -100%; }
+    100% { top: 100%; }
+  }
+
+  // Large background wordmark
+  &__wordmark {
+    position: absolute;
+    bottom: -0.12em;
+    right: -0.02em;
+    z-index: 1;
+    font-size: clamp(100px, 22vw, 340px);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(240, 237, 232, 0.04);
+    user-select: none;
+    pointer-events: none;
+    white-space: nowrap;
+    line-height: 1;
+  }
 }

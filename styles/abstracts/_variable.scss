@@ -1,28 +1,28 @@
-
 :root {
-    --font-primary: 'PP Neue Regular', sans-serif;
-  
-    --color-primary: #1f1f1f;
-    --color-secondary: #ffffff;
-  
-    --color-background--light: #ffffff;
-    --color-background--beige: #f4f3f1;
-    --color-background--dark: #1f1f1f;
-  
-    --color-button--dark: #1f1f1f;
-    --color-button--dark--hover: #1f1f1f;
-  
-    --color-button--light: #ffffff;
-    --color-button--light--hover: #737373;
-  
-    --color-button-text--dark: #1f1f1f;
-    --color-button-text--light: #ffffff;
-  
-    --color-text--dark: #1f1f1f;
-    --color-text--light: #666666;
-    --color-text--white: #ffffff;
-  
-    --desktop-width: 1440;
-    --mobile-width: 430;
-  }
-  
+  // ── Colour ──────────────────────────────────────────────────────────────────
+  --ink:       #070707;
+  --ink-1:     #0f0f0f;
+  --ink-2:     #1a1a1a;
+  --ink-3:     #272727;
+  --paper:     #f0ede8;
+  --paper-2:   #8a8580;
+  --ember:     #e8722a;
+  --ember-dim: rgba(232, 114, 42, 0.12);
+  --white:     #ffffff;
+
+  // ── Type ────────────────────────────────────────────────────────────────────
+  --font: 'Syne', sans-serif;
+
+  // ── Layout ──────────────────────────────────────────────────────────────────
+  --pad: clamp(24px, 5vw, 80px);
+  --gap: clamp(12px, 2vw, 24px);
+
+  // ── Section spacing ─────────────────────────────────────────────────────────
+  --s-sm: clamp(48px, 8vh,  80px);
+  --s-md: clamp(80px, 12vh, 140px);
+  --s-lg: clamp(120px, 18vh, 200px);
+
+  // Legacy aliases kept for modal
+  --color-text--dark: var(--paper);
+  --color-background--dark: var(--ink);
+}

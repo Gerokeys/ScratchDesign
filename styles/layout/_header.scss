@@ -1,92 +1,117 @@
-.header {
+// ─── Site nav ─────────────────────────────────────────────────────────────────
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 20px var(--pad);
+  transition: padding 0.4s ease, background 0.4s ease;
+
+  &.is-scrolled {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    background: rgba(7, 7, 7, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(240, 237, 232, 0.06);
+  }
+
+  &__logo {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--paper);
+    text-decoration: none;
+    margin-right: auto;
+    line-height: 1;
+
+    span { color: var(--ember); }
+  }
+
+  &__links {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 24px 0;
+    gap: 36px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 
-    // Hide the inline nav links on all screen sizes — hamburger is universal
-    nav {
-        display: none;
+    a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--paper-2);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color 0.2s ease;
+      &:hover { color: var(--paper); }
     }
 
-    &__hamburger {
-        border: none;
-        background: none;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        padding: 0;
-        transition: opacity 0.3s ease;
+    @include below(900px) { display: none; }
+  }
 
-        &.toggle {
-            opacity: 0;
-            pointer-events: none;
-        }
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 20px;
+    border: 1px solid rgba(240, 237, 232, 0.2);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: var(--font);
+    color: var(--paper);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: border-color 0.25s ease, background 0.25s ease;
+
+    &:hover {
+      border-color: var(--ember);
+      background: var(--ember-dim);
+      color: var(--ember);
     }
 
-    &__menu-label {
-        font-size: clamp(11px, 1.1rem, 1.1rem);
-        font-weight: 700;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: #1a1a1a;
-        font-family: inherit;
+    @include below(640px) { display: none; }
+  }
+
+  &__burger {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: none;
+    border: none;
+    color: var(--paper);
+    font-size: 13px;
+    font-family: var(--font);
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 0;
+    margin-left: 8px;
+
+    &-label {
+      @include below(480px) { display: none; }
     }
 
-    &__logo {
-        font-weight: 600;
-
-        a {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.0;
-            text-decoration: none;
-            color: inherit;
-            letter-spacing: -0.03em;
-            font-size: clamp(17px, 1.5vw, 24px);
-            text-transform: lowercase;
-
-            span:nth-child(2) {
-                padding-left: 0.8em;
-            }
-        }
+    &-icon {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      span {
+        display: block;
+        width: 22px;
+        height: 1.5px;
+        background: var(--paper);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
     }
 
-}
-
-nav {
-    padding: 1rem;
-}
-
-@media screen and (max-width: 768px) {
-    body {
-        overflow-x: hidden;
+    &.is-open &-icon span:first-child {
+      transform: translateY(3.25px) rotate(45deg);
     }
-}
-
-.nav-active {
-    transform: translateX(0%);
-}
-
-/* In your CSS file */
-.scroll-lock {
-    overflow: hidden !important;
-    position: fixed;
-    width: 100%;
-}
-@keyframes navLinkFade {
-    from {
-        opacity: 0;
-        transform: translateX(50px);
+    &.is-open &-icon span:last-child {
+      transform: translateY(-3.25px) rotate(-45deg);
     }
-    to{
-        opacity: 1;
-        transform: translateX(0px);
-    }
-}
-
-@media screen and (min-width: 1920px) {
-    .header__menu-label {
-        font-size: 1.4rem;
-    }
+  }
 }

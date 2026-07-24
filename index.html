@@ -4,65 +4,20 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Primary SEO -->
     <title>ScratchDesign — Web Design & Development Studio | Nairobi, Kenya</title>
-    <meta name="description" content="ScratchDesign is a web design and development studio based in Ruiru, Kiambu, Kenya. We build custom websites, digital brands, and animated experiences for businesses in Nairobi, Kiambu, Ruiru, and across Kenya." />
-    <meta name="keywords" content="web developer Nairobi, web designer Nairobi, web developer Kenya, web design Kiambu, web developer Ruiru, website design near me, web development Kenya, custom website Kenya, GSAP animations, digital agency Nairobi" />
+    <meta name="description" content="ScratchDesign is a web design and development studio based in Nairobi, Kenya. We build custom websites, digital brands, and conversion-focused experiences for ambitious businesses." />
     <meta name="author" content="ScratchDesign" />
     <link rel="canonical" href="https://scratchdesign.co/" />
-
-    <!-- Open Graph / Social sharing -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://scratchdesign.co/" />
     <meta property="og:title" content="ScratchDesign — Web Design & Development | Nairobi, Kenya" />
     <meta property="og:description" content="Building digital brands and experiences from scratch. Custom websites, motion design, and brand identity for businesses across Kenya and beyond." />
     <meta property="og:image" content="https://scratchdesign.co/og-image.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:site_name" content="ScratchDesign" />
     <meta property="og:locale" content="en_KE" />
-
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="ScratchDesign — Web Design & Development | Nairobi, Kenya" />
-    <meta name="twitter:description" content="Building digital brands and experiences from scratch. Custom websites, motion design, and brand identity for businesses across Kenya and beyond." />
-    <meta name="twitter:image" content="https://scratchdesign.co/og-image.jpg" />
 
-    <!-- Structured data — Local business -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "ScratchDesign",
-      "description": "Web design and development studio building custom websites, digital brands, and animated experiences for businesses in Nairobi, Kiambu, Ruiru, and across Kenya.",
-      "url": "https://scratchdesign.co",
-      "email": "hello@scratchdesign.co",
-      "logo": "https://scratchdesign.co/favicon.svg",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Ruiru",
-        "addressRegion": "Kiambu County",
-        "addressCountry": "KE"
-      },
-      "areaServed": [
-        { "@type": "City", "name": "Nairobi" },
-        { "@type": "City", "name": "Ruiru" },
-        { "@type": "AdministrativeArea", "name": "Kiambu" },
-        { "@type": "Country", "name": "Kenya" }
-      ],
-      "serviceType": [
-        "Web Design",
-        "Web Development",
-        "Brand Identity",
-        "Motion Design",
-        "SEO"
-      ],
-      "priceRange": "$$",
-      "sameAs": [
-        "https://www.instagram.com/scratchdesign"
-      ]
-    }
+    {"@context":"https://schema.org","@type":"ProfessionalService","name":"ScratchDesign","url":"https://scratchdesign.co","email":"hello@scratchdesign.co","address":{"@type":"PostalAddress","addressLocality":"Nairobi","addressCountry":"KE"},"serviceType":["Web Design","Web Development","Brand Identity","Motion Design","SEO"]}
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -71,1087 +26,570 @@
   </head>
   <body>
 
-    <!-- Preloader -->
+    <!-- ─── Preloader ─────────────────────────────────────────────────────────── -->
     <div class="preloader" id="preloader" aria-hidden="true">
-      <span class="preloader__logo" id="preloader-logo"><span>scratch.</span><span>design</span></span>
-      <div class="preloader__foot" id="preloader-foot">
-        <div class="preloader__track">
-          <div class="preloader__bar" id="preloader-bar"></div>
-        </div>
-        <span class="preloader__counter" id="preloader-counter">0%</span>
+      <div class="preloader__count" id="preloader-counter">0</div>
+      <div class="preloader__foot">
+        <div class="preloader__track"><div class="preloader__bar" id="preloader-bar"></div></div>
+        <span class="preloader__label">Loading</span>
       </div>
     </div>
 
-    <!-- Fullscreen nav overlay -->
-    <div class="nav-overlay" id="nav-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
-      <div class="nav-overlay__header">
-        <a href="/" class="nav-overlay__logo"><span>scratch.</span><span>design</span></a>
-        <button type="button" class="nav-overlay__close" aria-label="Close menu">Close</button>
-      </div>
+    <!-- ─── Custom cursor ─────────────────────────────────────────────────────── -->
+    <div class="c-cursor" id="cursor" aria-hidden="true">
+      <div class="c-cursor__inner"></div>
+    </div>
 
-      <ul class="nav-overlay__nav">
-        <li class="nav-overlay__link-item">
-          <a href="/work.html" class="nav-overlay__link">All Projects</a>
-        </li>
-        <li class="nav-overlay__link-item">
-          <a href="#services-detail" class="nav-overlay__link">Services</a>
-        </li>
-        <li class="nav-overlay__link-item">
-          <a href="#process" class="nav-overlay__link">Process</a>
-        </li>
-        <li class="nav-overlay__link-item">
-          <a href="#pricing" class="nav-overlay__link">Pricing</a>
-        </li>
-        <li class="nav-overlay__link-item">
-          <a href="#contact" class="nav-overlay__link">Contact</a>
-        </li>
-      </ul>
-
+    <!-- ─── Nav overlay ───────────────────────────────────────────────────────── -->
+    <div class="nav-overlay" id="nav-overlay" role="dialog" aria-modal="true" aria-label="Navigation">
+      <div class="nav-overlay__bg"></div>
+      <button type="button" class="nav-overlay__close" id="nav-close" aria-label="Close menu">
+        <span></span><span></span>
+      </button>
+      <nav class="nav-overlay__nav">
+        <ul>
+          <li><a href="/work.html" class="nav-overlay__link" data-index="01">Work</a></li>
+          <li><a href="#services" class="nav-overlay__link" data-index="02">Services</a></li>
+          <li><a href="#process" class="nav-overlay__link" data-index="03">Process</a></li>
+          <li><a href="#pricing" class="nav-overlay__link" data-index="04">Pricing</a></li>
+          <li><a href="#contact" class="nav-overlay__link" data-index="05">Contact</a></li>
+        </ul>
+      </nav>
       <div class="nav-overlay__footer">
-        <div class="nav-overlay__footer-col">
-          <p class="nav-overlay__footer-label">Follow Me</p>
-          <a href="https://www.instagram.com/scratchdesign" target="_blank" rel="noopener" class="nav-overlay__footer-link">Instagram &#x2197;</a>
+        <div>
+          <p class="nav-overlay__footer-label">Instagram</p>
+          <a href="https://www.instagram.com/scratchdesign" target="_blank" rel="noopener" class="nav-overlay__footer-link">@scratchdesign ↗</a>
         </div>
-        <div class="nav-overlay__footer-col">
-          <p class="nav-overlay__footer-label">Email Me</p>
+        <div>
+          <p class="nav-overlay__footer-label">Email</p>
           <a href="mailto:hello@scratchdesign.co" class="nav-overlay__footer-link">hello@scratchdesign.co</a>
         </div>
       </div>
     </div>
 
-    <div class="hero-viewport">
-      <header>
-        <div class="container">
-          <div class="header">
-            <div class="header__logo"><a href="/"><span>scratch.</span><span>design</span></a></div>
-            <nav>
-              <ul class="header__nav-links">
-                <li><a href="/work.html">Work</a></li>
-                <li><a href="#services-detail">Services</a></li>
-                <li><a href="#process">Process</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li>
-                  <a href="#" class="button button--light" data-cal-link="gerald-shikwe-yarxme/30min" data-cal-config='{"layout":"month_view","theme":"light"}' data-cal-namespace="30min">
-                    <span>Schedule a call</span>
-                    <svg width="8" height="8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M7.157 1.172a.5.5 0 0 0-.5-.5h-4.5a.5.5 0 0 0 0 1h4v4a.5.5 0 0 0 1 0v-4.5Zm-5.803 6.01L7.01 1.525 6.303.818.646 6.475l.708.707Z" fill="#fff"/>
-                    </svg>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-            <button class="header__hamburger" aria-label="Open navigation">
-              <span class="header__menu-label">Menu</span>
-            </button>
-          </div>
-        </div>
-      </header>
-
-      <!-- Background gradient blobs -->
-      <div class="hero-blobs" aria-hidden="true">
-        <div class="hero-blob hero-blob--1"></div>
-        <div class="hero-blob hero-blob--2"></div>
-        <div class="hero-blob hero-blob--3"></div>
-        <div class="hero-blob hero-blob--4"></div>
+    <!-- ─── Site nav ──────────────────────────────────────────────────────────── -->
+    <header class="site-nav" id="site-nav">
+      <div class="site-nav__logo">
+        <a href="/" aria-label="ScratchDesign home">scratch<span>.</span></a>
       </div>
+      <nav class="site-nav__links" aria-label="Primary navigation">
+        <a href="/work.html">Work</a>
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#contact" class="site-nav__cta" data-magnetic data-cal-link="gerald-shikwe-yarxme/30min" data-cal-config='{"layout":"month_view","theme":"light"}' data-cal-namespace="30min">
+        Start a project
+      </a>
+      <button type="button" class="site-nav__burger" id="nav-burger" aria-label="Open menu" aria-expanded="false">
+        <span class="site-nav__burger-label">Menu</span>
+        <span class="site-nav__burger-icon"><span></span><span></span></span>
+      </button>
+    </header>
 
+    <!-- ─── Hero ──────────────────────────────────────────────────────────────── -->
+    <section class="s-hero" id="hero">
+      <canvas class="s-hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
 
-      <section class="hero-section">
-        <div class="container">
-          <div class="hero-editorial">
-
-            <span class="hero-editorial__label">Agency that builds from scratch</span>
-
-            <h1 class="hero-editorial__title">Websites, systems, and solutions that grow your business — built from scratch.</h1>
-
-            <div class="hero-editorial__cta">
-              <a href="#contact" class="button button--amber" data-cal-link="gerald-shikwe-yarxme/30min" data-cal-config='{"layout":"month_view","theme":"light"}' data-cal-namespace="30min">
-                <span><span>Let's Connect</span></span>
-                <!-- prettier-ignore -->
-                <svg width="8" height="8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.157 1.172a.5.5 0 0 0-.5-.5h-4.5a.5.5 0 0 0 0 1h4v4a.5.5 0 0 0 1 0v-4.5Zm-5.803 6.01L7.01 1.525 6.303.818.646 6.475l.708.707Z" fill="#1a1a1a"/></svg>
-              </a>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="hero-wordmark-wrap" aria-hidden="true">
-          <p class="hero-wordmark">SCRATCH</p>
-        </div>
-        <span class="hero-scroll-label" aria-hidden="true">Scroll to explore</span>
-      </section>
-    </div>
-
-    <!-- Client logos marquee -->
-    <div class="client-logos" aria-hidden="true">
-      <div class="container">
-        <div class="client-logos__inner">
-          <span class="client-logos__label">Trusted by</span>
-          <div class="client-logos__track-wrap">
-            <div class="client-logos__track">
-              <span class="client-logos__name">Livelihood Lab Africa</span>
-              <span class="client-logos__sep">·</span>
-              <span class="client-logos__name">Toothful Secrets</span>
-              <span class="client-logos__sep">·</span>
-              <span class="client-logos__name">Glam by Ivy</span>
-              <span class="client-logos__sep">·</span>
-              <span class="client-logos__name">Solar Kenya</span>
-              <span class="client-logos__sep">·</span>
-              <span class="client-logos__name">Apex Gym</span>
-              <span class="client-logos__sep">·</span>
-              <span class="client-logos__name">Marachi</span>
-              <span class="client-logos__sep">·</span>
-              <span class="client-logos__name">D-Rank Wines &amp; Spirits</span>
-              <!-- duplicate for seamless loop -->
-              <span class="client-logos__sep">·</span>
-              <span class="client-logos__name">Livelihood Lab Africa</span>
-              <span class="client-logos__sep">·</span>
-              <span class="client-logos__name">Toothful Secrets</span>
-              <span class="client-logos__sep">·</span>
-              <span class="client-logos__name">Glam by Ivy</span>
-              <span class="client-logos__sep">·</span>
-              <span class="client-logos__name">Solar Kenya</span>
-              <span class="client-logos__sep">·</span>
-              <span class="client-logos__name">Apex Gym</span>
-              <span class="client-logos__sep">·</span>
-              <span class="client-logos__name">Marachi</span>
-              <span class="client-logos__sep">·</span>
-              <span class="client-logos__name">D-Rank Wines &amp; Spirits</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <section class="section section--dotted" id="about">
-      <div class="container">
-        <div class="sec-header">
-          <span class="sec-header__num" aria-hidden="true">01</span>
-          <span class="sec-header__label">// section.about</span>
-        </div>
-        <div class="text-columns">
-          <h2 class="col-1--span-4">About us</h2>
-          <p class="col-5--span-5" data-animation="text-reveal">
-            At scratchdesign, every project begins as a blank canvas, ready to
-            become something exceptional. We build custom websites that empower
-            brands and engage users, blending creativity with purpose to bring
-            unique digital experiences to life—from scratch.
-          </p>
-          <a href="#about" class="button button--dark col-10--span-3">
-            <span>
-              <span>Our Studio</span>
-            </span>
-            <!-- prettier-ignore -->
-            <svg width="8" height="8" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M7.157 1.172a.5.5 0 0 0-.5-.5h-4.5a.5.5 0 0 0 0 1h4v4a.5.5 0 0 0 1 0v-4.5Zm-5.803 6.01L7.01 1.525 6.303.818.646 6.475l.708.707Z" fill="#fff"/>
-            </svg>
+      <div class="s-hero__content">
+        <p class="s-hero__label">
+          <span class="s-hero__label-dot"></span>
+          Available for projects
+        </p>
+        <h1 class="s-hero__title" aria-label="Digital experiences that convert">
+          <span class="s-hero__line" data-reveal>Digital</span>
+          <span class="s-hero__line" data-reveal>experiences</span>
+          <span class="s-hero__line s-hero__line--accent" data-reveal>that convert.</span>
+        </h1>
+        <p class="s-hero__sub" data-reveal-fade>
+          Custom websites, brands and digital products built from scratch — for ambitious businesses across Kenya.
+        </p>
+        <div class="s-hero__actions" data-reveal-fade>
+          <a href="#work" class="btn-primary" data-magnetic>
+            See our work
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M13 1L1 13M13 1H4M13 1V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </a>
+          <a href="#contact" class="btn-ghost" data-magnetic data-cal-link="gerald-shikwe-yarxme/30min" data-cal-config='{"layout":"month_view","theme":"light"}' data-cal-namespace="30min">
+            Schedule a call
+          </a>
+        </div>
+      </div>
+
+      <div class="s-hero__scroll" aria-hidden="true">
+        <div class="s-hero__scroll-line"></div>
+        <span>Scroll</span>
+      </div>
+
+      <p class="s-hero__wordmark" aria-hidden="true">SCRATCH</p>
+    </section>
+
+    <!-- ─── Client marquee ────────────────────────────────────────────────────── -->
+    <div class="s-marquee" aria-hidden="true">
+      <div class="s-marquee__label">Trusted by</div>
+      <div class="s-marquee__track-wrap">
+        <div class="s-marquee__track">
+          <span>Livelihood Lab Africa</span><span class="sep">·</span>
+          <span>Toothful Secrets</span><span class="sep">·</span>
+          <span>Glam by Ivy</span><span class="sep">·</span>
+          <span>Solar Kenya</span><span class="sep">·</span>
+          <span>Apex Gym</span><span class="sep">·</span>
+          <span>Marachi</span><span class="sep">·</span>
+          <span>D-Rank Wines</span><span class="sep">·</span>
+          <span>Livelihood Lab Africa</span><span class="sep">·</span>
+          <span>Toothful Secrets</span><span class="sep">·</span>
+          <span>Glam by Ivy</span><span class="sep">·</span>
+          <span>Solar Kenya</span><span class="sep">·</span>
+          <span>Apex Gym</span><span class="sep">·</span>
+          <span>Marachi</span><span class="sep">·</span>
+          <span>D-Rank Wines</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── Work ──────────────────────────────────────────────────────────────── -->
+    <section class="s-work" id="work">
+      <div class="container">
+        <div class="s-work__header">
+          <div>
+            <span class="label-tag">Selected work</span>
+            <h2 class="s-work__title" data-split>Recent projects</h2>
+          </div>
+          <a href="/work.html" class="s-work__view-all" data-magnetic>
+            All projects
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M13 1L1 13M13 1H4M13 1V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+
+        <div class="s-work__list" id="work-list">
+
+          <article class="work-item fw-card" tabindex="0" role="button"
+            data-title="Livelihood Lab Africa"
+            data-year="2024"
+            data-role="Web Design, SEO, Brand Identity"
+            data-industry="NGO · Digital Presence"
+            data-url="https://livelihood-lab-africa.vercel.app"
+            data-image="https://s0.wp.com/mshots/v1/https://livelihood-lab-africa.vercel.app?w=1400"
+            data-metric="30+ New Enquiries"
+            data-category="ngo"
+            data-tags="Web Design,SEO,Lead Generation,NGO"
+            data-stats="30+|New Enquiries,Online|Presence Built,Weeks|Time to Launch"
+            data-brief="Livelihood Lab Africa, a leading NGO, had no digital footprint. They needed a professional online presence to reach partners, donors, and communities — fast."
+            data-built="A clean, fast website communicating their mission with clarity. Schema markup, optimised images, and targeted local SEO put them on the map."
+            data-outcome="Within weeks: 30+ new enquiries, a functioning digital presence, and a partner pipeline that didn't exist before.">
+            <div class="work-item__num">01</div>
+            <div class="work-item__main">
+              <h3 class="work-item__name">Livelihood Lab Africa</h3>
+              <div class="work-item__tags">
+                <span>Web Design</span><span>SEO</span><span>NGO</span>
+              </div>
+            </div>
+            <span class="work-item__cat">NGO · Digital Presence</span>
+            <span class="work-item__year">2024</span>
+            <div class="work-item__arrow">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15 1L1 15M15 1H5M15 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+          </article>
+
+          <article class="work-item fw-card" tabindex="0" role="button"
+            data-title="Toothful Secrets"
+            data-year="2024"
+            data-role="E-Commerce, SEO, Conversion Optimisation"
+            data-industry="Healthcare · Growth"
+            data-url="https://toothful-secrets.vercel.app"
+            data-image="https://s0.wp.com/mshots/v1/https://toothful-secrets.vercel.app?w=1400"
+            data-metric="+50% Sales"
+            data-category="ecommerce"
+            data-tags="E-Commerce,SEO,Subscriptions,Healthcare"
+            data-stats="+50%|Sales Uplift,30+|New Subscribers,Organic|Traffic Source"
+            data-brief="A dental hygiene brand with no e-commerce presence and a subscription product nobody knew existed. Their site wasn't converting."
+            data-built="Rebuilt around conversion — structured product pages, streamlined checkout, and a subscription plan front and centre. SEO foundations added for organic discovery."
+            data-outcome="50% sales uplift. Growing subscription signups month-on-month. Organic traffic now their primary acquisition channel.">
+            <div class="work-item__num">02</div>
+            <div class="work-item__main">
+              <h3 class="work-item__name">Toothful Secrets</h3>
+              <div class="work-item__tags">
+                <span>E-Commerce</span><span>SEO</span><span>Healthcare</span>
+              </div>
+            </div>
+            <span class="work-item__cat">Healthcare · Growth</span>
+            <span class="work-item__year">2024</span>
+            <div class="work-item__arrow">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15 1L1 15M15 1H5M15 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+          </article>
+
+          <article class="work-item fw-card" tabindex="0" role="button"
+            data-title="Glam by Ivy"
+            data-year="2024"
+            data-role="Web Design, Booking Flow, Branding"
+            data-industry="Beauty · Web Design"
+            data-url="https://glam-jet.vercel.app"
+            data-image="https://s0.wp.com/mshots/v1/https://glam-jet.vercel.app?w=1400"
+            data-metric="20+ Online Bookings"
+            data-category="booking"
+            data-tags="Web Design,Branding,Booking Flow,Beauty"
+            data-stats="20+|Online Bookings,Social|Traffic Source,Days|Time to Launch"
+            data-brief="A beauty artist with a strong social following and zero online booking infrastructure. Every client inquiry was a manual DM."
+            data-built="High-converting booking site — visual brand expression, gallery of work, and a frictionless booking flow that converts followers into booked clients."
+            data-outcome="20+ confirmed bookings from day one. Social traffic directly converted. The artist now operates without a single booking DM.">
+            <div class="work-item__num">03</div>
+            <div class="work-item__main">
+              <h3 class="work-item__name">Glam by Ivy</h3>
+              <div class="work-item__tags">
+                <span>Branding</span><span>Booking</span><span>Beauty</span>
+              </div>
+            </div>
+            <span class="work-item__cat">Beauty · Web Design</span>
+            <span class="work-item__year">2024</span>
+            <div class="work-item__arrow">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15 1L1 15M15 1H5M15 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+          </article>
+
+          <article class="work-item fw-card" tabindex="0" role="button"
+            data-title="Solar Kenya"
+            data-year="2024"
+            data-role="Web Design, SEO, Lead Generation"
+            data-industry="Clean Energy · Lead Gen"
+            data-url="https://solar-kenya-e3ha.vercel.app/"
+            data-image="https://s0.wp.com/mshots/v1/https://solar-kenya-e3ha.vercel.app?w=1400"
+            data-metric="25+ Client Leads"
+            data-category="lead-gen"
+            data-tags="Web Design,SEO,Lead Generation,Clean Energy"
+            data-stats="25+|Client Leads,Local|SEO Optimised,East Africa|Coverage"
+            data-brief="A clean energy company with quality installations and zero digital lead generation. They were relying entirely on referrals and word of mouth."
+            data-built="A trust-first website positioning them as the credible choice for solar in Kenya — with clear service breakdowns, installation case studies, and strong local SEO."
+            data-outcome="25+ qualified leads through the site. Now ranked for key solar installation searches in Nairobi. Referrals supplemented by a reliable online channel.">
+            <div class="work-item__num">04</div>
+            <div class="work-item__main">
+              <h3 class="work-item__name">Solar Kenya</h3>
+              <div class="work-item__tags">
+                <span>Web Design</span><span>SEO</span><span>Lead Gen</span>
+              </div>
+            </div>
+            <span class="work-item__cat">Clean Energy · Lead Gen</span>
+            <span class="work-item__year">2024</span>
+            <div class="work-item__arrow">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15 1L1 15M15 1H5M15 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Floating cursor image preview -->
+        <div class="work-preview" id="work-preview" aria-hidden="true">
+          <img class="work-preview__img" id="work-preview-img" src="" alt="" />
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── Services ──────────────────────────────────────────────────────────── -->
+    <section class="s-services" id="services">
+      <div class="container">
+        <div class="s-services__header">
+          <span class="label-tag">What we do</span>
+          <h2 class="s-services__title" data-split>Everything your business needs online</h2>
+        </div>
+        <div class="s-services__list">
+
+          <div class="service-item" data-service="0">
+            <div class="service-item__num">01</div>
+            <div class="service-item__body">
+              <h3 class="service-item__name">Web Design &amp;<br>Development</h3>
+              <div class="service-item__detail">
+                <p>Custom-built websites with performance baked in. We design with conversion in mind and build with clean, maintainable code — no templates, no shortcuts.</p>
+                <a href="#contact" class="service-item__cta" data-magnetic>Start here →</a>
+              </div>
+            </div>
+            <div class="service-item__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="2" y="2" width="24" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 9L11 13L7 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M14 17H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M2 24H26" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+          </div>
+
+          <div class="service-item" data-service="1">
+            <div class="service-item__num">02</div>
+            <div class="service-item__body">
+              <h3 class="service-item__name">Brand Identity &amp;<br>Visual Design</h3>
+              <div class="service-item__detail">
+                <p>Logo, colour system, typography, and guidelines that give your business a consistent, memorable identity across every touchpoint — digital and print.</p>
+                <a href="#contact" class="service-item__cta" data-magnetic>Start here →</a>
+              </div>
+            </div>
+            <div class="service-item__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M14 4V14L20 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+          </div>
+
+          <div class="service-item" data-service="2">
+            <div class="service-item__num">03</div>
+            <div class="service-item__body">
+              <h3 class="service-item__name">E-Commerce &amp;<br>Booking Systems</h3>
+              <div class="service-item__detail">
+                <p>Online stores and booking platforms that work hard for your revenue. From product pages to checkout — designed to reduce friction and increase sales.</p>
+                <a href="#contact" class="service-item__cta" data-magnetic>Start here →</a>
+              </div>
+            </div>
+            <div class="service-item__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M4 4H6L9 18H22L24 8H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="22" r="1.5" stroke="currentColor" stroke-width="1.5"/><circle cx="21" cy="22" r="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+          </div>
+
+          <div class="service-item" data-service="3">
+            <div class="service-item__num">04</div>
+            <div class="service-item__body">
+              <h3 class="service-item__name">SEO &amp;<br>Digital Growth</h3>
+              <div class="service-item__detail">
+                <p>Organic visibility built through technical SEO, content strategy, and local optimisation. We make sure your customers can find you when they search.</p>
+                <a href="#contact" class="service-item__cta" data-magnetic>Start here →</a>
+              </div>
+            </div>
+            <div class="service-item__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M4 20L10 14L14 18L20 10L24 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="22" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- Stats banner -->
-    <div class="stats-banner">
+    <!-- ─── Stats ─────────────────────────────────────────────────────────────── -->
+    <section class="s-stats">
       <div class="container">
-        <div class="stats-banner__grid">
+        <div class="s-stats__grid">
+          <div class="stat-item">
+            <div class="stat-item__num"><span class="count" data-target="9">0</span><span class="stat-item__suffix">+</span></div>
+            <p class="stat-item__label">Clients delivered</p>
+            <p class="stat-item__sub">Across Kenya and beyond</p>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__num"><span class="count" data-target="50">0</span><span class="stat-item__suffix">%</span></div>
+            <p class="stat-item__label">Best revenue uplift</p>
+            <p class="stat-item__sub">For a single client, post-launch</p>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item__num"><span class="count" data-target="100">0</span><span class="stat-item__suffix">%</span></div>
+            <p class="stat-item__label">On-time delivery</p>
+            <p class="stat-item__sub">Every project, on schedule</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          <div class="stats-card">
-            <div class="stats-card__inner">
-              <div class="stats-card__front">
-                <span class="stats-card__value">9+</span>
-                <span class="stats-card__label">Clients served</span>
-              </div>
-              <div class="stats-card__back">
-                <span class="stats-card__back-title">Who we've worked with</span>
-                <p class="stats-card__back-text">From NGOs and gyms to beauty studios and retailers — businesses across Kenya that needed to go from invisible to outstanding online.</p>
-              </div>
+    <!-- ─── Process ───────────────────────────────────────────────────────────── -->
+    <section class="s-process" id="process">
+      <div class="container">
+        <div class="s-process__header">
+          <span class="label-tag">How it works</span>
+          <h2 class="s-process__title" data-split>Simple, transparent process</h2>
+        </div>
+        <div class="s-process__steps">
+          <div class="process-step">
+            <span class="process-step__num">01</span>
+            <h3 class="process-step__name">Discovery</h3>
+            <p class="process-step__desc">We start with your goals, audience, and competition. One focused call, structured brief.</p>
+          </div>
+          <div class="process-step">
+            <span class="process-step__num">02</span>
+            <h3 class="process-step__name">Design</h3>
+            <p class="process-step__desc">High-fidelity mockups in Figma. You see exactly what you're getting before a single line of code.</p>
+          </div>
+          <div class="process-step">
+            <span class="process-step__num">03</span>
+            <h3 class="process-step__name">Build</h3>
+            <p class="process-step__desc">Clean, performant code. No templates. Built from scratch for your specific needs.</p>
+          </div>
+          <div class="process-step">
+            <span class="process-step__num">04</span>
+            <h3 class="process-step__name">Launch</h3>
+            <p class="process-step__desc">Deployed, tested, and handed over with training. We stay on for 30 days post-launch.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Pricing ────────────────────────────────────────────────────────────── -->
+    <section class="s-pricing" id="pricing">
+      <div class="container">
+        <div class="s-pricing__header">
+          <span class="label-tag">Pricing</span>
+          <h2 class="s-pricing__title" data-split>Clear, honest pricing</h2>
+          <p class="s-pricing__sub">Fixed-price packages — no surprises, no hourly billing traps.</p>
+        </div>
+        <div class="s-pricing__grid">
+
+          <div class="pricing-card pricing-card--1">
+            <div class="pricing-card__top">
+              <span class="pricing-card__tier">Starter</span>
+              <p class="pricing-card__desc">For businesses that need a professional online presence, fast.</p>
             </div>
+            <div class="pricing-card__price">
+              <span class="pricing-card__currency">Ksh</span>
+              <span class="pricing-card__amount">25,000</span>
+            </div>
+            <ul class="pricing-card__features">
+              <li>5-page custom website</li>
+              <li>Mobile-first responsive design</li>
+              <li>Basic SEO setup</li>
+              <li>Contact form</li>
+              <li>1 round of revisions</li>
+              <li class="off">E-commerce / bookings</li>
+              <li class="off">Custom animations</li>
+            </ul>
+            <a href="#contact" class="pricing-card__cta" data-magnetic>Get started →</a>
           </div>
 
-          <div class="stats-card">
-            <div class="stats-card__inner">
-              <div class="stats-card__front">
-                <span class="stats-card__value">+50%</span>
-                <span class="stats-card__label">Best client sales uplift</span>
-              </div>
-              <div class="stats-card__back">
-                <span class="stats-card__back-title">Real revenue results</span>
-                <p class="stats-card__back-text">Toothful Secrets saw a 50% sales lift after we rebuilt their site around conversion — clearer pages, a front-and-centre subscription offer, and a design that actually sells.</p>
-              </div>
+          <div class="pricing-card pricing-card--2 pricing-card--featured">
+            <span class="pricing-card__badge">Most popular</span>
+            <div class="pricing-card__top">
+              <span class="pricing-card__tier">Business</span>
+              <p class="pricing-card__desc">For growing businesses that need a site that actively drives revenue.</p>
             </div>
+            <div class="pricing-card__price">
+              <span class="pricing-card__currency">Ksh</span>
+              <span class="pricing-card__amount">65,000</span>
+            </div>
+            <ul class="pricing-card__features">
+              <li>Up to 10 pages</li>
+              <li>Custom design system</li>
+              <li>GSAP scroll animations</li>
+              <li>Advanced SEO + schema</li>
+              <li>Booking or lead-gen flow</li>
+              <li>Analytics integration</li>
+              <li>3 rounds of revisions</li>
+            </ul>
+            <a href="#contact" class="pricing-card__cta pricing-card__cta--featured" data-magnetic>Get started →</a>
           </div>
 
-          <div class="stats-card">
-            <div class="stats-card__inner">
-              <div class="stats-card__front">
-                <span class="stats-card__value">5</span>
-                <span class="stats-card__label">Custom systems built</span>
-              </div>
-              <div class="stats-card__back">
-                <span class="stats-card__back-title">Beyond the website</span>
-                <p class="stats-card__back-text">POS platforms, SACCO portals, school tools, voter monitors — all handbuilt for how Kenyan businesses actually operate, not how templates assume they do.</p>
-              </div>
+          <div class="pricing-card pricing-card--3">
+            <div class="pricing-card__top">
+              <span class="pricing-card__tier">E-Commerce</span>
+              <p class="pricing-card__desc">A full online store built for conversion — from browse to checkout.</p>
             </div>
-          </div>
-
-          <div class="stats-card">
-            <div class="stats-card__inner">
-              <div class="stats-card__front">
-                <span class="stats-card__value">100%</span>
-                <span class="stats-card__label">On-time delivery</span>
-              </div>
-              <div class="stats-card__back">
-                <span class="stats-card__back-title">We plan, so we deliver</span>
-                <p class="stats-card__back-text">Every project has shipped on or before its agreed deadline. We scope carefully so we can build without surprises — no excuses, just clean execution.</p>
-              </div>
+            <div class="pricing-card__price">
+              <span class="pricing-card__currency">Ksh</span>
+              <span class="pricing-card__amount">120,000</span>
             </div>
+            <ul class="pricing-card__features">
+              <li>Full online store</li>
+              <li>Product management system</li>
+              <li>Payment gateway integration</li>
+              <li>Subscription / bundles</li>
+              <li>Email automation setup</li>
+              <li>SEO + conversion audit</li>
+              <li>30-day post-launch support</li>
+            </ul>
+            <a href="#contact" class="pricing-card__cta" data-magnetic>Get started →</a>
           </div>
 
         </div>
+        <p class="s-pricing__note">Need something bespoke? <a href="#contact">Let's talk.</a></p>
       </div>
-    </div>
-
-
-   <!-- ============================
-        FEATURED WORK
-   ============================= -->
-   <section class="featured-work" id="work">
-     <div class="container">
-
-       <div class="fw-header">
-         <span class="fw-header__bg-num" aria-hidden="true">02</span>
-         <span class="fw-header__label">// section.impact</span>
-         <h2 class="fw-header__title">Impact Work</h2>
-         <p class="fw-header__sub">We don't just ship websites — we drive measurable results for our clients.</p>
-       </div>
-
-       <div class="fw-grid">
-
-         <article class="fw-card"
-           data-title="Livelihood Lab Africa"
-           data-year="2024"
-           data-role="Digital Presence"
-           data-category="Web"
-           data-url="https://livelihoodlabafrica.org"
-           data-image="https://s0.wp.com/mshots/v1/https://livelihoodlabafrica.org?w=1400"
-           data-metric="30+ New Clients"
-           data-industry="NGO · Digital Presence"
-           data-tags="Web Design,SEO,Lead Generation,NGO"
-           data-stats="30+|New Enquiries,Online|Presence Built,Weeks|Time to Launch"
-           data-brief="Livelihood Lab Africa is a research and development organisation working across the continent. They had no web presence and were losing potential partnerships and clients to competitors who were easier to find online."
-           data-built="Built a clean, professional website that clearly communicates their mission, showcases their programmes, and captures inbound leads through a direct contact flow."
-           data-outcome="Since going live, the organisation has received 30+ client and partnership inquiries through the website — a channel that simply didn't exist before.">
-           <div class="fw-card__image">
-             <img src="https://s0.wp.com/mshots/v1/https://livelihoodlabafrica.org?w=800" alt="Livelihood Lab Africa" loading="lazy" />
-           </div>
-           <div class="fw-card__body">
-             <div class="fw-card__top">
-               <span class="fw-card__industry">NGO · Digital Presence</span>
-               <span class="fw-card__metric">30+ New Clients</span>
-             </div>
-             <h3 class="fw-card__title">Livelihood Lab Africa</h3>
-             <p class="fw-card__desc">Took the organisation from invisible to online, opening a direct channel for client inquiries and partnerships.</p>
-             <div class="fw-card__tags">
-               <span class="fw-card__tag">Web Design</span>
-               <span class="fw-card__tag">SEO</span>
-               <span class="fw-card__tag">Lead Gen</span>
-             </div>
-             <button class="fw-card__cta">View case study &#x2192;</button>
-           </div>
-         </article>
-
-         <article class="fw-card"
-           data-title="Toothful Secrets"
-           data-year="2024"
-           data-role="Growth & E-Commerce"
-           data-category="Growth"
-           data-url="https://toothful-secrets.vercel.app/"
-           data-image="https://s0.wp.com/mshots/v1/https://toothful-secrets.vercel.app?w=1400"
-           data-metric="+50% Sales"
-           data-industry="Healthcare · Growth"
-           data-tags="Web Design,E-Commerce,SEO,Subscriptions"
-           data-stats="+50%|Sales Uplift,30+|New Subscribers,Organic|Traffic Source"
-           data-brief="Toothful Secrets is a dental hygiene product brand. Their existing online presence wasn't converting visitors into buyers, and their subscription product was largely unknown to potential customers."
-           data-built="Redesigned the site around conversion — clear product pages, a simplified checkout, and a subscription plan positioned front and centre. Added SEO foundations to drive organic discovery."
-           data-outcome="Sales lifted by 50% following the relaunch. Subscription signups began growing consistently month-on-month.">
-           <div class="fw-card__image">
-             <img src="https://s0.wp.com/mshots/v1/https://toothful-secrets.vercel.app?w=800" alt="Toothful Secrets" loading="lazy" />
-           </div>
-           <div class="fw-card__body">
-             <div class="fw-card__top">
-               <span class="fw-card__industry">Healthcare · Growth</span>
-               <span class="fw-card__metric">+50% Sales</span>
-             </div>
-             <h3 class="fw-card__title">Toothful Secrets</h3>
-             <p class="fw-card__desc">Converted a dental care brand's digital presence into a sales engine, with a 50% uplift and growing subscription base.</p>
-             <div class="fw-card__tags">
-               <span class="fw-card__tag">E-Commerce</span>
-               <span class="fw-card__tag">SEO</span>
-               <span class="fw-card__tag">Subscriptions</span>
-             </div>
-             <button class="fw-card__cta">View case study &#x2192;</button>
-           </div>
-         </article>
-
-         <article class="fw-card"
-           data-title="Glam by Ivy"
-           data-year="2024"
-           data-role="Web Design"
-           data-category="Web"
-           data-url="https://glam-jet.vercel.app"
-           data-image="https://s0.wp.com/mshots/v1/https://glam-jet.vercel.app?w=1400"
-           data-metric="20+ Bookings"
-           data-industry="Beauty · Web Design"
-           data-tags="Branding,UI Design,Booking Flow,Beauty"
-           data-stats="20+|Online Bookings,Social|Traffic Source,Days|Time to Launch"
-           data-brief="Glam by Ivy is a beauty and makeup artist building a client base in Nairobi. Most of her traffic came from social media, but she had no website to convert followers into confirmed bookings."
-           data-built="Designed and built a portfolio-driven site with an integrated booking flow — showcasing her work, establishing professional credibility, and making it simple to book a session."
-           data-outcome="Generated 20+ new client bookings through the website within the first few months of launch.">
-           <div class="fw-card__image">
-             <img src="https://s0.wp.com/mshots/v1/https://glam-jet.vercel.app?w=800" alt="Glam by Ivy" loading="lazy" />
-           </div>
-           <div class="fw-card__body">
-             <div class="fw-card__top">
-               <span class="fw-card__industry">Beauty · Web Design</span>
-               <span class="fw-card__metric">20+ Bookings</span>
-             </div>
-             <h3 class="fw-card__title">Glam by Ivy</h3>
-             <p class="fw-card__desc">A high-converting booking site for a beauty artist — turning social media followers into confirmed clients.</p>
-             <div class="fw-card__tags">
-               <span class="fw-card__tag">Branding</span>
-               <span class="fw-card__tag">UI Design</span>
-               <span class="fw-card__tag">Booking Flow</span>
-             </div>
-             <button class="fw-card__cta">View case study &#x2192;</button>
-           </div>
-         </article>
-
-       </div>
-
-       <div class="fw-footer">
-         <a href="/work.html" class="button button--dark">
-           <span><span>View All Projects</span></span>
-           <!-- prettier-ignore -->
-           <svg width="8" height="8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.157 1.172a.5.5 0 0 0-.5-.5h-4.5a.5.5 0 0 0 0 1h4v4a.5.5 0 0 0 1 0v-4.5Zm-5.803 6.01L7.01 1.525 6.303.818.646 6.475l.708.707Z" fill="#fff"/></svg>
-         </a>
-       </div>
-
-     </div>
-   </section>
-
-
-   <!-- ============================
-        SERVICES STACK
-   ============================= -->
-   <section class="services-stack section--dotted-dark" id="services-detail">
-
-     <div class="services-stack__sec-header">
-       <span class="sec-header__num sec-header__num--light" aria-hidden="true">03</span>
-       <span class="sec-header__label sec-header__label--light">// section.services</span>
-     </div>
-
-     <article class="services-stack__card">
-       <div class="services-stack__body">
-         <h3 class="services-stack__title">Web Design</h3>
-         <div class="services-stack__foot">
-           <span class="services-stack__num">(01)</span>
-           <p class="services-stack__desc">Websites that mean business. We craft fast, mobile-first designs that make your brand impossible to ignore — and your visitors impossible to lose.</p>
-         </div>
-       </div>
-       <div class="services-stack__img-wrap">
-         <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=1400&q=80" alt="" aria-hidden="true" loading="lazy" />
-       </div>
-     </article>
-
-     <article class="services-stack__card">
-       <div class="services-stack__body">
-         <h3 class="services-stack__title">Business Systems &amp; Automation</h3>
-         <div class="services-stack__foot">
-           <span class="services-stack__num">(02)</span>
-           <p class="services-stack__desc">We replace your spreadsheets with systems that work. SACCO platforms, school portals, point-of-sale systems, quotation tools — built for how your business actually runs.</p>
-         </div>
-       </div>
-       <div class="services-stack__img-wrap">
-         <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=1400&q=80" alt="" aria-hidden="true" loading="lazy" />
-       </div>
-     </article>
-
-     <article class="services-stack__card">
-       <div class="services-stack__body">
-         <h3 class="services-stack__title">SEO &amp; Revenue Growth</h3>
-         <div class="services-stack__foot">
-           <span class="services-stack__num">(03)</span>
-           <p class="services-stack__desc">More traffic means nothing if it doesn't convert. We optimise for search ranking AND for turning visitors into paying customers — so your site works harder than your sales team.</p>
-         </div>
-       </div>
-       <div class="services-stack__img-wrap">
-         <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80" alt="" aria-hidden="true" loading="lazy" />
-       </div>
-     </article>
-
-     <article class="services-stack__card">
-       <div class="services-stack__body">
-         <h3 class="services-stack__title">Site Revamp</h3>
-         <div class="services-stack__foot">
-           <span class="services-stack__num">(04)</span>
-           <p class="services-stack__desc">Got a site that's slow, dated, or just not converting? We rebuild it into something that performs — better speed, sharper design, stronger results.</p>
-         </div>
-       </div>
-       <div class="services-stack__img-wrap">
-         <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1400&q=80" alt="" aria-hidden="true" loading="lazy" />
-       </div>
-     </article>
-
-     <article class="services-stack__card">
-       <div class="services-stack__body">
-         <h3 class="services-stack__title">Branding</h3>
-         <div class="services-stack__foot">
-           <span class="services-stack__num">(05)</span>
-           <p class="services-stack__desc">From logo to full visual identity — we build the brand language that makes your business stick in people's minds long after they've looked away.</p>
-         </div>
-       </div>
-       <div class="services-stack__img-wrap">
-         <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1400&q=80" alt="" aria-hidden="true" loading="lazy" />
-       </div>
-     </article>
-
-   </section>
-
-
-   <!-- ============================
-        WHY SCRATCH
-   ============================= -->
-   <section class="why-scratch section--dotted">
-     <div class="container">
-       <div class="why-scratch__header">
-         <span class="why-scratch__label">// section.why</span>
-         <h2 class="why-scratch__title">Why work with Scratch?</h2>
-         <p class="why-scratch__sub">We care about your revenue more than your redesign. Here's what makes us different.</p>
-       </div>
-       <div class="why-scratch__grid">
-         <div class="why-scratch__card">
-           <i class="why-scratch__icon" aria-hidden="true">↗</i>
-           <h3 class="why-scratch__card-title">Outcome-first</h3>
-           <p class="why-scratch__card-text">We measure success in leads generated, sales increased, and hours saved — not deliverables shipped. Every project starts with a clear goal and ends with a measurable result.</p>
-         </div>
-         <div class="why-scratch__card">
-           <i class="why-scratch__icon" aria-hidden="true">◎</i>
-           <h3 class="why-scratch__card-title">Built for Kenya</h3>
-           <p class="why-scratch__card-text">We understand mobile-first users, M-Pesa flows, local SEO patterns, and Kenyan business realities. What works in London doesn't always work in Nairobi — we know the difference.</p>
-         </div>
-         <div class="why-scratch__card">
-           <i class="why-scratch__icon" aria-hidden="true">⬡</i>
-           <h3 class="why-scratch__card-title">Beyond the website</h3>
-           <p class="why-scratch__card-text">From branding to business systems, we build the full picture. One team, one relationship — whether you need a landing page or a custom SACCO or POS platform.</p>
-         </div>
-       </div>
-     </div>
-   </section>
-
-
-   <!-- ============================
-        PROCESS
-   ============================= -->
-   <section class="process section--dotted" id="process">
-     <div class="container">
-       <div class="process__header">
-         <div class="sec-header">
-           <span class="sec-header__num" aria-hidden="true">04</span>
-           <span class="sec-header__label">// section.process</span>
-         </div>
-         <span class="process__label">How We Work</span>
-         <h2 class="process__title" data-animation="text-reveal">Five steps from blank canvas to live site.</h2>
-       </div>
-       <div class="process__grid">
-
-         <div class="process__step">
-           <div class="process__step-dot">01</div>
-           <div class="process__step-body">
-             <h3 class="process__step-title">Discovery</h3>
-             <p class="process__step-desc">We audit your brand, research competitors, and map out exactly what success looks like for your project.</p>
-             <span class="process__step-meta">1–2 days</span>
-           </div>
-         </div>
-
-         <div class="process__step">
-           <div class="process__step-dot">02</div>
-           <div class="process__step-body">
-             <h3 class="process__step-title">Strategy</h3>
-             <p class="process__step-desc">Sitemap, wireframes, and creative brief aligned with stakeholders before a single pixel is designed.</p>
-             <span class="process__step-meta">2–3 days</span>
-           </div>
-         </div>
-
-         <div class="process__step">
-           <div class="process__step-dot">03</div>
-           <div class="process__step-body">
-             <h3 class="process__step-title">Design</h3>
-             <p class="process__step-desc">High-fidelity Figma designs with obsessive attention to typography, motion, and visual hierarchy.</p>
-             <span class="process__step-meta">5–7 days</span>
-           </div>
-         </div>
-
-         <div class="process__step">
-           <div class="process__step-dot">04</div>
-           <div class="process__step-body">
-             <h3 class="process__step-title">Build</h3>
-             <p class="process__step-desc">Handcrafted code, GSAP animations, CMS integration, and a full performance audit before handoff.</p>
-             <span class="process__step-meta">7–14 days</span>
-           </div>
-         </div>
-
-         <div class="process__step">
-           <div class="process__step-dot">05</div>
-           <div class="process__step-body">
-             <h3 class="process__step-title">Launch</h3>
-             <p class="process__step-desc">Cross-browser QA, SEO setup, analytics, and a smooth handover with 30-day post-launch support.</p>
-             <span class="process__step-meta">2–3 days</span>
-           </div>
-         </div>
-
-       </div>
-     </div>
-   </section>
-
-
-   <!-- ============================
-        PRICING
-   ============================= -->
-   <section class="pricing section--dotted" id="pricing">
-     <div class="container">
-
-       <div class="pricing__header">
-         <div class="sec-header">
-           <span class="sec-header__num" aria-hidden="true">05</span>
-           <span class="sec-header__label">// section.pricing</span>
-         </div>
-         <span class="pricing__label">Transparent Pricing</span>
-         <h2 class="pricing__title" data-animation="text-reveal">Investment packages for every stage of growth.</h2>
-         <p class="pricing__sub">Clear, honest pricing with no hidden fees. Each package is customised to your specific project requirements.</p>
-       </div>
-
-       <div class="pricing__cards">
-
-         <!-- Starter -->
-         <div class="pricing__card pricing__card--1">
-           <div class="pricing__card-icon">
-             <!-- pencil -->
-             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
-           </div>
-           <h3 class="pricing__card-tier">Starter</h3>
-           <p class="pricing__card-subdesc">Perfect for personal brands, freelancers &amp; small businesses getting online for the first time</p>
-           <div class="pricing__card-price">
-             <span class="pricing__card-currency">Ksh</span>
-             <span class="pricing__card-amount">15,000</span>
-             <span class="pricing__card-period">/project</span>
-           </div>
-           <ul class="pricing__card-features">
-             <li class="pricing__card-feature">Up to 5 pages</li>
-             <li class="pricing__card-feature">Mobile-responsive design</li>
-             <li class="pricing__card-feature">Contact form</li>
-             <li class="pricing__card-feature">Basic SEO setup</li>
-             <li class="pricing__card-feature">Google Maps integration</li>
-             <li class="pricing__card-feature">Social media links</li>
-             <li class="pricing__card-feature">30-day free support</li>
-             <li class="pricing__card-feature pricing__card-feature--no">CMS / Blog</li>
-             <li class="pricing__card-feature pricing__card-feature--no">E-commerce</li>
-             <li class="pricing__card-feature pricing__card-feature--no">Custom animations</li>
-           </ul>
-           <a href="#contact" class="pricing__card-cta">Request Quote</a>
-         </div>
-
-         <!-- Business (popular) -->
-         <div class="pricing__card pricing__card--2 pricing__card--featured">
-           <div class="pricing__card-popular">Popular!</div>
-           <div class="pricing__card-icon">
-             <!-- star -->
-             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-           </div>
-           <h3 class="pricing__card-tier">Business</h3>
-           <p class="pricing__card-subdesc">The go-to choice for established businesses that need a powerful, content-rich online presence</p>
-           <div class="pricing__card-price">
-             <span class="pricing__card-currency">Ksh</span>
-             <span class="pricing__card-amount">35,000</span>
-             <span class="pricing__card-period">/project</span>
-           </div>
-           <ul class="pricing__card-features">
-             <li class="pricing__card-feature">Up to 15 pages</li>
-             <li class="pricing__card-feature">Custom UI/UX design</li>
-             <li class="pricing__card-feature">CMS blog (up to 20 posts)</li>
-             <li class="pricing__card-feature">Full on-page SEO</li>
-             <li class="pricing__card-feature">WhatsApp chat widget</li>
-             <li class="pricing__card-feature">Google Analytics setup</li>
-             <li class="pricing__card-feature">Speed &amp; performance optimised</li>
-             <li class="pricing__card-feature">60-day free support</li>
-             <li class="pricing__card-feature">Social media integration</li>
-             <li class="pricing__card-feature pricing__card-feature--no">E-commerce store</li>
-           </ul>
-           <a href="#contact" class="pricing__card-cta pricing__card-cta--featured">Request Quote</a>
-         </div>
-
-         <!-- E-Commerce -->
-         <div class="pricing__card pricing__card--3">
-           <div class="pricing__card-icon">
-             <!-- sparkles -->
-             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
-           </div>
-           <h3 class="pricing__card-tier">E-Commerce</h3>
-           <p class="pricing__card-subdesc">For businesses ready to sell online — products, payments, orders, all in one place</p>
-           <div class="pricing__card-price">
-             <span class="pricing__card-currency">Ksh</span>
-             <span class="pricing__card-amount">65,000</span>
-             <span class="pricing__card-period">/project</span>
-           </div>
-           <ul class="pricing__card-features">
-             <li class="pricing__card-feature">Unlimited product listings</li>
-             <li class="pricing__card-feature">M-Pesa &amp; card payments</li>
-             <li class="pricing__card-feature">Product category management</li>
-             <li class="pricing__card-feature">Order &amp; inventory tracking</li>
-             <li class="pricing__card-feature">Customer accounts &amp; wishlist</li>
-             <li class="pricing__card-feature">Coupon &amp; promo code system</li>
-             <li class="pricing__card-feature">E-commerce SEO</li>
-             <li class="pricing__card-feature">Email order notifications</li>
-             <li class="pricing__card-feature">90-day free support</li>
-             <li class="pricing__card-feature">Staff training (2 hours)</li>
-           </ul>
-           <a href="#contact" class="pricing__card-cta">Request Quote</a>
-         </div>
-
-       </div>
-     </div>
-   </section>
-
-
-   <!-- ============================
-        TESTIMONIALS
-   ============================= -->
-   <section class="testimonials section--dark section--dotted-dark" id="testimonials">
-     <div class="container">
-       <div class="testimonials__header">
-         <div class="sec-header">
-           <span class="sec-header__num sec-header__num--light" aria-hidden="true">06</span>
-           <span class="sec-header__label sec-header__label--light">// section.testimonials</span>
-         </div>
-         <div class="testimonials__label-wrap">
-           <span class="testimonials__label">Client Stories</span>
-         </div>
-         <h2 class="testimonials__title" data-animation="text-reveal">Words from the people we've built for.</h2>
-         <p class="testimonials__sub">Real feedback from real clients across Kenya and beyond.</p>
-       </div>
-
-       <div class="testimonials__columns">
-
-         <!-- Column 1 -->
-         <div class="testimonials__column">
-
-           <div class="testimonials__item">
-             <p class="testimonials__item-text">Before this system, putting together a professional quote took us 20 minutes or more. Now it's done in under a minute and looks exactly how we want it. Clients actually comment on how clean our paperwork is now.</p>
-             <div class="testimonials__item-author">
-               <img class="testimonials__item-avatar" src="https://ui-avatars.com/api/?name=Erick+Ochieng&background=1a3a2a&color=ffffff&bold=true&size=128" alt="Erick M Ochieng" />
-               <div class="testimonials__item-info">
-                 <p class="testimonials__item-name">Erick M. Ochieng</p>
-                 <p class="testimonials__item-role">Operations, Marachi</p>
-               </div>
-             </div>
-           </div>
-
-           <div class="testimonials__item">
-             <p class="testimonials__item-text">I used to depend entirely on Instagram DMs to get bookings. Now clients find me on Google, see my work, and book directly through the site. It has completely changed how I get clients.</p>
-             <div class="testimonials__item-author">
-               <img class="testimonials__item-avatar" src="https://ui-avatars.com/api/?name=Ivy+Nyambura&background=6b2d5e&color=ffffff&bold=true&size=128" alt="Ivy Nyambura" />
-               <div class="testimonials__item-info">
-                 <p class="testimonials__item-name">Ivy Nyambura</p>
-                 <p class="testimonials__item-role">Founder, Glam by Ivy</p>
-               </div>
-             </div>
-           </div>
-
-           <div class="testimonials__item">
-             <p class="testimonials__item-text">Managing stock and daily sales used to be a headache. Now everything is tracked automatically — we always know what's moving, what needs restocking, and the end-of-day report is instant.</p>
-             <div class="testimonials__item-author">
-               <div class="testimonials__item-info">
-                 <p class="testimonials__item-name">D-Rank Wines & Spirits</p>
-                 <p class="testimonials__item-role">Retail · Point of Sale System</p>
-               </div>
-             </div>
-           </div>
-
-         </div>
-
-         <!-- Column 2 (tablet+) -->
-         <div class="testimonials__column testimonials__column--mid">
-
-           <div class="testimonials__item">
-             <p class="testimonials__item-text">Livelihood Lab finally has a digital presence that reflects the quality of work we do on the ground. We've had partnership inquiries from organisations we had never reached through traditional channels.</p>
-             <div class="testimonials__item-author">
-               <img class="testimonials__item-avatar" src="https://ui-avatars.com/api/?name=Jack+Malit&background=1a3f5c&color=ffffff&bold=true&size=128" alt="Jack Malit" />
-               <div class="testimonials__item-info">
-                 <p class="testimonials__item-name">Jack Malit</p>
-                 <p class="testimonials__item-role">Director, Livelihood Lab Africa</p>
-               </div>
-             </div>
-           </div>
-
-           <div class="testimonials__item">
-             <p class="testimonials__item-text">We started receiving inquiries from people we had never met — people who simply found us online and wanted a solar installation quote. That had never happened before the website. It paid for itself quickly.</p>
-             <div class="testimonials__item-author">
-               <img class="testimonials__item-avatar" src="https://ui-avatars.com/api/?name=Lilian+K&background=1a5c3a&color=ffffff&bold=true&size=128" alt="Lilian" />
-               <div class="testimonials__item-info">
-                 <p class="testimonials__item-name">Lilian</p>
-                 <p class="testimonials__item-role">Director, Solar Kenya</p>
-               </div>
-             </div>
-           </div>
-
-           <div class="testimonials__item">
-             <p class="testimonials__item-text">The website makes Apex look like the serious gym it is. New members come in and tell us they found us online first — it's become a core part of how we grow our membership base.</p>
-             <div class="testimonials__item-author">
-               <div class="testimonials__item-info">
-                 <p class="testimonials__item-name">Alphonse Odero</p>
-                 <p class="testimonials__item-role">Owner, Apex Gym</p>
-               </div>
-             </div>
-           </div>
-
-         </div>
-
-         <!-- Column 3 (desktop only) -->
-         <div class="testimonials__column testimonials__column--last">
-
-           <div class="testimonials__item">
-             <p class="testimonials__item-text">The website gave us visibility we simply didn't have before. Our funders and partners are impressed — it communicates what Livelihood Lab does far better than anything we had previously.</p>
-             <div class="testimonials__item-author">
-               <div class="testimonials__item-info">
-                 <p class="testimonials__item-name">Calvin</p>
-                 <p class="testimonials__item-role">Programme Lead, Livelihood Lab Africa</p>
-               </div>
-             </div>
-           </div>
-
-           <div class="testimonials__item">
-             <p class="testimonials__item-text">Within weeks of going live we had inbound interest from donors and partners. The team understood our work and translated it into something genuinely compelling — not just a website, a real business asset.</p>
-             <div class="testimonials__item-author">
-               <img class="testimonials__item-avatar" src="https://ui-avatars.com/api/?name=Judy+Mutegi&background=5c3a1a&color=ffffff&bold=true&size=128" alt="Judy Mutegi" />
-               <div class="testimonials__item-info">
-                 <p class="testimonials__item-name">Judy Mutegi</p>
-                 <p class="testimonials__item-role">Communications, Livelihood Lab Africa</p>
-               </div>
-             </div>
-           </div>
-
-           <div class="testimonials__item">
-             <p class="testimonials__item-text">Professional, organised, and they delivered on time. The site now does the work of introducing Livelihood Lab to anyone who comes across us — it represents us exactly as we'd want.</p>
-             <div class="testimonials__item-author">
-               <div class="testimonials__item-info">
-                 <p class="testimonials__item-name">Shayne</p>
-                 <p class="testimonials__item-role">Research Manager, Livelihood Lab Africa</p>
-               </div>
-             </div>
-           </div>
-
-         </div>
-
-       </div>
-     </div>
-   </section>
-
-
-   <!-- ============================
-        FAQ
-   ============================= -->
-   <section class="faq section--beige section--dotted" id="faq">
-     <div class="container">
-       <div class="faq__header">
-         <div class="sec-header">
-           <span class="sec-header__num" aria-hidden="true">07</span>
-           <span class="sec-header__label">// section.faq</span>
-         </div>
-         <span class="faq__label">Common Questions</span>
-         <h2 class="faq__title" data-animation="text-reveal">Everything you need to know before we start.</h2>
-       </div>
-       <div class="faq__layout">
-         <div class="faq__sidebar">
-           <p class="faq__sidebar-text">Can't find the answer you're looking for? We're happy to discuss your project in detail.</p>
-           <a href="#contact" class="faq__sidebar-cta">
-             Talk to us
-             <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-               <path d="M14.314 2.344a1 1 0 0 0-1-1h-9a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-9Zm-11.606 12.02L14.02 3.05 12.607 1.637 1.293 12.95l1.415 1.414Z" fill="currentColor"/>
-             </svg>
-           </a>
-         </div>
-         <div class="faq__list">
-
-           <div class="faq__item">
-             <div class="faq__question">
-               <span class="faq__question-text">How long does a typical project take?</span>
-               <span class="faq__icon">+</span>
-             </div>
-             <div class="faq__answer">
-               <div class="faq__answer-inner">
-                 <p class="faq__answer-text">A landing page typically takes 2–3 weeks. A multi-page website takes 4–8 weeks. Custom interactive experiences can take 8–16 weeks depending on complexity. We always provide a detailed timeline at the start of every project.</p>
-               </div>
-             </div>
-           </div>
-
-           <div class="faq__item">
-             <div class="faq__question">
-               <span class="faq__question-text">Do you offer branding alongside web design?</span>
-               <span class="faq__icon">+</span>
-             </div>
-             <div class="faq__answer">
-               <div class="faq__answer-inner">
-                 <p class="faq__answer-text">Yes. Many of our clients come to us for complete brand identity work before the website phase begins. We offer logo design, typography systems, colour palettes, and full brand guidelines as a standalone service or bundled with your website project.</p>
-               </div>
-             </div>
-           </div>
-
-           <div class="faq__item">
-             <div class="faq__question">
-               <span class="faq__question-text">Do you work with international clients?</span>
-               <span class="faq__icon">+</span>
-             </div>
-             <div class="faq__answer">
-               <div class="faq__answer-inner">
-                 <p class="faq__answer-text">Absolutely. We work with clients across Africa, Europe, the US, and beyond. Our project management is fully remote — we use Notion, Figma, and video calls to keep collaboration seamless regardless of timezone differences.</p>
-               </div>
-             </div>
-           </div>
-
-           <div class="faq__item">
-             <div class="faq__question">
-               <span class="faq__question-text">What technologies do you build with?</span>
-               <span class="faq__icon">+</span>
-             </div>
-             <div class="faq__answer">
-               <div class="faq__answer-inner">
-                 <p class="faq__answer-text">We primarily work with vanilla JavaScript, GSAP, Lenis, React, and Next.js for development. For CMS, we use Sanity, Contentful, or WordPress depending on client preference. All our work is handcrafted — we never use page builders or pre-built themes.</p>
-               </div>
-             </div>
-           </div>
-
-           <div class="faq__item">
-             <div class="faq__question">
-               <span class="faq__question-text">Can you redesign our existing website?</span>
-               <span class="faq__icon">+</span>
-             </div>
-             <div class="faq__answer">
-               <div class="faq__answer-inner">
-                 <p class="faq__answer-text">Yes — redesigns are one of our specialities. We conduct a thorough audit of your existing site's performance, UX, and brand alignment before proposing a strategic redesign. We focus on improving conversion, not just aesthetics.</p>
-               </div>
-             </div>
-           </div>
-
-           <div class="faq__item">
-             <div class="faq__question">
-               <span class="faq__question-text">What does the payment structure look like?</span>
-               <span class="faq__icon">+</span>
-             </div>
-             <div class="faq__answer">
-               <div class="faq__answer-inner">
-                 <p class="faq__answer-text">We work on a 50% deposit to begin, 25% at design sign-off, and 25% on final delivery. For larger projects we can accommodate milestone-based payment structures. We accept M-Pesa, bank transfers, and major credit cards.</p>
-               </div>
-             </div>
-           </div>
-
-         </div>
-       </div>
-     </div>
-   </section>
-
-
-   <!-- ============================
-        CONTACT CTA
-   ============================= -->
-   <section class="contact-cta section--dark" id="contact">
-     <div class="contact-cta__bg-text" aria-hidden="true">Let's Talk</div>
-     <div class="container">
-       <div class="contact-cta__layout">
-
-         <div class="contact-cta__info">
-           <span class="contact-cta__eyebrow">Available for new projects</span>
-           <h2 class="contact-cta__title">Let's Build Something Exceptional.</h2>
-           <p class="contact-cta__sub">We partner with ambitious brands and founders to create websites, systems, and digital solutions that drive real results.</p>
-           <div class="contact-cta__actions">
-             <a href="mailto:hello@scratchdesign.co" class="contact-cta__btn contact-cta__btn--primary">
-               hello@scratchdesign.co
-               <svg width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                 <path d="M14.314 2.344a1 1 0 0 0-1-1h-9a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-9Zm-11.606 12.02L14.02 3.05 12.607 1.637 1.293 12.95l1.415 1.414Z" fill="currentColor"/>
-               </svg>
-             </a>
-             <a href="#" class="contact-cta__btn contact-cta__btn--ghost" data-cal-link="gerald-shikwe-yarxme/30min" data-cal-config='{"layout":"month_view","theme":"dark"}' data-cal-namespace="30min">
-               Schedule a Call
-             </a>
-           </div>
-           <div class="contact-cta__availability">
-             <div class="contact-cta__availability-dot"></div>
-             <span>Currently taking on new projects — let's talk</span>
-           </div>
-           <div class="contact-cta__socials">
-             <a href="https://www.instagram.com/scratchdesign" target="_blank" rel="noopener">Instagram &#x2197;</a>
-           </div>
-         </div>
-
-         <form class="contact-form" id="contact-form" novalidate>
-           <h3 class="contact-form__heading">Send a message</h3>
-           <div class="contact-form__row">
-             <div class="contact-form__field">
-               <label class="contact-form__label" for="cf-name">Name</label>
-               <input class="contact-form__input" type="text" id="cf-name" name="name" placeholder="Your name" required />
-             </div>
-             <div class="contact-form__field">
-               <label class="contact-form__label" for="cf-email">Email</label>
-               <input class="contact-form__input" type="email" id="cf-email" name="email" placeholder="your@email.com" required />
-             </div>
-           </div>
-           <div class="contact-form__field">
-             <label class="contact-form__label" for="cf-service">What do you need?</label>
-             <select class="contact-form__input contact-form__select" id="cf-service" name="service">
-               <option value="">Select a service...</option>
-               <option value="Website Design">Website Design</option>
-               <option value="Business System">Business System / Automation</option>
-               <option value="SEO &amp; Growth">SEO &amp; Revenue Growth</option>
-               <option value="Branding">Branding &amp; Identity</option>
-               <option value="Site Revamp">Site Revamp</option>
-               <option value="Other">Other / Not sure yet</option>
-             </select>
-           </div>
-           <div class="contact-form__field">
-             <label class="contact-form__label" for="cf-message">Tell us about your project</label>
-             <textarea class="contact-form__input contact-form__textarea" id="cf-message" name="message" placeholder="What are you trying to build or fix?" rows="4"></textarea>
-           </div>
-           <button type="submit" class="contact-form__submit">
-             Send via WhatsApp
-             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-           </button>
-           <p class="contact-form__success" id="cf-success" hidden>Thanks! We'll respond on WhatsApp shortly.</p>
-           <p class="contact-form__note">Prefer email? Reach us at <a href="mailto:hello@scratchdesign.co">hello@scratchdesign.co</a></p>
-         </form>
-
-       </div>
-     </div>
-   </section>
-
-
-   <!-- ============================
-        FOOTER
-   ============================= -->
-   <footer class="footer" id="footer">
-     <div class="footer__marquee" aria-hidden="true">
-       <div class="footer__marquee-track">
-         <span class="footer__marquee-word">SCRATCHDESIGN</span>
-         <span class="footer__marquee-word">&#10022;</span>
-         <span class="footer__marquee-word">SCRATCHDESIGN</span>
-         <span class="footer__marquee-word">&#10022;</span>
-       </div>
-     </div>
-     <hr class="footer__divider" />
-     <div class="container">
-       <div class="footer__main">
-         <div class="footer__brand">
-           <a href="/" class="footer__brand-name">ScratchDesign</a>
-           <p class="footer__brand-desc">A digital design and technology studio building brands, crafting digital experiences, and shaping stories — from scratch.</p>
-           <a href="mailto:hello@scratchdesign.co" class="footer__brand-email">hello@scratchdesign.co</a>
-         </div>
-         <div class="footer__col">
-           <p class="footer__col-title">Work</p>
-           <ul class="footer__col-links">
-             <li class="footer__col-link"><a href="/work.html">All Projects</a></li>
-             <li class="footer__col-link"><a href="#services-detail">Services</a></li>
-             <li class="footer__col-link"><a href="#process">Process</a></li>
-             <li class="footer__col-link"><a href="#pricing">Pricing</a></li>
-           </ul>
-         </div>
-         <div class="footer__col">
-           <p class="footer__col-title">Studio</p>
-           <ul class="footer__col-links">
-             <li class="footer__col-link"><a href="#about">About</a></li>
-             <li class="footer__col-link"><a href="#testimonials">Client Stories</a></li>
-             <li class="footer__col-link"><a href="#faq">FAQ</a></li>
-             <li class="footer__col-link"><a href="#contact">Contact</a></li>
-           </ul>
-         </div>
-         <div class="footer__col">
-           <p class="footer__col-title">Connect</p>
-           <ul class="footer__col-links">
-             <li class="footer__col-link"><a href="https://www.instagram.com/scratchdesign" target="_blank" rel="noopener">Instagram &#x2197;</a></li>
-           </ul>
-         </div>
-       </div>
-     </div>
-     <div class="footer__bottom">
-       <div class="container">
-         <div class="footer__bottom-inner">
-           <p class="footer__copyright">&copy; 2026 ScratchDesign. All rights reserved.</p>
-         </div>
-       </div>
-     </div>
-   </footer>
-
-
-   <!-- Cal element-click embed code begins -->
-<script type="text/javascript">
-  (function (C, A, L) { 
-    let p = function (a, ar) { a.q.push(ar); }; 
-    let d = C.document; 
-    C.Cal = C.Cal || function () { 
-      let cal = C.Cal; 
-      let ar = arguments; 
-      if (!cal.loaded) { 
-        cal.ns = {}; 
-        cal.q = cal.q || []; 
-        d.head.appendChild(d.createElement("script")).src = A; 
-        cal.loaded = true; 
-      } 
-      if (ar[0] === L) { 
-        const api = function () { p(api, arguments); }; 
-        const namespace = ar[1]; 
-        api.q = api.q || []; 
-        if (typeof namespace === "string") { 
-          cal.ns[namespace] = cal.ns[namespace] || api; 
-          p(cal.ns[namespace], ar); 
-          p(cal, ["initNamespace", namespace]);
-        } else p(cal, ar); 
-        return;
-      } 
-      p(cal, ar); 
-    }; 
-  })(window, "https://app.cal.com/embed/embed.js", "init");
-
-  Cal("init", "30min", {origin:"https://cal.com"});
-
-  Cal.ns["30min"]("ui", {
-    "theme": "light",
-    "styles": {
-      "branding": { "brandColor": "#d77f29" }
-    },
-    "hideEventTypeDetails": false,
-    "layout": "month_view"
-  });
-</script>
-   
-    <!-- Project detail modal -->
+    </section>
+
+    <!-- ─── Contact ────────────────────────────────────────────────────────────── -->
+    <section class="s-contact" id="contact">
+      <div class="container">
+        <div class="s-contact__inner">
+          <div class="s-contact__left">
+            <span class="label-tag">Get in touch</span>
+            <h2 class="s-contact__title" data-split>Let's build something great.</h2>
+            <p class="s-contact__sub">Tell us what you need. We'll come back with a clear plan and honest quote — usually within 24 hours.</p>
+            <div class="s-contact__direct">
+              <a href="mailto:hello@scratchdesign.co" class="s-contact__direct-link" data-magnetic>
+                <span class="label-tag">Email</span>
+                hello@scratchdesign.co
+              </a>
+              <a href="https://wa.me/254700000000" target="_blank" rel="noopener" class="s-contact__direct-link" data-magnetic>
+                <span class="label-tag">WhatsApp</span>
+                +254 700 000 000
+              </a>
+            </div>
+          </div>
+          <form class="s-contact__form" id="contact-form" novalidate>
+            <div class="form-field">
+              <label for="cf-name">Your name</label>
+              <input type="text" id="cf-name" name="name" placeholder="Jane Wambui" autocomplete="name" required />
+            </div>
+            <div class="form-field">
+              <label for="cf-email">Email address</label>
+              <input type="email" id="cf-email" name="email" placeholder="jane@company.co.ke" autocomplete="email" required />
+            </div>
+            <div class="form-field">
+              <label for="cf-service">What do you need?</label>
+              <select id="cf-service" name="service">
+                <option value="">Select a service</option>
+                <option>Web Design & Development</option>
+                <option>Brand Identity</option>
+                <option>E-Commerce Store</option>
+                <option>SEO & Growth</option>
+                <option>Something else</option>
+              </select>
+            </div>
+            <div class="form-field form-field--wide">
+              <label for="cf-message">Tell us about your project</label>
+              <textarea id="cf-message" name="message" rows="4" placeholder="Brief description, budget, timeline..."></textarea>
+            </div>
+            <button type="submit" class="btn-primary btn-primary--full" data-magnetic>
+              Send message
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M13 1L1 13M13 1H4M13 1V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <p class="s-contact__success" id="cf-success" hidden>Message sent! We'll reply within 24 hours. 🎉</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Footer ────────────────────────────────────────────────────────────── -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__top">
+          <div class="site-footer__brand">
+            <a href="/" class="site-footer__logo">scratch<span>.</span>design</a>
+            <p class="site-footer__tagline">Built from scratch. Built to last.</p>
+          </div>
+          <nav class="site-footer__nav" aria-label="Footer navigation">
+            <div class="site-footer__nav-col">
+              <p class="site-footer__nav-label">Navigation</p>
+              <a href="/work.html">Work</a>
+              <a href="#services">Services</a>
+              <a href="#pricing">Pricing</a>
+              <a href="#contact">Contact</a>
+            </div>
+            <div class="site-footer__nav-col">
+              <p class="site-footer__nav-label">Connect</p>
+              <a href="https://www.instagram.com/scratchdesign" target="_blank" rel="noopener">Instagram ↗</a>
+              <a href="mailto:hello@scratchdesign.co">hello@scratchdesign.co</a>
+              <a href="https://wa.me/254700000000" target="_blank" rel="noopener">WhatsApp ↗</a>
+            </div>
+          </nav>
+        </div>
+        <div class="site-footer__bottom">
+          <p>© 2025 ScratchDesign. All rights reserved.</p>
+          <p>Nairobi, Kenya</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ─── WhatsApp float ────────────────────────────────────────────────────── -->
+    <a href="https://wa.me/254700000000" target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <!-- ─── Page transition ────────────────────────────────────────────────────── -->
+    <div class="page-transition" id="page-transition" aria-hidden="true"></div>
+
+    <!-- ─── Project detail modal ──────────────────────────────────────────────── -->
     <div class="fw-modal" id="fw-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Project details">
       <div class="fw-modal__backdrop" id="fw-modal-backdrop"></div>
       <div class="fw-modal__panel" id="fw-modal-panel" data-lenis-prevent>
-
-        <!-- Minimal sticky close bar -->
         <div class="fw-modal__bar">
           <button type="button" class="fw-modal__close" id="fw-modal-close" aria-label="Close project">
-            <!-- prettier-ignore -->
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 1L1 11M1 1L11 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M11 1L1 11M1 1L11 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </button>
         </div>
-
-        <!-- Hero image — full bleed -->
-        <div class="fw-modal__hero">
-          <img id="fw-modal-img" src="" alt="" />
-        </div>
-
-        <!-- Case study body -->
+        <div class="fw-modal__hero"><img id="fw-modal-img" src="" alt="" /></div>
         <div class="fw-modal__body">
-
-          <!-- Project metadata row -->
           <div class="fw-modal__meta">
             <div class="fw-modal__meta-item">
               <span class="fw-modal__meta-key">Industry</span>
@@ -1168,11 +606,7 @@
               <span class="fw-modal__meta-val" id="fw-modal-role"></span>
             </div>
           </div>
-
-          <!-- Project title -->
           <h2 class="fw-modal__title" id="fw-modal-title"></h2>
-
-          <!-- Narrative sections — editorial 2-col label | text -->
           <div class="fw-modal__narratives">
             <div class="fw-modal__narrative">
               <span class="fw-modal__narrative-label">The Assignment</span>
@@ -1187,33 +621,24 @@
               <p class="fw-modal__narrative-text" id="fw-modal-outcome"></p>
             </div>
           </div>
-
-          <!-- Impact metrics — full-bleed dark band -->
           <div class="fw-modal__impact" id="fw-modal-stats"></div>
-
-          <!-- Footer: tags + visit site -->
           <div class="fw-modal__footer">
             <div class="fw-modal__tags" id="fw-modal-tags"></div>
             <a class="fw-modal__link" id="fw-modal-link" href="#" target="_blank" rel="noopener">
               Visit live site
-              <!-- prettier-ignore -->
-              <svg width="12" height="12" fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M14.314 2.344a1 1 0 0 0-1-1h-9a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-9Zm-11.606 12.02L14.02 3.05 12.607 1.637 1.293 12.95l1.415 1.414Z" fill="currentColor"/></svg>
+              <svg width="12" height="12" fill="none" viewBox="0 0 16 16"><path d="M14.314 2.344a1 1 0 0 0-1-1h-9a1 1 0 1 0 0 2h8v8a1 1 0 1 0 2 0v-9Zm-11.606 12.02L14.02 3.05 12.607 1.637 1.293 12.95l1.415 1.414Z" fill="currentColor"/></svg>
             </a>
           </div>
-
         </div>
       </div>
     </div>
 
-
-
-    <div class="page-transition" id="page-transition" aria-hidden="true"></div>
-
-    <!-- WhatsApp floating button — replace 254700000000 with your actual number -->
-    <a class="wa-float" href="https://wa.me/254700000000" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    </a>
-
     <script type="module" src="./app/index.js"></script>
+    <!-- Cal.com embed -->
+    <script type="text/javascript">
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, [L, namespace, ar[2]])} else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", "30min", {origin:"https://cal.com"});
+    Cal.ns["30min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+    </script>
   </body>
 </html>

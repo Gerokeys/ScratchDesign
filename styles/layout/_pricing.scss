@@ -1,245 +1,165 @@
-.pricing {
-  padding: var(--section-medium) 0;
-  background: #f5f4f0;
-  overflow: hidden;
+// ─── Pricing ──────────────────────────────────────────────────────────────────
+.s-pricing {
+  padding: var(--s-lg) 0;
+  border-top: 1px solid var(--ink-3);
 
   &__header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin-bottom: clamp(48px, 8vh, 80px);
     text-align: center;
-    gap: 1.2rem;
-    margin-bottom: 4.8rem;
-
-    @include below(768px) {
-      margin-bottom: 3.2rem;
-    }
-  }
-
-  &__label {
-    display: inline-block;
-    font-size: clamp(9px, 1rem, 1rem);
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: #1a1a1a;
-    opacity: 0.5;
   }
 
   &__title {
-    font-size: clamp(22px, 3vw, 42px);
-    line-height: 1.1;
-    color: #1a1a1a;
-    margin-bottom: 0;
-    max-width: 20ch;
+    font-size: clamp(36px, 6vw, 80px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--paper);
+    margin: 0 0 16px;
+    line-height: 1.0;
   }
 
   &__sub {
-    font-size: clamp(13px, 1.4rem, 1.4rem);
-    color: rgba(26, 26, 26, 0.6);
-    line-height: 1.6;
+    font-size: clamp(15px, 1.4vw, 18px);
+    color: var(--paper-2);
     margin: 0;
-    max-width: 48ch;
   }
 
-  // ── Grid ─────────────────────────────────────────────────────────────────────
-  &__cards {
+  &__grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 2.4rem;
-    align-items: start;
-    width: clamp(700px, 80%, 1100px);
-    margin: 0 auto;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
 
-    @include below(1024px) {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 20px;
-      width: calc(100% - 40px);
-      max-width: 420px;
+    @include below(900px) {
+      grid-template-columns: 1fr;
+      max-width: 440px;
+      margin-inline: auto;
     }
   }
 
-  // ── Card base ────────────────────────────────────────────────────────────────
-  &__card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    padding: 2.8rem 2.4rem;
-    background: #ffffff;
-    border: 2px solid #1a1a1a;
-    border-radius: 12px;
-    box-shadow: 4px 4px 0 0 #1a1a1a;
-    transition: box-shadow 0.25s ease;
-    will-change: transform;
-
-    @include below(768px) {
-      padding: 24px 20px;
-    }
-
-    // Hover shadow only — rotation and float are handled by GSAP FloatingTiles
-    &--1:hover,
-    &--2:hover,
-    &--3:hover { box-shadow: 8px 8px 0 0 #1a1a1a; }
-
-    // Featured / popular card
-    &--featured {
-      background: #fffbeb;
-    }
+  &__note {
+    text-align: center;
+    font-size: 14px;
+    color: var(--paper-2);
+    margin-top: 32px;
+    a { color: var(--ember); text-decoration: none; &:hover { text-decoration: underline; } }
   }
+}
 
-  // ── Popular badge ─────────────────────────────────────────────────────────────
-  &__card-popular {
+.pricing-card {
+  background: var(--ink-1);
+  border: 1px solid var(--ink-3);
+  border-radius: 16px;
+  padding: clamp(28px, 3.5vw, 40px);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1);
+
+  &:hover { border-color: rgba(232, 114, 42, 0.35); transform: translateY(-4px); }
+  &--featured { border-color: var(--ember); background: rgba(232,114,42,0.06); }
+
+  &__badge {
     position: absolute;
-    top: -14px;
-    right: -10px;
-    background: #fbbf24;
-    color: #1a1a1a;
-    border: 2px solid #1a1a1a;
-    border-radius: 999px;
-    padding: 0.4rem 1.2rem;
-    font-size: clamp(9px, 1rem, 1rem);
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--ember);
+    color: var(--white);
+    font-size: 10px;
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    transform: rotate(12deg);
+    padding: 4px 14px;
+    border-radius: 999px;
     white-space: nowrap;
   }
 
-  // ── Icon circle ───────────────────────────────────────────────────────────────
-  &__card-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    border: 2px solid #1a1a1a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.6rem;
-    color: #1a1a1a;
-    flex-shrink: 0;
-  }
+  &__top { margin-bottom: 24px; }
 
-  // ── Tier name & subdesc ───────────────────────────────────────────────────────
-  &__card-tier {
-    font-size: clamp(16px, 1.8rem, 1.8rem);
-    font-weight: 700;
-    color: #1a1a1a;
-    letter-spacing: -0.01em;
-    margin-bottom: 0.4rem;
-  }
-
-  &__card-subdesc {
-    font-size: clamp(12px, 1.3rem, 1.3rem);
-    color: rgba(26, 26, 26, 0.55);
-    line-height: 1.5;
-    margin-bottom: 2rem;
-  }
-
-  // ── Price ─────────────────────────────────────────────────────────────────────
-  &__card-price {
-    display: flex;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 2px solid #1a1a1a;
-  }
-
-  &__card-currency {
-    font-size: clamp(16px, 1.8rem, 1.8rem);
-    font-weight: 600;
-    color: #1a1a1a;
-    padding-bottom: 0.6rem;
-  }
-
-  &__card-amount {
-    font-size: clamp(28px, 3.6vw, 48px);
-    font-weight: 800;
-    line-height: 1;
-    color: #1a1a1a;
-    letter-spacing: -0.03em;
-  }
-
-  &__card-period {
-    font-size: clamp(11px, 1.2rem, 1.2rem);
-    color: rgba(26, 26, 26, 0.45);
-    padding-bottom: 0.6rem;
-    letter-spacing: 0.04em;
-  }
-
-  // ── Feature list ─────────────────────────────────────────────────────────────
-  &__card-features {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 2.8rem;
-  }
-
-  &__card-feature {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-size: clamp(13px, 1.4rem, 1.4rem);
-    color: rgba(26, 26, 26, 0.8);
-    line-height: 1.5;
-
-    &::before {
-      content: '';
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      border: 2px solid #1a1a1a;
-      background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='%231a1a1a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: center;
-      flex-shrink: 0;
-    }
-
-    &--no {
-      color: rgba(26, 26, 26, 0.3);
-      text-decoration: line-through;
-
-      &::before {
-        border-color: rgba(26, 26, 26, 0.2);
-        background-image: url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 8 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L7 7M7 1L1 7' stroke='%23aaa' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
-      }
-    }
-  }
-
-  // ── CTA button ────────────────────────────────────────────────────────────────
-  &__card-cta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.8rem;
-    font-size: clamp(11px, 1.2rem, 1.2rem);
+  &__tier {
+    display: block;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    padding: 1.2rem 2rem;
-    border-radius: 8px;
-    border: 2px solid #1a1a1a;
-    background: #ffffff;
-    color: #1a1a1a;
-    box-shadow: 4px 4px 0 0 #1a1a1a;
+    color: var(--ember);
+    margin-bottom: 8px;
+  }
+
+  &__desc {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--paper-2);
+    margin: 0;
+  }
+
+  &__price {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    padding: 20px 0;
+    border-top: 1px solid var(--ink-3);
+    border-bottom: 1px solid var(--ink-3);
+    margin-bottom: 20px;
+  }
+
+  &__currency {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--paper-2);
+    padding-bottom: 5px;
+  }
+
+  &__amount {
+    font-size: clamp(30px, 4.5vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--paper);
+    line-height: 1;
+  }
+
+  &__features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    li {
+      font-size: 14px;
+      color: var(--paper);
+      padding-left: 20px;
+      position: relative;
+      line-height: 1.5;
+
+      &::before { content: '✓'; position: absolute; left: 0; color: var(--ember); font-size: 11px; font-weight: 700; }
+      &.off { color: var(--paper-2); opacity: 0.4; &::before { content: '—'; color: inherit; } }
+    }
+  }
+
+  &__cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    border: 1px solid var(--ink-3);
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: var(--font);
+    color: var(--paper);
     text-decoration: none;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: border-color 0.25s, background 0.25s, color 0.25s;
     margin-top: auto;
 
-    &:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 6px 6px 0 0 #1a1a1a;
-    }
+    &:hover { border-color: var(--ember); background: var(--ember-dim); color: var(--ember); }
 
     &--featured {
-      background: #fbbf24;
-      color: #1a1a1a;
-      border-color: #1a1a1a;
+      background: var(--ember);
+      border-color: var(--ember);
+      color: var(--white);
+      &:hover { background: #d4621f; border-color: #d4621f; color: var(--white); }
     }
   }
 }
