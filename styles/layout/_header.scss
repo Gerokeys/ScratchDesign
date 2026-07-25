@@ -1,4 +1,4 @@
-// ─── Site nav ─────────────────────────────────────────────────────────────────
+// ─── Site nav — circular monogram + white MENU pill, over the dark hero ───────
 .site-nav {
   position: fixed;
   top: 0;
@@ -7,111 +7,70 @@
   z-index: 500;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 24px;
-  padding: 20px var(--pad);
+  padding: clamp(18px, 2.4vh, 30px) var(--pad);
   transition: padding 0.4s ease, background 0.4s ease;
 
   &.is-scrolled {
     padding-top: 14px;
     padding-bottom: 14px;
-    background: rgba(7, 7, 7, 0.88);
+    background: rgba(28, 28, 28, 0.82);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(240, 237, 232, 0.06);
   }
 
-  &__logo {
-    font-size: 18px;
-    font-weight: 800;
-    letter-spacing: -0.04em;
-    color: var(--paper);
-    text-decoration: none;
-    margin-right: auto;
-    line-height: 1;
-
-    span { color: var(--ember); }
-  }
-
-  &__links {
+  // Circular monogram
+  &__logo a {
     display: flex;
     align-items: center;
-    gap: 36px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    justify-content: center;
+    width: clamp(48px, 4.4vw, 64px);
+    aspect-ratio: 1;
+    border: 2px solid var(--h-text);
+    border-radius: 50%;
+    font-family: var(--font-display);
+    font-size: clamp(17px, 1.5vw, 22px);
+    letter-spacing: 0.01em;
+    color: var(--h-text);
+    text-decoration: none;
+    transition: background 0.3s cubic-bezier(0.16,1,0.3,1), color 0.3s ease;
 
-    a {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--paper-2);
-      text-decoration: none;
-      letter-spacing: 0.01em;
-      transition: color 0.2s ease;
-      &:hover { color: var(--paper); }
-    }
-
-    @include below(900px) { display: none; }
+    &:hover { background: var(--h-text); color: var(--h-bg); }
   }
 
-  &__cta {
+  // White MENU pill with green dot
+  &__burger {
     display: inline-flex;
     align-items: center;
-    padding: 9px 20px;
-    border: 1px solid rgba(240, 237, 232, 0.2);
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 600;
-    font-family: var(--font);
-    color: var(--paper);
-    text-decoration: none;
-    letter-spacing: 0.02em;
-    transition: border-color 0.25s ease, background 0.25s ease;
-
-    &:hover {
-      border-color: var(--ember);
-      background: var(--ember-dim);
-      color: var(--ember);
-    }
-
-    @include below(640px) { display: none; }
-  }
-
-  &__burger {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: none;
+    gap: 14px;
+    padding: clamp(15px, 1.7vh, 21px) clamp(22px, 2.2vw, 32px);
+    background: var(--h-text);
     border: none;
-    color: var(--paper);
-    font-size: 13px;
-    font-family: var(--font);
+    border-radius: 999px;
+    font-family: var(--font-ui);
+    font-size: clamp(12px, 1vw, 15px);
     font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #111;
     cursor: pointer;
-    padding: 8px 0;
-    margin-left: 8px;
+    transition: background 0.3s ease, color 0.3s ease;
 
-    &-label {
-      @include below(480px) { display: none; }
-    }
+    &:hover { background: var(--h-green); color: #fff; }
+    &:hover &-dot { background: #fff; }
 
-    &-icon {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      span {
-        display: block;
-        width: 22px;
-        height: 1.5px;
-        background: var(--paper);
-        transition: transform 0.3s ease, opacity 0.3s ease;
-      }
+    &-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--h-green);
+      transition: background 0.3s ease, transform 0.3s ease;
     }
 
-    &.is-open &-icon span:first-child {
-      transform: translateY(3.25px) rotate(45deg);
-    }
-    &.is-open &-icon span:last-child {
-      transform: translateY(-3.25px) rotate(-45deg);
-    }
+    &.is-open &-dot { transform: scale(0.6); }
   }
+
+  // Legacy elements removed from the markup
+  &__links, &__cta { display: none; }
 }

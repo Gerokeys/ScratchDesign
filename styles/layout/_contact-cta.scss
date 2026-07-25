@@ -1,7 +1,7 @@
 // ─── Contact ──────────────────────────────────────────────────────────────────
 .s-contact {
   padding: var(--s-lg) 0;
-  border-top: 1px solid var(--ink-3);
+  border-top: 1px solid var(--line);
 
   &__inner {
     display: grid;
@@ -20,7 +20,7 @@
     font-size: clamp(36px, 6vw, 80px);
     font-weight: 800;
     letter-spacing: -0.03em;
-    color: var(--paper);
+    color: var(--ink);
     line-height: 1.0;
     margin: 0 0 20px;
     max-width: 12ch;
@@ -29,7 +29,7 @@
   &__sub {
     font-size: clamp(15px, 1.4vw, 17px);
     line-height: 1.75;
-    color: var(--paper-2);
+    color: var(--ink-soft);
     margin: 0 0 40px;
     max-width: 40ch;
   }
@@ -47,9 +47,9 @@
     text-decoration: none;
     font-size: clamp(15px, 1.4vw, 17px);
     font-weight: 600;
-    color: var(--paper);
+    color: var(--ink);
     transition: color 0.2s ease;
-    &:hover { color: var(--ember); }
+    &:hover { color: var(--h-green); }
 
     .label-tag { margin-bottom: 0; }
   }
@@ -84,28 +84,28 @@
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--paper-2);
+    color: var(--ink-soft);
   }
 
   input,
   select,
   textarea {
-    background: var(--ink-1);
-    border: 1px solid var(--ink-3);
+    background: var(--paper-2);
+    border: 1px solid var(--line);
     border-radius: 10px;
     padding: 13px 16px;
     font-size: 14px;
     font-family: var(--font);
     font-weight: 400;
-    color: var(--paper);
+    color: var(--ink);
     outline: none;
     transition: border-color 0.25s ease;
     appearance: none;
     -webkit-appearance: none;
     width: 100%;
 
-    &::placeholder { color: var(--paper-2); opacity: 0.5; }
-    &:focus { border-color: var(--ember); }
+    &::placeholder { color: var(--ink-soft); opacity: 0.5; }
+    &:focus { border-color: var(--h-green); }
   }
 
   textarea { resize: vertical; min-height: 120px; }

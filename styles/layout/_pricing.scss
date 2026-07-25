@@ -1,7 +1,7 @@
 // ─── Pricing ──────────────────────────────────────────────────────────────────
 .s-pricing {
   padding: var(--s-lg) 0;
-  border-top: 1px solid var(--ink-3);
+  border-top: 1px solid var(--line);
 
   &__header {
     margin-bottom: clamp(48px, 8vh, 80px);
@@ -12,14 +12,14 @@
     font-size: clamp(36px, 6vw, 80px);
     font-weight: 800;
     letter-spacing: -0.03em;
-    color: var(--paper);
+    color: var(--ink);
     margin: 0 0 16px;
     line-height: 1.0;
   }
 
   &__sub {
     font-size: clamp(15px, 1.4vw, 18px);
-    color: var(--paper-2);
+    color: var(--ink-soft);
     margin: 0;
   }
 
@@ -38,15 +38,15 @@
   &__note {
     text-align: center;
     font-size: 14px;
-    color: var(--paper-2);
+    color: var(--ink-soft);
     margin-top: 32px;
-    a { color: var(--ember); text-decoration: none; &:hover { text-decoration: underline; } }
+    a { color: var(--h-green); text-decoration: none; &:hover { text-decoration: underline; } }
   }
 }
 
 .pricing-card {
-  background: var(--ink-1);
-  border: 1px solid var(--ink-3);
+  background: var(--paper-2);
+  border: 1px solid var(--line);
   border-radius: 16px;
   padding: clamp(28px, 3.5vw, 40px);
   display: flex;
@@ -55,14 +55,14 @@
   transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1);
 
   &:hover { border-color: rgba(232, 114, 42, 0.35); transform: translateY(-4px); }
-  &--featured { border-color: var(--ember); background: rgba(232,114,42,0.06); }
+  &--featured { border-color: var(--h-green); background: var(--green-dim); }
 
   &__badge {
     position: absolute;
     top: -13px;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--ember);
+    background: var(--h-green);
     color: var(--white);
     font-size: 10px;
     font-weight: 700;
@@ -81,14 +81,14 @@
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--ember);
+    color: var(--h-green);
     margin-bottom: 8px;
   }
 
   &__desc {
     font-size: 14px;
     line-height: 1.65;
-    color: var(--paper-2);
+    color: var(--ink-soft);
     margin: 0;
   }
 
@@ -97,15 +97,15 @@
     align-items: flex-end;
     gap: 4px;
     padding: 20px 0;
-    border-top: 1px solid var(--ink-3);
-    border-bottom: 1px solid var(--ink-3);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
     margin-bottom: 20px;
   }
 
   &__currency {
     font-size: 14px;
     font-weight: 600;
-    color: var(--paper-2);
+    color: var(--ink-soft);
     padding-bottom: 5px;
   }
 
@@ -113,7 +113,7 @@
     font-size: clamp(30px, 4.5vw, 44px);
     font-weight: 800;
     letter-spacing: -0.04em;
-    color: var(--paper);
+    color: var(--ink);
     line-height: 1;
   }
 
@@ -128,13 +128,13 @@
 
     li {
       font-size: 14px;
-      color: var(--paper);
+      color: var(--ink);
       padding-left: 20px;
       position: relative;
       line-height: 1.5;
 
-      &::before { content: '✓'; position: absolute; left: 0; color: var(--ember); font-size: 11px; font-weight: 700; }
-      &.off { color: var(--paper-2); opacity: 0.4; &::before { content: '—'; color: inherit; } }
+      &::before { content: '✓'; position: absolute; left: 0; color: var(--h-green); font-size: 11px; font-weight: 700; }
+      &.off { color: var(--ink-soft); opacity: 0.4; &::before { content: '—'; color: inherit; } }
     }
   }
 
@@ -143,21 +143,21 @@
     align-items: center;
     justify-content: center;
     padding: 12px 24px;
-    border: 1px solid var(--ink-3);
+    border: 1px solid var(--line);
     border-radius: 10px;
     font-size: 14px;
     font-weight: 600;
     font-family: var(--font);
-    color: var(--paper);
+    color: var(--ink);
     text-decoration: none;
     transition: border-color 0.25s, background 0.25s, color 0.25s;
     margin-top: auto;
 
-    &:hover { border-color: var(--ember); background: var(--ember-dim); color: var(--ember); }
+    &:hover { border-color: var(--h-green); background: var(--green-dim); color: var(--h-green); }
 
     &--featured {
-      background: var(--ember);
-      border-color: var(--ember);
+      background: var(--h-green);
+      border-color: var(--h-green);
       color: var(--white);
       &:hover { background: #d4621f; border-color: #d4621f; color: var(--white); }
     }

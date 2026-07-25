@@ -14,45 +14,51 @@ export default class ScrollAnimations {
     this._initNavScroll();
   }
 
-  // ── Hero text: lines slide up staggered after preloader ──────────────────────
+  // ── Hero: headline words rise, chrome fades in ───────────────────────────────
   _initHeroReveal() {
-    const lines = document.querySelectorAll('.s-hero__line');
-    const sub   = document.querySelector('.s-hero__sub');
-    const acts  = document.querySelector('.s-hero__actions');
-    const label = document.querySelector('.s-hero__label');
+    const words  = document.querySelectorAll('.s-hero__word');
+    const fades  = document.querySelectorAll('.s-hero [data-reveal-fade]');
+    const swoosh = document.querySelector('.s-hero__swoosh');
+    const marks  = document.querySelectorAll('.s-hero__dot, .s-hero__ring, .s-hero__honors');
+    const navBits = document.querySelectorAll('.site-nav__logo, .site-nav__burger');
 
-    gsap.set([...lines, sub, acts, label], { opacity: 0, y: 40 });
+    gsap.set(words,   { yPercent: 105, opacity: 0 });
+    gsap.set(fades,   { opacity: 0, y: 20 });
+    gsap.set(marks,   { opacity: 0 });
+    gsap.set(navBits, { opacity: 0, y: -14 });
+    if (swoosh) gsap.set(swoosh, { scale: 0, rotate: -70, opacity: 0 });
 
-    // Called by index.js after preloader completes
+    // Called by index.js after the preloader completes
     window._heroReveal = () => {
-      const tl = gsap.timeline({ delay: 0.15 });
-      tl.to(label, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' });
-      tl.to([...lines], {
-        opacity: 1, y: 0,
-        duration: 1.1,
-        stagger: 0.1,
-        ease: 'power4.out',
-      }, '-=0.4');
-      tl.to([sub, acts], {
-        opacity: 1, y: 0,
-        duration: 0.8,
-        stagger: 0.08,
-        ease: 'power3.out',
-      }, '-=0.6');
+      const tl = gsap.timeline({ delay: 0.1 });
 
-      // Wordmark parallax
-      const wm = document.querySelector('.s-hero__wordmark');
-      if (wm) {
-        ScrollTrigger.create({
-          trigger: '.s-hero',
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
-          onUpdate: (self) => {
-            gsap.set(wm, { yPercent: self.progress * 12 });
-          },
-        });
+      tl.to(navBits, {
+        opacity: 1, y: 0,
+        duration: 0.7, stagger: 0.08, ease: 'power3.out',
+      });
+
+      tl.to(words, {
+        yPercent: 0, opacity: 1,
+        duration: 1.15,
+        stagger: 0.075,
+        ease: 'power4.out',
+      }, '-=0.45');
+
+      if (swoosh) {
+        tl.to(swoosh, {
+          scale: 1, rotate: -8, opacity: 1,
+          duration: 0.9, ease: 'back.out(1.7)',
+        }, '-=0.55');
       }
+
+      tl.to(fades, {
+        opacity: 1, y: 0,
+        duration: 0.8, stagger: 0.1, ease: 'power3.out',
+      }, '-=0.7');
+
+      tl.to(marks, {
+        opacity: 1, duration: 0.7, stagger: 0.08, ease: 'power2.out',
+      }, '-=0.6');
     };
   }
 

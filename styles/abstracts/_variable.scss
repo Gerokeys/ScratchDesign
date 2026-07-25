@@ -1,17 +1,43 @@
 :root {
-  // ── Colour ──────────────────────────────────────────────────────────────────
-  --ink:       #070707;
-  --ink-1:     #0f0f0f;
-  --ink-2:     #1a1a1a;
-  --ink-3:     #272727;
-  --paper:     #f0ede8;
-  --paper-2:   #8a8580;
-  --ember:     #e8722a;
-  --ember-dim: rgba(232, 114, 42, 0.12);
-  --white:     #ffffff;
+  // ── Ink — text & dark UI ──────────────────────────────────────────────────────
+  --ink:       #17140d;   // near-black, warm
+  --ink-2:     #38332a;   // headings on light
+  --ink-soft:  #6a6458;   // body copy
+  --ink-mute:  #9a9488;   // captions / meta
+
+  // ── Paper — backgrounds ───────────────────────────────────────────────────────
+  --paper:     #f5f0e7;   // warm cream base
+  --paper-2:   #fffdf8;   // near-white cards
+  --paper-3:   #ebe3d5;   // alt blocks / soft fills
+  --line:      #e0d8c8;   // hairline borders
+
+  // ── Accent — signature warm orange ────────────────────────────────────────────
+  --ember:     #e5631c;
+  --ember-2:   #ff8636;
+  --ember-dim: rgba(229, 99, 28, 0.10);
+
+  // ── Vibrant organic pops (3D lights, gradients, highlights) ────────────────────
+  --pop-coral:  #ff5b3a;
+  --pop-amber:  #ffb02e;
+  --pop-violet: #6b4dff;
+  --pop-pink:   #ff5c8a;
+
+  --white: #ffffff;
+  --black: #0c0b08;
+
+  // ── Hero (dark editorial shell — chkstepan-style) ─────────────────────────────
+  --h-bg:      #1c1c1c;   // near-black hero canvas
+  --h-line:    #454545;   // contour line tone
+  --h-text:    #ffffff;
+  --h-mute:    #a8a8a8;   // stats / body copy on dark
+  --h-green:   #6e9c7d;   // sage accent
+  --h-green-2: #83b493;
+  --green-dim: rgba(110, 156, 125, 0.12);
 
   // ── Type ────────────────────────────────────────────────────────────────────
   --font: 'Syne', sans-serif;
+  --font-display: 'Anton', 'Syne', sans-serif;
+  --font-ui: 'Inter', system-ui, sans-serif;
 
   // ── Layout ──────────────────────────────────────────────────────────────────
   --pad: clamp(24px, 5vw, 80px);
@@ -22,7 +48,12 @@
   --s-md: clamp(80px, 12vh, 140px);
   --s-lg: clamp(120px, 18vh, 200px);
 
-  // Legacy aliases kept for modal
-  --color-text--dark: var(--paper);
-  --color-background--dark: var(--ink);
+  // ── Radii ─────────────────────────────────────────────────────────────────────
+  --r-sm: 14px;
+  --r-md: 22px;
+  --r-lg: 34px;
+
+  // Legacy aliases kept for modal (now light)
+  --color-text--dark: var(--ink);
+  --color-background--dark: var(--paper-2);
 }

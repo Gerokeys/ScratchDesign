@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5176/)",
+      "Bash(curl -s http://localhost:5176/)",
+      "WebFetch(domain:leftcoast.refractweb.com)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173/)",
+      "Bash(node -e ' *)",
+      "Bash(where chromium-cli *)",
+      "Bash(where puppeteer *)",
+      "Bash(npx --yes playwright --version)",
+      "WebFetch(domain:localhost)",
+      "Bash(npx playwright *)",
+      "Bash(node --input-type=module)"
+    ]
+  }
+}

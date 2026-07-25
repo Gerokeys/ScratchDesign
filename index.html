@@ -22,7 +22,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Anton&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   </head>
   <body>
 
@@ -70,20 +70,11 @@
     <!-- ─── Site nav ──────────────────────────────────────────────────────────── -->
     <header class="site-nav" id="site-nav">
       <div class="site-nav__logo">
-        <a href="/" aria-label="ScratchDesign home">scratch<span>.</span></a>
+        <a href="/" aria-label="ScratchDesign home">SD</a>
       </div>
-      <nav class="site-nav__links" aria-label="Primary navigation">
-        <a href="/work.html">Work</a>
-        <a href="#services">Services</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a href="#contact" class="site-nav__cta" data-magnetic data-cal-link="gerald-shikwe-yarxme/30min" data-cal-config='{"layout":"month_view","theme":"light"}' data-cal-namespace="30min">
-        Start a project
-      </a>
       <button type="button" class="site-nav__burger" id="nav-burger" aria-label="Open menu" aria-expanded="false">
         <span class="site-nav__burger-label">Menu</span>
-        <span class="site-nav__burger-icon"><span></span><span></span></span>
+        <span class="site-nav__burger-dot"></span>
       </button>
     </header>
 
@@ -91,36 +82,57 @@
     <section class="s-hero" id="hero">
       <canvas class="s-hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
 
-      <div class="s-hero__content">
-        <p class="s-hero__label">
-          <span class="s-hero__label-dot"></span>
-          Available for projects
-        </p>
-        <h1 class="s-hero__title" aria-label="Digital experiences that convert">
-          <span class="s-hero__line" data-reveal>Digital</span>
-          <span class="s-hero__line" data-reveal>experiences</span>
-          <span class="s-hero__line s-hero__line--accent" data-reveal>that convert.</span>
-        </h1>
-        <p class="s-hero__sub" data-reveal-fade>
-          Custom websites, brands and digital products built from scratch — for ambitious businesses across Kenya.
-        </p>
-        <div class="s-hero__actions" data-reveal-fade>
-          <a href="#work" class="btn-primary" data-magnetic>
-            See our work
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M13 1L1 13M13 1H4M13 1V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </a>
-          <a href="#contact" class="btn-ghost" data-magnetic data-cal-link="gerald-shikwe-yarxme/30min" data-cal-config='{"layout":"month_view","theme":"light"}' data-cal-namespace="30min">
-            Schedule a call
+      <!-- Floating decorative marks -->
+      <span class="s-hero__dot" aria-hidden="true"></span>
+      <span class="s-hero__ring" aria-hidden="true"></span>
+
+      <!-- Honors tab, right edge -->
+      <aside class="s-hero__honors" aria-hidden="true">
+        <span class="s-hero__honors-mark">W.</span>
+        <span class="s-hero__honors-text">Honors</span>
+      </aside>
+
+      <!-- Stats strip -->
+      <div class="s-hero__stats" data-reveal-fade>
+        <div class="s-hero__stat"><span>9+ Clients Delivered</span></div>
+        <div class="s-hero__stat"><span>5+ Years of Experience</span></div>
+        <div class="s-hero__stat"><span>100% On-Time Delivery</span></div>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="s-hero__title">
+        <span class="s-hero__line s-hero__line--one">
+          <span class="s-hero__word" data-reveal>We</span>
+          <span class="s-hero__word" data-reveal>Build</span>
+          <span class="s-hero__word s-hero__word--mod" data-reveal>Modern
+            <svg class="s-hero__swoosh" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+              <path d="M18 96C46 92 74 70 82 40c3-11-2-22-13-21-10 1-15 12-11 22 6 15 25 22 43 20" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="s-hero__word s-hero__word--accent" data-reveal>Websites</span>
+        </span>
+        <span class="s-hero__line s-hero__line--two">
+          <span class="s-hero__word" data-reveal>That</span>
+          <span class="s-hero__word s-hero__word--ul" data-reveal>Work</span>
+        </span>
+      </h1>
+
+      <!-- About row -->
+      <div class="s-hero__about">
+        <p class="s-hero__about-label" data-reveal-fade>About</p>
+        <div class="s-hero__about-body" data-reveal-fade>
+          <p>
+            We're a Nairobi design studio building modern, fast and reliable websites.
+            We care not only how a site looks, but how it performs, scales and feels for
+            real users — from clean code and responsive layouts to performance and SEO,
+            every project is built with attention to detail and long-term quality in mind.
+          </p>
+          <a href="#services" class="s-hero__more">
+            Learn more
+            <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M13 1L1 13M13 1H4M13 1V10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
           </a>
         </div>
       </div>
-
-      <div class="s-hero__scroll" aria-hidden="true">
-        <div class="s-hero__scroll-line"></div>
-        <span>Scroll</span>
-      </div>
-
-      <p class="s-hero__wordmark" aria-hidden="true">SCRATCH</p>
     </section>
 
     <!-- ─── Client marquee ────────────────────────────────────────────────────── -->

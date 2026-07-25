@@ -1,163 +1,262 @@
-// ─── Hero ─────────────────────────────────────────────────────────────────────
+// ─── Hero — dark editorial, topographic contour background ────────────────────
 .s-hero {
   position: relative;
   min-height: 100vh;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 0 var(--pad) clamp(60px, 10vh, 100px);
+  justify-content: space-between;
+  background: var(--h-bg);
+  color: var(--h-text);
   overflow: hidden;
+  isolation: isolate;
+  padding: clamp(96px, 13vh, 150px) 0 clamp(28px, 4vh, 48px);
 
-  // WebGL canvas — full coverage
+  // The reference sits everything close to the viewport edge
+  --hpad: clamp(20px, 2.2vw, 38px);
+
   &__canvas {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    z-index: 0;
+    z-index: -1;
     display: block;
   }
 
-  // Gradient overlay so text stays legible
-  &__overlay {
+  // ── Floating decorative marks ───────────────────────────────────────────────
+  &__dot,
+  &__ring {
     position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: linear-gradient(
-      to bottom,
-      rgba(7,7,7,0.1) 0%,
-      rgba(7,7,7,0.0) 40%,
-      rgba(7,7,7,0.55) 80%,
-      rgba(7,7,7,0.9) 100%
-    );
+    z-index: 2;
+    pointer-events: none;
   }
 
-  &__content {
+  &__dot {
+    top: clamp(84px, 10vh, 108px);
+    left: clamp(112px, 9vw, 132px);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--h-text);
+    opacity: 0.85;
+  }
+
+  &__ring {
+    top: clamp(128px, 15vh, 152px);
+    left: clamp(196px, 14vw, 224px);
+    width: clamp(48px, 4.4vw, 68px);
+    aspect-ratio: 1;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+
+    @include below(760px) { display: none; }
+  }
+
+  // ── Honors tab, right edge ──────────────────────────────────────────────────
+  &__honors {
+    position: absolute;
+    top: 42%;
+    right: 0;
+    z-index: 3;
+    background: #0d0d0d;
+    border-radius: 14px 0 0 14px;
+    padding: 26px 16px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 26px;
+
+    @include below(900px) { display: none; }
+
+    &-mark {
+      font-family: var(--font-display);
+      font-size: 32px;
+      line-height: 1;
+      color: var(--h-text);
+    }
+
+    &-text {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--h-text);
+      writing-mode: vertical-rl;
+      letter-spacing: 0.02em;
+    }
+  }
+
+  // ── Stats strip ─────────────────────────────────────────────────────────────
+  &__stats {
     position: relative;
     z-index: 2;
-    max-width: 1440px;
-    width: 100%;
-  }
-
-  &__label {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--paper-2);
-    margin-bottom: clamp(20px, 3vh, 36px);
+    justify-content: space-between;
+    gap: clamp(16px, 4vw, 48px);
+    padding: 0 var(--hpad);
+    font-family: var(--font-ui);
+    font-size: clamp(11px, 0.95vw, 14px);
+    font-weight: 400;
+    color: var(--h-mute);
+
+    @include below(760px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
   }
 
-  &__label-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--ember);
-    animation: pulse-dot 2s ease-in-out infinite;
+  &__stat {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+
+    span { flex-shrink: 0; }
+
+    // hairline rules filling the space between items
+    &:not(:last-child)::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.22);
+      margin-left: clamp(12px, 2vw, 24px);
+      min-width: clamp(24px, 12vw, 240px);
+    }
+
+    &:not(:last-child) { flex: 1; }
+
+    @include below(760px) {
+      &:not(:last-child)::after { display: none; }
+      &:not(:last-child) { flex: none; }
+    }
   }
 
-  @keyframes pulse-dot {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.7); }
-  }
-
+  // ── Headline ────────────────────────────────────────────────────────────────
   &__title {
-    display: block;
-    font-size: clamp(56px, 11vw, 168px);
-    font-weight: 800;
-    line-height: 0.9;
-    letter-spacing: -0.04em;
-    color: var(--paper);
-    margin: 0 0 clamp(24px, 4vh, 44px);
+    position: relative;
+    z-index: 2;
+    margin: clamp(20px, 4vh, 48px) 0;
+    font-family: var(--font-display);
+    font-weight: 400;               // Anton ships a single weight
+    font-size: clamp(44px, 8.6vw, 152px);
+    line-height: 1.02;
+    letter-spacing: -0.005em;
+    text-transform: uppercase;
+    color: var(--h-text);
   }
 
   &__line {
     display: block;
-    overflow: hidden;
+    white-space: nowrap;
 
-    &--accent { color: var(--ember); }
-  }
+    // Line 1 bleeds off the right edge, as in the reference
+    &--one {
+      padding-left: var(--hpad);
+      margin-right: -7vw;
+    }
 
-  &__sub {
-    font-size: clamp(15px, 1.4vw, 19px);
-    line-height: 1.65;
-    color: var(--paper-2);
-    max-width: 480px;
-    margin: 0 0 clamp(28px, 5vh, 48px);
-  }
+    // Line 2 is pushed right
+    &--two {
+      padding-left: clamp(24px, 38vw, 720px);
+    }
 
-  &__actions {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
-  // Scroll indicator — bottom right
-  &__scroll {
-    position: absolute;
-    right: var(--pad);
-    bottom: clamp(60px, 10vh, 100px);
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    color: var(--paper-2);
-
-    @include below(640px) { display: none; }
-
-    span {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      writing-mode: vertical-rl;
+    @include below(760px) {
+      white-space: normal;
+      &--one { margin-right: 0; }
+      &--two { padding-left: var(--pad); }
     }
   }
 
-  &__scroll-line {
-    width: 1px;
-    height: 48px;
-    background: rgba(240, 237, 232, 0.2);
-    overflow: hidden;
+  &__word {
+    display: inline-block;
     position: relative;
 
-    &::after {
-      content: '';
-      position: absolute;
-      top: -100%;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--ember);
-      animation: scroll-line 1.8s ease-in-out infinite;
+    &--accent { color: var(--h-green); }
+
+    // Green underline beneath "Work"
+    &--ul {
+      padding-bottom: 0.05em;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 0.05em;
+        background: var(--h-green);
+      }
     }
   }
 
-  @keyframes scroll-line {
-    0% { top: -100%; }
-    100% { top: 100%; }
+  // White swoosh overlapping "Modern"
+  &__swoosh {
+    position: absolute;
+    top: 48%;
+    left: 46%;
+    width: 0.82em;
+    height: 0.82em;
+    transform: translate(-50%, -50%) rotate(-8deg);
+    color: var(--h-text);
+    pointer-events: none;
+
+    @include below(760px) { display: none; }
   }
 
-  // Large background wordmark
-  &__wordmark {
-    position: absolute;
-    bottom: -0.12em;
-    right: -0.02em;
-    z-index: 1;
-    font-size: clamp(100px, 22vw, 340px);
-    font-weight: 800;
-    letter-spacing: -0.05em;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(240, 237, 232, 0.04);
-    user-select: none;
-    pointer-events: none;
-    white-space: nowrap;
-    line-height: 1;
+  // ── About row ───────────────────────────────────────────────────────────────
+  &__about {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(24px, 6vw, 80px);
+    padding: 0 var(--hpad);
+    font-family: var(--font-ui);
+
+    @include below(760px) { flex-direction: column; gap: 12px; }
+  }
+
+  &__about-label {
+    flex-shrink: 0;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--h-text);
+    margin: 0;
+  }
+
+  &__about-body {
+    max-width: 400px;
+    margin-left: clamp(32px, 13vw, 240px);
+    margin-right: auto;
+    text-align: right;
+
+    @include below(760px) {
+      margin-left: 0;
+      text-align: left;
+      max-width: 100%;
+    }
+
+    p {
+      margin: 0;
+      font-size: clamp(12px, 0.95vw, 14px);
+      line-height: 1.55;
+      color: var(--h-mute);
+    }
+  }
+
+  &__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--h-text);
+    text-decoration: none;
+    transition: color 0.25s ease;
+
+    &:hover { color: var(--h-green); }
+    svg { flex-shrink: 0; }
   }
 }

@@ -1,7 +1,7 @@
 // ─── Process ──────────────────────────────────────────────────────────────────
 .s-process {
   padding: var(--s-lg) 0;
-  border-top: 1px solid var(--ink-3);
+  border-top: 1px solid var(--line);
 
   &__header {
     margin-bottom: clamp(48px, 8vh, 80px);
@@ -11,7 +11,7 @@
     font-size: clamp(36px, 6vw, 80px);
     font-weight: 800;
     letter-spacing: -0.03em;
-    color: var(--paper);
+    color: var(--ink);
     margin: 0;
     line-height: 1.05;
   }
@@ -20,7 +20,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1px;
-    background: var(--ink-3);
+    background: var(--line);
 
     @include below(768px) {
       grid-template-columns: repeat(2, 1fr);
@@ -33,26 +33,26 @@
 }
 
 .process-step {
-  background: var(--ink);
+  background: var(--paper);
   padding: clamp(28px, 4vw, 44px);
   display: flex;
   flex-direction: column;
   gap: 14px;
   transition: background 0.3s ease;
-  &:hover { background: var(--ink-1); }
+  &:hover { background: var(--paper-2); }
 
   &__num {
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.14em;
-    color: var(--ember);
+    color: var(--h-green);
   }
 
   &__name {
     font-size: clamp(20px, 2.5vw, 28px);
     font-weight: 800;
     letter-spacing: -0.02em;
-    color: var(--paper);
+    color: var(--ink);
     margin: 0;
     line-height: 1.1;
   }
@@ -60,7 +60,7 @@
   &__desc {
     font-size: 14px;
     line-height: 1.75;
-    color: var(--paper-2);
+    color: var(--ink-soft);
     margin: 0;
   }
 }

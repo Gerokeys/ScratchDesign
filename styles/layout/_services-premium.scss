@@ -1,7 +1,7 @@
 // ─── Services ─────────────────────────────────────────────────────────────────
 .s-services {
   padding: var(--s-lg) 0;
-  border-top: 1px solid var(--ink-3);
+  border-top: 1px solid var(--line);
 
   &__header {
     margin-bottom: clamp(48px, 8vh, 80px);
@@ -11,7 +11,7 @@
     font-size: clamp(36px, 6vw, 80px);
     font-weight: 800;
     letter-spacing: -0.03em;
-    color: var(--paper);
+    color: var(--ink);
     line-height: 1.05;
     max-width: 14ch;
     margin: 0;
@@ -30,7 +30,7 @@
   align-items: start;
   gap: 24px;
   padding: clamp(28px, 5vh, 48px) 0;
-  border-bottom: 1px solid var(--ink-3);
+  border-bottom: 1px solid var(--line);
   cursor: default;
   transition: background 0.3s ease;
 
@@ -40,13 +40,13 @@
 
   &:hover { background: rgba(240, 237, 232, 0.015); }
   &:hover &__detail { max-height: 180px; opacity: 1; }
-  &:hover &__icon { color: var(--ember); }
+  &:hover &__icon { color: var(--h-green); }
 
   &__num {
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.12em;
-    color: var(--paper-2);
+    color: var(--ink-soft);
     padding-top: 8px;
   }
 
@@ -60,13 +60,13 @@
     font-size: clamp(28px, 4.5vw, 60px);
     font-weight: 800;
     letter-spacing: -0.03em;
-    color: var(--paper);
+    color: var(--ink);
     line-height: 1.0;
     margin: 0;
     transition: color 0.2s ease;
   }
 
-  &:hover &__name { color: var(--ember); }
+  &:hover &__name { color: var(--h-green); }
 
   &__detail {
     max-height: 0;
@@ -78,7 +78,7 @@
     p {
       font-size: clamp(14px, 1.3vw, 16px);
       line-height: 1.75;
-      color: var(--paper-2);
+      color: var(--ink-soft);
       margin: 18px 0 20px;
       max-width: 52ch;
     }
@@ -87,7 +87,7 @@
   &__cta {
     font-size: 13px;
     font-weight: 600;
-    color: var(--ember);
+    color: var(--h-green);
     text-decoration: none;
     letter-spacing: 0.02em;
     transition: gap 0.2s ease;
@@ -98,7 +98,7 @@
   }
 
   &__icon {
-    color: var(--ink-3);
+    color: var(--line);
     transition: color 0.3s ease;
     padding-top: 8px;
     flex-shrink: 0;
