@@ -138,10 +138,12 @@
     z-index: 2;
     margin: clamp(20px, 4vh, 48px) 0;
     font-family: var(--font-display);
-    font-weight: 400;               // Anton ships a single weight
+    font-weight: 900;
+    font-stretch: 76%;              // Archivo's variable width axis
+    font-variation-settings: 'wdth' 76, 'wght' 900;
     font-size: clamp(44px, 8.6vw, 152px);
-    line-height: 1.02;
-    letter-spacing: -0.005em;
+    line-height: 1.0;
+    letter-spacing: -0.028em;
     text-transform: uppercase;
     color: var(--h-text);
   }
@@ -207,20 +209,6 @@
         background: var(--h-green);
       }
     }
-  }
-
-  // White swoosh overlapping "Modern"
-  &__swoosh {
-    position: absolute;
-    top: 48%;
-    left: 46%;
-    width: 0.82em;
-    height: 0.82em;
-    transform: translate(-50%, -50%) rotate(-8deg);
-    color: var(--h-text);
-    pointer-events: none;
-
-    @include below(760px) { display: none; }
   }
 
   // ── About row ───────────────────────────────────────────────────────────────

@@ -55,8 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Mobile / overlay nav
   new MobileNav();
 
-  // WebGL hero — start loading shader before preloader finishes
-  new WebGLHero();
+  // Contour field — hero, and continuing behind the approach section
+  new WebGLHero('hero-canvas');
+  new WebGLHero('approach-canvas');
 
   // Scale the headline to span the full viewport width
   new HeroFit();

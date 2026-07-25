@@ -22,7 +22,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Anton&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Archivo:wdth,wght@62..125,100..900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   </head>
   <body>
 
@@ -104,12 +104,14 @@
         <span class="s-hero__line s-hero__line--one">
           <span class="s-hero__word" data-reveal>We</span>
           <span class="s-hero__word" data-reveal>Build</span>
-          <span class="s-hero__word s-hero__word--mod" data-reveal>Modern
-            <svg class="s-hero__swoosh" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-              <path d="M18 96C46 92 74 70 82 40c3-11-2-22-13-21-10 1-15 12-11 22 6 15 25 22 43 20" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-          <span class="s-hero__word s-hero__word--accent" data-reveal data-glitch data-text="Websites">Websites</span>
+          <span class="s-hero__word" data-reveal>Modern</span>
+          <span
+            class="s-hero__word s-hero__word--accent"
+            data-reveal
+            data-glitch
+            data-text="Websites"
+            data-words="Websites,Platforms,Products,Programs,Systems,Brands,Experiences"
+          >Websites</span>
         </span>
         <span class="s-hero__line s-hero__line--two">
           <span class="s-hero__word" data-reveal>That</span>
@@ -146,6 +148,8 @@
 
     <!-- ─── Approach ──────────────────────────────────────────────────────────── -->
     <section class="s-approach" id="approach">
+      <canvas class="s-approach__canvas" id="approach-canvas" aria-hidden="true"></canvas>
+
       <div class="s-approach__head">
         <span class="s-approach__eyebrow">Strategy</span>
         <h2 class="s-approach__title" data-split>How we approach every project</h2>

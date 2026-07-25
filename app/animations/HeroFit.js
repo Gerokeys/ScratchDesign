@@ -20,6 +20,10 @@ export default class HeroFit {
     this._fit();
     window.addEventListener('resize', this._fit);
 
+    // Glitch.js swaps the accent word for ones of different length; it calls
+    // this so the line keeps spanning the viewport through the swap.
+    window._heroRefit = this._fit;
+
     // Re-measure once the display face is actually loaded — measuring against a
     // fallback font otherwise bakes in the wrong ratio.
     document.fonts?.ready.then(this._fit);

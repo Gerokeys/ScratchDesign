@@ -4,10 +4,25 @@ import { gsap } from 'gsap';
 /**
  * WebGLHero — slow-drifting topographic contour lines.
  *
- * A fullscreen GLSL quad renders iso-contours of a domain-warped fbm noise
- * field. The field drifts continuously and gently; it does not respond to the
- * pointer, so the native cursor stays entirely unimpeded.
+ * Renders iso-contours of a domain-warped fbm noise field on a fullscreen quad.
+ * The field drifts gently and bulges *subtly* around the pointer.
+ *
+ * Instantiate once per canvas (hero, approach, …) — pointer state is shared at
+ * module level so the deformation reads as one continuous field across them.
  */
+
+// ── shared pointer state (page coords, updated once for all instances) ────────
+const pointer = { x: 0, y: 0, active: 0 };
+
+if (typeof window !== 'undefined') {
+  window.addEventListener('pointermove', (e) => {
+    pointer.x = e.clientX;
+    pointer.y = e.clientY;
+    pointer.active = 1;
+  }, { passive: true });
+
+  document.addEventListener('pointerleave', () => { pointer.active = 0; });
+}
 
 const VERT = /* glsl */`
 varying vec2 vUv;
@@ -23,8 +38,11 @@ varying vec2 vUv;
 
 uniform float uTime;
 uniform vec2  uRes;
+uniform vec2  uMouse;      // aspect-corrected, same space as p
+uniform float uMouseAmt;   // 0..1 pointer presence
 uniform vec3  uBg;
 uniform vec3  uLine;
+uniform vec3  uAccent;
 uniform float uCount;      // contour density
 
 // ── value noise ──────────────────────────────────────────────────────────────
@@ -57,11 +75,18 @@ float fbm(vec2 p) {
 }
 
 void main() {
-  // aspect-corrected coords
   vec2 uv = vUv;
   vec2 p = (uv - 0.5) * vec2(uRes.x / uRes.y, 1.0);
 
   float t = uTime * 0.014;   // slow, ambient drift
+
+  // ── pointer deformation (deliberately gentle) ──────────────────────────────
+  // Scaling by toM rather than its normalised form keeps displacement at zero
+  // on the cursor itself, so the field bulges instead of spiking to a point.
+  vec2  toM  = p - uMouse;
+  float dM   = length(toM);
+  float infl = exp(-dM * dM * 2.6) * uMouseAmt;
+  p += toM * infl * 0.22;
 
   // ── domain-warped fbm → organic flowing topography ─────────────────────────
   vec2 q = vec2(
@@ -75,40 +100,44 @@ void main() {
   float field = fbm(p * 1.35 + 2.6 * r + t * 0.4);
 
   // ── iso-contours ───────────────────────────────────────────────────────────
-  float f    = field * uCount;
+  float f    = field * uCount * (1.0 + infl * 0.12);
   float w    = fwidth(f);
-  float e    = abs(fract(f - 0.5) - 0.5);    // distance to nearest contour
+  float e    = abs(fract(f - 0.5) - 0.5);
   float mask = 1.0 - smoothstep(0.0, w * 1.35, e);
 
-  // fade lines that get too dense to resolve (avoids moire)
-  mask *= smoothstep(1.6, 0.45, w);
+  mask *= smoothstep(1.6, 0.45, w);   // avoid moire where lines crowd
 
   // ── shading ────────────────────────────────────────────────────────────────
-  // broad variation so some regions read brighter, like a lit topo map
   float sheen = smoothstep(0.30, 0.85, fbm(p * 0.7 - t * 0.5));
   vec3  lineCol = mix(uLine, uLine * 2.1, sheen);
 
-  float intensity = 0.72 + sheen * 0.5;
+  // faint accent warmth right around the pointer
+  lineCol = mix(lineCol, uAccent, clamp(infl * 0.35, 0.0, 0.28));
+
+  float intensity = 0.72 + sheen * 0.5 + infl * 0.18;
 
   vec3 col = mix(uBg, lineCol, clamp(mask * intensity, 0.0, 1.0));
 
-  // gentle vignette — keep the field readable edge to edge
   float vig = smoothstep(1.75, 0.3, length(p));
   col *= 0.9 + vig * 0.1;
 
-  // grain
   col += (hash(uv * 900.0 + fract(uTime)) - 0.5) * 0.015;
 
   gl_FragColor = vec4(col, 1.0);
 }`;
 
 export default class WebGLHero {
-  constructor() {
-    this._canvas = document.getElementById('hero-canvas');
+  /** @param {string|HTMLCanvasElement} target canvas id or element */
+  constructor(target = 'hero-canvas') {
+    this._canvas = typeof target === 'string'
+      ? document.getElementById(target)
+      : target;
     if (!this._canvas) return;
 
     this._reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     this._visible = true;
+    this._mouse   = new THREE.Vector2(0, 0);
+    this._amt     = 0;
 
     this._init();
     this._events();
@@ -140,11 +169,14 @@ export default class WebGLHero {
       );
 
     this._uni = {
-      uTime:  { value: 0 },
-      uRes:   { value: new THREE.Vector2(1, 1) },
-      uBg:    { value: pick('--h-bg',   '#1c1c1c') },
-      uLine:  { value: pick('--h-line', '#454545') },
-      uCount: { value: window.innerWidth < 768 ? 13.0 : 18.0 },
+      uTime:     { value: 0 },
+      uRes:      { value: new THREE.Vector2(1, 1) },
+      uMouse:    { value: this._mouse },
+      uMouseAmt: { value: 0 },
+      uBg:       { value: pick('--h-bg',    '#1c1c1c') },
+      uLine:     { value: pick('--h-line',  '#454545') },
+      uAccent:   { value: pick('--h-green', '#6e9c7d') },
+      uCount:    { value: window.innerWidth < 768 ? 13.0 : 18.0 },
     };
 
     const mat = new THREE.ShaderMaterial({
@@ -160,11 +192,12 @@ export default class WebGLHero {
   }
 
   _resize() {
-    const w = window.innerWidth;
-    const h = this._canvas.clientHeight || window.innerHeight;
+    const r = this._canvas.getBoundingClientRect();
+    const w = Math.max(1, Math.round(r.width));
+    const h = Math.max(1, Math.round(r.height));
     this._renderer.setSize(w, h, false);
     this._uni.uRes.value.set(w, h);
-    this._uni.uCount.value = w < 768 ? 13.0 : 18.0;
+    this._uni.uCount.value = window.innerWidth < 768 ? 13.0 : 18.0;
   }
 
   _events() {
@@ -173,17 +206,31 @@ export default class WebGLHero {
   }
 
   _observe() {
-    const hero = document.querySelector('.s-hero');
-    if (!hero || !('IntersectionObserver' in window)) return;
+    if (!('IntersectionObserver' in window)) return;
     new IntersectionObserver(
       ([entry]) => { this._visible = entry.isIntersecting; },
       { threshold: 0 }
-    ).observe(hero);
+    ).observe(this._canvas);
   }
 
   _loop(time) {
     if (!this._visible) return;
+
+    // Convert the shared page-space pointer into this canvas's local field space
+    const r = this._canvas.getBoundingClientRect();
+    if (r.width && r.height) {
+      const aspect = r.width / r.height;
+      const tx = ((pointer.x - r.left) / r.width  - 0.5) * aspect;
+      const ty = -((pointer.y - r.top) / r.height - 0.5);
+      this._mouse.x += (tx - this._mouse.x) * 0.07;
+      this._mouse.y += (ty - this._mouse.y) * 0.07;
+    }
+
+    this._amt += (pointer.active - this._amt) * 0.05;
+    this._uni.uMouseAmt.value = this._amt;
+
     if (!this._reduced) this._uni.uTime.value = time;
+
     this._renderer.render(this._scene, this._camera);
   }
 
