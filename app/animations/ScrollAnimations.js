@@ -89,7 +89,7 @@ export default class ScrollAnimations {
   // ── Generic fade-up for sections ─────────────────────────────────────────────
   _initFadeUps() {
     const els = document.querySelectorAll(
-      '.process-step, .pricing-card, .service-item, .s-contact__left, .s-contact__form'
+      '.process-step, .pricing-card, .service-item, .approach-item, .s-contact__left, .s-contact__form'
     );
     gsap.set(els, { opacity: 0, y: 32 });
 

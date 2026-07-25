@@ -4,9 +4,10 @@ import Lenis            from 'lenis';
 import { gsap }         from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import Cursor           from './animations/Cursor';
 import Preloader        from './animations/Preloader';
 import WebGLHero        from './animations/WebGLHero';
+import HeroFit          from './animations/HeroFit';
+import Glitch           from './animations/Glitch';
 import ScrollAnimations from './animations/ScrollAnimations';
 import MagneticButton   from './animations/MagneticButton';
 import WorkPreview      from './animations/WorkPreview';
@@ -51,14 +52,14 @@ document.addEventListener('DOMContentLoaded', () => {
 // ── App bootstrap ─────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Custom cursor (desktop only — Cursor class self-guards touch)
-  new Cursor();
-
   // Mobile / overlay nav
   new MobileNav();
 
   // WebGL hero — start loading shader before preloader finishes
   new WebGLHero();
+
+  // Scale the headline to span the full viewport width
+  new HeroFit();
 
   // Preloader → then wire everything that depends on DOM being ready
   new Preloader(() => {
@@ -69,6 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Hero text reveal (set up by ScrollAnimations, fired here)
     window._heroReveal?.();
+
+    // Rare, subtle RGB-split flicker on the accent word
+    new Glitch();
   });
 
   // ── Contact form → WhatsApp ─────────────────────────────────────────────────

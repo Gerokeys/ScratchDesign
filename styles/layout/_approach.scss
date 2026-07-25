@@ -1,0 +1,98 @@
+// ─── Approach — "How we approach every project" ───────────────────────────────
+.s-approach {
+  padding: var(--s-lg) 0 var(--s-md);
+  background: var(--paper);
+
+  &__head {
+    padding: 0 var(--pad);
+    max-width: 1440px;
+    margin: 0 auto clamp(40px, 6vh, 72px);
+  }
+
+  &__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-ui);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--h-green);
+    margin-bottom: 16px;
+
+    &::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--h-green);
+    }
+  }
+
+  &__title {
+    margin: 0;
+    font-size: clamp(32px, 5.2vw, 78px);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    max-width: 16ch;
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+}
+
+// ─── One approach row ─────────────────────────────────────────────────────────
+.approach-item {
+  display: grid;
+  grid-template-columns: clamp(72px, 9vw, 150px) minmax(0, 1fr) minmax(0, 1.35fr);
+  gap: clamp(16px, 3vw, 48px);
+  align-items: start;
+  padding: clamp(26px, 4vh, 46px) var(--pad);
+  max-width: 1440px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.35s ease;
+
+  &:hover { background: var(--paper-2); }
+  &:hover &__name { color: var(--h-green); }
+
+  &__num {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--ink-mute);
+    padding-top: 0.5em;
+  }
+
+  &__name {
+    margin: 0;
+    font-size: clamp(20px, 2.5vw, 36px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    transition: color 0.25s ease;
+  }
+
+  &__desc {
+    margin: 0;
+    font-family: var(--font-ui);
+    font-size: clamp(13px, 1vw, 15.5px);
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+
+  @include below(900px) {
+    grid-template-columns: 48px 1fr;
+    gap: 12px 16px;
+
+    &__desc { grid-column: 2 / -1; }
+  }
+}

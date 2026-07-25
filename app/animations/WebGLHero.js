@@ -2,11 +2,11 @@ import * as THREE from 'three';
 import { gsap } from 'gsap';
 
 /**
- * WebGLHero — flowing topographic contour lines.
+ * WebGLHero — slow-drifting topographic contour lines.
  *
  * A fullscreen GLSL quad renders iso-contours of a domain-warped fbm noise
- * field. The field drifts continuously (time) and is deformed around the
- * pointer: lines bend away from the cursor and brighten near it.
+ * field. The field drifts continuously and gently; it does not respond to the
+ * pointer, so the native cursor stays entirely unimpeded.
  */
 
 const VERT = /* glsl */`
@@ -23,11 +23,8 @@ varying vec2 vUv;
 
 uniform float uTime;
 uniform vec2  uRes;
-uniform vec2  uMouse;      // normalised, aspect-corrected
-uniform float uMouseAmt;   // 0..1 pointer presence
 uniform vec3  uBg;
 uniform vec3  uLine;
-uniform vec3  uAccent;
 uniform float uCount;      // contour density
 
 // ── value noise ──────────────────────────────────────────────────────────────
@@ -64,15 +61,7 @@ void main() {
   vec2 uv = vUv;
   vec2 p = (uv - 0.5) * vec2(uRes.x / uRes.y, 1.0);
 
-  float t = uTime * 0.045;
-
-  // ── pointer deformation ───────────────────────────────────────────────────
-  // Scaling by toM (not its normalised form) keeps the displacement zero at the
-  // cursor itself, so the field bulges smoothly instead of spiking to a point.
-  vec2  toM  = p - uMouse;
-  float dM   = length(toM);
-  float infl = exp(-dM * dM * 2.2) * uMouseAmt;
-  p += toM * infl * 0.85;
+  float t = uTime * 0.014;   // slow, ambient drift
 
   // ── domain-warped fbm → organic flowing topography ─────────────────────────
   vec2 q = vec2(
@@ -86,8 +75,7 @@ void main() {
   float field = fbm(p * 1.35 + 2.6 * r + t * 0.4);
 
   // ── iso-contours ───────────────────────────────────────────────────────────
-  float dens = uCount * (1.0 + infl * 0.45);  // slightly denser near the cursor
-  float f    = field * dens;
+  float f    = field * uCount;
   float w    = fwidth(f);
   float e    = abs(fract(f - 0.5) - 0.5);    // distance to nearest contour
   float mask = 1.0 - smoothstep(0.0, w * 1.35, e);
@@ -100,10 +88,7 @@ void main() {
   float sheen = smoothstep(0.30, 0.85, fbm(p * 0.7 - t * 0.5));
   vec3  lineCol = mix(uLine, uLine * 2.1, sheen);
 
-  // accent tint blooming around the pointer
-  lineCol = mix(lineCol, uAccent, clamp(infl * 0.85, 0.0, 0.55));
-
-  float intensity = 0.72 + sheen * 0.5 + infl * 0.45;
+  float intensity = 0.72 + sheen * 0.5;
 
   vec3 col = mix(uBg, lineCol, clamp(mask * intensity, 0.0, 1.0));
 
@@ -124,11 +109,6 @@ export default class WebGLHero {
 
     this._reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     this._visible = true;
-
-    this._mouse     = new THREE.Vector2(0, 0);
-    this._mouseTgt  = new THREE.Vector2(0, 0);
-    this._amt       = 0;
-    this._amtTgt    = 0;
 
     this._init();
     this._events();
@@ -160,14 +140,11 @@ export default class WebGLHero {
       );
 
     this._uni = {
-      uTime:     { value: 0 },
-      uRes:      { value: new THREE.Vector2(1, 1) },
-      uMouse:    { value: this._mouse },
-      uMouseAmt: { value: 0 },
-      uBg:       { value: pick('--h-bg',    '#1c1c1c') },
-      uLine:     { value: pick('--h-line',  '#3a3a3a') },
-      uAccent:   { value: pick('--h-green', '#6e9c7d') },
-      uCount:    { value: window.innerWidth < 768 ? 13.0 : 18.0 },
+      uTime:  { value: 0 },
+      uRes:   { value: new THREE.Vector2(1, 1) },
+      uBg:    { value: pick('--h-bg',   '#1c1c1c') },
+      uLine:  { value: pick('--h-line', '#454545') },
+      uCount: { value: window.innerWidth < 768 ? 13.0 : 18.0 },
     };
 
     const mat = new THREE.ShaderMaterial({
@@ -193,20 +170,6 @@ export default class WebGLHero {
   _events() {
     this._onResize = () => this._resize();
     window.addEventListener('resize', this._onResize);
-
-    this._onMove = (e) => {
-      const r = this._canvas.getBoundingClientRect();
-      const aspect = r.width / r.height;
-      this._mouseTgt.set(
-        ((e.clientX - r.left) / r.width  - 0.5) * aspect,
-         -((e.clientY - r.top) / r.height - 0.5)
-      );
-      this._amtTgt = 1;
-    };
-    window.addEventListener('pointermove', this._onMove, { passive: true });
-
-    this._onLeave = () => { this._amtTgt = 0; };
-    document.addEventListener('pointerleave', this._onLeave);
   }
 
   _observe() {
@@ -220,21 +183,13 @@ export default class WebGLHero {
 
   _loop(time) {
     if (!this._visible) return;
-
-    this._mouse.lerp(this._mouseTgt, 0.075);
-    this._amt += (this._amtTgt - this._amt) * 0.06;
-
-    this._uni.uMouseAmt.value = this._amt;
     if (!this._reduced) this._uni.uTime.value = time;
-
     this._renderer.render(this._scene, this._camera);
   }
 
   destroy() {
     gsap.ticker.remove(this._loop);
     window.removeEventListener('resize', this._onResize);
-    window.removeEventListener('pointermove', this._onMove);
-    document.removeEventListener('pointerleave', this._onLeave);
     this._renderer?.dispose();
   }
 }

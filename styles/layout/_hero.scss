@@ -150,21 +150,20 @@
     display: block;
     white-space: nowrap;
 
-    // Line 1 bleeds off the right edge, as in the reference
+    // Line 1 is scaled by HeroFit to span exactly 100vw, edge to edge
     &--one {
-      padding-left: var(--hpad);
-      margin-right: -7vw;
+      padding-left: 0;
     }
 
-    // Line 2 is pushed right
+    // Line 2 is pushed right, as in the reference
     &--two {
-      padding-left: clamp(24px, 38vw, 720px);
+      padding-left: clamp(24px, 47vw, 900px);
     }
 
     @include below(760px) {
       white-space: normal;
-      &--one { margin-right: 0; }
-      &--two { padding-left: var(--pad); }
+      &--one { padding-left: var(--hpad); }
+      &--two { padding-left: var(--hpad); }
     }
   }
 
@@ -172,7 +171,27 @@
     display: inline-block;
     position: relative;
 
-    &--accent { color: var(--h-green); }
+    &--accent {
+      color: var(--h-green);
+
+      // ── Rare, low-amplitude RGB-split flicker (see Glitch.js) ──────────────
+      &::before,
+      &::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        color: var(--h-green);
+        opacity: 0;
+        pointer-events: none;
+      }
+      &::before { text-shadow: -2px 0 rgba(130, 235, 180, 0.85); }
+      &::after  { text-shadow:  2px 0 rgba(255, 110, 110, 0.55); }
+
+      &.is-glitch::before { animation: glitch-top 0.3s steps(3) 1; }
+      &.is-glitch::after  { animation: glitch-bot 0.3s steps(3) 1; }
+    }
 
     // Green underline beneath "Work"
     &--ul {
@@ -259,4 +278,54 @@
     &:hover { color: var(--h-green); }
     svg { flex-shrink: 0; }
   }
+
+  // ── Approach pillars strip, divided by hairlines ────────────────────────────
+  &__pillars {
+    position: relative;
+    z-index: 2;
+    margin-top: clamp(28px, 4vh, 48px);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+    font-family: var(--font-ui);
+
+    span {
+      padding: clamp(14px, 1.8vh, 22px) clamp(12px, 1.6vw, 26px);
+      font-size: clamp(11px, 0.85vw, 13.5px);
+      font-weight: 500;
+      color: var(--h-mute);
+      border-right: 1px solid rgba(255, 255, 255, 0.16);
+      transition: color 0.25s ease, background 0.25s ease;
+
+      &:first-child { padding-left: var(--hpad); }
+      &:last-child  { border-right: none; padding-right: var(--hpad); }
+      &:hover { color: var(--h-text); background: rgba(255, 255, 255, 0.03); }
+    }
+
+    @include below(900px) {
+      grid-template-columns: repeat(2, 1fr);
+      span:nth-child(2n) { border-right: none; }
+      span { border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+    }
+
+    @include below(520px) {
+      grid-template-columns: 1fr;
+      span { border-right: none; padding-left: var(--hpad); }
+    }
+  }
+}
+
+// ─── Glitch keyframes — small offsets, brief, deliberately understated ────────
+@keyframes glitch-top {
+  0%, 100% { opacity: 0; transform: translate(0, 0); }
+  20%  { opacity: 1; transform: translate(-2px, -1px); clip-path: inset(0 0 64% 0); }
+  55%  { opacity: 1; transform: translate(2px, 1px);   clip-path: inset(0 0 72% 0); }
+  85%  { opacity: 0.5; transform: translate(-1px, 0);  clip-path: inset(0 0 58% 0); }
+}
+
+@keyframes glitch-bot {
+  0%, 100% { opacity: 0; transform: translate(0, 0); }
+  25%  { opacity: 1; transform: translate(2px, 1px);   clip-path: inset(62% 0 0 0); }
+  60%  { opacity: 1; transform: translate(-2px, -1px); clip-path: inset(70% 0 0 0); }
+  90%  { opacity: 0.5; transform: translate(1px, 0);   clip-path: inset(56% 0 0 0); }
 }

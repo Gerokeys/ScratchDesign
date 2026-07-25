@@ -88,32 +88,10 @@ body {
   }
 }
 
-// ─── Custom cursor ────────────────────────────────────────────────────────────
-@media (hover: hover) {
-  body, a, button, [role='button'], [tabindex='0'] { cursor: none; }
-  input, textarea, select { cursor: text; }
-}
-
-.c-cursor {
-  position: fixed;
-  top: 0; left: 0;
-  z-index: 9999;
-  pointer-events: none;
-  mix-blend-mode: difference;
-}
-.c-cursor__inner {
-  width: 12px;
-  height: 12px;
-  background: var(--white);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.35s cubic-bezier(0.16,1,0.3,1),
-              height 0.35s cubic-bezier(0.16,1,0.3,1),
-              border-radius 0.35s ease;
-}
-.c-cursor.is-hovering .c-cursor__inner { width: 52px; height: 52px; }
-.c-cursor.is-text     .c-cursor__inner { width: 2px; height: 22px; border-radius: 2px; }
-.c-cursor.is-hidden   .c-cursor__inner { opacity: 0; }
+// ─── Cursor ───────────────────────────────────────────────────────────────────
+// The native cursor is used. The custom-cursor element is kept in the markup
+// (and Cursor.js on disk) but disabled, so it can be re-enabled easily.
+.c-cursor { display: none; }
 
 // ─── Preloader ────────────────────────────────────────────────────────────────
 .preloader {
