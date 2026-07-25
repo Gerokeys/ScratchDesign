@@ -28,11 +28,18 @@
 
     <!-- ─── Preloader ─────────────────────────────────────────────────────────── -->
     <div class="preloader" id="preloader" aria-hidden="true">
-      <div class="preloader__count" id="preloader-counter">0</div>
-      <div class="preloader__foot">
-        <div class="preloader__track"><div class="preloader__bar" id="preloader-bar"></div></div>
-        <span class="preloader__label">Loading</span>
+      <div class="preloader__lines" id="preloader-lines">
+        <span class="preloader__line"></span>
+        <span class="preloader__line"></span>
+        <span class="preloader__line"></span>
+        <span class="preloader__line"></span>
+        <span class="preloader__line"></span>
+        <span class="preloader__line"></span>
+        <span class="preloader__line"></span>
+        <span class="preloader__line"></span>
+        <span class="preloader__line"></span>
       </div>
+      <div class="preloader__count"><span id="preloader-counter">0</span>%</div>
     </div>
 
     <!-- ─── Custom cursor ─────────────────────────────────────────────────────── -->
@@ -136,31 +143,20 @@
         </div>
       </div>
 
-      <!-- Approach pillars strip, divided by lines -->
-      <div class="s-hero__pillars" data-reveal-fade>
-        <span>Performance First</span>
-        <span>Clean &amp; Scalable Code</span>
-        <span>Modern UI &amp; UX</span>
-        <span>SEO &amp; Best Practices</span>
-        <span>Reliable Delivery</span>
-      </div>
-    </section>
+      <!-- Strategy band — lives inside the hero viewport -->
+      <div class="s-strategy" id="approach">
+        <div class="s-strategy__grid" aria-hidden="true"></div>
 
-    <!-- ─── Approach ──────────────────────────────────────────────────────────── -->
-    <section class="s-approach" id="approach">
-      <canvas class="s-approach__canvas" id="approach-canvas" aria-hidden="true"></canvas>
+        <div class="s-strategy__copy">
+          <span class="s-strategy__eyebrow" data-reveal-fade>Strategy</span>
+          <h2 class="s-strategy__title">
+            <span class="s-strategy__title-a" data-reveal-fade>How we approach</span>
+            <span class="s-strategy__title-b" data-reveal-fade>every project?</span>
+          </h2>
+        </div>
 
-      <div class="s-approach__head">
-        <div class="s-approach__grid" aria-hidden="true"></div>
-
-        <span class="s-approach__eyebrow">Strategy</span>
-        <h2 class="s-approach__title">
-          <span class="s-approach__title-a">How we approach</span>
-          <span class="s-approach__title-b">every project?</span>
-        </h2>
-
-        <div class="s-approach__badge" aria-hidden="true">
-          <svg class="s-approach__badge-ring" viewBox="0 0 140 140">
+        <div class="s-strategy__badge" aria-hidden="true">
+          <svg class="s-strategy__badge-ring" viewBox="0 0 140 140">
             <defs>
               <path id="badge-arc" d="M70,70 m-55,0 a55,55 0 1,1 110,0 a55,55 0 1,1 -110,0" />
             </defs>
@@ -169,7 +165,7 @@
             </text>
           </svg>
 
-          <svg class="s-approach__badge-globe" viewBox="0 0 48 48" fill="none">
+          <svg class="s-strategy__badge-globe" viewBox="0 0 48 48" fill="none">
             <circle cx="24" cy="24" r="17" />
             <ellipse cx="24" cy="24" rx="6.5" ry="17" />
             <ellipse cx="24" cy="24" rx="13" ry="17" />
@@ -177,52 +173,6 @@
           </svg>
         </div>
       </div>
-
-      <ol class="s-approach__list">
-        <li class="approach-item">
-          <span class="approach-item__num">01</span>
-          <h3 class="approach-item__name">Performance First</h3>
-          <p class="approach-item__desc">
-            We build sites that load fast and feel smooth from the first interaction.
-            Performance is considered at every stage — structure, assets, code quality
-            and optimisation — so results hold up on real devices and real networks.
-          </p>
-        </li>
-        <li class="approach-item">
-          <span class="approach-item__num">02</span>
-          <h3 class="approach-item__name">Clean &amp; Scalable Code</h3>
-          <p class="approach-item__desc">
-            We write clear, well-structured, maintainable code built for the long term.
-            That keeps a project easy to understand, update and extend as it grows,
-            instead of accumulating complexity.
-          </p>
-        </li>
-        <li class="approach-item">
-          <span class="approach-item__num">03</span>
-          <h3 class="approach-item__name">Modern UI &amp; UX</h3>
-          <p class="approach-item__desc">
-            Interfaces are designed for clarity, usability and consistency. Layouts,
-            interactions and responsive behaviour are crafted to feel intuitive across
-            every device and screen size.
-          </p>
-        </li>
-        <li class="approach-item">
-          <span class="approach-item__num">04</span>
-          <h3 class="approach-item__name">SEO &amp; Best Practices</h3>
-          <p class="approach-item__desc">
-            Every build starts on modern best practices with strong technical SEO
-            foundations in place from day one — not bolted on after launch.
-          </p>
-        </li>
-        <li class="approach-item">
-          <span class="approach-item__num">05</span>
-          <h3 class="approach-item__name">Reliable Delivery</h3>
-          <p class="approach-item__desc">
-            From first idea to final launch, we keep communication clear, planning
-            thoughtful and delivery dependable at every stage of the process.
-          </p>
-        </li>
-      </ol>
     </section>
 
     <!-- ─── Client marquee ────────────────────────────────────────────────────── -->

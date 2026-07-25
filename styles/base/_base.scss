@@ -98,52 +98,50 @@ body {
   position: fixed;
   inset: 0;
   z-index: 10000;
-  background: var(--paper);
+  background: var(--h-bg);
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  will-change: clip-path;
+
+  // Vertical rules that climb bottom→top in five discrete steps
+  &__lines {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 clamp(20px, 4vw, 70px);
+    pointer-events: none;
+  }
+
+  &__line {
+    width: 1.5px;
+    height: 100%;
+    background: linear-gradient(
+      to top,
+      rgba(255, 255, 255, 0.10),
+      var(--h-green)
+    );
+    transform: scaleY(0);
+    transform-origin: bottom center;
+    will-change: transform;
+  }
 
   &__count {
-    font-size: clamp(80px, 18vw, 220px);
-    font-weight: 800;
-    color: var(--ink);
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-stretch: 76%;
+    font-variation-settings: 'wdth' 76, 'wght' 900;
+    font-size: clamp(70px, 15vw, 190px);
+    color: var(--h-text);
     line-height: 1;
-    letter-spacing: -0.06em;
+    letter-spacing: -0.05em;
     font-variant-numeric: tabular-nums;
     user-select: none;
-  }
-
-  &__foot {
-    position: absolute;
-    bottom: clamp(24px, 4vw, 48px);
-    left: var(--pad);
-    right: var(--pad);
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  &__track {
-    flex: 1;
-    height: 1.5px;
-    background: var(--line);
-    overflow: hidden;
-  }
-
-  &__bar {
-    height: 100%;
-    background: var(--h-green);
-    transform: scaleX(0);
-    transform-origin: left;
-  }
-
-  &__label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-mute);
-    user-select: none;
+    mix-blend-mode: difference;
   }
 }
 

@@ -1,43 +1,28 @@
-// ─── Approach — "How we approach every project" ───────────────────────────────
-.s-approach {
+// ─── Strategy band — sits at the foot of the hero, inside its 100vh ───────────
+// Deliberately a flat charcoal panel: no WebGL field behind it, so it reads as
+// a distinct surface against the hero's darker, animated backdrop.
+.s-strategy {
   position: relative;
-  padding: 0 0 var(--s-md);
-  background: var(--h-bg);
-  color: var(--h-text);
+  flex-shrink: 0;
+  margin-top: clamp(20px, 3vh, 40px);
+  padding: clamp(24px, 3.4vh, 44px) var(--hpad) clamp(24px, 3.4vh, 44px);
+  background: var(--h-charcoal);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
   overflow: hidden;
-  isolation: isolate;
 
-  // Contour field continues from the hero, and stays pointer-reactive here
-  &__canvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    display: block;
-  }
-
-  // ── Header block: full-bleed column rules, stepped title, rotating badge ────
-  &__head {
-    position: relative;
-    z-index: 1;
-    padding: clamp(120px, 20vh, 230px) var(--hpad, 34px) clamp(48px, 8vh, 90px);
-    margin-bottom: clamp(32px, 5vh, 64px);
-    border-top: 1px solid rgba(255, 255, 255, 0.16);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-  }
-
-  // Vertical rules dividing the block into 9 equal columns
+  // Vertical rules dividing the band into 9 equal columns
   &__grid {
     position: absolute;
     inset: 0;
     pointer-events: none;
     background-image: repeating-linear-gradient(
       to right,
-      rgba(255, 255, 255, 0.19) 0,
-      rgba(255, 255, 255, 0.19) 1px,
+      rgba(255, 255, 255, 0.15) 0,
+      rgba(255, 255, 255, 0.15) 1px,
       transparent 1px,
       transparent calc(100% / 9)
     );
@@ -45,34 +30,36 @@
     @include below(760px) {
       background-image: repeating-linear-gradient(
         to right,
-        rgba(255, 255, 255, 0.11) 0,
-        rgba(255, 255, 255, 0.11) 1px,
+        rgba(255, 255, 255, 0.15) 0,
+        rgba(255, 255, 255, 0.15) 1px,
         transparent 1px,
         transparent calc(100% / 4)
       );
     }
   }
 
-  &__eyebrow {
+  &__copy {
     position: relative;
     z-index: 1;
+  }
+
+  &__eyebrow {
+    display: block;
     font-family: var(--font-ui);
     font-size: clamp(12px, 0.95vw, 15px);
     font-weight: 400;
     letter-spacing: 0.01em;
     color: var(--h-text);
-    margin-bottom: clamp(14px, 2vh, 24px);
+    margin-bottom: clamp(8px, 1.2vh, 16px);
   }
 
   &__title {
-    position: relative;
-    z-index: 1;
     margin: 0;
     font-family: var(--font-display);
     font-weight: 900;
     font-stretch: 76%;
     font-variation-settings: 'wdth' 76, 'wght' 900;
-    font-size: clamp(30px, 4.2vw, 68px);
+    font-size: clamp(26px, 3.4vw, 58px);
     line-height: 1.02;
     letter-spacing: -0.04em;
     text-transform: uppercase;
@@ -82,16 +69,16 @@
   }
 
   // Second line steps in, as in the reference
-  &__title-b { padding-left: clamp(24px, 4vw, 78px); }
+  &__title-b { padding-left: clamp(20px, 3.4vw, 64px); }
 
   // ── Rotating wordmark badge ─────────────────────────────────────────────────
   &__badge {
-    position: absolute;
-    right: clamp(24px, 4vw, 80px);
-    bottom: clamp(32px, 6vh, 76px);
+    position: relative;
     z-index: 1;
-    width: clamp(88px, 9vw, 140px);
+    flex-shrink: 0;
+    width: clamp(76px, 7.5vw, 118px);
     aspect-ratio: 1;
+    margin-right: clamp(44px, 5vw, 76px);   // clear the floating WhatsApp button
     display: grid;
     place-items: center;
 
@@ -124,70 +111,12 @@
     }
   }
 
-  &__list {
-    position: relative;
-    z-index: 1;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.16);
+  @include below(760px) {
+    padding-top: 22px;
+    padding-bottom: 22px;
   }
 }
 
 @keyframes badge-spin {
   to { transform: rotate(360deg); }
-}
-
-// ─── One approach row ─────────────────────────────────────────────────────────
-.approach-item {
-  display: grid;
-  grid-template-columns: clamp(72px, 9vw, 150px) minmax(0, 1fr) minmax(0, 1.35fr);
-  gap: clamp(16px, 3vw, 48px);
-  align-items: start;
-  padding: clamp(26px, 4vh, 46px) var(--pad);
-  max-width: 1440px;
-  margin: 0 auto;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
-  transition: background 0.35s ease;
-
-  &:hover { background: rgba(255, 255, 255, 0.035); }
-  &:hover &__name { color: var(--h-green); }
-
-  &__num {
-    font-family: var(--font-ui);
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    color: var(--h-mute);
-    padding-top: 0.6em;
-  }
-
-  &__name {
-    margin: 0;
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-stretch: 78%;
-    font-variation-settings: 'wdth' 78, 'wght' 900;
-    font-size: clamp(20px, 2.6vw, 40px);
-    line-height: 1.04;
-    letter-spacing: -0.025em;
-    text-transform: uppercase;
-    color: var(--h-text);
-    transition: color 0.25s ease;
-  }
-
-  &__desc {
-    margin: 0;
-    font-family: var(--font-ui);
-    font-size: clamp(13px, 1vw, 15.5px);
-    line-height: 1.65;
-    color: var(--h-mute);
-  }
-
-  @include below(900px) {
-    grid-template-columns: 48px 1fr;
-    gap: 12px 16px;
-
-    &__desc { grid-column: 2 / -1; }
-  }
 }

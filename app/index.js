@@ -55,9 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Mobile / overlay nav
   new MobileNav();
 
-  // Contour field — hero, and continuing behind the approach section
+  // Contour field — hero only; the strategy band is a flat charcoal panel
   new WebGLHero('hero-canvas');
-  new WebGLHero('approach-canvas');
 
   // Scale the headline to span the full viewport width
   new HeroFit();
