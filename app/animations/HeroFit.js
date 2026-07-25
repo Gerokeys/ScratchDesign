@@ -8,6 +8,7 @@
  */
 
 const MIN_VW = 760;   // below this the headline wraps and CSS clamp() takes over
+const FILL   = 0.90;  // fraction of the viewport the long line spans
 
 export default class HeroFit {
   constructor() {
@@ -48,7 +49,7 @@ export default class HeroFit {
 
     if (!width) { this._title.style.fontSize = ''; return; }
 
-    this._title.style.fontSize = `${(REF * vw) / width}px`;
+    this._title.style.fontSize = `${(REF * vw * FILL) / width}px`;
   }
 
   destroy() {

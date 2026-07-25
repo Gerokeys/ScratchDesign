@@ -143,7 +143,7 @@
     font-variation-settings: 'wdth' 76, 'wght' 900;
     font-size: clamp(44px, 8.6vw, 152px);
     line-height: 1.0;
-    letter-spacing: -0.028em;
+    letter-spacing: -0.045em;
     text-transform: uppercase;
     color: var(--h-text);
   }
@@ -152,14 +152,14 @@
     display: block;
     white-space: nowrap;
 
-    // Line 1 is scaled by HeroFit to span exactly 100vw, edge to edge
+    // Line 1 is scaled by HeroFit to span 90vw, inset from both edges
     &--one {
-      padding-left: 0;
+      padding-left: 5vw;
     }
 
     // Line 2 is pushed right, as in the reference
     &--two {
-      padding-left: clamp(24px, 47vw, 900px);
+      padding-left: clamp(24px, 50vw, 950px);
     }
 
     @include below(760px) {
