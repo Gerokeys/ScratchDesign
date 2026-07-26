@@ -4,9 +4,71 @@ import SplitType from 'split-type';
 
 gsap.registerPlugin(ScrollTrigger);
 
+/**
+ * Put every above-the-fold element into its hidden start state and expose
+ * `window._heroReveal()` to play them in.
+ *
+ * This MUST run before the preloader starts, not from its completion callback:
+ * the overlay is removed before that callback fires, so hiding there would show
+ * a fully-rendered page through the closing wipe and then snap it away.
+ * Called while the overlay still covers the viewport, nothing is ever seen.
+ */
+export function prepareHero() {
+  const words    = document.querySelectorAll('.s-hero__word');
+  const fades    = document.querySelectorAll('.s-hero [data-reveal-fade]');
+  const marks    = document.querySelectorAll(
+    '.s-hero__dot, .s-hero__ring, .s-hero__honors, .s-strategy__badge'
+  );
+  const navBits  = document.querySelectorAll('.site-nav__logo, .site-nav__burger');
+  const band     = document.querySelector('.s-strategy');
+  const floaters = document.querySelectorAll('.wa-float');
+
+  gsap.set(words,    { yPercent: 105, opacity: 0 });
+  gsap.set(fades,    { opacity: 0, y: 20 });
+  gsap.set(marks,    { opacity: 0 });
+  gsap.set(navBits,  { opacity: 0, y: -14 });
+  gsap.set(floaters, { opacity: 0, scale: 0.6 });
+  // The hero clips its overflow, so the band hides fully off its own bottom edge
+  if (band) gsap.set(band, { yPercent: 100 });
+
+  window._heroReveal = () => {
+    const tl = gsap.timeline({ delay: 0.12 });
+
+    tl.to(navBits, {
+      opacity: 1, y: 0,
+      duration: 0.7, stagger: 0.08, ease: 'power3.out',
+    });
+
+    tl.to(words, {
+      yPercent: 0, opacity: 1,
+      duration: 1.15, stagger: 0.075, ease: 'power4.out',
+    }, '-=0.45');
+
+    if (band) {
+      tl.to(band, {
+        yPercent: 0,
+        duration: 1.0, ease: 'power4.out',
+      }, '-=0.85');
+    }
+
+    tl.to(fades, {
+      opacity: 1, y: 0,
+      duration: 0.8, stagger: 0.1, ease: 'power3.out',
+    }, '-=0.7');
+
+    tl.to(marks, {
+      opacity: 1, duration: 0.7, stagger: 0.08, ease: 'power2.out',
+    }, '-=0.6');
+
+    tl.to(floaters, {
+      opacity: 1, scale: 1,
+      duration: 0.6, ease: 'back.out(1.6)',
+    }, '-=0.45');
+  };
+}
+
 export default class ScrollAnimations {
   constructor() {
-    this._initHeroReveal();
     this._initSplitTitles();
     this._initFadeUps();
     this._initStats();
@@ -14,53 +76,6 @@ export default class ScrollAnimations {
     this._initNavScroll();
   }
 
-  // ── Hero: headline words rise, chrome fades in ───────────────────────────────
-  _initHeroReveal() {
-    const words  = document.querySelectorAll('.s-hero__word');
-    const fades  = document.querySelectorAll('.s-hero [data-reveal-fade]');
-    const swoosh = document.querySelector('.s-hero__swoosh');
-    const marks  = document.querySelectorAll('.s-hero__dot, .s-hero__ring, .s-hero__honors');
-    const navBits = document.querySelectorAll('.site-nav__logo, .site-nav__burger');
-
-    gsap.set(words,   { yPercent: 105, opacity: 0 });
-    gsap.set(fades,   { opacity: 0, y: 20 });
-    gsap.set(marks,   { opacity: 0 });
-    gsap.set(navBits, { opacity: 0, y: -14 });
-    if (swoosh) gsap.set(swoosh, { scale: 0, rotate: -70, opacity: 0 });
-
-    // Called by index.js after the preloader completes
-    window._heroReveal = () => {
-      const tl = gsap.timeline({ delay: 0.1 });
-
-      tl.to(navBits, {
-        opacity: 1, y: 0,
-        duration: 0.7, stagger: 0.08, ease: 'power3.out',
-      });
-
-      tl.to(words, {
-        yPercent: 0, opacity: 1,
-        duration: 1.15,
-        stagger: 0.075,
-        ease: 'power4.out',
-      }, '-=0.45');
-
-      if (swoosh) {
-        tl.to(swoosh, {
-          scale: 1, rotate: -8, opacity: 1,
-          duration: 0.9, ease: 'back.out(1.7)',
-        }, '-=0.55');
-      }
-
-      tl.to(fades, {
-        opacity: 1, y: 0,
-        duration: 0.8, stagger: 0.1, ease: 'power3.out',
-      }, '-=0.7');
-
-      tl.to(marks, {
-        opacity: 1, duration: 0.7, stagger: 0.08, ease: 'power2.out',
-      }, '-=0.6');
-    };
-  }
 
   // ── Split headings: chars fall in on scroll ───────────────────────────────────
   _initSplitTitles() {

@@ -141,7 +141,8 @@
     font-weight: 900;
     font-stretch: 76%;              // Archivo's variable width axis
     font-variation-settings: 'wdth' 76, 'wght' 900;
-    font-size: clamp(44px, 8.6vw, 152px);
+    // Only applies below HeroFit's threshold, where the headline wraps
+    font-size: clamp(46px, 13vw, 152px);
     line-height: 1.0;
     letter-spacing: -0.045em;
     text-transform: uppercase;
@@ -152,9 +153,9 @@
     display: block;
     white-space: nowrap;
 
-    // Line 1 is scaled by HeroFit to span 90vw, inset from both edges
+    // HeroFit scales the type so indent + content reaches 96vw
     &--one {
-      padding-left: 5vw;
+      padding-left: 2vw;
     }
 
     // Line 2 is pushed right, as in the reference
@@ -162,7 +163,14 @@
       padding-left: clamp(24px, 50vw, 950px);
     }
 
-    @include below(760px) {
+    // Tablet: let line 1 wrap so HeroFit can scale to the widest resulting
+    // line — far larger type than squeezing all of it onto one line.
+    @include below(1100px) {
+      &--one { white-space: normal; }
+      &--two { padding-left: clamp(16px, 7vw, 110px); }
+    }
+
+    @include below(620px) {
       white-space: normal;
       &--one { padding-left: var(--hpad); }
       &--two { padding-left: var(--hpad); }

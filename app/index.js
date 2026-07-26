@@ -8,7 +8,7 @@ import Preloader        from './animations/Preloader';
 import WebGLHero        from './animations/WebGLHero';
 import HeroFit          from './animations/HeroFit';
 import Glitch           from './animations/Glitch';
-import ScrollAnimations from './animations/ScrollAnimations';
+import ScrollAnimations, { prepareHero } from './animations/ScrollAnimations';
 import MagneticButton   from './animations/MagneticButton';
 import WorkPreview      from './animations/WorkPreview';
 import FeaturedWork     from './animations/FeaturedWork';
@@ -23,7 +23,11 @@ const lenis = new Lenis({
 });
 lenis.on('scroll', ScrollTrigger.update);
 gsap.ticker.add((time) => lenis.raf(time * 1000));
-gsap.ticker.lagSmoothing(0);
+// Keep GSAP's default lag smoothing rather than disabling it: with smoothing
+// off, a single long blocking frame (module eval, font load, WebGL init)
+// advances the ticker by the full elapsed wall time and swallows short
+// timelines whole — the preloader would jump straight from 0% to done.
+gsap.ticker.lagSmoothing(500, 33);
 window.lenis = lenis;
 
 // ── Page transitions ──────────────────────────────────────────────────────────
@@ -60,6 +64,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Scale the headline to span the full viewport width
   new HeroFit();
+
+  // Hide everything above the fold *before* the preloader runs, while the
+  // overlay still covers the viewport — otherwise the page shows through the
+  // closing wipe and then snaps away.
+  prepareHero();
 
   // Preloader → then wire everything that depends on DOM being ready
   new Preloader(() => {
