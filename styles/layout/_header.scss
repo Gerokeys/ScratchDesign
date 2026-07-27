@@ -10,10 +10,12 @@
   justify-content: space-between;
   gap: 24px;
   padding: clamp(18px, 2.4vh, 30px) var(--pad);
+  // Clear the Dynamic Island / notch (0 elsewhere)
+  padding-top: calc(clamp(18px, 2.4vh, 30px) + env(safe-area-inset-top, 0px));
   transition: padding 0.4s ease, background 0.4s ease;
 
   &.is-scrolled {
-    padding-top: 14px;
+    padding-top: calc(14px + env(safe-area-inset-top, 0px));
     padding-bottom: 14px;
     background: rgba(28, 28, 28, 0.82);
     backdrop-filter: blur(16px);

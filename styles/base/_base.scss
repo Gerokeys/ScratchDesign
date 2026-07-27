@@ -23,7 +23,9 @@ html.lenis, html.lenis body { height: auto; }
 
 // ─── Root ─────────────────────────────────────────────────────────────────────
 html {
-  background: var(--paper);
+  // The canvas background fills the iOS safe-area strip and any overscroll,
+  // so it takes the dark hero colour rather than the page's cream.
+  background: var(--h-bg);
   color: var(--ink);
   font-family: var(--font);
   -webkit-font-smoothing: antialiased;

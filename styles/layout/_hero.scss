@@ -10,7 +10,8 @@
   color: var(--h-text);
   overflow: hidden;
   isolation: isolate;
-  padding: clamp(104px, 13.5vh, 152px) 0 0;   // strategy band sits flush at the foot
+  // Strategy band sits flush at the foot; top clears the notch on iOS
+  padding: calc(clamp(104px, 13.5vh, 152px) + env(safe-area-inset-top, 0px)) 0 0;
 
   // The reference sits everything close to the viewport edge
   --hpad: clamp(20px, 2.2vw, 38px);
