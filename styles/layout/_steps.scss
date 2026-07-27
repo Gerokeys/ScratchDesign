@@ -5,19 +5,49 @@
 // and the tiles render as a plain scrolling list.
 .s-steps {
   position: relative;
-  background: var(--h-bg);
+  // Continues the strategy band's charcoal panel and column rules
+  background: var(--h-charcoal);
   padding: clamp(10px, 2vh, 26px) 0;
+  overflow: hidden;
 
-  --tile-h: 17.5svh;
-  --tile-gap: 22px;
+  // Same 9-column rules as .s-strategy__grid, so the grid runs unbroken from
+  // the hero's strategy band into this section.
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.15) 0,
+      rgba(255, 255, 255, 0.15) 1px,
+      transparent 1px,
+      transparent calc(100% / 9)
+    );
+
+    @include below(760px) {
+      background-image: repeating-linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.15) 0,
+        rgba(255, 255, 255, 0.15) 1px,
+        transparent 1px,
+        transparent calc(100% / 4)
+      );
+    }
+  }
+
+  --tile-h: 17svh;
+  // Resting gap — enough for the column rules to read between the tiles
+  --tile-gap: 18px;
   // Near-full-bleed: only a hairline of the dark page shows at either edge
   --tile-inset: clamp(4px, 0.3vw, 9px);
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: var(--tile-gap);
-  min-height: 100svh;
+  // Block flow: each .step-card is a scroll slot, and StackCards.js pins the
+  // tiles at stepped offsets so they stick to the top and pile up.
+  display: block;
+  padding-bottom: 0;          // last tile sits flush against the next section
+  --slot: 40svh;              // scroll distance between one tile and the next
 
   @include below(860px) {
     // Plain list on mobile: no pinning, tiles size to their content
@@ -31,8 +61,15 @@
 
 .step-card {
   position: relative;
-  height: var(--tile-h);
-  flex: none;
+  z-index: 1;                 // above the column rules
+  min-height: var(--slot);    // scroll room for the pin
+  margin-bottom: var(--tile-gap);
+
+  // The last tile holds the completed pile on screen before releasing
+  &:last-child {
+    min-height: 100svh;
+    margin-bottom: 0;
+  }
 
   @include below(860px) {
     height: auto;
@@ -44,7 +81,7 @@
   &__inner {
     position: relative;
     overflow: hidden;
-    height: 100%;
+    height: var(--tile-h);
     width: calc(100% - (2 * var(--tile-inset)));
     margin-inline: auto;
 
@@ -104,7 +141,7 @@
     margin: 0;
     font-family: var(--font-hero);
     font-weight: 800;
-    font-size: clamp(26px, 3.5vw, 64px);
+    font-size: clamp(30px, 4.1vw, 78px);
     line-height: 0.94;
     letter-spacing: -0.01em;
     text-transform: uppercase;
@@ -116,10 +153,11 @@
     }
   }
 
-  // Paragraph sits directly beneath its heading
+  // Paragraph sits beneath its heading, indented in from the title
   &__desc {
     margin: 0;
     max-width: 62ch;
+    margin-left: clamp(16px, 4.5vw, 96px);
     padding-right: clamp(70px, 9vw, 190px);   // clear the numeral
     font-family: var(--font-ui);
     font-size: clamp(13px, 0.95vw, 16.5px);
@@ -128,6 +166,7 @@
     opacity: 0.75;
 
     @include below(860px) {
+      margin-left: 0;
       padding-right: 88px;
       font-size: 12.5px;
       line-height: 1.5;
