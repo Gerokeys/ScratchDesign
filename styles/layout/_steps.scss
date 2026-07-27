@@ -1,98 +1,93 @@
-// ─── Approach steps — tiles that pile up on scroll ────────────────────────────
-// Each .step-card is a tall scroll slot; the visible tile is __inner, one band
-// high. StackCards.js pins each slot at a stepped offset, so tiles accumulate
-// and once all five are pinned they together fill the viewport.
+// ─── Approach steps — all tiles visible, compressing into a stack on scroll ───
+// Every tile is on screen from the start, spaced apart. As the section scrubs,
+// the gaps close and each tile recedes (scale + slight fade) behind the one
+// below it. Driven by StackCards.js; below 860px the pin is dropped entirely
+// and the tiles render as a plain scrolling list.
 .s-steps {
   position: relative;
   background: var(--h-bg);
+  padding: clamp(20px, 4vh, 48px) 0;
 
-  // 5 tiles x 20svh = 100svh once the pile is complete
-  --band: 20svh;
-  --tile-gap: 10px;
+  --tile-h: 17svh;
+  --tile-gap: 18px;
   --tile-inset: clamp(10px, 1vw, 22px);
 
-  // Scroll distance between one tile arriving and the next. This is the flow
-  // height of each slot — at 100svh you had to scroll a whole screen before the
-  // next tile appeared; keeping it just above the band height means the next
-  // one follows almost immediately while still stacking one at a time.
-  --slot: 34svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--tile-gap);
+  min-height: 100svh;
 
   @include below(860px) {
-    --band: 17svh;
-    --tile-gap: 8px;
-    --slot: 30svh;
+    // Plain list on mobile: no pinning, tiles size to their content
+    display: block;
+    min-height: 0;
+    padding: clamp(28px, 6vh, 56px) 0;
+    // Wider tiles on small screens, so the numeral has room beside the text
+    --tile-inset: 8px;
   }
 }
 
 .step-card {
   position: relative;
-  min-height: var(--slot);
+  height: var(--tile-h);
+  flex: none;
 
-  // The last slot still needs a screen of room so the completed pile can be
-  // read before the section releases.
-  &:last-child { min-height: 100svh; }
+  @include below(860px) {
+    height: auto;
+    min-height: 132px;   // vertical room for the numeral beside the text
+    margin-bottom: 10px;
+    &:last-child { margin-bottom: 0; }
+  }
 
   &__inner {
     position: relative;
     overflow: hidden;
-    // Darkening uses a scrim, not opacity — a translucent tile would let the
-    // previous (still-pinned) tile ghost through it.
-    --dim: 0;
-
-    // One band tall, inset from the viewport edges and capped on wide screens
-    height: calc(var(--band) - var(--tile-gap));
+    height: 100%;
     width: min(100% - (2 * var(--tile-inset)), 1680px);
     margin-inline: auto;
 
-    display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr) auto;
-    align-items: center;
-    gap: clamp(16px, 2.5vw, 48px);
-    padding: 0 clamp(18px, 2.2vw, 44px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(4px, 0.8vh, 10px);
+    padding: clamp(10px, 1.6vh, 22px) clamp(18px, 2.2vw, 44px);
 
-    will-change: transform;
+    will-change: transform, opacity;
     transform-origin: center center;
 
     @include below(860px) {
-      grid-template-columns: 1fr;
-      align-content: center;
-      gap: 4px;
-      padding: 0 16px;
+      padding: 20px 18px 22px;
+      gap: 8px;
     }
   }
 
-  &__inner::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: #000;
-    opacity: var(--dim);
-    pointer-events: none;
-  }
-
-  // Ghosted numeral, right-hand edge
+  // Ghosted numeral, far right — the decorative display face
   &__inner::before {
     content: attr(data-num);
     position: absolute;
-    right: clamp(10px, 1.4vw, 30px);
+    right: clamp(12px, 1.6vw, 36px);
     top: 50%;
     transform: translateY(-50%);
-    font-family: var(--font-hero);
-    font-weight: 800;
-    font-size: calc(var(--band) - var(--tile-gap));
-    line-height: 0.78;
-    letter-spacing: -0.02em;
+    font-family: 'Dirtyline', var(--font-hero);
+    font-weight: 400;
+    font-size: calc(var(--tile-h) * 0.88);
+    line-height: 0.8;
     color: currentColor;
-    opacity: 0.11;
+    opacity: 0.16;
     pointer-events: none;
     user-select: none;
 
-    @include below(860px) { display: none; }
+    @include below(860px) {
+      font-size: 62px;
+      right: 16px;
+      opacity: 0.16;
+    }
   }
 
   // ── Colour alternation ──────────────────────────────────────────────────────
   &--light &__inner {
-    background: #f0f0ee;
+    background: #efefed;
     color: var(--black);
   }
 
@@ -101,52 +96,43 @@
     color: var(--black);
   }
 
-  &__head {
-    grid-column: 1;
-    min-width: 0;
-  }
+  &__head { min-width: 0; }
 
-  // The small ordinal is replaced by the ghosted numeral
-  &__num { display: none; }
-
-  // Same display face as the hero headline
+  // Display face, matching the hero headline
   &__title {
     margin: 0;
     font-family: var(--font-hero);
     font-weight: 800;
-    font-size: clamp(24px, 3.4vw, 62px);
-    line-height: 0.92;
+    font-size: clamp(22px, 2.9vw, 52px);
+    line-height: 0.94;
     letter-spacing: -0.01em;
     text-transform: uppercase;
     white-space: nowrap;
 
     @include below(860px) {
       white-space: normal;
-      font-size: clamp(20px, 5.4vw, 32px);
+      font-size: clamp(22px, 6.4vw, 34px);
     }
   }
 
-  // Paired with the UI grotesque, centred between title and numeral
+  // Paragraph sits directly beneath its heading
   &__desc {
-    grid-column: 2;
     margin: 0;
-    max-width: 52ch;
+    max-width: 62ch;
+    padding-right: clamp(70px, 9vw, 190px);   // clear the numeral
     font-family: var(--font-ui);
-    font-size: clamp(11px, 0.82vw, 14px);
+    font-size: clamp(11px, 0.8vw, 14px);
+    font-weight: 400;
     line-height: 1.5;
-    text-align: center;
     opacity: 0.72;
 
     @include below(860px) {
-      grid-column: 1;
-      text-align: left;
-      font-size: 11.5px;
-      line-height: 1.45;
-      // Keep the tile readable at band height on small screens
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+      padding-right: 88px;
+      font-size: 12.5px;
+      line-height: 1.5;
     }
   }
+
+  // The old inline ordinal is replaced by the ghosted numeral
+  &__num { display: none; }
 }
