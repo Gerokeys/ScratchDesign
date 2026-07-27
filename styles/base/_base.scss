@@ -33,7 +33,10 @@ html {
 }
 body {
   background: var(--paper);
-  overflow-x: hidden;
+  // `clip`, not `hidden`: overflow-x:hidden forces overflow-y to compute as
+  // `auto`, making body a scroll container — which silently breaks every
+  // position:sticky descendant (the stacking strips in particular).
+  overflow-x: clip;
 }
 
 ::selection { background: var(--h-green); color: var(--white); }

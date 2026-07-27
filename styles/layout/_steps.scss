@@ -1,0 +1,121 @@
+// ─── Approach steps — full-bleed strips that pile up on scroll ────────────────
+// Each strip pins at a stepped offset (index x --band), so instead of one strip
+// replacing the last, they accumulate: every strip already passed leaves a band
+// visible at the top. Once all five are pinned they exactly fill the viewport.
+.s-steps {
+  position: relative;
+  background: var(--h-bg);
+
+  // 5 strips x 20svh = 100svh when the pile is complete
+  --band: 20svh;
+
+  @include below(860px) {
+    --band: 17svh;
+  }
+}
+
+.step-card {
+  // Pinning is handled by StackCards.js (ScrollTrigger), not `position: sticky`
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+
+  &__inner {
+    position: relative;
+    overflow: hidden;
+    // Darkening uses a scrim, not opacity — a translucent strip would let the
+    // previous (still-pinned) strip ghost through it.
+    --dim: 0;
+    width: 100%;
+    min-height: 100svh;
+    padding: clamp(58px, 7vh, 86px) var(--pad) clamp(32px, 5vh, 64px);
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 0.78fr);
+    grid-template-rows: auto;
+    gap: clamp(18px, 3vw, 44px);
+    // Top-anchored so the number and title stay inside the visible band once
+    // the strip is covered.
+    align-content: start;
+    will-change: transform;
+    transform-origin: center top;
+
+    @include below(860px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+      gap: clamp(14px, 2.4vh, 26px);
+      padding-top: clamp(44px, 6vh, 66px);
+    }
+  }
+
+  &__inner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #000;
+    opacity: var(--dim);
+    pointer-events: none;
+  }
+
+  // ── Colour alternation ──────────────────────────────────────────────────────
+  &--light &__inner {
+    background: #ffffff;
+    color: var(--black);
+  }
+
+  &--green &__inner {
+    background: var(--h-green);
+    color: var(--black);
+  }
+
+  &__head {
+    grid-column: 1;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 1.2vh, 16px);
+  }
+
+  &__num {
+    font-family: var(--font-ui);
+    font-size: clamp(11px, 0.9vw, 14px);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    opacity: 0.5;
+  }
+
+  // Same display face as the hero headline, sized to sit inside one band
+  &__title {
+    margin: 0;
+    font-family: var(--font-hero);
+    font-weight: 800;
+    font-size: clamp(30px, 4.6vw, 78px);
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    @include below(860px) {
+      white-space: normal;
+      font-size: clamp(26px, 7vw, 44px);
+    }
+  }
+
+  // Paired with the UI grotesque, set against the title
+  &__desc {
+    grid-column: 2;
+    align-self: end;
+    justify-self: end;
+    max-width: 42ch;
+    margin: 0;
+    font-family: var(--font-ui);
+    font-size: clamp(13px, 1.05vw, 17px);
+    line-height: 1.6;
+    opacity: 0.75;
+
+    @include below(860px) {
+      grid-column: 1;
+      justify-self: start;
+      align-self: start;
+      max-width: 100%;
+    }
+  }
+}

@@ -8,6 +8,7 @@ import Preloader        from './animations/Preloader';
 import WebGLHero        from './animations/WebGLHero';
 import HeroFit          from './animations/HeroFit';
 import Glitch           from './animations/Glitch';
+import StackCards       from './animations/StackCards';
 import ScrollAnimations, { prepareHero } from './animations/ScrollAnimations';
 import MagneticButton   from './animations/MagneticButton';
 import WorkPreview      from './animations/WorkPreview';
@@ -76,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new FeaturedWork();
     new WorkPreview();
     new MagneticButton();
+    new StackCards();
 
     // Hero text reveal (set up by ScrollAnimations, fired here)
     window._heroReveal?.();
