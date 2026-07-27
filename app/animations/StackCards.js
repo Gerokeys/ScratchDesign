@@ -51,11 +51,14 @@ export default class StackCards {
         // the animation comes from the pin, not from padding under each tile.
         const tl = gsap.timeline({
           scrollTrigger: {
-            trigger: this._section,
-            start: 'top top',
+            // Triggered off the first tile, but pinning the whole section: the
+            // sequence begins as that tile's bottom edge crosses mid-screen,
+            // rather than when the section reaches the top of the viewport.
+            trigger: this._cards[0],
+            start: 'bottom center',
             end: () => `+=${window.innerHeight * 0.55 * steps}`,
             scrub: 0.55,
-            pin: true,
+            pin: this._section,
             invalidateOnRefresh: true,
           },
         });
