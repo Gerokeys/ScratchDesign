@@ -43,11 +43,12 @@
   // Near-full-bleed: only a hairline of the dark page shows at either edge
   --tile-inset: clamp(4px, 0.3vw, 9px);
 
-  // Block flow: each .step-card is a scroll slot, and StackCards.js pins the
-  // tiles at stepped offsets so they stick to the top and pile up.
-  display: block;
+  // The tiles sit close together at their natural height — no scroll slots, so
+  // no dead space between them. StackCards.js pins the whole section instead,
+  // which is where the scroll distance for the animation comes from.
+  display: flex;
+  flex-direction: column;
   padding-bottom: 0;          // last tile sits flush against the next section
-  --slot: 40svh;              // scroll distance between one tile and the next
 
   @include below(860px) {
     // Plain list on mobile: no pinning, tiles size to their content
@@ -62,14 +63,12 @@
 .step-card {
   position: relative;
   z-index: 1;                 // above the column rules
-  min-height: var(--slot);    // scroll room for the pin
+  height: var(--tile-h);
+  flex: none;
+  // Animated to a negative value, so the gap closes into a slight overlap
   margin-bottom: var(--tile-gap);
 
-  // The last tile holds the completed pile on screen before releasing
-  &:last-child {
-    min-height: 100svh;
-    margin-bottom: 0;
-  }
+  &:last-child { margin-bottom: 0; }
 
   @include below(860px) {
     height: auto;
@@ -81,7 +80,7 @@
   &__inner {
     position: relative;
     overflow: hidden;
-    height: var(--tile-h);
+    height: 100%;
     width: calc(100% - (2 * var(--tile-inset)));
     margin-inline: auto;
 

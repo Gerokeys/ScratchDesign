@@ -45,31 +45,33 @@ export default class StackCards {
         const n = this._cards.length;
         const steps = n - 1;            // the front tile never recedes
         const tweens = [];
-        const last = this._cards[n - 1];
 
-        // Pin offset per tile. Slightly less than the tile height, so the
-        // finished pile overlaps a little rather than sitting spaced apart.
-        const stride = () => {
-          const inner = this._cards[0].querySelector('.step-card__inner');
-          const h = inner ? inner.getBoundingClientRect().height : 0;
-          return Math.max(24, h - OVERLAP);
-        };
-
-        // Stick each tile to the top at its own offset so they pile up
-        this._cards.forEach((card, i) => {
-          tweens.push({
-            scrollTrigger: ScrollTrigger.create({
-              trigger: card,
-              start: () => `top top+=${i * stride()}`,
-              endTrigger: last,
-              end: 'bottom bottom',
-              pin: true,
-              pinSpacing: false,
-              invalidateOnRefresh: true,
-            }),
-            kill() {},
-          });
+        // The section itself is pinned, so the tiles can sit at their natural
+        // height with only a small gap between them — the scroll distance for
+        // the animation comes from the pin, not from padding under each tile.
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: this._section,
+            start: 'top top',
+            end: () => `+=${window.innerHeight * 0.55 * steps}`,
+            scrub: 0.55,
+            pin: true,
+            invalidateOnRefresh: true,
+          },
         });
+        tweens.push({ scrollTrigger: tl.scrollTrigger, kill: () => tl.kill() });
+
+        // Gaps close over the sequence, ending slightly overlapped
+        tl.fromTo(
+          this._section,
+          { '--tile-gap': `${GAP_OPEN}px` },
+          {
+            '--tile-gap': `${-OVERLAP}px`,
+            duration: steps,
+            ease: 'none',
+          },
+          0,
+        );
 
         // Each tile carries its own trigger and starts the moment *its* bottom
         // edge crosses mid-screen — so a tile can begin receding while the one
@@ -81,42 +83,23 @@ export default class StackCards {
           const inner = card.querySelector('.step-card__inner');
           if (!inner) return;
 
-          // Both phases are driven by the *next* tile's approach, not this
-          // tile's own position: once pinned, a tile stops moving, so its own
-          // edges never cross a trigger line again.
-          const next = this._cards[i + 1];
+          // Phase 1 — width. Occupies this tile's own slice of the timeline, so
+          // it finishes narrowing before the next tile starts.
+          // scaleX, not scale: a uniform scale shrinks height too, which opens
+          // a vertical gap under each receding tile and stops the pile closing.
+          tl.to(inner, {
+            scaleX:   1 - depth * SCALE_STEP,
+            duration: 0.6,
+            ease:     'none',
+          }, i);
 
-          // Phase 1 — width. Completes as the next tile reaches mid-screen, so
-          // this tile has finished narrowing before the next one starts.
-          tweens.push(gsap.to(inner, {
-            // scaleX, not scale: a uniform scale shrinks height too, which
-            // opens a vertical gap under each receding tile and stops the pile
-            // ever closing up.
-            scaleX: 1 - depth * SCALE_STEP,
-            ease:   'none',
-            scrollTrigger: {
-              trigger: next,
-              start: 'top bottom',
-              end:   'top center',
-              scrub: 0.55,
-              invalidateOnRefresh: true,
-            },
-          }));
-
-          // Phase 2 — blur and fade, afterwards, while the next tile travels
-          // the rest of the way in and stacks on top.
-          tweens.push(gsap.to(inner, {
-            opacity: 1 - depth * FADE_STEP,
-            filter:  `blur(${(depth * BLUR_STEP).toFixed(2)}px)`,
-            ease:    'none',
-            scrollTrigger: {
-              trigger: next,
-              start: 'top center',
-              end:   () => `top top+=${(i + 1) * stride()}`,
-              scrub: 0.55,
-              invalidateOnRefresh: true,
-            },
-          }));
+          // Phase 2 — blur and fade, afterwards, as the next tile stacks on top
+          tl.to(inner, {
+            opacity:  1 - depth * FADE_STEP,
+            filter:   `blur(${(depth * BLUR_STEP).toFixed(2)}px)`,
+            duration: 0.75,
+            ease:     'none',
+          }, i + 0.6);
         });
 
         return () => tweens.forEach((t) => { t.scrollTrigger?.kill(); t.kill(); });
