@@ -49,29 +49,36 @@ export default class StackCards {
         // Scroll-linked, not pinned. Pinning the section from a trigger that
         // fires before it reaches the top leaves a pin-spacer gap above it,
         // which shows the cream page background as a band over the tiles.
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            // Sequence begins as the first tile's bottom edge crosses mid-screen
-            trigger: this._cards[0],
-            start: 'bottom center',
-            end: () => `+=${window.innerHeight * 0.55 * steps}`,
-            scrub: 0.55,
-            invalidateOnRefresh: true,
-          },
-        });
-        tweens.push({ scrollTrigger: tl.scrollTrigger, kill: () => tl.kill() });
+        //
+        // Each tile carries its own trigger rather than sharing one timeline:
+        // a single timeline long enough for five tiles outruns the section,
+        // which is only about one viewport tall, so only the first tile ever
+        // animated while the section was still on screen.
 
-        // Gaps close over the sequence, ending slightly overlapped
-        tl.fromTo(
+        // One tile's height plus its gap — the scroll gap between successive
+        // tiles reaching mid-screen, and so the length of each phase.
+        const stride = () => {
+          const inner = this._cards[0].querySelector('.step-card__inner');
+          const h = inner ? inner.getBoundingClientRect().height : 0;
+          return Math.max(80, h + GAP_OPEN);
+        };
+
+        // Gaps close across the whole run
+        tweens.push(gsap.fromTo(
           this._section,
           { '--tile-gap': `${GAP_OPEN}px` },
           {
             '--tile-gap': `${-OVERLAP}px`,
-            duration: steps,
             ease: 'none',
+            scrollTrigger: {
+              trigger: this._cards[0],
+              start: 'bottom center',
+              end: () => `+=${stride() * steps}`,
+              scrub: 0.55,
+              invalidateOnRefresh: true,
+            },
           },
-          0,
-        );
+        ));
 
         // Each tile carries its own trigger and starts the moment *its* bottom
         // edge crosses mid-screen — so a tile can begin receding while the one
@@ -83,23 +90,35 @@ export default class StackCards {
           const inner = card.querySelector('.step-card__inner');
           if (!inner) return;
 
-          // Phase 1 — width. Occupies this tile's own slice of the timeline, so
-          // it finishes narrowing before the next tile starts.
-          // scaleX, not scale: a uniform scale shrinks height too, which opens
-          // a vertical gap under each receding tile and stops the pile closing.
-          tl.to(inner, {
-            scaleX:   1 - depth * SCALE_STEP,
-            duration: 0.6,
-            ease:     'none',
-          }, i);
+          // Phase 1 — width, starting when THIS tile's own bottom edge reaches
+          // mid-screen. scaleX, not scale: a uniform scale shrinks height too,
+          // which opens a gap under each receding tile so the pile never closes.
+          tweens.push(gsap.to(inner, {
+            scaleX: 1 - depth * SCALE_STEP,
+            ease:   'none',
+            scrollTrigger: {
+              trigger: card,
+              start: 'bottom center',
+              end: () => `+=${stride()}`,
+              scrub: 0.55,
+              invalidateOnRefresh: true,
+            },
+          }));
 
-          // Phase 2 — blur and fade, afterwards, as the next tile stacks on top
-          tl.to(inner, {
-            opacity:  1 - depth * FADE_STEP,
-            filter:   `blur(${(depth * BLUR_STEP).toFixed(2)}px)`,
-            duration: 0.75,
-            ease:     'none',
-          }, i + 0.6);
+          // Phase 2 — blur and fade, starting when the tile BELOW reaches
+          // mid-screen, so this one recedes as the next begins its own turn.
+          tweens.push(gsap.to(inner, {
+            opacity: 1 - depth * FADE_STEP,
+            filter:  `blur(${(depth * BLUR_STEP).toFixed(2)}px)`,
+            ease:    'none',
+            scrollTrigger: {
+              trigger: this._cards[i + 1],
+              start: 'bottom center',
+              end: () => `+=${stride()}`,
+              scrub: 0.55,
+              invalidateOnRefresh: true,
+            },
+          }));
         });
 
         return () => tweens.forEach((t) => { t.scrollTrigger?.kill(); t.kill(); });
