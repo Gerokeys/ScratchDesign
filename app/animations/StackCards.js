@@ -19,7 +19,7 @@ gsap.registerPlugin(ScrollTrigger);
  */
 
 const GAP_OPEN   = 18;     // px between tiles at rest
-const OVERLAP    = 14;     // px each tile sits over the one before, once stacked
+const OVERLAP    = 6;      // px each tile sits over the one before, once stacked
 const SCALE_STEP = 0.05;   // per tile of depth → the deepest lands at 0.80
 const FADE_STEP  = 0.075;  // opacity lost per tile of depth
 const BLUR_STEP  = 1.3;    // px of blur per tile of depth
@@ -89,8 +89,11 @@ export default class StackCards {
           // Phase 1 — width. Completes as the next tile reaches mid-screen, so
           // this tile has finished narrowing before the next one starts.
           tweens.push(gsap.to(inner, {
-            scale: 1 - depth * SCALE_STEP,
-            ease:  'none',
+            // scaleX, not scale: a uniform scale shrinks height too, which
+            // opens a vertical gap under each receding tile and stops the pile
+            // ever closing up.
+            scaleX: 1 - depth * SCALE_STEP,
+            ease:   'none',
             scrollTrigger: {
               trigger: next,
               start: 'top bottom',
