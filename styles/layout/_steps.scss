@@ -1,49 +1,52 @@
-// ─── Approach steps — full-bleed strips that pile up on scroll ────────────────
-// Each strip pins at a stepped offset (index x --band), so instead of one strip
-// replacing the last, they accumulate: every strip already passed leaves a band
-// visible at the top. Once all five are pinned they exactly fill the viewport.
+// ─── Approach steps — tiles that pile up on scroll ────────────────────────────
+// Each .step-card is a tall scroll slot; the visible tile is __inner, one band
+// high. StackCards.js pins each slot at a stepped offset, so tiles accumulate
+// and once all five are pinned they together fill the viewport.
 .s-steps {
   position: relative;
   background: var(--h-bg);
 
-  // 5 strips x 20svh = 100svh when the pile is complete
+  // 5 tiles x 20svh = 100svh once the pile is complete
   --band: 20svh;
+  --tile-gap: 10px;
+  --tile-inset: clamp(10px, 1vw, 22px);
 
   @include below(860px) {
     --band: 17svh;
+    --tile-gap: 8px;
   }
 }
 
 .step-card {
-  // Pinning is handled by StackCards.js (ScrollTrigger), not `position: sticky`
   position: relative;
   min-height: 100svh;
-  display: flex;
 
   &__inner {
     position: relative;
     overflow: hidden;
-    // Darkening uses a scrim, not opacity — a translucent strip would let the
-    // previous (still-pinned) strip ghost through it.
+    // Darkening uses a scrim, not opacity — a translucent tile would let the
+    // previous (still-pinned) tile ghost through it.
     --dim: 0;
-    width: 100%;
-    min-height: 100svh;
-    padding: clamp(58px, 7vh, 86px) var(--pad) clamp(32px, 5vh, 64px);
+
+    // One band tall, inset from the viewport edges and capped on wide screens
+    height: calc(var(--band) - var(--tile-gap));
+    width: min(100% - (2 * var(--tile-inset)), 1680px);
+    margin-inline: auto;
+
     display: grid;
-    grid-template-columns: 1fr minmax(0, 0.78fr);
-    grid-template-rows: auto;
-    gap: clamp(18px, 3vw, 44px);
-    // Top-anchored so the number and title stay inside the visible band once
-    // the strip is covered.
-    align-content: start;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr) auto;
+    align-items: center;
+    gap: clamp(16px, 2.5vw, 48px);
+    padding: 0 clamp(18px, 2.2vw, 44px);
+
     will-change: transform;
-    transform-origin: center top;
+    transform-origin: center center;
 
     @include below(860px) {
       grid-template-columns: 1fr;
-      grid-template-rows: auto auto;
-      gap: clamp(14px, 2.4vh, 26px);
-      padding-top: clamp(44px, 6vh, 66px);
+      align-content: center;
+      gap: 4px;
+      padding: 0 16px;
     }
   }
 
@@ -56,9 +59,29 @@
     pointer-events: none;
   }
 
+  // Ghosted numeral, right-hand edge
+  &__inner::before {
+    content: attr(data-num);
+    position: absolute;
+    right: clamp(10px, 1.4vw, 30px);
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-hero);
+    font-weight: 800;
+    font-size: calc(var(--band) - var(--tile-gap));
+    line-height: 0.78;
+    letter-spacing: -0.02em;
+    color: currentColor;
+    opacity: 0.11;
+    pointer-events: none;
+    user-select: none;
+
+    @include below(860px) { display: none; }
+  }
+
   // ── Colour alternation ──────────────────────────────────────────────────────
   &--light &__inner {
-    background: #ffffff;
+    background: #f0f0ee;
     color: var(--black);
   }
 
@@ -69,53 +92,50 @@
 
   &__head {
     grid-column: 1;
-    display: flex;
-    flex-direction: column;
-    gap: clamp(8px, 1.2vh, 16px);
+    min-width: 0;
   }
 
-  &__num {
-    font-family: var(--font-ui);
-    font-size: clamp(11px, 0.9vw, 14px);
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    opacity: 0.5;
-  }
+  // The small ordinal is replaced by the ghosted numeral
+  &__num { display: none; }
 
-  // Same display face as the hero headline, sized to sit inside one band
+  // Same display face as the hero headline
   &__title {
     margin: 0;
     font-family: var(--font-hero);
     font-weight: 800;
-    font-size: clamp(30px, 4.6vw, 78px);
-    line-height: 0.9;
+    font-size: clamp(24px, 3.4vw, 62px);
+    line-height: 0.92;
     letter-spacing: -0.01em;
     text-transform: uppercase;
     white-space: nowrap;
 
     @include below(860px) {
       white-space: normal;
-      font-size: clamp(26px, 7vw, 44px);
+      font-size: clamp(20px, 5.4vw, 32px);
     }
   }
 
-  // Paired with the UI grotesque, set against the title
+  // Paired with the UI grotesque, centred between title and numeral
   &__desc {
     grid-column: 2;
-    align-self: end;
-    justify-self: end;
-    max-width: 42ch;
     margin: 0;
+    max-width: 52ch;
     font-family: var(--font-ui);
-    font-size: clamp(13px, 1.05vw, 17px);
-    line-height: 1.6;
-    opacity: 0.75;
+    font-size: clamp(11px, 0.82vw, 14px);
+    line-height: 1.5;
+    text-align: center;
+    opacity: 0.72;
 
     @include below(860px) {
       grid-column: 1;
-      justify-self: start;
-      align-self: start;
-      max-width: 100%;
+      text-align: left;
+      font-size: 11.5px;
+      line-height: 1.45;
+      // Keep the tile readable at band height on small screens
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
   }
 }
