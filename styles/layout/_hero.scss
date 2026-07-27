@@ -86,6 +86,12 @@
     }
   }
 
+  // Stats + headline as one flex child, so space-between can't push them apart
+  &__top {
+    position: relative;
+    z-index: 2;
+  }
+
   // ── Stats strip ─────────────────────────────────────────────────────────────
   &__stats {
     position: relative;
@@ -100,10 +106,11 @@
     font-weight: 400;
     color: var(--h-mute);
 
+    // Stays one horizontal row on mobile; the connecting rules drop out and the
+    // labels shrink so all three still fit across the width.
     @include below(760px) {
-      flex-direction: column;
-      align-items: flex-start;
       gap: 8px;
+      font-size: clamp(8.5px, 2.5vw, 11px);
     }
   }
 
@@ -127,8 +134,10 @@
     &:not(:last-child) { flex: 1; }
 
     @include below(760px) {
+      // Drop the connecting rules but keep the row horizontal
       &:not(:last-child)::after { display: none; }
       &:not(:last-child) { flex: none; }
+      white-space: nowrap;
     }
   }
 
@@ -136,15 +145,18 @@
   &__title {
     position: relative;
     z-index: 2;
-    margin: clamp(20px, 4vh, 48px) 0;
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-stretch: 76%;              // Archivo's variable width axis
-    font-variation-settings: 'wdth' 76, 'wght' 900;
+    // Small gap below the stats row. Thunder carries a lot of empty leading
+    // above its caps, so the optical gap reads larger than this value.
+    margin: clamp(10px, 1.6vh, 26px) 0 0;
+    // Thunder ExtraBold LC is a single-weight OTF, so no variable axes here
+    font-family: var(--font-hero);
+    font-weight: 800;
+    font-stretch: normal;
+    font-variation-settings: normal;
     // Only applies below HeroFit's threshold, where the headline wraps
     font-size: clamp(46px, 13vw, 152px);
-    line-height: 1.0;
-    letter-spacing: -0.045em;
+    line-height: 0.86;   // Thunder has tall caps on a small em
+    letter-spacing: -0.01em;
     text-transform: uppercase;
     color: var(--h-text);
   }
@@ -175,6 +187,19 @@
       &--one { padding-left: var(--hpad); }
       &--two { padding-left: var(--hpad); }
     }
+  }
+
+  // Single decorative letter swapped into the headline
+  &__glyph {
+    font-family: 'Dirtyline', var(--font-hero);
+    font-weight: 400;
+    // Dirtyline sits on a different vertical metric to Thunder, so nudge it
+    // back onto the same optical baseline and match its apparent size.
+    display: inline-block;
+    font-size: 1.06em;
+    line-height: 1;
+    transform: translateY(0.055em);
+    letter-spacing: 0;
   }
 
   &__word {

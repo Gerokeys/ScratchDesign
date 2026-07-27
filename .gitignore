@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Font source archives — keep the extracted .otf, not the zip
+public/fonts/*.zip

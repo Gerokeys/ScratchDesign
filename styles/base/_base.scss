@@ -1,3 +1,21 @@
+// ─── Fonts ────────────────────────────────────────────────────────────────────
+@font-face {
+  font-family: 'Thunder';
+  src: url('/fonts/Thunder-ExtraBoldLC%20800.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Decorative display face, used for the single swapped "D" in the headline
+@font-face {
+  font-family: 'Dirtyline';
+  src: url('/fonts/Dirtyline36.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 // ─── Lenis ────────────────────────────────────────────────────────────────────
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
