@@ -11,15 +11,26 @@
   --tile-gap: 10px;
   --tile-inset: clamp(10px, 1vw, 22px);
 
+  // Scroll distance between one tile arriving and the next. This is the flow
+  // height of each slot — at 100svh you had to scroll a whole screen before the
+  // next tile appeared; keeping it just above the band height means the next
+  // one follows almost immediately while still stacking one at a time.
+  --slot: 34svh;
+
   @include below(860px) {
     --band: 17svh;
     --tile-gap: 8px;
+    --slot: 30svh;
   }
 }
 
 .step-card {
   position: relative;
-  min-height: 100svh;
+  min-height: var(--slot);
+
+  // The last slot still needs a screen of room so the completed pile can be
+  // read before the section releases.
+  &:last-child { min-height: 100svh; }
 
   &__inner {
     position: relative;

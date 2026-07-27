@@ -57,7 +57,10 @@ export default class StackCards {
         trigger: card,
         start: () => `top top+=${i * this._band}`,
         endTrigger: last,
-        end: () => `top top+=${(n - 1) * this._band}`,
+        // Hold until the last slot has scrolled through, so the completed pile
+        // stays on screen to be read. Ending when the last tile merely *lands*
+        // released everything instantly.
+        end: 'bottom bottom',
         pin: true,
         pinSpacing: false,
         invalidateOnRefresh: true,
