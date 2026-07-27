@@ -83,6 +83,11 @@
     height: 100%;
     width: calc(100% - (2 * var(--tile-inset)));
     margin-inline: auto;
+    // Reads as one tile lying over the next once the gaps close
+    box-shadow: 0 -14px 34px rgba(0, 0, 0, 0.34);
+    // Half the heading's rendered width, set by StackCards.js, so the
+    // paragraph starts under the title's midpoint
+    --title-half: 0px;
 
     display: flex;
     flex-direction: column;
@@ -140,7 +145,7 @@
     margin: 0;
     font-family: var(--font-hero);
     font-weight: 800;
-    font-size: clamp(30px, 4.1vw, 78px);
+    font-size: clamp(34px, 4.9vw, 94px);
     line-height: 0.94;
     letter-spacing: -0.01em;
     text-transform: uppercase;
@@ -156,7 +161,8 @@
   &__desc {
     margin: 0;
     max-width: 62ch;
-    margin-left: clamp(16px, 4.5vw, 96px);
+    margin-left: var(--title-half);
+    margin-top: clamp(6px, 1.1vh, 16px);      // sits a little below the title
     padding-right: clamp(70px, 9vw, 190px);   // clear the numeral
     font-family: var(--font-ui);
     font-size: clamp(13px, 0.95vw, 16.5px);

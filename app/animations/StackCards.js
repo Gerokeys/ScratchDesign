@@ -19,8 +19,9 @@ gsap.registerPlugin(ScrollTrigger);
  */
 
 const GAP_OPEN   = 18;     // px between tiles at rest
-const OVERLAP    = 6;      // px each tile sits over the one before, once stacked
-const SCALE_STEP = 0.05;   // per tile of depth → the deepest lands at 0.80
+const OVERLAP         = 6;   // px used to size each phase's scroll length
+const OVERLAP_CLOSED  = 22;  // px each tile lies over the one before, once stacked
+const SCALE_STEP = 0.04;   // per tile of depth → the deepest lands at 0.80
 const FADE_STEP  = 0.075;  // opacity lost per tile of depth
 const BLUR_STEP  = 1.3;    // px of blur per tile of depth
 const TRAVEL     = 0.40;   // scroll distance per tile, as a fraction of the viewport
@@ -30,6 +31,22 @@ export default class StackCards {
     this._section = document.querySelector('.s-steps');
     this._cards   = [...document.querySelectorAll('.step-card')];
     if (!this._section || this._cards.length < 2) return;
+
+    // Indent each paragraph to its own heading's midpoint. Titles differ in
+    // length, so this is measured per tile rather than set to a fixed value.
+    this._measureTitles = () => {
+      this._cards.forEach((card) => {
+        const inner = card.querySelector('.step-card__inner');
+        const title = card.querySelector('.step-card__title');
+        if (!inner || !title) return;
+        const w = title.getBoundingClientRect().width;
+        inner.style.setProperty('--title-half', `${Math.round(w / 2)}px`);
+      });
+    };
+
+    this._measureTitles();
+    document.fonts?.ready.then(this._measureTitles);
+    ScrollTrigger.addEventListener('refreshInit', this._measureTitles);
 
     this._mm = gsap.matchMedia();
 
@@ -68,7 +85,7 @@ export default class StackCards {
           this._section,
           { '--tile-gap': `${GAP_OPEN}px` },
           {
-            '--tile-gap': `${-OVERLAP}px`,
+            '--tile-gap': `${-OVERLAP_CLOSED}px`,
             ease: 'none',
             scrollTrigger: {
               trigger: this._cards[0],
@@ -84,8 +101,10 @@ export default class StackCards {
         // edge crosses mid-screen — so a tile can begin receding while the one
         // before it is still settling, rather than waiting its turn.
         this._cards.forEach((card, i) => {
-          const depth = n - 1 - i;
-          if (!depth) return;           // front tile stays put
+          // depth counts from the front tile at 1, so every tile — including
+          // the last — gets a recede of its own.
+          const depth = n - i;
+          const next  = this._cards[i + 1];
 
           const inner = card.querySelector('.step-card__inner');
           if (!inner) return;
@@ -107,13 +126,18 @@ export default class StackCards {
 
           // Phase 2 — blur and fade, starting when the tile BELOW reaches
           // mid-screen, so this one recedes as the next begins its own turn.
+          // The last tile has nothing after it, so it never blurs.
+          if (!next) return;
+
           tweens.push(gsap.to(inner, {
-            opacity: 1 - depth * FADE_STEP,
-            filter:  `blur(${(depth * BLUR_STEP).toFixed(2)}px)`,
+            opacity: 1 - (depth - 1) * FADE_STEP,
+            filter:  `blur(${((depth - 1) * BLUR_STEP).toFixed(2)}px)`,
             ease:    'none',
             scrollTrigger: {
-              trigger: this._cards[i + 1],
-              start: 'bottom center',
+              // Fires while the next tile is still below centre, so the blur
+              // is already underway by the time that tile takes its turn
+              trigger: next,
+              start: 'bottom center+=12%',
               end: () => `+=${stride()}`,
               scrub: 0.55,
               invalidateOnRefresh: true,
