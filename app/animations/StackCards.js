@@ -46,19 +46,16 @@ export default class StackCards {
         const steps = n - 1;            // the front tile never recedes
         const tweens = [];
 
-        // The section itself is pinned, so the tiles can sit at their natural
-        // height with only a small gap between them — the scroll distance for
-        // the animation comes from the pin, not from padding under each tile.
+        // Scroll-linked, not pinned. Pinning the section from a trigger that
+        // fires before it reaches the top leaves a pin-spacer gap above it,
+        // which shows the cream page background as a band over the tiles.
         const tl = gsap.timeline({
           scrollTrigger: {
-            // Triggered off the first tile, but pinning the whole section: the
-            // sequence begins as that tile's bottom edge crosses mid-screen,
-            // rather than when the section reaches the top of the viewport.
+            // Sequence begins as the first tile's bottom edge crosses mid-screen
             trigger: this._cards[0],
             start: 'bottom center',
             end: () => `+=${window.innerHeight * 0.55 * steps}`,
             scrub: 0.55,
-            pin: this._section,
             invalidateOnRefresh: true,
           },
         });
