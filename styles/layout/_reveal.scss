@@ -61,50 +61,31 @@
     backface-visibility: hidden;
 
     @include below(760px) {
-      flex-direction: column;
-      gap: 0;
-      font-size: 19vw;
-      line-height: 0.92;
+      // Stays on one line at small sizes; the vw size holds it near 95vw
+      gap: 0.1em;
+      font-size: 13.2vw;
     }
   }
 
+  // The plus is a shape, not a glyph. Because the same element is both the
+  // wordmark's plus and the thing that zooms, there is nothing to align — and
+  // a clip-path stays vector-sharp at any scale, so it never softens.
   &__plus {
     display: inline-block;
-    font-weight: 800;
-  }
-
-  // ── The growing plus ────────────────────────────────────────────────────────
-  // A real glyph rather than an approximated shape: growing it by font-size
-  // re-renders the outline every frame, so it never softens the way a scaled
-  // bitmap does, and it matches the original exactly because it *is* the
-  // same character in the same face.
-  &__zoom {
-    position: absolute;
-    z-index: 2;
-    // Placed and sized onto the original glyph by RevealZoom.js
-    top: 0;
-    left: 0;
-    font-family: var(--font-hero);
-    font-weight: 800;
-    line-height: 1;
-    color: #ffffff;
-    pointer-events: none;
-    opacity: 0;
-    // Deliberately not promoted: a composited layer would freeze the raster
-    // at its starting size and defeat the point of animating font-size.
-    backface-visibility: hidden;
-  }
-
-  // Once the glyph's bar already covers most of the viewport, this takes over
-  // so the last of the fill costs nothing to render.
-  &__fill {
-    position: absolute;
-    inset: 0;
-    z-index: 3;
+    flex: none;
+    width: 0.6em;
+    height: 0.6em;
     background: #ffffff;
-    pointer-events: none;
-    opacity: 0;
+    clip-path: polygon(
+      34% 0%,   66% 0%,   66% 34%,
+      100% 34%, 100% 66%, 66% 66%,
+      66% 100%, 34% 100%, 34% 66%,
+      0% 66%,   0% 34%,   34% 34%
+    );
+    transform-origin: center center;
   }
+
+
 }
 
 // ─── The revealed white page ──────────────────────────────────────────────────
