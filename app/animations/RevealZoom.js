@@ -4,97 +4,117 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * RevealZoom — the "Clarity + Performance" wordmark zooms toward its plus sign
- * while a white panel clips open from that same point, revealing the light
- * section beneath.
+ * RevealZoom — the page is revealed by flying into the plus of
+ * "Clarity + Performance".
  *
- * The plus is measured rather than assumed: its centre sets both the wordmark's
- * transform-origin and the clip-path's centre, so the two stay locked together
- * as the type reflows across viewport sizes.
+ * A copy of the glyph is measured onto the original and then grown by
+ * font-size rather than transform. Two reasons: the outline is re-rendered
+ * every frame so it never softens the way a scaled bitmap does, and because it
+ * is the same character in the same face it lines up exactly — an approximated
+ * plus shape could not be made to match the type.
+ *
+ * Past a certain size the glyph's centre bar already covers the viewport, so a
+ * plain white panel takes over for the last of the fill; growing the font any
+ * further would cost a great deal to rasterise for no visible gain.
  */
 
-// Kept modest on purpose: scaled text is re-rasterised only so far before it
-// softens, so the wordmark barely moves and the plus-shaped mask — a solid
-// shape, sharp at any size — does the heavy lifting of the reveal.
-const ZOOM_TO = 2.1;
+const LINE_ZOOM = 1.9;    // the wordmark drifts in behind the glyph
+const MAX_PX    = 2600;   // font-size ceiling for the growing plus
 
 export default class RevealZoom {
   constructor() {
     this._section = document.querySelector('.s-reveal');
     this._line    = document.querySelector('.s-reveal__line');
     this._plus    = document.getElementById('reveal-plus');
-    this._mask    = document.getElementById('reveal-mask');
-    if (!this._section || !this._line || !this._plus || !this._mask) return;
+    this._zoom    = document.getElementById('reveal-zoom');
+    this._fill    = document.getElementById('reveal-fill');
+    if (!this._section || !this._line || !this._plus || !this._zoom || !this._fill) return;
 
     this._mm = gsap.matchMedia();
 
     this._mm.add('(prefers-reduced-motion: no-preference)', () => {
-      // Measure the plus glyph, then sit the mask exactly on top of it. The
-      // glyph is measured rather than assumed so the mask stays locked to it
-      // as the type reflows across viewport sizes.
+      // Lay the copy exactly over the original glyph.
       const place = () => {
-        // Read positions with the zoom cleared, or each refresh compounds
+        // Clear both transforms first, or each refresh measures a zoomed state
         gsap.set(this._line, { scale: 1 });
 
-        const lineBox = this._line.getBoundingClientRect();
+        const base = parseFloat(getComputedStyle(this._plus).fontSize) || 100;
+        gsap.set(this._zoom, { fontSize: base, x: 0, y: 0 });
+
         const plusBox = this._plus.getBoundingClientRect();
         const secBox  = this._section.getBoundingClientRect();
-        if (!lineBox.width || !plusBox.width) return 30;
 
-        const cx = plusBox.left + plusBox.width / 2;
-        const cy = plusBox.top + plusBox.height / 2;
-
-        // Zoom pushes into the plus
-        gsap.set(this._line, {
-          transformOrigin:
-            `${((cx - lineBox.left) / lineBox.width) * 100}% ` +
-            `${((cy - lineBox.top) / lineBox.height) * 100}%`,
+        // Anchor to the section, centred on the original glyph
+        gsap.set(this._zoom, {
+          top:  plusBox.top  - secBox.top,
+          left: plusBox.left - secBox.left,
         });
 
-        // Mask sits on the glyph, sized to it
-        const size = Math.max(plusBox.width, plusBox.height);
-        gsap.set(this._mask, {
-          width:  size,
-          height: size,
-          left:   cx - secBox.left - size / 2,
-          top:    cy - secBox.top  - size / 2,
+        // A glyph's ink is not centred in its own box, so correct by the
+        // measured difference rather than assuming they coincide.
+        const zoomBox = this._zoom.getBoundingClientRect();
+        gsap.set(this._zoom, {
+          x: (plusBox.left + plusBox.width  / 2) - (zoomBox.left + zoomBox.width  / 2),
+          y: (plusBox.top  + plusBox.height / 2) - (zoomBox.top  + zoomBox.height / 2),
         });
 
-        // The plus's centre bar is 34% of the box, so it must scale by at least
-        // the viewport diagonal over that bar to cover the screen.
-        const bar = size * 0.34;
-        const diagonal = Math.hypot(window.innerWidth, window.innerHeight);
-        return (diagonal / bar) * 1.25;
+        // Grow about the glyph's own centre
+        gsap.set(this._zoom, { transformOrigin: 'center center' });
+
+        return base;
       };
 
-      let target = place();
+      let base = place();
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: this._section,
           start: 'top top',
-          end: () => `+=${window.innerHeight * 1.5}`,
+          end: () => `+=${window.innerHeight * 1.6}`,
           scrub: 0.7,
           pin: true,
           invalidateOnRefresh: true,
-          onRefresh: () => { target = place(); },
+          onRefresh: () => { base = place(); },
         },
       });
 
-      // Slow push into the plus — subtle at first, accelerating as it opens
+      // The copy appears immediately, sitting invisibly on top of the original
+      tl.set(this._zoom, { opacity: 1 }, 0);
+
+      // The wordmark drifts toward the viewer behind the growing glyph
       tl.to(this._line, {
-        scale: ZOOM_TO,
+        scale: LINE_ZOOM,
+        transformOrigin: () => {
+          const l = this._line.getBoundingClientRect();
+          const p = this._plus.getBoundingClientRect();
+          if (!l.width) return 'center center';
+          return `${((p.left + p.width / 2 - l.left) / l.width) * 100}% ` +
+                 `${((p.top + p.height / 2 - l.top) / l.height) * 100}%`;
+        },
         ease: 'power2.in',
+        duration: 1,
       }, 0);
 
-      // The plus itself grows until its centre bar fills the screen: the page
-      // is revealed by flying into the glyph, not by a shape opening over it.
-      tl.fromTo(
-        this._mask,
-        { scale: 1 },
-        { scale: () => target, ease: 'power2.in' },
-        0,
-      );
+      // The plus itself grows — the actual reveal
+      tl.to(this._zoom, {
+        fontSize: () => MAX_PX,
+        ease: 'power2.in',
+        duration: 1,
+        // Keep it centred on its anchor as the box grows
+        onUpdate: () => {
+          const p = this._plus.getBoundingClientRect();
+          const z = this._zoom.getBoundingClientRect();
+          const dx = gsap.getProperty(this._zoom, 'x');
+          const dy = gsap.getProperty(this._zoom, 'y');
+          gsap.set(this._zoom, {
+            x: dx + ((p.left + p.width / 2) - (z.left + z.width / 2)),
+            y: dy + ((p.top + p.height / 2) - (z.top + z.height / 2)),
+          });
+        },
+      }, 0);
+
+      // White takes over once the bar already fills most of the frame
+      tl.to(this._fill, { opacity: 1, ease: 'power2.in', duration: 0.28 }, 0.72);
 
       return () => { tl.scrollTrigger?.kill(); tl.kill(); };
     });

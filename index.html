@@ -261,8 +261,12 @@
         <span class="s-reveal__word">Performance</span>
       </h2>
 
-      <!-- A plus-shaped white mask, grown from the glyph to fill the screen -->
-      <div class="s-reveal__mask" id="reveal-mask" aria-hidden="true"></div>
+      <!-- A copy of the plus, measured onto the original and grown by font-size
+           so it stays a real glyph — always sharp, always exactly aligned. -->
+      <span class="s-reveal__zoom" id="reveal-zoom" aria-hidden="true">+</span>
+
+      <!-- Takes over once the glyph already covers most of the screen -->
+      <div class="s-reveal__fill" id="reveal-fill" aria-hidden="true"></div>
     </section>
 
     <!-- ─── What you get (the revealed white page) ────────────────────────────── -->

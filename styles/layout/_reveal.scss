@@ -73,26 +73,37 @@
     font-weight: 800;
   }
 
-  // ── The plus-shaped mask that grows into the white page ─────────────────────
-  // A solid shape rather than a clipped panel: it renders vector-sharp at any
-  // scale, so the reveal reads as flying into the glyph itself.
-  &__mask {
+  // ── The growing plus ────────────────────────────────────────────────────────
+  // A real glyph rather than an approximated shape: growing it by font-size
+  // re-renders the outline every frame, so it never softens the way a scaled
+  // bitmap does, and it matches the original exactly because it *is* the
+  // same character in the same face.
+  &__zoom {
     position: absolute;
     z-index: 2;
+    // Placed and sized onto the original glyph by RevealZoom.js
+    top: 0;
+    left: 0;
+    font-family: var(--font-hero);
+    font-weight: 800;
+    line-height: 1;
+    color: #ffffff;
+    pointer-events: none;
+    opacity: 0;
+    // Deliberately not promoted: a composited layer would freeze the raster
+    // at its starting size and defeat the point of animating font-size.
+    backface-visibility: hidden;
+  }
+
+  // Once the glyph's bar already covers most of the viewport, this takes over
+  // so the last of the fill costs nothing to render.
+  &__fill {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
     background: #ffffff;
     pointer-events: none;
-    // Arm thickness is 34% of the box, matching a plus glyph's proportions
-    clip-path: polygon(
-      33% 0%,   67% 0%,   67% 33%,
-      100% 33%, 100% 67%, 67% 67%,
-      67% 100%, 33% 100%, 33% 67%,
-      0% 67%,   0% 33%,   33% 33%
-    );
-    // Sized and positioned onto the glyph by RevealZoom.js
-    width: 0;
-    height: 0;
-    transform: scale(0);
-    will-change: transform;
+    opacity: 0;
   }
 }
 
