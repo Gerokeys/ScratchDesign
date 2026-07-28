@@ -1,0 +1,141 @@
+// ─── Clarity + Performance → white reveal ─────────────────────────────────────
+// The dark panel carries on the column rules from the sections above. As it
+// scrolls, the wordmark zooms toward the plus sign while a white panel clips
+// open from that same point, revealing the light section beneath.
+.s-reveal {
+  position: relative;
+  height: 100svh;
+  background: var(--h-charcoal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  isolation: isolate;
+
+  // Column rules, continuing from the approach section
+  &__grid {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.15) 0,
+      rgba(255, 255, 255, 0.15) 1px,
+      transparent 1px,
+      transparent calc(100% / 9)
+    );
+
+    @include below(760px) {
+      background-image: repeating-linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.15) 0,
+        rgba(255, 255, 255, 0.15) 1px,
+        transparent 1px,
+        transparent calc(100% / 4)
+      );
+    }
+  }
+
+  // ── The wordmark ────────────────────────────────────────────────────────────
+  &__line {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.16em;
+    white-space: nowrap;
+
+    font-family: var(--font-hero);
+    font-weight: 800;
+    font-size: 13.9vw;          // measured to ≈95vw across for this string
+    line-height: 0.9;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+    color: #ffffff;
+
+    // The zoom pushes toward the plus, so the origin is set from JS
+    will-change: transform;
+
+    @include below(760px) {
+      flex-direction: column;
+      gap: 0;
+      font-size: 19vw;
+      line-height: 0.92;
+    }
+  }
+
+  &__plus {
+    display: inline-block;
+    font-weight: 800;
+  }
+
+  // ── The white page, clipped open from the plus ──────────────────────────────
+  &__panel {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 var(--pad);
+    // Starts fully closed; RevealZoom.js opens it from the plus sign
+    clip-path: circle(0% at 50% 50%);
+    will-change: clip-path;
+  }
+
+  // Thin black rules on the light page
+  &__panel-grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.16) 0,
+      rgba(0, 0, 0, 0.16) 1px,
+      transparent 1px,
+      transparent calc(100% / 9)
+    );
+
+    @include below(760px) {
+      background-image: repeating-linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.16) 0,
+        rgba(0, 0, 0, 0.16) 1px,
+        transparent 1px,
+        transparent calc(100% / 4)
+      );
+    }
+  }
+
+  &__panel-text {
+    position: relative;
+    margin: 0;
+    max-width: 20ch;
+    text-align: center;
+
+    font-family: var(--font-hero);
+    font-weight: 800;
+    font-size: clamp(34px, 6.4vw, 118px);
+    line-height: 0.94;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: var(--black);
+  }
+}
+
+// Keeps a word intact when a swapped glyph inside it would otherwise create a
+// line-break opportunity
+.nowrap { white-space: nowrap; }
+
+// Single decorative letter, matching the hero's swapped "D"
+.glyph-dirty {
+  font-family: 'Dirtyline', var(--font-hero);
+  font-weight: 400;
+  display: inline-block;
+  font-size: 1.06em;
+  line-height: 1;
+  transform: translateY(0.05em);
+}

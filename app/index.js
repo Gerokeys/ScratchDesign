@@ -9,6 +9,7 @@ import WebGLHero        from './animations/WebGLHero';
 import HeroFit          from './animations/HeroFit';
 import Glitch           from './animations/Glitch';
 import StackCards       from './animations/StackCards';
+import RevealZoom       from './animations/RevealZoom';
 import ScrollAnimations, { prepareHero } from './animations/ScrollAnimations';
 import MagneticButton   from './animations/MagneticButton';
 import WorkPreview      from './animations/WorkPreview';
@@ -78,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new WorkPreview();
     new MagneticButton();
     new StackCards();
+    new RevealZoom();
 
     // Hero text reveal (set up by ScrollAnimations, fired here)
     window._heroReveal?.();
