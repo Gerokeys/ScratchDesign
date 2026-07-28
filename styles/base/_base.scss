@@ -7,14 +7,6 @@
   font-display: swap;
 }
 
-// Decorative display face, used for the single swapped "D" in the headline
-@font-face {
-  font-family: 'Dirtyline';
-  src: url('/fonts/Dirtyline36.otf') format('opentype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
 
 // ─── Lenis ────────────────────────────────────────────────────────────────────
 html.lenis, html.lenis body { height: auto; }
@@ -151,20 +143,43 @@ body {
     will-change: transform;
   }
 
+  // Bottom-right, and above the climbing rules
   &__count {
-    position: relative;
-    z-index: 1;
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-stretch: 76%;
-    font-variation-settings: 'wdth' 76, 'wght' 900;
-    font-size: clamp(70px, 15vw, 190px);
+    position: absolute;
+    z-index: 2;
+    right: clamp(18px, 4vw, 64px);
+    bottom: clamp(14px, 3vh, 44px);
+    display: flex;
+    align-items: flex-end;
+
+    font-family: var(--font-hero);
+    font-weight: 800;
+    font-size: clamp(64px, 13vw, 168px);
     color: var(--h-text);
-    line-height: 1;
-    letter-spacing: -0.05em;
+    line-height: 0.86;
+    letter-spacing: -0.03em;
     font-variant-numeric: tabular-nums;
     user-select: none;
-    mix-blend-mode: difference;
+  }
+
+  // Masks the digits so each new value rolls up from below
+  &__digits {
+    display: block;
+    overflow: hidden;
+    line-height: 0.86;
+
+    > span {
+      display: block;
+      will-change: transform;
+    }
+  }
+
+  &__pct {
+    font-size: 0.42em;
+    line-height: 1;
+    padding-bottom: 0.16em;
+    margin-left: 0.06em;
+    opacity: 0.65;
   }
 }
 

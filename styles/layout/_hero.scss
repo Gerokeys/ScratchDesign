@@ -192,7 +192,7 @@
 
   // Single decorative letter swapped into the headline
   &__glyph {
-    font-family: 'Dirtyline', var(--font-hero);
+    font-family: var(--font-hero);
     font-weight: 400;
     // Dirtyline sits on a different vertical metric to Thunder, so nudge it
     // back onto the same optical baseline and match its apparent size.

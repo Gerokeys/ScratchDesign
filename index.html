@@ -43,7 +43,9 @@
         <span class="preloader__line"></span>
         <span class="preloader__line"></span>
       </div>
-      <div class="preloader__count"><span id="preloader-counter">0</span>%</div>
+      <div class="preloader__count">
+        <span class="preloader__digits"><span id="preloader-counter">0</span></span><span class="preloader__pct">%</span>
+      </div>
     </div>
 
     <!-- ─── Custom cursor ─────────────────────────────────────────────────────── -->
@@ -81,7 +83,9 @@
     <!-- ─── Site nav ──────────────────────────────────────────────────────────── -->
     <header class="site-nav" id="site-nav">
       <div class="site-nav__logo">
-        <a href="/" aria-label="ScratchDesign home">SD</a>
+        <a href="/" aria-label="ScratchDesign home">
+          <img src="/images/scratchdesign%20logo.jpeg" alt="ScratchDesign" width="64" height="64" />
+        </a>
       </div>
       <button type="button" class="site-nav__burger" id="nav-burger" aria-label="Open menu" aria-expanded="false">
         <span class="site-nav__burger-label">Menu</span>
@@ -267,7 +271,8 @@
     <section class="s-clarity" id="clarity">
       <div class="s-clarity__grid" aria-hidden="true"></div>
       <p class="s-clarity__text">
-        What you get when <span class="nowrap">cla<span class="glyph-dirty">r</span>ity</span> meets performance
+        What you get when clarity meets
+        <em class="s-clarity__type" data-typewriter="performance"></em>
       </p>
     </section>
     <!-- ─── Client marquee ────────────────────────────────────────────────────── -->

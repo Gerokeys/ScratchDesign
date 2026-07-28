@@ -170,6 +170,43 @@ export default class ScrollAnimations {
     const nav = document.getElementById('site-nav');
     if (!nav) return;
 
+    // The header is not a persistent sticky bar: it clears out of the way on
+    // the way down and slides back in only when you scroll up.
+    //
+    // Tracked from scrollY directly rather than ScrollTrigger's `direction`,
+    // which only updates on genuine scroll events and stays stale through
+    // programmatic jumps.
+    // Movement is accumulated and only acted on past a threshold. Pinned
+    // sections emit small corrective scroll events as they settle, and reacting
+    // to each one individually makes the header flicker.
+    let last = window.scrollY;
+    let travel = 0;
+    const THRESHOLD = 48;
+
+    const onScroll = () => {
+      const y = window.scrollY;
+      const delta = y - last;
+      last = y;
+
+      // Always visible at the very top
+      if (y < 80) { nav.classList.remove('is-hidden'); travel = 0; return; }
+
+      // Reset the run whenever the direction changes
+      if ((delta > 0) !== (travel > 0)) travel = 0;
+      travel += delta;
+
+      if (travel > THRESHOLD) {
+        nav.classList.add('is-hidden');
+        travel = 0;
+      } else if (travel < -THRESHOLD) {
+        nav.classList.remove('is-hidden');
+        travel = 0;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.lenis?.on('scroll', onScroll);
+
     ScrollTrigger.create({
       start: 'top -60',
       onEnter:      () => nav.classList.add('is-scrolled'),

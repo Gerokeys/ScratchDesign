@@ -72,6 +72,8 @@
   // a clip-path stays vector-sharp at any scale, so it never softens.
   &__plus {
     display: inline-block;
+    position: relative;
+    top: -0.055em;   // sits on the caps' optical centre, not the box centre
     flex: none;
     width: 0.6em;
     height: 0.6em;
@@ -139,16 +141,24 @@
   }
 }
 
-// Keeps a word intact when a swapped glyph inside it would otherwise create a
-// line-break opportunity
-.nowrap { white-space: nowrap; }
 
-// Single decorative letter, matching the hero's swapped "D"
-.glyph-dirty {
-  font-family: 'Dirtyline', var(--font-hero);
-  font-weight: 400;
-  display: inline-block;
-  font-size: 1.06em;
-  line-height: 1;
-  transform: translateY(0.05em);
+
+// Typed in on scroll; the caret sits after whatever has been revealed
+.s-clarity__type {
+  font-style: italic;
+  white-space: nowrap;
+
+  &::after {
+    content: "";
+    display: inline-block;
+    width: 0.06em;
+    height: 0.72em;
+    margin-left: 0.06em;
+    background: currentColor;
+    vertical-align: baseline;
+    animation: caret-blink 0.9s steps(1) infinite;
+  }
+  &.is-done::after { animation: none; opacity: 0; }
 }
+
+@keyframes caret-blink { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
