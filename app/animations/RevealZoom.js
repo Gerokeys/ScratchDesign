@@ -13,39 +13,61 @@ gsap.registerPlugin(ScrollTrigger);
  * as the type reflows across viewport sizes.
  */
 
-const ZOOM_TO = 4.2;   // how far the wordmark scales into the plus
+// Kept modest on purpose: scaled text is re-rasterised only so far before it
+// softens, so the wordmark barely moves and the plus-shaped mask — a solid
+// shape, sharp at any size — does the heavy lifting of the reveal.
+const ZOOM_TO = 2.1;
 
 export default class RevealZoom {
   constructor() {
     this._section = document.querySelector('.s-reveal');
     this._line    = document.querySelector('.s-reveal__line');
     this._plus    = document.getElementById('reveal-plus');
-    this._panel   = document.getElementById('reveal-panel');
-    if (!this._section || !this._line || !this._plus || !this._panel) return;
+    this._mask    = document.getElementById('reveal-mask');
+    if (!this._section || !this._line || !this._plus || !this._mask) return;
 
     this._mm = gsap.matchMedia();
 
     this._mm.add('(prefers-reduced-motion: no-preference)', () => {
-      // Origin of the zoom, as a percentage of the wordmark's own box
-      const setOrigin = () => {
+      // Measure the plus glyph, then sit the mask exactly on top of it. The
+      // glyph is measured rather than assumed so the mask stays locked to it
+      // as the type reflows across viewport sizes.
+      const place = () => {
+        // Read positions with the zoom cleared, or each refresh compounds
+        gsap.set(this._line, { scale: 1 });
+
         const lineBox = this._line.getBoundingClientRect();
         const plusBox = this._plus.getBoundingClientRect();
-        if (!lineBox.width || !lineBox.height) return { x: 50, y: 50 };
+        const secBox  = this._section.getBoundingClientRect();
+        if (!lineBox.width || !plusBox.width) return 30;
 
-        const x = ((plusBox.left + plusBox.width / 2) - lineBox.left) / lineBox.width * 100;
-        const y = ((plusBox.top + plusBox.height / 2) - lineBox.top) / lineBox.height * 100;
+        const cx = plusBox.left + plusBox.width / 2;
+        const cy = plusBox.top + plusBox.height / 2;
 
-        gsap.set(this._line, { transformOrigin: `${x}% ${y}%` });
+        // Zoom pushes into the plus
+        gsap.set(this._line, {
+          transformOrigin:
+            `${((cx - lineBox.left) / lineBox.width) * 100}% ` +
+            `${((cy - lineBox.top) / lineBox.height) * 100}%`,
+        });
 
-        // Same point, but relative to the section, for the clip-path centre
-        const secBox = this._section.getBoundingClientRect();
-        return {
-          x: ((plusBox.left + plusBox.width / 2) - secBox.left) / secBox.width * 100,
-          y: ((plusBox.top + plusBox.height / 2) - secBox.top) / secBox.height * 100,
-        };
+        // Mask sits on the glyph, sized to it
+        const size = Math.max(plusBox.width, plusBox.height);
+        gsap.set(this._mask, {
+          width:  size,
+          height: size,
+          left:   cx - secBox.left - size / 2,
+          top:    cy - secBox.top  - size / 2,
+        });
+
+        // The plus's centre bar is 34% of the box, so it must scale by at least
+        // the viewport diagonal over that bar to cover the screen.
+        const bar = size * 0.34;
+        const diagonal = Math.hypot(window.innerWidth, window.innerHeight);
+        return (diagonal / bar) * 1.25;
       };
 
-      let centre = setOrigin();
+      let target = place();
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -55,7 +77,7 @@ export default class RevealZoom {
           scrub: 0.7,
           pin: true,
           invalidateOnRefresh: true,
-          onRefresh: () => { centre = setOrigin(); },
+          onRefresh: () => { target = place(); },
         },
       });
 
@@ -65,15 +87,13 @@ export default class RevealZoom {
         ease: 'power2.in',
       }, 0);
 
-      // White page clips open from the plus, timed to the later part of the zoom
+      // The plus itself grows until its centre bar fills the screen: the page
+      // is revealed by flying into the glyph, not by a shape opening over it.
       tl.fromTo(
-        this._panel,
-        { clipPath: () => `circle(0% at ${centre.x}% ${centre.y}%)` },
-        {
-          clipPath: () => `circle(150% at ${centre.x}% ${centre.y}%)`,
-          ease: 'power2.inOut',
-        },
-        0.55,
+        this._mask,
+        { scale: 1 },
+        { scale: () => target, ease: 'power2.in' },
+        0,
       );
 
       return () => { tl.scrollTrigger?.kill(); tl.kill(); };
