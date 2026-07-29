@@ -125,9 +125,11 @@
   }
 
   &__name {
-    margin: 0 0 clamp(14px, 2.2vh, 28px);
-    font-family: var(--font-hero);
-    font-weight: 800;
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-stretch: 100%;
+    font-variation-settings: 'wdth' 100, 'wght' 600;
     font-size: clamp(34px, 4.4vw, 84px);
     line-height: 0.94;
     letter-spacing: -0.015em;
@@ -181,6 +183,7 @@
   overflow: hidden;
   background: rgba(0, 0, 0, 0.04);
   aspect-ratio: 4 / 3;
+  border-radius: 10px;
   cursor: pointer;
   // Projects already scrolled past fade back and stop responding
   transition: opacity 0.5s ease, filter 0.5s ease;
@@ -258,7 +261,7 @@
     visibility: visible;
     pointer-events: auto;
     display: block;
-    margin: 18px 0 clamp(40px, 7vh, 76px);
+    margin: 16px 0 clamp(46px, 8vh, 84px);
     // Any inline transform left by the swap animation is irrelevant here
     transform: none !important;
   }
@@ -266,7 +269,7 @@
   .works-panel {
     aspect-ratio: 16 / 10;
     margin: 0;
-    border-radius: 14px;
+    border-radius: 10px;
     // Nothing is dimmed or inert without the sticky pairing
     &.is-past { opacity: 1; pointer-events: auto; }
   }
@@ -279,9 +282,9 @@
 
   .works-all { order: 99; }
 
-  .works-meta__num  { margin-bottom: 10px; }
-  .works-meta__name { font-size: clamp(30px, 7vw, 52px); margin-bottom: 14px; }
-  .works-meta__desc { max-width: 100%; margin-bottom: 18px; }
+  .works-meta__num  { margin-bottom: 8px; font-size: 11px; letter-spacing: 0.12em; }
+  .works-meta__name { font-size: clamp(26px, 6.4vw, 44px); line-height: 1.02; margin-bottom: 12px; }
+  .works-meta__desc { max-width: 100%; margin-bottom: 20px; font-size: 14px; line-height: 1.55; }
 
   // Small picture with the project name and date beside it
   .works-meta__foot { gap: 12px; }
@@ -297,10 +300,20 @@
 }
 
 .works-meta__foot-name {
-  font-family: var(--font-hero);
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-weight: 600;
   font-size: clamp(13px, 1vw, 17px);
   letter-spacing: -0.005em;
   text-transform: uppercase;
   line-height: 1.05;
+}
+
+// Top block hugs the number; bottom block puts the copy beside the thumb
+.works-meta__top { display: block; }
+
+.works-meta__bottom {
+  // Description sits above the thumbnail, both anchored to the foot
+  display: block;
+
+  .works-meta__desc { margin: 0 0 clamp(14px, 2vh, 24px); }
 }

@@ -78,7 +78,12 @@ export default class WorksScroll {
         duration: 0.32,
         stagger: 0.045,
         ease: 'power2.in',
-        onComplete: () => prev.classList.remove('is-active'),
+        // Only retire it if it has not become current again in the meantime.
+        // Scrolling back and forth can finish this tween after `prev` was
+        // re-activated, which would otherwise leave no meta visible at all.
+        onComplete: () => {
+          if (this._metas[this._active] !== prev) prev.classList.remove('is-active');
+        },
       });
     }
 
