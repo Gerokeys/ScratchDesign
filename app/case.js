@@ -100,19 +100,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const next = projects[(idx + 1) % projects.length];
 
   document.getElementById("case-foot").innerHTML = `
-    <a class="case-nextup" href="/case.html?p=${esc(next.slug)}" data-cursor="View case study">
-      <div class="case-nextup__text">
-        <span class="case-nextup__label">Next up</span>
-        <h2 class="case-nextup__name">${esc(next.title)}</h2>
-      </div>
-      <span class="case-nextup__cue">[ View next ]</span>
-      <figure class="case-nextup__img"><img src="${esc(next.image)}" alt="${esc(next.title)}" loading="lazy" /></figure>
+    <a class="case-foot__back" href="/#work">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M10 2L4 8l6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back
     </a>
 
-    <a class="case-cta" href="/#contact">
-      <span class="case-cta__arrow">↗</span>
-      <span class="case-cta__title">Want to discuss a project?</span>
-      <span class="case-cta__sub">We’d love to hear about your brand and how we can help.</span>
+    <div class="case-foot__left">
+      <a class="case-nextup" href="/case.html?p=${esc(next.slug)}" data-cursor="View case study">
+        <span class="case-nextup__label">Next up</span>
+        <h2 class="case-nextup__name">${esc(next.title)}</h2>
+      </a>
+
+      <a class="case-cta" href="/#contact">
+        <span class="case-cta__arrow" aria-hidden="true">↗</span>
+        <span class="case-cta__text">
+          <span class="case-cta__title">Want to discuss a project?</span>
+          <span class="case-cta__sub">We’d love to hear about your brand and how we can help.</span>
+        </span>
+      </a>
+    </div>
+
+    <a class="case-foot__media" href="/case.html?p=${esc(next.slug)}" data-cursor="View case study">
+      <span class="case-nextup__cue">[ View next ]</span>
+      <img src="${esc(next.image)}" alt="${esc(next.title)}" loading="lazy" />
     </a>
   `;
 
