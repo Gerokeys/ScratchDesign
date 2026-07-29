@@ -4,7 +4,7 @@ import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import { bySlug } from './data/projects';
+import projects, { bySlug } from './data/projects';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ['outcome',     'The Outcome',   project.outcome],
   ];
   if (project.testimonial) {
-    sections.push(['testimonial', 'Testimonial', [project.testimonial.quote]]);
+    sections.push(['testimonial', 'Client Notes', [project.testimonial.quote]]);
   }
 
   const statsHtml = project.stats.map(
@@ -93,9 +93,26 @@ document.addEventListener('DOMContentLoaded', () => {
       </section>
     `).join('')}
 
-    <a class="case-next" href="/#work">
-      <span>See all projects</span>
-      <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M15 1L1 15M15 1H5M15 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+  `;
+
+  // ── Next project + contact, below the case study ────────────────────────────
+  const idx  = projects.findIndex((p) => p.slug === project.slug);
+  const next = projects[(idx + 1) % projects.length];
+
+  document.getElementById("case-foot").innerHTML = `
+    <a class="case-nextup" href="/case.html?p=${esc(next.slug)}" data-cursor="View case study">
+      <div class="case-nextup__text">
+        <span class="case-nextup__label">Next up</span>
+        <h2 class="case-nextup__name">${esc(next.title)}</h2>
+      </div>
+      <span class="case-nextup__cue">[ View next ]</span>
+      <figure class="case-nextup__img"><img src="${esc(next.image)}" alt="${esc(next.title)}" loading="lazy" /></figure>
+    </a>
+
+    <a class="case-cta" href="/#contact">
+      <span class="case-cta__arrow">↗</span>
+      <span class="case-cta__title">Want to discuss a project?</span>
+      <span class="case-cta__sub">We’d love to hear about your brand and how we can help.</span>
     </a>
   `;
 

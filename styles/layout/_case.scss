@@ -339,3 +339,115 @@
 
   &:hover { background: var(--h-green); }
 }
+
+// ─── Foot of a case study: next project, then a nudge to get in touch ─────────
+.s-case__foot {
+  position: relative;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  padding: clamp(28px, 5vh, 56px) var(--pad) clamp(40px, 7vh, 90px);
+}
+
+.case-nextup {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 0.72fr);
+  align-items: center;
+  gap: clamp(18px, 3vw, 50px);
+  text-decoration: none;
+  color: inherit;
+
+  @include below(800px) {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  &__label {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 8px;
+  }
+
+  &__name {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-stretch: 100%;
+    font-variation-settings: 'wdth' 100, 'wght' 600;
+    font-size: clamp(28px, 3.4vw, 60px);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    transition: opacity 0.25s ease;
+  }
+
+  &__cue {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.55);
+    white-space: nowrap;
+
+    @include below(800px) { display: none; }
+  }
+
+  &__img {
+    margin: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    background: rgba(0, 0, 0, 0.05);
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  }
+
+  &:hover &__img img { transform: scale(1.04); }
+  &:hover &__name { opacity: 0.55; }
+}
+
+// Small tile: start a conversation
+.case-cta {
+  display: block;
+  position: relative;
+  max-width: 340px;
+  margin-top: clamp(28px, 5vh, 60px);
+  padding: clamp(18px, 2vw, 26px);
+  border-radius: 8px;
+  background: var(--black);
+  color: #ffffff;
+  text-decoration: none;
+  font-family: var(--font-ui);
+  transition: background 0.3s ease;
+
+  &:hover { background: var(--h-green); }
+
+  &__arrow {
+    position: absolute;
+    top: clamp(14px, 1.6vw, 20px);
+    right: clamp(14px, 1.6vw, 20px);
+    font-size: 15px;
+    opacity: 0.85;
+  }
+
+  &__title {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
+  &__sub {
+    display: block;
+    font-size: 12.5px;
+    line-height: 1.5;
+    opacity: 0.72;
+    max-width: 26ch;
+  }
+}
