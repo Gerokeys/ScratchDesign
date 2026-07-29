@@ -219,7 +219,7 @@
   justify-content: space-between;
   gap: 16px;
   padding: clamp(18px, 2vw, 26px) clamp(20px, 2.4vw, 32px);
-  border-radius: clamp(18px, 2vw, 28px);
+  border-radius: 8px;   // rectangular, just off the corner
   background: var(--black);
   color: #ffffff;
   text-decoration: none;
