@@ -28,7 +28,8 @@ export default class WorksScroll {
     this._active = 0;
     this._mm = gsap.matchMedia();
 
-    this._mm.add('(min-width: 861px)', () => {
+    // Matches the CSS breakpoint where the columns collapse to one stack
+    this._mm.add('(min-width: 1101px)', () => {
       const triggers = [];
 
       this._panels.forEach((panel, i) => {

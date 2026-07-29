@@ -68,8 +68,9 @@
   // ── Left: sticky, contents swap ────────────────────────────────────────────
   &__left {
     position: sticky;
-    top: 26vh;
+    top: 18vh;
     align-self: start;
+    height: 62vh;
 
     @include below(860px) {
       position: static;
@@ -87,10 +88,13 @@
 
 // ── One project's meta ────────────────────────────────────────────────────────
 .works-meta {
-  // All entries share one grid cell so they overlap, but stay in flow — the
-  // column then has a real height, which is what gives sticky its range.
+  // All entries share one grid cell so they overlap, but stay in flow
   grid-area: 1 / 1;
   width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -131,7 +135,7 @@
   }
 
   &__desc {
-    margin: 0 0 clamp(20px, 3vh, 40px);
+    margin: 0 0 clamp(16px, 2.4vh, 30px);
     max-width: 42ch;
     font-family: var(--font-ui);
     font-size: clamp(13px, 0.95vw, 16px);
@@ -211,18 +215,92 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: clamp(26px, 4vw, 52px);
+  padding: clamp(18px, 2vw, 26px) clamp(20px, 2.4vw, 32px);
+  border-radius: clamp(18px, 2vw, 28px);
   background: var(--black);
   color: #ffffff;
   text-decoration: none;
-  font-family: var(--font-hero);
-  font-weight: 800;
-  font-size: clamp(24px, 2.8vw, 52px);
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: clamp(12px, 0.9vw, 14px);
+  letter-spacing: 0.06em;
   transition: background 0.3s ease, color 0.3s ease;
 
   &:hover { background: var(--h-green); }
 
   svg { flex: none; }
+}
+
+// ─── Tablet and below: stacked, interleaved, no sticky pairing ────────────────
+// The two columns become `display: contents`, so every meta and panel is a
+// direct grid item of the same container. `order` then interleaves them, which
+// keeps each project's image and text together without duplicating markup —
+// and, being one column, they align to the same edges as the picture.
+@include below(1100px) {
+  .s-works__inner {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .s-works__left,
+  .s-works__right {
+    display: contents;
+  }
+
+  .works-meta {
+    // Release the shared cell used for stacking on desktop. Explicit placement
+    // overrides `order`, so without this every meta stays pinned to row 1 and
+    // the interleaving silently does nothing.
+    grid-area: auto;
+    position: static;
+    height: auto;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    display: block;
+    margin: 18px 0 clamp(40px, 7vh, 76px);
+    // Any inline transform left by the swap animation is irrelevant here
+    transform: none !important;
+  }
+
+  .works-panel {
+    aspect-ratio: 16 / 10;
+    margin: 0;
+    border-radius: 14px;
+    // Nothing is dimmed or inert without the sticky pairing
+    &.is-past { opacity: 1; pointer-events: auto; }
+  }
+
+  // image → title → description → thumb, name and date
+  @for $i from 1 through 4 {
+    .works-panel:nth-of-type(#{$i}) { order: #{($i - 1) * 2}; }
+    .works-meta:nth-of-type(#{$i})  { order: #{($i - 1) * 2 + 1}; }
+  }
+
+  .works-all { order: 99; }
+
+  .works-meta__num  { margin-bottom: 10px; }
+  .works-meta__name { font-size: clamp(30px, 7vw, 52px); margin-bottom: 14px; }
+  .works-meta__desc { max-width: 100%; margin-bottom: 18px; }
+
+  // Small picture with the project name and date beside it
+  .works-meta__foot { gap: 12px; }
+  .works-meta__thumb { width: 76px; }
+}
+
+// Name stacked above the date, beside the thumbnail
+.works-meta__credit {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.works-meta__foot-name {
+  font-family: var(--font-hero);
+  font-weight: 800;
+  font-size: clamp(13px, 1vw, 17px);
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  line-height: 1.05;
 }
