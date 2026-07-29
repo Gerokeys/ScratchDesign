@@ -15,7 +15,8 @@
       "PowerShell(Copy-Item \"C:\\\\Users\\\\shiku\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-shiku-code-ScratchDesign\\\\5e23c54f-ba94-44b1-b0a2-6f893418bb98\\\\scratchpad\\\\font_extract\\\\Modern Romance.otf\" \"C:\\\\Users\\\\shiku\\\\code\\\\ScratchDesign\\\\public\\\\fonts\\\\ModernRomance.otf\")",
       "Bash(rm .steps-block.html)",
       "Bash(rm .projects.json)",
-      "Bash(awk '/<section class=\"s-works\"/,/<\\\\/section>/' index.html)"
+      "Bash(awk '/<section class=\"s-works\"/,/<\\\\/section>/' index.html)",
+      "Bash(awk 'NR>=303 && /<\\\\/section>/{print NR\": \"$0; exit}' index.html)"
     ],
     "additionalDirectories": [
       "c:\\Users\\shiku\\.claude\\projects\\c--Users-shiku-code-ScratchDesign\\memory"
