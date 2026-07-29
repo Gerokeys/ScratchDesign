@@ -11,6 +11,7 @@ import Glitch           from './animations/Glitch';
 import StackCards       from './animations/StackCards';
 import RevealZoom       from './animations/RevealZoom';
 import Typewriter       from './animations/Typewriter';
+import WorksScroll      from './animations/WorksScroll';
 import ScrollAnimations, { prepareHero } from './animations/ScrollAnimations';
 import MagneticButton   from './animations/MagneticButton';
 import WorkPreview      from './animations/WorkPreview';
@@ -82,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new StackCards();
     new RevealZoom();
     new Typewriter();
+    new WorksScroll();
 
     // Pins and fitted type change the document height as they initialise, so
     // triggers created earlier measure stale positions. One refresh once

@@ -299,140 +299,101 @@
     </div>
 
     <!-- ─── Work ──────────────────────────────────────────────────────────────── -->
-    <section class="s-work" id="work">
-      <div class="container">
-        <div class="s-work__header">
-          <div>
-            <span class="label-tag">Selected work</span>
-            <h2 class="s-work__title" data-split>Recent projects</h2>
-          </div>
-          <a href="/work.html" class="s-work__view-all" data-magnetic>
-            All projects
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M13 1L1 13M13 1H4M13 1V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <!-- ─── Selected work ─────────────────────────────────────────────────────── -->
+    <section class="s-works" id="work">
+      <div class="s-works__grid" aria-hidden="true"></div>
+
+      <div class="s-works__head">
+        <span class="s-works__label">Our work</span>
+      </div>
+
+      <div class="s-works__inner">
+        <!-- Sticky column: only its contents change, the column itself holds -->
+        <div class="s-works__left">
+      <article class="works-meta is-active" data-meta="0">
+        <span class="works-meta__num" data-anim>01 — NGO · Digital Presence</span>
+        <h3 class="works-meta__name" data-anim>Livelihood Lab Africa</h3>
+        <p class="works-meta__desc" data-anim>Livelihood Lab Africa, a leading NGO, had no digital footprint. They needed a professional online presence to reach partners, donors, and communities — fast.</p>
+        <div class="works-meta__foot">
+          <img class="works-meta__thumb" data-anim src="https://s0.wp.com/mshots/v1/https://livelihood-lab-africa.vercel.app?w=1400" alt="" loading="lazy" width="84" height="56" />
+          <span class="works-meta__date" data-anim>Completed 2024</span>
+        </div>
+      </article>
+
+      <article class="works-meta" data-meta="1">
+        <span class="works-meta__num" data-anim>02 — Healthcare · Growth</span>
+        <h3 class="works-meta__name" data-anim>Toothful Secrets</h3>
+        <p class="works-meta__desc" data-anim>A dental hygiene brand with no e-commerce presence and a subscription product nobody knew existed. Their site wasn't converting.</p>
+        <div class="works-meta__foot">
+          <img class="works-meta__thumb" data-anim src="https://s0.wp.com/mshots/v1/https://toothful-secrets.vercel.app?w=1400" alt="" loading="lazy" width="84" height="56" />
+          <span class="works-meta__date" data-anim>Completed 2024</span>
+        </div>
+      </article>
+
+      <article class="works-meta" data-meta="2">
+        <span class="works-meta__num" data-anim>03 — Beauty · Web Design</span>
+        <h3 class="works-meta__name" data-anim>Glam by Ivy</h3>
+        <p class="works-meta__desc" data-anim>A beauty artist with a strong social following and zero online booking infrastructure. Every client inquiry was a manual DM.</p>
+        <div class="works-meta__foot">
+          <img class="works-meta__thumb" data-anim src="https://s0.wp.com/mshots/v1/https://glam-jet.vercel.app?w=1400" alt="" loading="lazy" width="84" height="56" />
+          <span class="works-meta__date" data-anim>Completed 2024</span>
+        </div>
+      </article>
+
+      <article class="works-meta" data-meta="3">
+        <span class="works-meta__num" data-anim>04 — Clean Energy · Lead Gen</span>
+        <h3 class="works-meta__name" data-anim>Solar Kenya</h3>
+        <p class="works-meta__desc" data-anim>A clean energy company with quality installations and zero digital lead generation. They were relying entirely on referrals and word of mouth.</p>
+        <div class="works-meta__foot">
+          <img class="works-meta__thumb" data-anim src="https://s0.wp.com/mshots/v1/https://solar-kenya-e3ha.vercel.app?w=1400" alt="" loading="lazy" width="84" height="56" />
+          <span class="works-meta__date" data-anim>Completed 2024</span>
+        </div>
+      </article>
+        </div>
+
+        <!-- Scrolling column: the images move past the sticky meta -->
+        <div class="s-works__right">
+        <a class="works-panel fw-card" href="https://livelihood-lab-africa.vercel.app" data-panel="0" tabindex="0" role="button"
+          data-title="Livelihood Lab Africa" data-year="2024" data-role="Web Design, SEO, Brand Identity"
+          data-industry="NGO · Digital Presence" data-url="https://livelihood-lab-africa.vercel.app" data-image="https://s0.wp.com/mshots/v1/https://livelihood-lab-africa.vercel.app?w=1400"
+          data-metric="30+ New Enquiries" data-category="ngo" data-tags="Web Design,SEO,Lead Generation,NGO"
+          data-stats="30+|New Enquiries,Online|Presence Built,Weeks|Time to Launch" data-brief="Livelihood Lab Africa, a leading NGO, had no digital footprint. They needed a professional online presence to reach partners, donors, and communities — fast." data-built="A clean, fast website communicating their mission with clarity. Schema markup, optimised images, and targeted local SEO put them on the map."
+          data-outcome="Within weeks: 30+ new enquiries, a functioning digital presence, and a partner pipeline that didn't exist before.">
+          <img src="https://s0.wp.com/mshots/v1/https://livelihood-lab-africa.vercel.app?w=1400" alt="Livelihood Lab Africa" loading="lazy" />
+        </a>
+
+        <a class="works-panel fw-card" href="https://toothful-secrets.vercel.app" data-panel="1" tabindex="0" role="button"
+          data-title="Toothful Secrets" data-year="2024" data-role="E-Commerce, SEO, Conversion Optimisation"
+          data-industry="Healthcare · Growth" data-url="https://toothful-secrets.vercel.app" data-image="https://s0.wp.com/mshots/v1/https://toothful-secrets.vercel.app?w=1400"
+          data-metric="+50% Sales" data-category="ecommerce" data-tags="E-Commerce,SEO,Subscriptions,Healthcare"
+          data-stats="+50%|Sales Uplift,30+|New Subscribers,Organic|Traffic Source" data-brief="A dental hygiene brand with no e-commerce presence and a subscription product nobody knew existed. Their site wasn't converting." data-built="Rebuilt around conversion — structured product pages, streamlined checkout, and a subscription plan front and centre. SEO foundations added for organic discovery."
+          data-outcome="50% sales uplift. Growing subscription signups month-on-month. Organic traffic now their primary acquisition channel.">
+          <img src="https://s0.wp.com/mshots/v1/https://toothful-secrets.vercel.app?w=1400" alt="Toothful Secrets" loading="lazy" />
+        </a>
+
+        <a class="works-panel fw-card" href="https://glam-jet.vercel.app" data-panel="2" tabindex="0" role="button"
+          data-title="Glam by Ivy" data-year="2024" data-role="Web Design, Booking Flow, Branding"
+          data-industry="Beauty · Web Design" data-url="https://glam-jet.vercel.app" data-image="https://s0.wp.com/mshots/v1/https://glam-jet.vercel.app?w=1400"
+          data-metric="20+ Online Bookings" data-category="booking" data-tags="Web Design,Branding,Booking Flow,Beauty"
+          data-stats="20+|Online Bookings,Social|Traffic Source,Days|Time to Launch" data-brief="A beauty artist with a strong social following and zero online booking infrastructure. Every client inquiry was a manual DM." data-built="High-converting booking site — visual brand expression, gallery of work, and a frictionless booking flow that converts followers into booked clients."
+          data-outcome="20+ confirmed bookings from day one. Social traffic directly converted. The artist now operates without a single booking DM.">
+          <img src="https://s0.wp.com/mshots/v1/https://glam-jet.vercel.app?w=1400" alt="Glam by Ivy" loading="lazy" />
+        </a>
+
+        <a class="works-panel fw-card" href="https://solar-kenya-e3ha.vercel.app/" data-panel="3" tabindex="0" role="button"
+          data-title="Solar Kenya" data-year="2024" data-role="Web Design, SEO, Lead Generation"
+          data-industry="Clean Energy · Lead Gen" data-url="https://solar-kenya-e3ha.vercel.app/" data-image="https://s0.wp.com/mshots/v1/https://solar-kenya-e3ha.vercel.app?w=1400"
+          data-metric="25+ Client Leads" data-category="lead-gen" data-tags="Web Design,SEO,Lead Generation,Clean Energy"
+          data-stats="25+|Client Leads,Local|SEO Optimised,East Africa|Coverage" data-brief="A clean energy company with quality installations and zero digital lead generation. They were relying entirely on referrals and word of mouth." data-built="A trust-first website positioning them as the credible choice for solar in Kenya — with clear service breakdowns, installation case studies, and strong local SEO."
+          data-outcome="25+ qualified leads through the site. Now ranked for key solar installation searches in Nairobi. Referrals supplemented by a reliable online channel.">
+          <img src="https://s0.wp.com/mshots/v1/https://solar-kenya-e3ha.vercel.app?w=1400" alt="Solar Kenya" loading="lazy" />
+        </a>
+
+          <a class="works-all" href="/work.html">
+            <span>See all projects</span>
+            <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M15 1L1 15M15 1H5M15 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </a>
         </div>
-
-        <div class="s-work__list" id="work-list">
-
-          <article class="work-item fw-card" tabindex="0" role="button"
-            data-title="Livelihood Lab Africa"
-            data-year="2024"
-            data-role="Web Design, SEO, Brand Identity"
-            data-industry="NGO · Digital Presence"
-            data-url="https://livelihood-lab-africa.vercel.app"
-            data-image="https://s0.wp.com/mshots/v1/https://livelihood-lab-africa.vercel.app?w=1400"
-            data-metric="30+ New Enquiries"
-            data-category="ngo"
-            data-tags="Web Design,SEO,Lead Generation,NGO"
-            data-stats="30+|New Enquiries,Online|Presence Built,Weeks|Time to Launch"
-            data-brief="Livelihood Lab Africa, a leading NGO, had no digital footprint. They needed a professional online presence to reach partners, donors, and communities — fast."
-            data-built="A clean, fast website communicating their mission with clarity. Schema markup, optimised images, and targeted local SEO put them on the map."
-            data-outcome="Within weeks: 30+ new enquiries, a functioning digital presence, and a partner pipeline that didn't exist before.">
-            <div class="work-item__num">01</div>
-            <div class="work-item__main">
-              <h3 class="work-item__name">Livelihood Lab Africa</h3>
-              <div class="work-item__tags">
-                <span>Web Design</span><span>SEO</span><span>NGO</span>
-              </div>
-            </div>
-            <span class="work-item__cat">NGO · Digital Presence</span>
-            <span class="work-item__year">2024</span>
-            <div class="work-item__arrow">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15 1L1 15M15 1H5M15 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </div>
-          </article>
-
-          <article class="work-item fw-card" tabindex="0" role="button"
-            data-title="Toothful Secrets"
-            data-year="2024"
-            data-role="E-Commerce, SEO, Conversion Optimisation"
-            data-industry="Healthcare · Growth"
-            data-url="https://toothful-secrets.vercel.app"
-            data-image="https://s0.wp.com/mshots/v1/https://toothful-secrets.vercel.app?w=1400"
-            data-metric="+50% Sales"
-            data-category="ecommerce"
-            data-tags="E-Commerce,SEO,Subscriptions,Healthcare"
-            data-stats="+50%|Sales Uplift,30+|New Subscribers,Organic|Traffic Source"
-            data-brief="A dental hygiene brand with no e-commerce presence and a subscription product nobody knew existed. Their site wasn't converting."
-            data-built="Rebuilt around conversion — structured product pages, streamlined checkout, and a subscription plan front and centre. SEO foundations added for organic discovery."
-            data-outcome="50% sales uplift. Growing subscription signups month-on-month. Organic traffic now their primary acquisition channel.">
-            <div class="work-item__num">02</div>
-            <div class="work-item__main">
-              <h3 class="work-item__name">Toothful Secrets</h3>
-              <div class="work-item__tags">
-                <span>E-Commerce</span><span>SEO</span><span>Healthcare</span>
-              </div>
-            </div>
-            <span class="work-item__cat">Healthcare · Growth</span>
-            <span class="work-item__year">2024</span>
-            <div class="work-item__arrow">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15 1L1 15M15 1H5M15 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </div>
-          </article>
-
-          <article class="work-item fw-card" tabindex="0" role="button"
-            data-title="Glam by Ivy"
-            data-year="2024"
-            data-role="Web Design, Booking Flow, Branding"
-            data-industry="Beauty · Web Design"
-            data-url="https://glam-jet.vercel.app"
-            data-image="https://s0.wp.com/mshots/v1/https://glam-jet.vercel.app?w=1400"
-            data-metric="20+ Online Bookings"
-            data-category="booking"
-            data-tags="Web Design,Branding,Booking Flow,Beauty"
-            data-stats="20+|Online Bookings,Social|Traffic Source,Days|Time to Launch"
-            data-brief="A beauty artist with a strong social following and zero online booking infrastructure. Every client inquiry was a manual DM."
-            data-built="High-converting booking site — visual brand expression, gallery of work, and a frictionless booking flow that converts followers into booked clients."
-            data-outcome="20+ confirmed bookings from day one. Social traffic directly converted. The artist now operates without a single booking DM.">
-            <div class="work-item__num">03</div>
-            <div class="work-item__main">
-              <h3 class="work-item__name">Glam by Ivy</h3>
-              <div class="work-item__tags">
-                <span>Branding</span><span>Booking</span><span>Beauty</span>
-              </div>
-            </div>
-            <span class="work-item__cat">Beauty · Web Design</span>
-            <span class="work-item__year">2024</span>
-            <div class="work-item__arrow">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15 1L1 15M15 1H5M15 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </div>
-          </article>
-
-          <article class="work-item fw-card" tabindex="0" role="button"
-            data-title="Solar Kenya"
-            data-year="2024"
-            data-role="Web Design, SEO, Lead Generation"
-            data-industry="Clean Energy · Lead Gen"
-            data-url="https://solar-kenya-e3ha.vercel.app/"
-            data-image="https://s0.wp.com/mshots/v1/https://solar-kenya-e3ha.vercel.app?w=1400"
-            data-metric="25+ Client Leads"
-            data-category="lead-gen"
-            data-tags="Web Design,SEO,Lead Generation,Clean Energy"
-            data-stats="25+|Client Leads,Local|SEO Optimised,East Africa|Coverage"
-            data-brief="A clean energy company with quality installations and zero digital lead generation. They were relying entirely on referrals and word of mouth."
-            data-built="A trust-first website positioning them as the credible choice for solar in Kenya — with clear service breakdowns, installation case studies, and strong local SEO."
-            data-outcome="25+ qualified leads through the site. Now ranked for key solar installation searches in Nairobi. Referrals supplemented by a reliable online channel.">
-            <div class="work-item__num">04</div>
-            <div class="work-item__main">
-              <h3 class="work-item__name">Solar Kenya</h3>
-              <div class="work-item__tags">
-                <span>Web Design</span><span>SEO</span><span>Lead Gen</span>
-              </div>
-            </div>
-            <span class="work-item__cat">Clean Energy · Lead Gen</span>
-            <span class="work-item__year">2024</span>
-            <div class="work-item__arrow">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15 1L1 15M15 1H5M15 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </div>
-          </article>
-
-        </div>
-
-        <!-- Floating cursor image preview -->
-        <div class="work-preview" id="work-preview" aria-hidden="true">
-          <img class="work-preview__img" id="work-preview-img" src="" alt="" />
-        </div>
-
       </div>
     </section>
 

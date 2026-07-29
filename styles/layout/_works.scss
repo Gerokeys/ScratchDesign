@@ -1,0 +1,228 @@
+// ─── Selected work — sticky meta beside scrolling images ──────────────────────
+// The left column holds still while the right column scrolls past it. Only the
+// meta's *contents* change: they animate out and in in a stagger as each
+// project takes over, so the column itself never moves.
+.s-works {
+  position: relative;
+  background: #ffffff;
+  color: var(--black);
+  padding: clamp(48px, 9vh, 120px) 0 clamp(60px, 10vh, 140px);
+
+  // Thin vertical rules, matching the light section above
+  &__grid {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.13) 0,
+      rgba(0, 0, 0, 0.13) 1px,
+      transparent 1px,
+      transparent calc(100% / 9)
+    );
+
+    @include below(860px) {
+      background-image: repeating-linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.13) 0,
+        rgba(0, 0, 0, 0.13) 1px,
+        transparent 1px,
+        transparent calc(100% / 4)
+      );
+    }
+  }
+
+  &__head {
+    position: relative;
+    z-index: 1;
+    padding: 0 var(--pad) clamp(24px, 5vh, 56px);
+  }
+
+  &__label {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--black);
+    color: #ffffff;
+    font-family: var(--font-ui);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    gap: clamp(24px, 5vw, 90px);
+    padding: 0 var(--pad);
+
+    @include below(860px) {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+
+  // ── Left: sticky, contents swap ────────────────────────────────────────────
+  &__left {
+    position: sticky;
+    top: 26vh;
+    align-self: start;
+
+    @include below(860px) {
+      position: static;
+      height: auto;
+      display: block;
+    }
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 4vh, 56px);
+  }
+}
+
+// ── One project's meta ────────────────────────────────────────────────────────
+.works-meta {
+  // All entries share one grid cell so they overlap, but stay in flow — the
+  // column then has a real height, which is what gives sticky its range.
+  grid-area: 1 / 1;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  &.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  @include below(860px) {
+    // On small screens each project reads as its own block, in flow
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    margin-bottom: 18px;
+  }
+
+  &__num {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: clamp(11px, 0.85vw, 13px);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.5);
+    margin-bottom: clamp(10px, 1.6vh, 20px);
+  }
+
+  &__name {
+    margin: 0 0 clamp(14px, 2.2vh, 28px);
+    font-family: var(--font-hero);
+    font-weight: 800;
+    font-size: clamp(34px, 4.4vw, 84px);
+    line-height: 0.94;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+  }
+
+  &__desc {
+    margin: 0 0 clamp(20px, 3vh, 40px);
+    max-width: 42ch;
+    font-family: var(--font-ui);
+    font-size: clamp(13px, 0.95vw, 16px);
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.66);
+  }
+
+  &__foot {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  &__thumb {
+    width: clamp(64px, 6vw, 92px);
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    flex: none;
+  }
+
+  &__date {
+    font-family: var(--font-ui);
+    font-size: clamp(11px, 0.85vw, 13px);
+    letter-spacing: 0.06em;
+    color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+// The sticky column stacks its entries, so give it a grid to share one cell
+.s-works__left {
+  display: grid;
+  place-items: center start;
+
+  @include below(860px) { display: block; }
+}
+
+// ── Right: the images that scroll ─────────────────────────────────────────────
+.works-panel {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.04);
+  aspect-ratio: 4 / 3;
+  cursor: pointer;
+  // Projects already scrolled past fade back and stop responding
+  transition: opacity 0.5s ease, filter 0.5s ease;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  &:hover img { transform: scale(1.03); }
+
+  &.is-past {
+    opacity: 0.28;
+    pointer-events: none;
+    cursor: default;
+  }
+
+  @include below(860px) {
+    aspect-ratio: 16 / 10;
+    margin-bottom: 34px;
+    // No sticky pairing on mobile, so nothing should be dimmed or inert
+    &.is-past { opacity: 1; pointer-events: auto; }
+  }
+}
+
+// ── Tile after the last project ───────────────────────────────────────────────
+.works-all {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: clamp(26px, 4vw, 52px);
+  background: var(--black);
+  color: #ffffff;
+  text-decoration: none;
+  font-family: var(--font-hero);
+  font-weight: 800;
+  font-size: clamp(24px, 2.8vw, 52px);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  transition: background 0.3s ease, color 0.3s ease;
+
+  &:hover { background: var(--h-green); }
+
+  svg { flex: none; }
+}
