@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <h2 class="case-nextup__name">${esc(next.title)}</h2>
       </a>
 
-      <a class="case-cta" href="/#contact">
+      <a class="case-cta" href="/contact.html">
         <span class="case-cta__arrow" aria-hidden="true">↗</span>
         <span class="case-cta__text">
           <span class="case-cta__title">Want to discuss a project?</span>
@@ -120,10 +120,12 @@ document.addEventListener('DOMContentLoaded', () => {
       </a>
     </div>
 
-    <a class="case-foot__media" href="/case.html?p=${esc(next.slug)}" data-cursor="View case study">
+    <div class="case-foot__right">
       <span class="case-nextup__cue">[ View next ]</span>
-      <img src="${esc(next.image)}" alt="${esc(next.title)}" loading="lazy" />
-    </a>
+      <a class="case-foot__media" href="/case.html?p=${esc(next.slug)}" data-cursor="View case study">
+        <img src="${esc(next.image)}" alt="${esc(next.title)}" loading="lazy" />
+      </a>
+    </div>
   `;
 
   // ── Section indicators ──────────────────────────────────────────────────────

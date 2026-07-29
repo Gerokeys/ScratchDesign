@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Contact — ScratchDesign</title>
+    <meta name="description" content="Tell us what you're building. We read every enquiry ourselves and reply with a plan for what your site needs to do." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Archivo:wdth,wght@62..125,100..900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  </head>
+  <body class="contact-body">
+
+    <header class="c-nav">
+      <a class="c-nav__logo" href="/" aria-label="ScratchDesign home">
+        <img src="/images/scratchdesign%20logo.jpeg" alt="ScratchDesign" width="56" height="56" />
+      </a>
+      <a class="c-nav__back" href="/">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M10 2L4 8l6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to site
+      </a>
+    </header>
+
+    <main class="s-contact">
+      <div class="s-contact__grid" aria-hidden="true"></div>
+
+      <!-- Head band -->
+      <div class="s-contact__head">
+        <span class="s-contact__eyebrow">[ Contact ]</span>
+        <h1 class="s-contact__title">First tell us what you&rsquo;re building!</h1>
+        <div class="s-contact__social">
+          <a href="https://www.instagram.com/scratchdesign" target="_blank" rel="noopener">Instagram</a>
+          <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+
+      <!-- Split: notes on the left, form on the right -->
+      <div class="s-contact__inner">
+        <aside class="s-contact__aside">
+          <p class="s-contact__note">
+            This form helps us get a real picture of where you&rsquo;re at and what you&rsquo;re
+            building. We read every enquiry ourselves. From there we&rsquo;ll reach out to map
+            out what your website actually needs to do to support your brand as it grows.
+          </p>
+
+          <div class="s-contact__mail">
+            <span>Or just email us at:</span>
+            <a href="mailto:hello@scratchdesign.co">hello@scratchdesign.co</a>
+          </div>
+
+          <figure class="s-contact__figure">
+            <img src="/images/img1.jpg" alt="" loading="lazy" />
+            <figcaption>We&rsquo;ve been told we make rather good websites.</figcaption>
+          </figure>
+        </aside>
+
+        <form class="c-form" id="contact-form" novalidate>
+
+          <fieldset class="c-form__set">
+            <legend class="c-form__legend">01 &nbsp;|&nbsp; About your project</legend>
+            <div class="c-form__rows">
+              <label class="c-field">
+                <span class="c-field__label">Website type*</span>
+                <select name="type" required>
+                  <option>One-pager (single page)</option>
+                  <option>Multi-page marketing site</option>
+                  <option>E-commerce store</option>
+                  <option>Booking or scheduling site</option>
+                  <option>Web app or platform</option>
+                  <option>Redesign of an existing site</option>
+                </select>
+              </label>
+
+              <label class="c-field">
+                <span class="c-field__label">What&rsquo;s your goal?*</span>
+                <select name="goal" required>
+                  <option>Generate qualified leads</option>
+                  <option>Sell products online</option>
+                  <option>Take bookings</option>
+                  <option>Look credible to partners</option>
+                  <option>Rank in search</option>
+                  <option>Something else</option>
+                </select>
+              </label>
+
+              <label class="c-field">
+                <span class="c-field__label">What&rsquo;s your budget?*</span>
+                <select name="budget" required>
+                  <option>Under Ksh 25,000</option>
+                  <option>Ksh 25,000 &ndash; 65,000</option>
+                  <option>Ksh 65,000 &ndash; 120,000</option>
+                  <option>Ksh 120,000+</option>
+                  <option>Not sure yet</option>
+                </select>
+              </label>
+
+              <label class="c-field">
+                <span class="c-field__label">When are you ready to start?*</span>
+                <select name="timing" required>
+                  <option>Immediately</option>
+                  <option>Within a month</option>
+                  <option>In one to three months</option>
+                  <option>Just exploring</option>
+                </select>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="c-form__set">
+            <legend class="c-form__legend">02 &nbsp;|&nbsp; About your business</legend>
+            <div class="c-form__rows">
+              <label class="c-field">
+                <span class="c-field__label">Your industry*</span>
+                <input type="text" name="industry" placeholder="Industry" required />
+              </label>
+
+              <label class="c-field">
+                <span class="c-field__label">Link to your website or social</span>
+                <input type="url" name="link" placeholder="URL (optional)" />
+              </label>
+
+              <label class="c-field c-field--wide">
+                <span class="c-field__label">Briefly explain your business*</span>
+                <textarea name="business" rows="3" placeholder="As if you were explaining it to a five-year-old" required></textarea>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="c-form__set">
+            <legend class="c-form__legend">03 &nbsp;|&nbsp; About yourself</legend>
+            <div class="c-form__rows">
+              <label class="c-field">
+                <span class="c-field__label">What&rsquo;s your name?*</span>
+                <input type="text" name="name" placeholder="Full name" required />
+              </label>
+
+              <label class="c-field">
+                <span class="c-field__label">What&rsquo;s your email?*</span>
+                <input type="email" name="email" placeholder="mail@example.com" required />
+              </label>
+
+              <label class="c-field c-field--wide">
+                <span class="c-field__label">Anything else we should know?</span>
+                <textarea name="extra" rows="3" placeholder="Inspiration, concerns, ideas — anything"></textarea>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="c-form__foot">
+            <button class="c-form__submit" type="submit">
+              <span>Send project request</span>
+              <span class="c-form__submit-arrow" aria-hidden="true">&#8599;</span>
+            </button>
+            <p class="c-form__status" id="form-status" role="status"></p>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <script type="module" src="/app/contact.js"></script>
+  </body>
+</html>
