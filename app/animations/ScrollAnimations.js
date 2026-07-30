@@ -73,6 +73,7 @@ export default class ScrollAnimations {
     this._initFadeUps();
     this._initStats();
     this._initWorkItems();
+    this._initParallax();
     this._initNavScroll();
   }
 
@@ -166,6 +167,29 @@ export default class ScrollAnimations {
   }
 
   // ── Nav shrinks on scroll ─────────────────────────────────────────────────────
+  // Process diagrams drift against the scroll, so they feel slightly detached
+  // from the column they sit in.
+  _initParallax() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    document.querySelectorAll('.how-step__art').forEach((art, i) => {
+      gsap.fromTo(art,
+        { y: 34 },
+        {
+          y: -34 - i * 6,   // a touch more travel per column, so they de-sync
+          ease: 'none',
+          scrollTrigger: {
+            trigger: art.closest('.s-how') || art,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 0.6,
+            invalidateOnRefresh: true,
+          },
+        },
+      );
+    });
+  }
+
   _initNavScroll() {
     const nav = document.getElementById('site-nav');
     if (!nav) return;

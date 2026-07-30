@@ -23,6 +23,8 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+html.light { background: #ffffff; }
+
 body {
   background: var(--paper);
   // `clip`, not `hidden`: overflow-x:hidden forces overflow-y to compute as

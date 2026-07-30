@@ -216,24 +216,52 @@
 .works-all {
   grid-column: 1 / -1;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: space-between;
-  gap: 16px;
-  padding: clamp(18px, 2vw, 26px) clamp(20px, 2.4vw, 32px);
-  border-radius: 8px;   // rectangular, just off the corner
-  background: var(--black);
+  align-items: flex-start;
+  width: min(320px, 100%);
+  min-height: clamp(120px, 17vh, 165px);
+  justify-self: start;
+  margin-top: clamp(20px, 4vh, 46px);
+  padding: clamp(14px, 1.6vw, 20px);
+  border-radius: 4px;
+  background: var(--h-bg);
   color: #ffffff;
   text-decoration: none;
   font-family: var(--font-ui);
-  font-weight: 500;
-  font-size: clamp(12px, 0.9vw, 14px);
-  letter-spacing: 0.06em;
-  transition: background 0.3s ease, color 0.3s ease;
 
-  &:hover { background: var(--h-green); }
+  &:hover {
+    .works-all__arrow,
+    .works-all__title,
+    .works-all__sub { color: var(--h-green); opacity: 1; }
+  }
 
-  svg { flex: none; }
+  &__arrow {
+    align-self: flex-end;
+    font-size: 15px;
+    line-height: 1;
+    opacity: 0.9;
+    transition: color 0.25s ease, opacity 0.25s ease;
+  }
+
+  &__title {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    transition: color 0.25s ease;
+  }
+
+  &__sub {
+    display: block;
+    font-size: 12px;
+    line-height: 1.5;
+    opacity: 0.7;
+    max-width: 30ch;
+    transition: color 0.25s ease, opacity 0.25s ease;
+  }
 }
+
 
 // ─── Tablet and below: stacked, interleaved, no sticky pairing ────────────────
 // The two columns become `display: contents`, so every meta and panel is a
