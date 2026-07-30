@@ -16,7 +16,8 @@
       "Bash(rm .steps-block.html)",
       "Bash(rm .projects.json)",
       "Bash(awk '/<section class=\"s-works\"/,/<\\\\/section>/' index.html)",
-      "Bash(awk 'NR>=303 && /<\\\\/section>/{print NR\": \"$0; exit}' index.html)"
+      "Bash(awk 'NR>=303 && /<\\\\/section>/{print NR\": \"$0; exit}' index.html)",
+      "Bash(awk '/class=\"s-works\"/,/<\\\\/section>/' index.html)"
     ],
     "additionalDirectories": [
       "c:\\Users\\shiku\\.claude\\projects\\c--Users-shiku-code-ScratchDesign\\memory"
