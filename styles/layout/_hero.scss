@@ -192,7 +192,7 @@
 
   // Single decorative letter swapped into the headline
   &__glyph {
-    font-family: var(--font-hero);
+    font-family: var(--font-swash);
     font-weight: 400;
     // Dirtyline sits on a different vertical metric to Thunder, so nudge it
     // back onto the same optical baseline and match its apparent size.
@@ -201,6 +201,9 @@
     line-height: 1;
     transform: translateY(0.055em);
     letter-spacing: 0;
+    // The swash overhangs its own advance width on both sides, so without this
+    // it lies across the O before it and the E after it
+    margin-inline: 0.05em;
   }
 
   &__word {

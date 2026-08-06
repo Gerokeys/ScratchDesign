@@ -13,18 +13,24 @@ gsap.registerPlugin(ScrollTrigger);
  * through the section to start at that point, which jumps; scrubbing the
  * section as it passes gives the same read with no discontinuity.
  *
- * gsap.matchMedia keeps the effect to wider viewports — on mobile the tiles are
- * a plain scrolling list, which avoids both the viewport-resize problems and
- * the cost of animating blur on a phone GPU.
+ * It runs at every width. On narrow screens the tiles are shorter and closer
+ * together, so the recede is scaled back to match — and the blur, which is the
+ * expensive part on a phone GPU, is roughly halved.
  */
 
-const GAP_OPEN   = 18;     // px between tiles at rest
-const OVERLAP         = 6;   // px used to size each phase's scroll length
 const OVERLAP_CLOSED  = 22;  // px each tile lies over the one before, once stacked
 const SCALE_STEP = 0.04;   // per tile of depth → the deepest lands at 0.80
 const FADE_STEP  = 0.075;  // opacity lost per tile of depth
 const BLUR_STEP  = 1.3;    // px of blur per tile of depth
-const TRAVEL     = 0.40;   // scroll distance per tile, as a fraction of the viewport
+
+// Narrow screens: shorter tiles and a tighter resting gap, so the same steps
+// would read as a much heavier effect over far less scroll.
+const NARROW = {
+  scale: 0.028,
+  fade:  0.055,
+  blur:  0.7,
+  closed: 12,
+};
 
 export default class StackCards {
   constructor() {
@@ -53,11 +59,30 @@ export default class StackCards {
     this._mm.add(
       {
         wide:    '(min-width: 860px)',
+        // Paired with `wide` so one of the two always matches: gsap.matchMedia
+        // never calls the handler when *no* condition does, which silently
+        // dropped the whole effect on phones.
+        narrow:  '(max-width: 859px)',
         reduced: '(prefers-reduced-motion: reduce)',
       },
       (ctx) => {
         const { wide, reduced } = ctx.conditions;
-        if (!wide || reduced) return;   // mobile / reduced motion: plain list
+        if (reduced) return;            // reduced motion: plain list, no recede
+
+        const scaleStep = wide ? SCALE_STEP : NARROW.scale;
+        const fadeStep  = wide ? FADE_STEP  : NARROW.fade;
+        const blurStep  = wide ? BLUR_STEP  : NARROW.blur;
+        const closed    = wide ? OVERLAP_CLOSED : NARROW.closed;
+
+        // The resting gap is set in CSS and differs by breakpoint, so read it
+        // rather than hard-coding it — animating from the wrong value makes the
+        // tiles jump the moment the first trigger engages.
+        const openGap = () => {
+          const v = parseFloat(
+            getComputedStyle(this._section).getPropertyValue('--tile-gap-open'),
+          );
+          return Number.isFinite(v) ? v : 18;
+        };
 
         const n = this._cards.length;
         const steps = n - 1;            // the front tile never recedes
@@ -77,15 +102,15 @@ export default class StackCards {
         const stride = () => {
           const inner = this._cards[0].querySelector('.step-card__inner');
           const h = inner ? inner.getBoundingClientRect().height : 0;
-          return Math.max(80, h + GAP_OPEN);
+          return Math.max(80, h + openGap());
         };
 
         // Gaps close across the whole run
         tweens.push(gsap.fromTo(
           this._section,
-          { '--tile-gap': `${GAP_OPEN}px` },
+          { '--tile-gap': () => `${openGap()}px` },
           {
-            '--tile-gap': `${-OVERLAP_CLOSED}px`,
+            '--tile-gap': `${-closed}px`,
             ease: 'none',
             scrollTrigger: {
               trigger: this._cards[0],
@@ -113,7 +138,7 @@ export default class StackCards {
           // mid-screen. scaleX, not scale: a uniform scale shrinks height too,
           // which opens a gap under each receding tile so the pile never closes.
           tweens.push(gsap.to(inner, {
-            scaleX: 1 - depth * SCALE_STEP,
+            scaleX: 1 - depth * scaleStep,
             ease:   'none',
             scrollTrigger: {
               trigger: card,
@@ -130,8 +155,8 @@ export default class StackCards {
           if (!next) return;
 
           tweens.push(gsap.to(inner, {
-            opacity: 1 - (depth - 1) * FADE_STEP,
-            filter:  `blur(${((depth - 1) * BLUR_STEP).toFixed(2)}px)`,
+            opacity: 1 - (depth - 1) * fadeStep,
+            filter:  `blur(${((depth - 1) * blurStep).toFixed(2)}px)`,
             ease:    'none',
             scrollTrigger: {
               // Fires while the next tile is still below centre, so the blur

@@ -1,8 +1,8 @@
 // ─── Approach steps — all tiles visible, compressing into a stack on scroll ───
 // Every tile is on screen from the start, spaced apart. As the section scrubs,
 // the gaps close and each tile recedes (scale + slight fade) behind the one
-// below it. Driven by StackCards.js; below 860px the pin is dropped entirely
-// and the tiles render as a plain scrolling list.
+// below it. Driven by StackCards.js at every width — below 860px the tiles are
+// shorter and the recede is scaled back to match.
 .s-steps {
   position: relative;
   // Continues the strategy band's charcoal panel and column rules
@@ -37,9 +37,15 @@
     }
   }
 
-  --tile-h: 17svh;
-  // Resting gap — enough for the column rules to read between the tiles
-  --tile-gap: 18px;
+  // A floor, not a fixed height: the tiles grow past it whenever the heading
+  // and paragraph need the room. Pinning them to an exact svh clipped the top
+  // of every title and the last line of every paragraph on shorter viewports.
+  --tile-h: clamp(150px, 20svh, 250px);
+  // Resting gap — enough for the column rules to read between the tiles.
+  // StackCards.js reads --tile-gap-open to know where to animate from, so the
+  // two stay in step when the breakpoint changes this value.
+  --tile-gap-open: 18px;
+  --tile-gap: var(--tile-gap-open);
   // Near-full-bleed: only a hairline of the dark page shows at either edge
   --tile-inset: clamp(4px, 0.3vw, 9px);
 
@@ -51,36 +57,36 @@
   padding-bottom: 0;          // last tile sits flush against the next section
 
   @include below(860px) {
-    // Plain list on mobile: no pinning, tiles size to their content
+    // Tiles size to their content and stack in normal flow; the recede still
+    // runs, driven by each tile's own trigger rather than a pin.
     display: block;
     min-height: 0;
     padding: clamp(28px, 6vh, 56px) 0;
     // Wider tiles on small screens, so the numeral has room beside the text
     --tile-inset: 8px;
+    --tile-h: 150px;
+    --tile-gap-open: 10px;
   }
 }
 
 .step-card {
   position: relative;
   z-index: 1;                 // above the column rules
-  height: var(--tile-h);
+  // Height comes from the tile's own content — see --tile-h on __inner
   flex: none;
   // Animated to a negative value, so the gap closes into a slight overlap
   margin-bottom: var(--tile-gap);
 
   &:last-child { margin-bottom: 0; }
 
-  @include below(860px) {
-    height: auto;
-    min-height: 132px;   // vertical room for the numeral beside the text
-    margin-bottom: 10px;
-    &:last-child { margin-bottom: 0; }
-  }
-
   &__inner {
     position: relative;
+    // --tile-h is the resting height; content that needs more simply gets it,
+    // which is what stops the title and the last line of the copy being cut off
+    min-height: var(--tile-h);
+    // Keeps the ghosted numeral inside the tile; the copy can no longer be
+    // clipped by it, since the box grows to whatever the content needs
     overflow: hidden;
-    height: 100%;
     width: calc(100% - (2 * var(--tile-inset)));
     margin-inline: auto;
     // Reads as one tile lying over the next once the gaps close
@@ -145,7 +151,7 @@
     margin: 0;
     font-family: var(--font-hero);
     font-weight: 800;
-    font-size: clamp(34px, 4.9vw, 94px);
+    font-size: clamp(40px, 6.1vw, 118px);
     line-height: 0.94;
     letter-spacing: -0.01em;
     text-transform: uppercase;
@@ -153,7 +159,7 @@
 
     @include below(860px) {
       white-space: normal;
-      font-size: clamp(22px, 6.4vw, 34px);
+      font-size: clamp(26px, 7.6vw, 42px);
     }
   }
 

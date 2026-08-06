@@ -17,7 +17,18 @@
       "Bash(rm .projects.json)",
       "Bash(awk '/<section class=\"s-works\"/,/<\\\\/section>/' index.html)",
       "Bash(awk 'NR>=303 && /<\\\\/section>/{print NR\": \"$0; exit}' index.html)",
-      "Bash(awk '/class=\"s-works\"/,/<\\\\/section>/' index.html)"
+      "Bash(awk '/class=\"s-works\"/,/<\\\\/section>/' index.html)",
+      "Bash(node \"C:/Users/shiku/AppData/Local/Temp/claude/c--Users-shiku-code-ScratchDesign/5e23c54f-ba94-44b1-b0a2-6f893418bb98/scratchpad/check-steps.mjs\")",
+      "Bash(node check-steps.mjs)",
+      "Bash(sed -i \"s|from 'playwright'|from 'playwright-core'|; s|chromium.launch\\(\\)|chromium.launch\\({ channel: 'chrome' }\\)|\" check-steps.mjs)",
+      "Bash(node diag-steps.mjs 1440 720)",
+      "Bash(node sweep-steps.mjs 1440 720)",
+      "Bash(node sweep-steps.mjs 390 844)",
+      "Bash(sed -i 's/await page.waitForTimeout\\(6000\\);/await page.waitForTimeout\\(9500\\);/' sweep-steps.mjs)",
+      "Bash(node sweep-steps.mjs 760 1024)",
+      "Bash(mkdir -p shots-v2)",
+      "Bash(node shot-steps.mjs)",
+      "Bash(node crop.mjs)"
     ],
     "additionalDirectories": [
       "c:\\Users\\shiku\\.claude\\projects\\c--Users-shiku-code-ScratchDesign\\memory"
