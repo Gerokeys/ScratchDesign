@@ -17,7 +17,9 @@ import ScrollAnimations, { prepareHero } from './animations/ScrollAnimations';
 import MagneticButton   from './animations/MagneticButton';
 import WorkPreview      from './animations/WorkPreview';
 import FeaturedWork     from './animations/FeaturedWork';
-import MobileNav        from './animations/MobileNav';
+
+// Full-screen menu + block page transition, shared with every other page
+import './shell';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -35,34 +37,8 @@ gsap.ticker.add((time) => lenis.raf(time * 1000));
 gsap.ticker.lagSmoothing(500, 33);
 window.lenis = lenis;
 
-// ── Page transitions ──────────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  const pt = document.getElementById('page-transition');
-  if (pt) {
-    document.addEventListener('click', (e) => {
-      const link = e.target.closest('a[href]');
-      if (!link) return;
-      const href = link.getAttribute('href');
-      if (
-        !href ||
-        href.startsWith('#') ||
-        href.startsWith('http') ||
-        href.startsWith('mailto:') ||
-        href.startsWith('tel:') ||
-        link.target === '_blank'
-      ) return;
-      e.preventDefault();
-      pt.classList.add('is-exiting');
-      setTimeout(() => { location.href = href; }, 320);
-    });
-  }
-});
-
 // ── App bootstrap ─────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-
-  // Mobile / overlay nav
-  new MobileNav();
 
   // Contour field — hero only; the strategy band is a flat charcoal panel
   new WebGLHero('hero-canvas');

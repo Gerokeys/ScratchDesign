@@ -1,5 +1,8 @@
 import '../styles/index.scss';
 
+// Full-screen menu + block page transition, shared with every page
+import './shell';
+
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';

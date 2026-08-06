@@ -1,0 +1,359 @@
+// ─── Full-screen menu ─────────────────────────────────────────────────────────
+// Numbered bands stacked to fill the viewport: a header strip, one row per
+// destination, and a foot band carrying the studio's details. On hover a row
+// fills and its phrase runs across it as a marquee.
+//
+// Markup is built by NavMenu.js so the six pages share one copy.
+
+.nav-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 850;
+  visibility: hidden;
+  pointer-events: none;
+
+  &.is-open {
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  // ── Sheet ──────────────────────────────────────────────────────────────────
+  &__panel {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    color: var(--black);
+    // The sheet drops in first; the rows follow from underneath
+    transform: translateY(-101%);
+    transition: transform 0.68s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+
+  &.is-open &__panel { transform: translateY(0); }
+
+  // ── Header strip ───────────────────────────────────────────────────────────
+  &__top {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: clamp(14px, 2vh, 26px) var(--pad);
+    padding-top: max(clamp(14px, 2vh, 26px), env(safe-area-inset-top));
+  }
+
+  &__logo {
+    display: block;
+    line-height: 0;
+
+    img {
+      width: clamp(42px, 4vw, 58px);
+      height: auto;
+      border-radius: 50%;
+    }
+  }
+
+  &__close {
+    width: clamp(48px, 5vw, 74px);
+    height: clamp(48px, 5vw, 74px);
+    border: 0;
+    border-radius: 50%;
+    background: var(--h-green);
+    color: #ffffff;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: filter 0.25s ease, transform 0.25s ease;
+
+    // Stays green on hover: the burger sits at the same corner, so the cursor
+    // is already on this button the moment the menu opens — a colour change
+    // here would read as its resting state.
+    &:hover {
+      filter: brightness(0.86);
+      transform: rotate(90deg);
+    }
+  }
+
+  // ── Rows ───────────────────────────────────────────────────────────────────
+  &__list {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.14);
+  }
+
+  &__row {
+    position: relative;
+    flex: 1 1 0;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    // Centred as a block, as in the reference — the numbers hang off the left
+    // of each word rather than sitting in a column of their own
+    justify-content: center;
+    padding: 0 var(--pad);
+    // Full-bleed hairline between bands, as in the reference
+    border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+    color: var(--black);
+    text-decoration: none;
+    overflow: hidden;
+    // The fill sweeps up rather than cutting in
+    transition: color 0.35s ease;
+
+    // Fill layer, so the colour change animates independently of the text
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: var(--h-green);
+      transform: translateY(101%);
+      transition: transform 0.45s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+  }
+
+  // Holds the number against the word, so the pair centres as one block and
+  // the number tracks the word's own top edge rather than the row's
+  &__inner {
+    position: relative;
+    z-index: 1;
+    padding-left: clamp(24px, 2.6vw, 46px);
+  }
+
+  &__num {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: var(--font-ui);
+    font-size: clamp(10px, 0.75vw, 13px);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    color: rgba(0, 0, 0, 0.45);
+    transition: opacity 0.3s ease;
+  }
+
+  &__word {
+    display: block;
+    font-family: var(--font-hero);
+    font-weight: 800;
+    // Sized against the row's own height so four bands always fit the viewport
+    font-size: min(13vw, 13vh);
+    line-height: 0.86;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  }
+
+  // ── Hover marquee ──────────────────────────────────────────────────────────
+  &__marquee {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  &__track {
+    display: flex;
+    align-items: center;
+    flex: none;
+    gap: clamp(14px, 1.6vw, 30px);
+    padding-left: clamp(14px, 1.6vw, 30px);
+    white-space: nowrap;
+    // The phrase list is rendered twice, so -50% lands exactly on the seam
+    animation: nav-menu-marquee 22s linear infinite;
+    animation-play-state: paused;
+  }
+
+  &__phrase {
+    font-family: var(--font-hero);
+    font-weight: 800;
+    font-size: min(13vw, 13vh);
+    line-height: 0.86;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+
+  &__sep {
+    font-family: var(--font-ui);
+    font-size: min(4vw, 4vh);
+    opacity: 0.5;
+  }
+
+  // Touch has no hover to reveal the marquee, so the same phrase is simply
+  // printed under its word. The information is the point; the marquee is only
+  // how a pointer device gets at it.
+  &__hint {
+    display: none;
+    margin-top: 6px;
+    font-family: var(--font-ui);
+    font-size: 12px;
+    line-height: 1.35;
+    letter-spacing: 0.01em;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  @media (hover: none) {
+    &__hint { display: block; }
+    &__marquee { display: none; }
+  }
+
+  // Pointer devices only — a marquee that never runs would just hide the label
+  @media (hover: hover) and (pointer: fine) {
+    &__row:hover {
+      &::before { transform: translateY(0); }
+
+      // The number goes with the word: left behind, it would sit in the middle
+      // of the band with the marquee running underneath it
+      .nav-menu__word { transform: translateX(-14px); opacity: 0; }
+      .nav-menu__num  { opacity: 0; }
+
+      .nav-menu__marquee { opacity: 1; }
+      .nav-menu__track   { animation-play-state: running; }
+    }
+  }
+
+  // ── Foot band ──────────────────────────────────────────────────────────────
+  &__foot {
+    flex: none;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) auto;
+    align-items: end;
+    gap: clamp(16px, 3vw, 48px);
+    padding: clamp(16px, 2.6vh, 30px) var(--pad);
+    padding-bottom: max(clamp(16px, 2.6vh, 30px), env(safe-area-inset-bottom));
+    font-family: var(--font-ui);
+    font-size: clamp(12px, 0.9vw, 14.5px);
+    line-height: 1.5;
+    // Column rules, echoing the grid the rest of the site is built on
+    background-image: repeating-linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.12) 0,
+      rgba(0, 0, 0, 0.12) 1px,
+      transparent 1px,
+      transparent calc(100% / 6)
+    );
+  }
+
+  &__bio {
+    margin: 0;
+    max-width: 46ch;
+    color: rgba(0, 0, 0, 0.72);
+  }
+
+  &__meta,
+  &__social {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__meta { color: rgba(0, 0, 0, 0.72); }
+
+  &__social { text-align: right; }
+
+  &__meta a,
+  &__social a {
+    color: var(--black);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+    &:hover { color: var(--h-green); }
+  }
+
+  // ── Tablet and below ───────────────────────────────────────────────────────
+  @include below(860px) {
+    &__word,
+    &__phrase { font-size: min(15vw, 11vh); }
+
+    // Left-aligned on a phone: centred words leave the numbers floating in the
+    // middle of the band with dead space either side
+    &__row { justify-content: flex-start; }
+    &__inner { padding-left: 26px; }
+
+    &__foot {
+      grid-template-columns: 1fr;
+      align-items: start;
+      gap: 12px;
+      background-image: none;
+      font-size: 12.5px;
+    }
+
+    &__bio { max-width: none; }
+
+    &__social {
+      flex-direction: row;
+      gap: 18px;
+      text-align: left;
+    }
+  }
+
+  // Short landscape phones: the bands would be thinner than the type
+  @media (max-height: 520px) {
+    &__word,
+    &__phrase { font-size: min(11vw, 15vh); }
+    &__bio { display: none; }
+  }
+}
+
+@keyframes nav-menu-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+// The menu owns the viewport while it is open
+html.has-menu,
+html.has-menu body { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-menu__panel,
+  .nav-menu__row::before,
+  .nav-menu__word { transition-duration: 0.01ms; }
+  .nav-menu__track { animation: none; }
+}
+
+// ─── Menu button on the sub-page header ───────────────────────────────────────
+// The home page has its own; NavMenu.js appends this one to .c-nav elsewhere.
+.c-nav__menu {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  padding: 9px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font-family: var(--font-ui);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+
+  &:hover { border-color: var(--h-green); background: var(--green-dim); }
+
+  // The case page has no header of its own, so its trigger floats instead
+  &--float {
+    position: fixed;
+    top: max(16px, env(safe-area-inset-top));
+    right: var(--pad);
+    z-index: 400;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(6px);
+  }
+
+  &-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--h-green);
+  }
+}

@@ -195,15 +195,52 @@ body {
 }
 
 // ─── Page transition ──────────────────────────────────────────────────────────
+// Horizontal blocks that sweep in from the left over the outgoing page and
+// carry on off to the right over the incoming one. Driven by PageTransition.js.
 .page-transition {
   position: fixed;
   inset: 0;
-  background: var(--ink);
   z-index: 9000;
+  display: flex;
+  flex-direction: column;
   pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  &.is-exiting { opacity: 1; pointer-events: all; }
+  visibility: hidden;
+
+  &.is-active {
+    visibility: visible;
+    pointer-events: all;
+  }
+
+  &__row {
+    flex: 1 1 0;
+    background: var(--h-bg);
+    // No resting transform here on purpose: GSAP owns this property outright.
+    // A percentage transform in CSS resolves to pixels in the computed style,
+    // which GSAP reads as `x` and then stacks its own xPercent on top of —
+    // so the blocks ended up at twice the offset and never covered anything.
+    // The container's `visibility` is what hides them until a sweep starts.
+    //
+    // A hair of overlap, so sub-pixel rounding can't open a seam between rows
+    margin-bottom: -1px;
+    &:last-child { margin-bottom: 0; }
+  }
+}
+
+// Painted by the inline <head> script before the browser's first paint, so an
+// incoming page is never briefly visible underneath the blocks. PageTransition
+// removes it the moment the blocks are in position.
+html.is-pt-cover::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9001;
+  background: var(--h-bg);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition { display: none; }
+  html.is-pt-cover::before { display: none; }
 }
 
 // ─── WhatsApp float ───────────────────────────────────────────────────────────

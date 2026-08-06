@@ -27,6 +27,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Archivo:wdth,wght@62..125,100..900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Paints a flat cover before first paint when arriving through a page
+         transition, so the new page never flashes in under the blocks. -->
+    <script>try{var k="sd-page-transition";if(sessionStorage.getItem(k)){sessionStorage.removeItem(k);document.documentElement.className+=" is-pt-cover"}}catch(e){}</script>
   </head>
   <body>
 
@@ -51,33 +54,6 @@
     <!-- ─── Custom cursor ─────────────────────────────────────────────────────── -->
     <div class="c-cursor" id="cursor" aria-hidden="true">
       <div class="c-cursor__inner"></div>
-    </div>
-
-    <!-- ─── Nav overlay ───────────────────────────────────────────────────────── -->
-    <div class="nav-overlay" id="nav-overlay" role="dialog" aria-modal="true" aria-label="Navigation">
-      <div class="nav-overlay__bg"></div>
-      <button type="button" class="nav-overlay__close" id="nav-close" aria-label="Close menu">
-        <span></span><span></span>
-      </button>
-      <nav class="nav-overlay__nav">
-        <ul>
-          <li><a href="/work.html" class="nav-overlay__link" data-index="01">Work</a></li>
-          <li><a href="#services" class="nav-overlay__link" data-index="02">Services</a></li>
-          <li><a href="#process" class="nav-overlay__link" data-index="03">Process</a></li>
-          <li><a href="#pricing" class="nav-overlay__link" data-index="04">Pricing</a></li>
-          <li><a href="#contact" class="nav-overlay__link" data-index="05">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="nav-overlay__footer">
-        <div>
-          <p class="nav-overlay__footer-label">Instagram</p>
-          <a href="https://www.instagram.com/scratchdesign" target="_blank" rel="noopener" class="nav-overlay__footer-link">@scratchdesign ↗</a>
-        </div>
-        <div>
-          <p class="nav-overlay__footer-label">Email</p>
-          <a href="mailto:hello@scratchdesign.co" class="nav-overlay__footer-link">hello@scratchdesign.co</a>
-        </div>
-      </div>
     </div>
 
     <!-- ─── Site nav ──────────────────────────────────────────────────────────── -->
