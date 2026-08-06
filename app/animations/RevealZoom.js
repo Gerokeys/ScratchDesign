@@ -48,6 +48,11 @@ export default class RevealZoom {
           end: () => `+=${window.innerHeight * 1.6}`,
           scrub: 0.7,
           pin: true,
+          // Refresh before everything else. Pinning inserts a spacer that
+          // pushes later sections down, and ScrollTrigger refreshes in
+          // creation order — so triggers below this one (the process
+          // parallax) otherwise measure against the un-pinned document.
+          refreshPriority: 1,
           invalidateOnRefresh: true,
           onRefresh: () => { to = target(); },
         },

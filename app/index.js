@@ -88,9 +88,13 @@ document.addEventListener('DOMContentLoaded', () => {
     new HoverCursor();
 
     // Pins and fitted type change the document height as they initialise, so
-    // triggers created earlier measure stale positions. One refresh once
-    // everything exists puts them all on the real layout.
+    // triggers created earlier measure stale positions. Refresh once everything
+    // exists — then again after a tick and after fonts land, because pinning
+    // itself alters layout during the first pass and leaves the triggers
+    // created before it still measuring the shorter document.
     ScrollTrigger.refresh();
+    requestAnimationFrame(() => ScrollTrigger.refresh());
+    document.fonts?.ready.then(() => ScrollTrigger.refresh());
 
     // Hero text reveal (set up by ScrollAnimations, fired here)
     window._heroReveal?.();
