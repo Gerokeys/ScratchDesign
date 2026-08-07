@@ -82,8 +82,8 @@ export default class NavMenu {
 
         <div class="nav-menu__foot">
           <p class="nav-menu__bio">
-            We build websites that are quick, clear and made to last — for
-            businesses that would rather be understood than admired.
+            We build websites that are quick and clear, for businesses that would rather be
+            understood than admired.
           </p>
           <div class="nav-menu__meta">
             <a href="mailto:hello@scratchdesign.co">hello@scratchdesign.co</a>

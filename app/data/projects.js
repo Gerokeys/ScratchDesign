@@ -25,26 +25,26 @@ const projects = [
     ],
 
     overview: [
-      'Livelihood Lab Africa is a research and development organisation working on sustainable livelihoods across the continent — the kind of work that lives or dies on institutional credibility.',
-      'They had the credibility. What they did not have was anywhere to point to. No website, no searchable record of their work, nothing a prospective partner could read before a first meeting.',
+      'Livelihood Lab Africa works on sustainable livelihoods across the continent. It is the kind of work that runs on reputation, and theirs was good.',
+      'The problem was that there was nowhere to point to. No website, no record of the work online, nothing a new partner could read before a first meeting.',
     ],
 
     challenge: [
-      'The organisation was effectively invisible online. Partners and funders who heard about them through a conference or a colleague had no way to verify what they did, and no way to get in touch outside of a personal introduction.',
-      'That is a slow, fragile pipeline. Every enquiry depended on someone already knowing someone. For an organisation whose work is inherently collaborative, that ceiling was the real problem — not the absence of a website, but the absence of a way in.',
-      'The brief was not "build us a site". It was: make it possible for the right people to find us, understand us, and reach us without an introduction.',
+      'Anyone who heard about them at a conference or through a colleague had no way to check what they did, and no way to get in touch without knowing somebody first.',
+      'That is a fragile way to find work. Every enquiry depended on an introduction, which put a hard ceiling on an organisation whose whole model is collaboration.',
+      'So the brief was never really "build us a site". It was: let the right people find us, work out what we do, and reach us cold.',
     ],
 
     strategy: [
-      'We started with the audience rather than the pages. Funders, research partners and government bodies all arrive with different questions, so the structure had to answer each of them within a click or two of landing.',
-      'Content was written to be scanned first and read second: what they do, who they work with, what has come of it. Programme areas were given their own pages so each could rank for the terms people actually search, rather than burying everything behind one dense "About" page.',
-      'Technically it is deliberately plain — semantic markup, structured data, compressed imagery, no framework overhead. For an audience that includes people on slow connections and institutional hardware, speed is an accessibility decision, not a vanity metric.',
+      'We started with who was coming rather than with pages. Funders, research partners and government bodies all turn up with different questions, so the structure had to answer each of them a click or two in.',
+      'Content was written to be skimmed first and read second. What they do, who they work with, what came of it. Each programme area got its own page so it could show up for the terms people actually type, instead of everything hiding behind one long About page.',
+      'The build is deliberately plain. Semantic markup, structured data, compressed images, no framework sitting on top. Part of this audience is on slow connections and old institutional hardware, so speed here is an access question rather than a score to chase.',
     ],
 
     outcome: [
-      'Enquiries began arriving within the first weeks of launch — over thirty in the opening period, from partners who had found the organisation directly rather than through a referral.',
-      'More importantly, the character of the conversations changed. People arrived already knowing the scope of the work, which moved first meetings past the explaining stage and into substance.',
-      'The site now functions as the organisation\'s front door: the thing you send before a meeting, and the thing that gets found when nobody sends anything at all.',
+      'Enquiries started coming in during the first few weeks. Over thirty in that opening stretch, from partners who found the organisation themselves rather than being sent.',
+      'The conversations changed too. People turned up already knowing the shape of the work, so first meetings skipped the explaining and got on with it.',
+      'The site is the front door now. It is the thing you send before a meeting, and the thing that gets found when nobody sends anything.',
     ],
 
     testimonial: null,
@@ -67,26 +67,26 @@ const projects = [
     ],
 
     overview: [
-      'Toothful Secrets is a dental practice competing in a category where almost every competitor says the same things in the same order — gentle care, modern equipment, friendly team.',
-      'The work was less about visual reinvention than about being genuinely useful at the moment someone is deciding whether to book.',
+      'Toothful Secrets is a dental practice in a category where every competitor says the same things in the same order. Gentle care, modern equipment, friendly team.',
+      'So the job was less about looking different and more about being useful at the exact moment someone is deciding whether to book.',
     ],
 
     challenge: [
-      'Prospective patients arrive anxious and comparison-shopping. They want to know what a procedure involves, roughly what it costs, and whether they will be treated well — and they are usually looking on a phone, often late at night.',
-      'The existing presence answered none of that quickly. Service information was thin, pricing was absent, and the path from "I have a toothache" to "I have an appointment" ran through a generic contact form.',
-      'Compounding it, the practice was not surfacing for the local searches that matter most — the ones where intent is highest and the decision is nearly made.',
+      'Patients arrive nervous and comparing. They want to know what a procedure involves, roughly what it costs, and whether they will be looked after. Usually they are on a phone, and often it is late.',
+      'The old site answered none of that quickly. Service information was thin, there was no pricing anywhere, and the route from toothache to appointment ran through a generic contact form.',
+      'It was also not showing up for the local searches that matter, which are the ones where somebody has nearly decided already.',
     ],
 
     strategy: [
-      'We rebuilt around the questions patients actually ask, giving each service enough room to explain what happens, why it might be recommended, and what to expect afterwards. Plain language throughout; no clinical euphemism.',
-      'Booking was made the persistent action rather than a destination — reachable from any point in a page without hunting for a menu.',
-      'The build is mobile-first in the literal sense: designed at phone width first and expanded outward, because that is where nearly all of the traffic starts. Local SEO foundations — structured data, location signals, service-level pages — were laid at build time rather than bolted on afterwards.',
+      'We rebuilt it around the questions patients actually ask. Each service got enough room to say what happens, why it might be recommended and what the days after look like. Plain words throughout, no clinical hedging.',
+      'Booking became a thing you can do from anywhere on the page rather than a place you have to navigate to.',
+      'It is mobile-first in the literal sense. Designed at phone width and expanded outwards, because that is where almost all the traffic starts. Structured data, location signals and a page per service went in while we were building, not months later.',
     ],
 
     outcome: [
-      'The practice now has a presence that does the qualifying work before the phone rings: patients arrive at reception already knowing what they are booking and what it involves.',
-      'The service pages give the practice something to point people to, which has quietly reduced the volume of repetitive questions coming through direct messages.',
-      'The technical foundations mean the site is positioned to compete for local search rather than relying on directories and word of mouth.',
+      'The site does some of the qualifying before the phone rings. People arrive at reception already knowing what they booked and what it involves.',
+      'The service pages give the practice something to send, which has quietly cut the same three questions arriving in messages every week.',
+      'And the technical side is set up to compete for local search instead of leaning on directories and word of mouth.',
     ],
 
     testimonial: null,
@@ -109,26 +109,26 @@ const projects = [
     ],
 
     overview: [
-      'Glam by Ivy is a beauty studio whose entire business ran through Instagram — discovery, consultation, scheduling, deposits and reminders, all in one inbox.',
-      'It worked, right up until it did not scale. The brand needed a home it owned rather than one it rented from an algorithm.',
+      'Glam by Ivy ran the whole business through Instagram. Discovery, consultation, scheduling, deposits, reminders, all of it in one inbox.',
+      'It worked right up until it did not. The studio needed a home it owned rather than one it was renting from an algorithm.',
     ],
 
     challenge: [
-      'Running a studio out of direct messages means the founder is the booking system. Every enquiry costs a conversation, availability has to be recited from memory, and anything not answered quickly quietly becomes a lost client.',
-      'There was also no durable record of the work. A portfolio that lives in a feed disappears the moment someone scrolls past it, and none of it was searchable by anyone who was not already following.',
-      'The risk underneath all of it: a business entirely dependent on a platform it does not control, with no way to reach its own clients if that platform changed.',
+      'When a studio runs out of direct messages, the founder is the booking system. Every enquiry costs a conversation, availability gets recited from memory, and anything not answered fast enough quietly turns into a client who went elsewhere.',
+      'There was no lasting record of the work either. A portfolio that lives in a feed vanishes the moment somebody scrolls, and none of it could be found by anyone not already following.',
+      'Underneath that was the real risk. The whole business sat on a platform she did not control, with no way of reaching her own clients if it changed.',
     ],
 
     strategy: [
-      'We built a brand system that could exist off-platform — type, colour and layout rules that hold together across a website, a price list and a social post, so the studio looks like itself everywhere.',
-      'The site was structured around the actual decision sequence: see the work, understand the service, check availability, book. Portfolio imagery leads, because in this category the work is the argument.',
-      'Booking was moved out of the inbox into a self-serve flow with services and durations laid out plainly, so clients can schedule without a back-and-forth and the founder gets her evenings back.',
+      'We built a brand that works off the platform. Type, colour and layout rules that hold up across a website, a price list and a post, so the studio looks like itself wherever it turns up.',
+      'The site follows the order people actually decide in. See the work, understand the service, check availability, book. Photography leads, because in this line of work the work is the argument.',
+      'Booking moved out of the inbox into a proper self-serve flow with services and durations spelled out, so clients can sort themselves out and she gets her evenings back.',
     ],
 
     outcome: [
-      'Bookings now arrive without a conversation first, which removed the largest recurring cost in the founder\'s week — answering the same questions in DMs.',
-      'The portfolio finally has a permanent, searchable home instead of vanishing down a feed, and the brand reads as a studio rather than an account.',
-      'Most significantly, the business is no longer wholly dependent on a single platform for reaching its own clients.',
+      'Bookings come in without a conversation first, which took out the biggest recurring cost in her week.',
+      'The portfolio has a permanent home that can be found by search instead of disappearing down a feed, and the brand reads as a studio rather than an account.',
+      'Most of all, the business is no longer sitting entirely on one platform to reach its own clients.',
     ],
 
     testimonial: null,
@@ -151,26 +151,26 @@ const projects = [
     ],
 
     overview: [
-      'Solar Kenya sells and installs solar systems — a considered purchase where the buyer is weighing a significant cost against savings they cannot yet see.',
-      'The site had to do the work a good salesperson does: explain the options honestly, size the decision, and make it easy to start a real conversation.',
+      'Solar Kenya sells and installs solar systems. It is a considered purchase, where somebody is weighing a large cost against savings they cannot see yet.',
+      'So the site had to do what a good salesperson does. Explain the options honestly, help size the decision, and make it easy to start a real conversation.',
     ],
 
     challenge: [
-      'Solar is bought slowly. Customers research for weeks, compare vendors, and arrive with specific questions about capacity, cost and whether a system will actually cover their usage.',
-      'A brochure site cannot answer that. Without product clarity, every enquiry starts from zero, and the sales team spends its time re-explaining fundamentals rather than qualifying buyers.',
-      'There was a delivery constraint too. A meaningful share of the audience browses on mid-range phones over inconsistent mobile data, where a heavy site simply does not load — and an unloaded page converts nobody.',
+      'Solar gets bought slowly. People research for weeks, compare vendors, and arrive with specific questions about capacity, cost and whether a system will actually cover what they use.',
+      'A brochure site cannot answer any of that. Without clarity on the products every enquiry starts from nothing, and the sales team spends its time explaining basics instead of finding out who is serious.',
+      'There was a delivery problem too. A good share of the audience is on mid-range phones and patchy mobile data, where a heavy site just does not load, and a page that does not load converts nobody.',
     ],
 
     strategy: [
-      'Products were organised by the question customers actually ask — what am I trying to power? — rather than by the technical taxonomy the industry uses internally.',
-      'Each range explains what it suits, what it includes and what to consider, so a visitor can narrow themselves down before ever making contact. The enquiry form asks the few questions that let the team respond usefully rather than asking for a name and a vague message.',
-      'Performance was treated as a conversion requirement, not a technical nicety: lean payloads, compressed imagery, minimal scripting. On a patchy connection the difference between a site that loads and one that does not is the difference between an enquiry and a bounce.',
+      'We organised the products around what customers actually ask, which is what am I trying to power, rather than the technical categories the industry uses internally.',
+      'Each range says what it suits, what comes with it and what to think about, so someone can narrow themselves down before getting in touch. The enquiry form asks the few things that let the team reply usefully instead of asking for a name and a vague message.',
+      'Performance was treated as part of conversion rather than a technical nicety. Light pages, compressed images, very little script. On a bad connection the gap between a site that loads and one that does not is the gap between an enquiry and a bounce.',
     ],
 
     outcome: [
-      'Enquiries now arrive with context attached — what the customer wants to power, roughly what scale they are considering — so the team can respond with something specific instead of a discovery call.',
-      'The product structure does the early qualifying, which means less time spent explaining the basics and more spent on people genuinely ready to buy.',
-      'And the site holds up where the customers actually are: on a phone, on mobile data, without a fast connection to lean on.',
+      'Enquiries turn up with context attached. What the customer wants to power, roughly what scale they have in mind, so the team can answer with something specific rather than booking a call to find out.',
+      'The product structure handles the early qualifying, so less time goes on explaining basics and more on people who are ready.',
+      'And it holds up where the customers actually are. On a phone, on mobile data, with nothing fast to lean on.',
     ],
 
     testimonial: null,
