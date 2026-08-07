@@ -248,7 +248,7 @@
     <section class="s-clarity" id="clarity">
       <div class="s-clarity__grid" aria-hidden="true"></div>
       <p class="s-clarity__text">
-        What you get when clarity meets
+        <span class="s-clarity__lead">What you get when clarity meets</span>
         <em class="s-clarity__type" data-typewriter="performance"></em>
       </p>
     </section>
@@ -364,7 +364,7 @@
           data-metric="30+ New Enquiries" data-category="ngo" data-tags="Web Design,SEO,Lead Generation,NGO"
           data-stats="30+|New Enquiries,Online|Presence Built,Weeks|Time to Launch" data-brief="Livelihood Lab Africa, a leading NGO, had no digital footprint. They needed a professional online presence to reach partners, donors, and communities — fast." data-built="A clean, fast website communicating their mission with clarity. Schema markup, optimised images, and targeted local SEO put them on the map."
           data-outcome="Within weeks: 30+ new enquiries, a functioning digital presence, and a partner pipeline that didn't exist before.">
-          <img src="https://s0.wp.com/mshots/v1/https://livelihood-lab-africa.vercel.app?w=1400" alt="Livelihood Lab Africa" loading="lazy" />
+          <img src="https://s0.wp.com/mshots/v1/https://livelihood-lab-africa.vercel.app?w=1400" alt="Livelihood Lab Africa" />
         </a>
 
         <a class="works-panel" data-cursor="View case study" href="/case.html?p=toothful-secrets" data-panel="1" tabindex="0" role="button"
@@ -373,7 +373,7 @@
           data-metric="+50% Sales" data-category="ecommerce" data-tags="E-Commerce,SEO,Subscriptions,Healthcare"
           data-stats="+50%|Sales Uplift,30+|New Subscribers,Organic|Traffic Source" data-brief="A dental hygiene brand with no e-commerce presence and a subscription product nobody knew existed. Their site wasn't converting." data-built="Rebuilt around conversion — structured product pages, streamlined checkout, and a subscription plan front and centre. SEO foundations added for organic discovery."
           data-outcome="50% sales uplift. Growing subscription signups month-on-month. Organic traffic now their primary acquisition channel.">
-          <img src="https://s0.wp.com/mshots/v1/https://toothful-secrets.vercel.app?w=1400" alt="Toothful Secrets" loading="lazy" />
+          <img src="https://s0.wp.com/mshots/v1/https://toothful-secrets.vercel.app?w=1400" alt="Toothful Secrets" />
         </a>
 
         <a class="works-panel" data-cursor="View case study" href="/case.html?p=glam-by-ivy" data-panel="2" tabindex="0" role="button"
@@ -382,7 +382,7 @@
           data-metric="20+ Online Bookings" data-category="booking" data-tags="Web Design,Branding,Booking Flow,Beauty"
           data-stats="20+|Online Bookings,Social|Traffic Source,Days|Time to Launch" data-brief="A beauty artist with a strong social following and zero online booking infrastructure. Every client inquiry was a manual DM." data-built="High-converting booking site — visual brand expression, gallery of work, and a frictionless booking flow that converts followers into booked clients."
           data-outcome="20+ confirmed bookings from day one. Social traffic directly converted. The artist now operates without a single booking DM.">
-          <img src="https://s0.wp.com/mshots/v1/https://glam-jet.vercel.app?w=1400" alt="Glam by Ivy" loading="lazy" />
+          <img src="https://s0.wp.com/mshots/v1/https://glam-jet.vercel.app?w=1400" alt="Glam by Ivy" />
         </a>
 
         <a class="works-panel" data-cursor="View case study" href="/case.html?p=solar-kenya" data-panel="3" tabindex="0" role="button"
@@ -391,7 +391,7 @@
           data-metric="25+ Client Leads" data-category="lead-gen" data-tags="Web Design,SEO,Lead Generation,Clean Energy"
           data-stats="25+|Client Leads,Local|SEO Optimised,East Africa|Coverage" data-brief="A clean energy company with quality installations and zero digital lead generation. They were relying entirely on referrals and word of mouth." data-built="A trust-first website positioning them as the credible choice for solar in Kenya — with clear service breakdowns, installation case studies, and strong local SEO."
           data-outcome="25+ qualified leads through the site. Now ranked for key solar installation searches in Nairobi. Referrals supplemented by a reliable online channel.">
-          <img src="https://s0.wp.com/mshots/v1/https://solar-kenya-e3ha.vercel.app?w=1400" alt="Solar Kenya" loading="lazy" />
+          <img src="https://s0.wp.com/mshots/v1/https://solar-kenya-e3ha.vercel.app?w=1400" alt="Solar Kenya" />
         </a>
 
           <a class="works-all" href="/work.html">
@@ -525,259 +525,128 @@
       </div>
     </section>
 
-    <!-- ─── Services ──────────────────────────────────────────────────────────── -->
-    <section class="s-services" id="services">
-      <div class="container">
-        <div class="s-services__header">
-          <span class="label-tag">What we do</span>
-          <h2 class="s-services__title" data-split>Everything your business needs online</h2>
-        </div>
-        <div class="s-services__list">
-
-          <div class="service-item" data-service="0">
-            <div class="service-item__num">01</div>
-            <div class="service-item__body">
-              <h3 class="service-item__name">Web Design &amp;<br>Development</h3>
-              <div class="service-item__detail">
-                <p>Custom-built websites with performance baked in. We design with conversion in mind and build with clean, maintainable code — no templates, no shortcuts.</p>
-                <a href="#contact" class="service-item__cta" data-magnetic>Start here →</a>
-              </div>
-            </div>
-            <div class="service-item__icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="2" y="2" width="24" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 9L11 13L7 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M14 17H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M2 24H26" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </div>
+    <!-- ─── Services — full-screen cards that stack ────────────────────────────── -->
+    <section class="s-serv" id="services">
+      <article class="serv-card serv-card--media-c" style="--card-bg: #9d8069; --card-fg: #ffffff;">
+        <div class="serv-card__inner">
+          <div class="serv-card__top">
+            <span class="serv-card__num">01</span>
+            <span class="serv-card__rule" aria-hidden="true"></span>
+            <p class="serv-card__copy">We design the thing people actually meet — layout, type, motion and the small decisions in between. Art direction and a visual language that holds together across every screen it has to survive, built so it can grow later without being redrawn from the start.</p>
           </div>
 
-          <div class="service-item" data-service="1">
-            <div class="service-item__num">02</div>
-            <div class="service-item__body">
-              <h3 class="service-item__name">Brand Identity &amp;<br>Visual Design</h3>
-              <div class="service-item__detail">
-                <p>Logo, colour system, typography, and guidelines that give your business a consistent, memorable identity across every touchpoint — digital and print.</p>
-                <a href="#contact" class="service-item__cta" data-magnetic>Start here →</a>
-              </div>
+          <figure class="serv-card__media">
+            <div class="serv-card__panel">
+              <img class="serv-card__img" src="/images/services/design.jpg" alt="" />
+              <svg viewBox="0 0 400 264" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M18 132C110 34 290 34 382 132 290 230 110 230 18 132Z"/>
+  <circle cx="200" cy="132" r="60"/>
+  <path d="M184 100v62l14-14 10 24 13-6-10-23 21-3z" fill="currentColor" stroke-width="6"/>
+  <path d="M200 40V16M120 56 108 34M280 56l12-22"/>
+  <circle cx="18" cy="132" r="7" fill="currentColor" stroke="none"/>
+  <circle cx="382" cy="132" r="7" fill="currentColor" stroke="none"/>
+</svg>
             </div>
-            <div class="service-item__icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M14 4V14L20 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </div>
-          </div>
+            <figcaption class="serv-card__cap">( looked at it for four hours )</figcaption>
+          </figure>
 
-          <div class="service-item" data-service="2">
-            <div class="service-item__num">03</div>
-            <div class="service-item__body">
-              <h3 class="service-item__name">E-Commerce &amp;<br>Booking Systems</h3>
-              <div class="service-item__detail">
-                <p>Online stores and booking platforms that work hard for your revenue. From product pages to checkout — designed to reduce friction and increase sales.</p>
-                <a href="#contact" class="service-item__cta" data-magnetic>Start here →</a>
-              </div>
-            </div>
-            <div class="service-item__icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M4 4H6L9 18H22L24 8H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="22" r="1.5" stroke="currentColor" stroke-width="1.5"/><circle cx="21" cy="22" r="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
-            </div>
-          </div>
-
-          <div class="service-item" data-service="3">
-            <div class="service-item__num">04</div>
-            <div class="service-item__body">
-              <h3 class="service-item__name">SEO &amp;<br>Digital Growth</h3>
-              <div class="service-item__detail">
-                <p>Organic visibility built through technical SEO, content strategy, and local optimisation. We make sure your customers can find you when they search.</p>
-                <a href="#contact" class="service-item__cta" data-magnetic>Start here →</a>
-              </div>
-            </div>
-            <div class="service-item__icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M4 20L10 14L14 18L20 10L24 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="22" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/></svg>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ─── Stats ─────────────────────────────────────────────────────────────── -->
-    <section class="s-stats">
-      <div class="container">
-        <div class="s-stats__grid">
-          <div class="stat-item">
-            <div class="stat-item__num"><span class="count" data-target="9">0</span><span class="stat-item__suffix">+</span></div>
-            <p class="stat-item__label">Clients delivered</p>
-            <p class="stat-item__sub">Across Kenya and beyond</p>
-          </div>
-          <div class="stat-item">
-            <div class="stat-item__num"><span class="count" data-target="50">0</span><span class="stat-item__suffix">%</span></div>
-            <p class="stat-item__label">Best revenue uplift</p>
-            <p class="stat-item__sub">For a single client, post-launch</p>
-          </div>
-          <div class="stat-item">
-            <div class="stat-item__num"><span class="count" data-target="100">0</span><span class="stat-item__suffix">%</span></div>
-            <p class="stat-item__label">On-time delivery</p>
-            <p class="stat-item__sub">Every project, on schedule</p>
+          <div class="serv-card__bottom">
+            <h3 class="serv-card__title">Design</h3>
+            <span class="serv-card__hr" aria-hidden="true"></span>
+            <a class="serv-card__more" href="/contact.html">
+              <span>Learn more</span>
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M4 1h9v9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
           </div>
         </div>
-      </div>
-    </section>
+      </article>
 
-    <!-- ─── Process ───────────────────────────────────────────────────────────── -->
-    <section class="s-process" id="process">
-      <div class="container">
-        <div class="s-process__header">
-          <span class="label-tag">How it works</span>
-          <h2 class="s-process__title" data-split>Simple, transparent process</h2>
+      <article class="serv-card serv-card--media-r" style="--card-bg: #ef7ba4; --card-fg: #111111;">
+        <div class="serv-card__inner">
+          <div class="serv-card__top">
+            <span class="serv-card__num">02</span>
+            <span class="serv-card__rule" aria-hidden="true"></span>
+            <p class="serv-card__copy">Websites built to be quick and to stay that way. Clean front-end code, sensible data, and only the moving parts a project genuinely needs — so it holds up on a mid-range phone and a patchy connection, and the next developer can read it a year from now.</p>
+          </div>
+
+          <figure class="serv-card__media">
+            <div class="serv-card__panel">
+              <img class="serv-card__img" src="/images/services/engineering.jpg" alt="" />
+              <svg viewBox="0 0 400 312" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <rect x="62" y="24" width="216" height="44"/>
+  <rect x="104" y="76" width="176" height="44"/>
+  <rect x="46" y="128" width="258" height="44"/>
+  <rect x="112" y="180" width="148" height="44"/>
+  <path d="M96 224h180"/>
+  <circle cx="186" cy="252" r="17"/>
+  <path d="M175 252h22M186 241v22" stroke-width="6"/>
+  <path d="M30 288h340"/>
+  <path d="M132 262l-14 20M240 262l14 20" stroke-width="5"/>
+</svg>
+            </div>
+            <figcaption class="serv-card__cap">( load-bearing )</figcaption>
+          </figure>
+
+          <div class="serv-card__bottom">
+            <h3 class="serv-card__title">Engineering</h3>
+            <span class="serv-card__hr" aria-hidden="true"></span>
+            <a class="serv-card__more" href="/contact.html">
+              <span>Learn more</span>
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M4 1h9v9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
         </div>
-        <div class="s-process__steps">
-          <div class="process-step">
-            <span class="process-step__num">01</span>
-            <h3 class="process-step__name">Discovery</h3>
-            <p class="process-step__desc">We start with your goals, audience, and competition. One focused call, structured brief.</p>
+      </article>
+
+      <article class="serv-card serv-card--media-rt" style="--card-bg: #6f9bc4; --card-fg: #ffffff;">
+        <div class="serv-card__inner">
+          <div class="serv-card__top">
+            <span class="serv-card__num">03</span>
+            <span class="serv-card__rule" aria-hidden="true"></span>
+            <p class="serv-card__copy">Before any of it: what the site is for, who has to understand it in five seconds, and what it should make easier. Getting that wrong is the expensive mistake — everything after it is just execution of a decision already made.</p>
           </div>
-          <div class="process-step">
-            <span class="process-step__num">02</span>
-            <h3 class="process-step__name">Design</h3>
-            <p class="process-step__desc">High-fidelity mockups in Figma. You see exactly what you're getting before a single line of code.</p>
-          </div>
-          <div class="process-step">
-            <span class="process-step__num">03</span>
-            <h3 class="process-step__name">Build</h3>
-            <p class="process-step__desc">Clean, performant code. No templates. Built from scratch for your specific needs.</p>
-          </div>
-          <div class="process-step">
-            <span class="process-step__num">04</span>
-            <h3 class="process-step__name">Launch</h3>
-            <p class="process-step__desc">Deployed, tested, and handed over with training. We stay on for 30 days post-launch.</p>
+
+          <figure class="serv-card__media">
+            <div class="serv-card__panel">
+              <img class="serv-card__img" src="/images/services/strategy.jpg" alt="" />
+              <svg viewBox="0 0 400 300" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" aria-hidden="true">
+  <rect x="18" y="18" width="364" height="264"/>
+  <path d="M78 18v82M78 160v122M140 60v180M202 18v72M202 148v92M264 76v164M326 18v96M326 172v110"/>
+  <path d="M18 218h60M140 100h62M264 76h62M202 240h62"/>
+  <path d="M0 150h400" stroke-width="17"/>
+  <circle cx="366" cy="150" r="15" fill="currentColor" stroke="none"/>
+</svg>
+            </div>
+            <figcaption class="serv-card__cap">( choosing the right problem )</figcaption>
+          </figure>
+
+          <div class="serv-card__bottom">
+            <h3 class="serv-card__title">Strategy</h3>
+            <span class="serv-card__hr" aria-hidden="true"></span>
+            <a class="serv-card__more" href="/contact.html">
+              <span>Learn more</span>
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M4 1h9v9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
           </div>
         </div>
-      </div>
-    </section>
+      </article>
 
-    <!-- ─── Pricing ────────────────────────────────────────────────────────────── -->
-    <section class="s-pricing" id="pricing">
-      <div class="container">
-        <div class="s-pricing__header">
-          <span class="label-tag">Pricing</span>
-          <h2 class="s-pricing__title" data-split>Clear, honest pricing</h2>
-          <p class="s-pricing__sub">Fixed-price packages — no surprises, no hourly billing traps.</p>
-        </div>
-        <div class="s-pricing__grid">
-
-          <div class="pricing-card pricing-card--1">
-            <div class="pricing-card__top">
-              <span class="pricing-card__tier">Starter</span>
-              <p class="pricing-card__desc">For businesses that need a professional online presence, fast.</p>
-            </div>
-            <div class="pricing-card__price">
-              <span class="pricing-card__currency">Ksh</span>
-              <span class="pricing-card__amount">25,000</span>
-            </div>
-            <ul class="pricing-card__features">
-              <li>5-page custom website</li>
-              <li>Mobile-first responsive design</li>
-              <li>Basic SEO setup</li>
-              <li>Contact form</li>
-              <li>1 round of revisions</li>
-              <li class="off">E-commerce / bookings</li>
-              <li class="off">Custom animations</li>
-            </ul>
-            <a href="#contact" class="pricing-card__cta" data-magnetic>Get started →</a>
-          </div>
-
-          <div class="pricing-card pricing-card--2 pricing-card--featured">
-            <span class="pricing-card__badge">Most popular</span>
-            <div class="pricing-card__top">
-              <span class="pricing-card__tier">Business</span>
-              <p class="pricing-card__desc">For growing businesses that need a site that actively drives revenue.</p>
-            </div>
-            <div class="pricing-card__price">
-              <span class="pricing-card__currency">Ksh</span>
-              <span class="pricing-card__amount">65,000</span>
-            </div>
-            <ul class="pricing-card__features">
-              <li>Up to 10 pages</li>
-              <li>Custom design system</li>
-              <li>GSAP scroll animations</li>
-              <li>Advanced SEO + schema</li>
-              <li>Booking or lead-gen flow</li>
-              <li>Analytics integration</li>
-              <li>3 rounds of revisions</li>
-            </ul>
-            <a href="#contact" class="pricing-card__cta pricing-card__cta--featured" data-magnetic>Get started →</a>
-          </div>
-
-          <div class="pricing-card pricing-card--3">
-            <div class="pricing-card__top">
-              <span class="pricing-card__tier">E-Commerce</span>
-              <p class="pricing-card__desc">A full online store built for conversion — from browse to checkout.</p>
-            </div>
-            <div class="pricing-card__price">
-              <span class="pricing-card__currency">Ksh</span>
-              <span class="pricing-card__amount">120,000</span>
-            </div>
-            <ul class="pricing-card__features">
-              <li>Full online store</li>
-              <li>Product management system</li>
-              <li>Payment gateway integration</li>
-              <li>Subscription / bundles</li>
-              <li>Email automation setup</li>
-              <li>SEO + conversion audit</li>
-              <li>30-day post-launch support</li>
-            </ul>
-            <a href="#contact" class="pricing-card__cta" data-magnetic>Get started →</a>
-          </div>
-
-        </div>
-        <p class="s-pricing__note">Need something bespoke? <a href="#contact">Let's talk.</a></p>
-      </div>
+      <div class="s-serv__tail" aria-hidden="true"></div>
     </section>
 
     <!-- ─── Contact ────────────────────────────────────────────────────────────── -->
-    <section class="s-contact" id="contact">
-      <div class="container">
-        <div class="s-contact__inner">
-          <div class="s-contact__left">
-            <span class="label-tag">Get in touch</span>
-            <h2 class="s-contact__title" data-split>Let's build something great.</h2>
-            <p class="s-contact__sub">Tell us what you need. We'll come back with a clear plan and honest quote — usually within 24 hours.</p>
-            <div class="s-contact__direct">
-              <a href="mailto:hello@scratchdesign.co" class="s-contact__direct-link" data-magnetic>
-                <span class="label-tag">Email</span>
-                hello@scratchdesign.co
-              </a>
-              <a href="https://wa.me/254700000000" target="_blank" rel="noopener" class="s-contact__direct-link" data-magnetic>
-                <span class="label-tag">WhatsApp</span>
-                +254 700 000 000
-              </a>
-            </div>
-          </div>
-          <form class="s-contact__form" id="contact-form" novalidate>
-            <div class="form-field">
-              <label for="cf-name">Your name</label>
-              <input type="text" id="cf-name" name="name" placeholder="Jane Wambui" autocomplete="name" required />
-            </div>
-            <div class="form-field">
-              <label for="cf-email">Email address</label>
-              <input type="email" id="cf-email" name="email" placeholder="jane@company.co.ke" autocomplete="email" required />
-            </div>
-            <div class="form-field">
-              <label for="cf-service">What do you need?</label>
-              <select id="cf-service" name="service">
-                <option value="">Select a service</option>
-                <option>Web Design & Development</option>
-                <option>Brand Identity</option>
-                <option>E-Commerce Store</option>
-                <option>SEO & Growth</option>
-                <option>Something else</option>
-              </select>
-            </div>
-            <div class="form-field form-field--wide">
-              <label for="cf-message">Tell us about your project</label>
-              <textarea id="cf-message" name="message" rows="4" placeholder="Brief description, budget, timeline..."></textarea>
-            </div>
-            <button type="submit" class="btn-primary btn-primary--full" data-magnetic>
-              Send message
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M13 1L1 13M13 1H4M13 1V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </button>
-            <p class="s-contact__success" id="cf-success" hidden>Message sent! We'll reply within 24 hours. 🎉</p>
-          </form>
-        </div>
+    <section class="s-cmin" id="contact">
+      <div class="s-cmin__grid" aria-hidden="true"></div>
+      <div class="s-cmin__inner">
+        <h2 class="s-cmin__title">Ready to build something that actually works?</h2>
+        <p class="s-cmin__note">
+          Clear design, solid engineering and focused strategy &mdash; working
+          together as one system.
+        </p>
+        <a class="s-cmin__cta" href="/contact.html">
+          Let&rsquo;s talk
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M4 1h9v9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
       </div>
     </section>
     </div>

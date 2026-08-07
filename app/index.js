@@ -17,6 +17,7 @@ import ScrollAnimations, { prepareHero } from './animations/ScrollAnimations';
 import MagneticButton   from './animations/MagneticButton';
 import WorkPreview      from './animations/WorkPreview';
 import FeaturedWork     from './animations/FeaturedWork';
+import ServiceStack     from './animations/ServiceStack';
 
 // Full-screen menu + block page transition, shared with every other page
 import './shell';
@@ -64,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new Typewriter();
     new WorksScroll();
     new HoverCursor();
+    new ServiceStack();
 
     // Pins and fitted type change the document height as they initialise, so
     // triggers created earlier measure stale positions. Refresh once everything

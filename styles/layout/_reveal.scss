@@ -143,10 +143,19 @@
 
 
 
+// The lead is a block so the typed word always lands on a line of its own,
+// rather than wherever the sentence happens to wrap at that viewport width
+.s-clarity__lead { display: block; }
+
 // Typed in on scroll; the caret sits after whatever has been revealed
 .s-clarity__type {
+  display: block;
   font-style: italic;
   white-space: nowrap;
+  // Typewriter.js reserves the final width in ch; centre what it reserves so
+  // the word grows out from the middle instead of off to the left
+  margin-inline: auto;
+  width: fit-content;
 
   &::after {
     content: "";

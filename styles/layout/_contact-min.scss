@@ -1,0 +1,110 @@
+// ─── Contact — the last thing before the footer is uncovered ──────────────────
+// Deliberately quiet: one question, one line of answer, one button, on the same
+// column grid the rest of the site is drawn on.
+
+.s-cmin {
+  position: relative;
+  min-height: 92svh;
+  display: grid;
+  place-items: center;
+  padding: clamp(70px, 12vh, 150px) var(--pad);
+  background: #fbfbfb;
+  color: var(--black);
+  text-align: center;
+
+  &__grid {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.08) 0,
+      rgba(0, 0, 0, 0.08) 1px,
+      transparent 1px,
+      transparent calc(100% / 8)
+    );
+
+    @include below(860px) {
+      background-image: repeating-linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.08) 0,
+        rgba(0, 0, 0, 0.08) 1px,
+        transparent 1px,
+        transparent calc(100% / 4)
+      );
+    }
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 46ch;
+  }
+
+  // Crosshairs at the corners of the heading block, as in the reference
+  &__title {
+    position: relative;
+    margin: 0 0 clamp(16px, 2.6vh, 30px);
+    font-family: var(--font-hero);
+    font-weight: 800;
+    font-size: min(6.4vw, 82px);
+    line-height: 0.9;
+    letter-spacing: -0.005em;
+    text-transform: uppercase;
+
+    &::before,
+    &::after {
+      content: '+';
+      position: absolute;
+      top: -0.28em;
+      font-family: var(--font-ui);
+      font-size: clamp(12px, 1vw, 18px);
+      font-weight: 400;
+      line-height: 1;
+      color: rgba(0, 0, 0, 0.35);
+    }
+
+    &::before { left: calc(-1 * clamp(14px, 2vw, 40px)); }
+    &::after  { right: calc(-1 * clamp(14px, 2vw, 40px)); }
+
+    @include below(860px) {
+      font-size: min(10.5vw, 46px);
+      &::before, &::after { display: none; }
+    }
+  }
+
+  &__note {
+    margin: 0 auto clamp(24px, 4vh, 46px);
+    max-width: 40ch;
+    font-family: var(--font-ui);
+    font-size: clamp(13px, 1vw, 16px);
+    line-height: 1.55;
+    color: rgba(0, 0, 0, 0.62);
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: clamp(14px, 1.8vh, 20px) clamp(26px, 3vw, 44px);
+    border-radius: 999px;
+    background: #ececec;
+    color: var(--black);
+    text-decoration: none;
+    font-family: var(--font-ui);
+    font-size: clamp(12px, 0.9vw, 14px);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: background 0.28s ease, color 0.28s ease;
+
+    svg { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+
+    &:hover {
+      background: var(--h-green);
+      color: #ffffff;
+      svg { transform: translate(3px, -3px); }
+    }
+  }
+}
