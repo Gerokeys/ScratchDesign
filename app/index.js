@@ -20,6 +20,7 @@ import FeaturedWork     from './animations/FeaturedWork';
 
 // Full-screen menu + block page transition, shared with every other page
 import './shell';
+import RevealFooter from './animations/RevealFooter';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,6 +40,7 @@ window.lenis = lenis;
 
 // ── App bootstrap ─────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+  new RevealFooter();
 
   // Contour field — hero only; the strategy band is a flat charcoal panel
   new WebGLHero('hero-canvas');

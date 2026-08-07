@@ -2,6 +2,7 @@ import '../styles/index.scss';
 
 // Full-screen menu + block page transition, shared with every page
 import './shell';
+import RevealFooter from './animations/RevealFooter';
 
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
@@ -25,6 +26,7 @@ const esc = (s) => String(s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 document.addEventListener('DOMContentLoaded', () => {
+  new RevealFooter();
   const list = document.getElementById('wp-list');
   if (!list) return;
 

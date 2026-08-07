@@ -15,7 +15,7 @@ import { gsap } from 'gsap';
 
 const ITEMS = [
   { num: '01', word: 'Work',    href: '/work.html',    phrase: 'Our recent projects' },
-  { num: '02', word: 'About',   href: '/#about',       phrase: 'Who you would be working with' },
+  { num: '02', word: 'About',   href: '/about.html',   phrase: 'Who you would be working with' },
   { num: '03', word: 'Process', href: '/#how',         phrase: 'How a project actually runs' },
   { num: '04', word: 'Contact', href: '/contact.html', phrase: 'Start a project with us' },
 ];

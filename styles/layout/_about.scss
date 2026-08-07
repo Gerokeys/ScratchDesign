@@ -1,0 +1,274 @@
+// ─── About page ───────────────────────────────────────────────────────────────
+.about-body {
+  background: #ffffff;
+  color: var(--black);
+}
+
+.s-about {
+  position: relative;
+  padding: clamp(90px, 14vh, 150px) var(--pad) clamp(60px, 10vh, 120px);
+
+  // Column rules, matching the work and contact pages
+  &__grid {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.09) 0,
+      rgba(0, 0, 0, 0.09) 1px,
+      transparent 1px,
+      transparent calc(100% / 8)
+    );
+
+    @include below(860px) {
+      background-image: repeating-linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.09) 0,
+        rgba(0, 0, 0, 0.09) 1px,
+        transparent 1px,
+        transparent calc(100% / 4)
+      );
+    }
+  }
+
+  section { position: relative; z-index: 1; }
+
+  &__eyebrow,
+  &__label {
+    display: block;
+    margin: 0 0 clamp(14px, 2.4vh, 26px);
+    font-family: var(--font-ui);
+    font-size: clamp(11px, 0.8vw, 13px);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.45);
+  }
+
+  // ── Mission ────────────────────────────────────────────────────────────────
+  &__hero { padding-bottom: clamp(48px, 9vh, 110px); }
+
+  // Sized to land in three or four lines. This is a full sentence, not a
+  // headline word — at display size it ran to six lines and off the fold.
+  &__mission {
+    margin: 0 0 clamp(22px, 3.4vh, 40px);
+    max-width: min(1120px, 80%);
+    font-family: var(--font-hero);
+    font-weight: 800;
+    font-size: min(4.6vw, 64px);
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+
+    em {
+      font-style: normal;
+      color: var(--h-green);
+    }
+
+    @include below(860px) {
+      max-width: none;
+      font-size: min(8.6vw, 40px);
+    }
+  }
+
+  &__lede {
+    margin: 0;
+    max-width: 56ch;
+    margin-left: auto;
+    font-family: var(--font-ui);
+    font-size: clamp(14px, 1.15vw, 19px);
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.72);
+
+    @include below(860px) { margin-left: 0; }
+  }
+
+  &__note {
+    margin: clamp(22px, 3.4vh, 38px) 0 0;
+    max-width: 62ch;
+    font-family: var(--font-ui);
+    font-size: clamp(13px, 0.95vw, 16px);
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  // ── Sections ───────────────────────────────────────────────────────────────
+  &__proof,
+  &__clients,
+  &__story,
+  &__how {
+    padding: clamp(40px, 7vh, 84px) 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.14);
+  }
+
+  &__cta { padding-top: clamp(40px, 7vh, 84px); }
+
+  // ── Story ──────────────────────────────────────────────────────────────────
+  &__story-body {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(18px, 3vw, 54px);
+    max-width: 108ch;
+    margin-left: auto;
+
+    p {
+      margin: 0;
+      font-family: var(--font-ui);
+      font-size: clamp(14px, 1vw, 17px);
+      line-height: 1.65;
+      color: rgba(0, 0, 0, 0.75);
+    }
+
+    p:first-child {
+      grid-column: 1 / -1;
+      font-size: clamp(16px, 1.5vw, 26px);
+      line-height: 1.45;
+      color: var(--black);
+    }
+
+    @include below(760px) {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-left: 0;
+    }
+  }
+}
+
+// ── Proof strip ───────────────────────────────────────────────────────────────
+.s-about__proof {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(16px, 2.4vw, 40px);
+
+  @include below(860px) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.proof-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  &__num {
+    font-family: var(--font-hero);
+    font-weight: 800;
+    font-size: min(6vw, 86px);
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    // Reserves the widest the count will get to, so the layout does not shuffle
+    // while the numeral is ticking up
+    font-variant-numeric: tabular-nums;
+
+    @include below(860px) { font-size: min(11vw, 52px); }
+  }
+
+  &__label {
+    margin-top: 8px;
+    font-family: var(--font-ui);
+    font-size: clamp(12px, 0.95vw, 15px);
+    font-weight: 500;
+  }
+
+  &__sub {
+    font-family: var(--font-ui);
+    font-size: clamp(11px, 0.8vw, 13px);
+    line-height: 1.45;
+    color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+// ── Client list ───────────────────────────────────────────────────────────────
+.client-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+
+  &__item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+    a {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      padding: clamp(12px, 2vh, 22px) 0;
+      color: var(--black);
+      text-decoration: none;
+      transition: color 0.25s ease, padding-left 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+
+      &:hover {
+        color: var(--h-green);
+        padding-left: clamp(8px, 1.2vw, 22px);
+      }
+    }
+  }
+
+  &__name {
+    font-family: var(--font-hero);
+    font-weight: 800;
+    font-size: min(5.4vw, 68px);
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+
+    @include below(860px) { font-size: min(9vw, 40px); }
+  }
+
+  &__meta {
+    flex: none;
+    font-family: var(--font-ui);
+    font-size: clamp(11px, 0.8vw, 13px);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.45);
+  }
+}
+
+// ── Principles ────────────────────────────────────────────────────────────────
+.about-principles {
+  list-style: none;
+  counter-reset: principle;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 52px);
+
+  @include below(760px) { grid-template-columns: 1fr; gap: 26px; }
+
+  li {
+    counter-increment: principle;
+    padding-top: 16px;
+    border-top: 1px solid rgba(0, 0, 0, 0.14);
+
+    &::before {
+      content: '0' counter(principle);
+      display: block;
+      margin-bottom: 10px;
+      font-family: var(--font-ui);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      color: rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  h3 {
+    margin: 0 0 8px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(17px, 1.5vw, 26px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    margin: 0;
+    max-width: 46ch;
+    font-family: var(--font-ui);
+    font-size: clamp(13px, 0.95vw, 16px);
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.68);
+  }
+}

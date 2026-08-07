@@ -2,6 +2,7 @@ import '../styles/index.scss';
 
 // Full-screen menu + block page transition, shared with every page
 import './shell';
+import RevealFooter from './animations/RevealFooter';
 
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
@@ -27,6 +28,7 @@ const esc = (s) => String(s)
 const paras = (arr) => arr.map((t) => `<p>${esc(t)}</p>`).join('');
 
 document.addEventListener('DOMContentLoaded', () => {
+  new RevealFooter();
   const slug = new URLSearchParams(location.search).get('p');
   const project = bySlug(slug);
 

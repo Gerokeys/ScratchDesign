@@ -1,0 +1,169 @@
+// ─── Reveal footer ────────────────────────────────────────────────────────────
+// The footer is fixed to the bottom of the viewport and the page scrolls over
+// it, so it is uncovered rather than scrolled to. Two things make that work:
+// the page wrapper is opaque and stacks above, and it reserves exactly the
+// footer's height below itself — measured and published as --rf-h by
+// RevealFooter.js, because the wordmark's height depends on the viewport.
+
+:root { --rf-h: 60vh; }   // stand-in until the measurement lands
+
+.page-body {
+  position: relative;
+  z-index: 1;
+  // Opaque, or the footer shows through any gap between sections
+  background: var(--h-bg);
+  // The room the footer is uncovered into
+  margin-bottom: var(--rf-h);
+}
+
+html.light .page-body { background: #ffffff; }
+
+.rev-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 0;
+  width: 100%;
+  background: #dcdcdc;
+  color: var(--black);
+  font-family: var(--font-ui);
+  // Never taller than the screen: the part below the fold could never be
+  // uncovered, and --rf-h is clamped to match
+  max-height: 100vh;
+  overflow: hidden;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    padding: clamp(28px, 5vh, 64px) var(--pad) clamp(14px, 2vh, 24px);
+  }
+
+  // ── Links row ──────────────────────────────────────────────────────────────
+  &__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: clamp(20px, 4vw, 60px);
+    padding-bottom: clamp(18px, 3vh, 34px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.55);
+  }
+
+  &__label {
+    margin: 0 0 4px;
+    font-size: clamp(11px, 0.8vw, 13px);
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  &__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 0;
+    font-size: clamp(12px, 0.95vw, 15px);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+
+    a {
+      color: var(--black);
+      text-decoration: none;
+      transition: color 0.2s ease;
+      &:hover { color: var(--h-green); }
+
+      // The separator belongs to the list, not to any link — a literal comma
+      // in the markup would sit on the far side of the flex gap
+      &:not(:last-child)::after {
+        content: ',';
+        margin-right: 0.45em;
+        color: var(--black);
+      }
+    }
+  }
+
+  &__contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+    text-align: right;
+    font-size: clamp(12px, 0.95vw, 15px);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  &__social {
+    margin: 0;
+
+    a {
+      color: var(--black);
+      text-decoration: none;
+      transition: color 0.2s ease;
+      &:hover { color: var(--h-green); }
+
+      &:not(:last-child)::after {
+        content: ',';
+        margin-right: 0.35em;
+        color: var(--black);
+      }
+    }
+  }
+
+  &__email {
+    color: var(--h-green);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+    &:hover { opacity: 0.7; }
+  }
+
+  // ── Dot wordmark ───────────────────────────────────────────────────────────
+  &__mark {
+    padding: clamp(20px, 4vh, 54px) 0 clamp(10px, 1.6vh, 20px);
+    color: var(--black);
+    line-height: 0;
+
+    svg { display: block; width: 100%; height: auto; }
+  }
+
+  // One line where there is width for it, two stacked where there is not.
+  // Both are in the DOM and the breakpoint picks one — declaring `display` for
+  // the pair after hiding the tall one would un-hide it again.
+  &__mark-wide { display: block; }
+  &__mark-tall { display: none; }
+
+  &__mark-tall svg + svg { margin-top: clamp(6px, 1.4vh, 16px); }
+
+  &__legal {
+    margin: 0;
+    text-align: center;
+    font-size: clamp(10px, 0.75vw, 12.5px);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.65);
+  }
+
+  // ── Small screens ──────────────────────────────────────────────────────────
+  @include below(760px) {
+    &__mark-wide { display: none; }
+    &__mark-tall { display: block; }
+
+    &__top {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    &__contact {
+      align-items: flex-start;
+      text-align: left;
+    }
+  }
+}
+
+// A very short viewport can't give the wordmark room without pushing the links
+// off; drop it rather than shrink everything else
+@media (max-height: 560px) {
+  .rev-footer__mark { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  // Nothing moves anyway — the footer is fixed and the page slides over it —
+  // so there is nothing here to reduce.
+}

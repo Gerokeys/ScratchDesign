@@ -2,6 +2,7 @@ import '../styles/index.scss';
 
 // Full-screen menu + block page transition, shared with every page
 import './shell';
+import RevealFooter from './animations/RevealFooter';
 
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
@@ -21,6 +22,7 @@ window.lenis = lenis;
 const WHATSAPP = '254700000000';   // same number the home page form uses
 
 document.addEventListener('DOMContentLoaded', () => {
+  new RevealFooter();
   const form   = document.getElementById('contact-form');
   const status = document.getElementById('form-status');
   if (!form) return;
